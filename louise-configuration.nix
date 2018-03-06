@@ -19,7 +19,7 @@
 
   boot.extraModprobeConfig = ''
     # See https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Module-based_Powersaving_Options
-    options i915 modeset=1 enable_rc6=1 enable_fbc=1 enable_guc_loading=1 enable_guc_submission=1 enable_psr=1 disable_power_well=0
+    options i915 modeset=1 enable_rc6=1 enable_guc_loading=1 enable_guc_submission=1 enable_psr=0
   '';
 
   boot.blacklistedKernelModules = [
