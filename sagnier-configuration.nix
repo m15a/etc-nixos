@@ -12,6 +12,10 @@
 
   hardware.bluetooth.enable = true;
 
+  # Use Pulseaudio.
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -76,7 +80,10 @@
   nix.buildCores = 6;
 
   # Nixpkgs options
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    pulseaudio = true;
+  };
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget

@@ -13,9 +13,11 @@
   # Use Bluetooth.
   hardware.bluetooth.enable = true;
 
-  boot.extraModprobeConfig = ''
-    options snd_hda_intel model=generic
+  # Use Pulseaudio.
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
 
+  boot.extraModprobeConfig = ''
     # See https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Module-based_Powersaving_Options
     options i915 modeset=1 enable_rc6=1 enable_fbc=1 enable_guc_loading=1 enable_guc_submission=1 enable_psr=1 disable_power_well=0
   '';
@@ -90,7 +92,10 @@
   nix.buildCores = 6;
 
   # Nixpkgs options
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    pulseaudio = true;
+  };
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
