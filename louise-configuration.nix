@@ -30,7 +30,17 @@
   boot.kernelParams = [
     # See https://gist.github.com/greigdp/bb70fbc331a0aaf447c2d38eacb85b8f#sleep-mode-power-usage
     "mem_sleep_default=deep"
+
+    # DMAR: DRHD: handling fault status reg 2
+    # See https://bbs.archlinux.org/viewtopic.php?id=230362
+    "intel_iommu=off"
+
+    # See https://wiki.archlinux.org/index.php/Power_management#Bus_power_management
+    # "pcie_aspm=force"  # questionable if it is effective on Dell XPS 9370
   ];
+
+  # Various optimizations.
+  boot.kernel.sysctl."vm.swappiness" = 10;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -102,6 +112,9 @@
   environment.systemPackages = with pkgs; [
     # nix-repl
     vim
+    nvme-cli
+    pciutils
+    powertop
   ];
   programs.fish.enable = true;
 
@@ -118,6 +131,11 @@
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   # List services that you want to enable:
+
+  # Services for optimizations.
+  services.fstrim.enable = true;
+  services.thermald.enable = true;
+  services.tlp.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
