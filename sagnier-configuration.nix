@@ -10,21 +10,15 @@
       ./hardware-configuration.nix
     ];
 
+  # Use Bluetooth.
   hardware.bluetooth.enable = true;
 
   # Use Pulseaudio.
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true;
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use the latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  # Set the sound card driver.
   boot.extraModprobeConfig = ''
+    # Set the sound card driver.
     options snd_hda_intel model=generic
   '';
 
@@ -34,8 +28,14 @@
     "sp5100_tco"
   ];
 
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Use the latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   networking.hostName = "sagnier"; # Define your hostname.
-  # networking.enableIPv6 = true;
   networking.networkmanager.enable = true;
 
   # Select internationalisation properties.
@@ -52,22 +52,28 @@
   # Fonts
   fonts = {
     fonts = with pkgs; [
-      # Serif fonts
       source-serif-pro
-      source-han-serif-japanese
-
-      # Sans-serif fonts
       source-sans-pro
-      source-han-sans-japanese
-      cantarell_fonts
-
-      # Monospace fonts
       source-code-pro
+      source-han-serif-japanese
+      source-han-sans-japanese
+      cantarell-fonts
       fira-code
-
-      # Emoji
       noto-fonts-emoji
     ];
+    fontconfig.defaultFonts = {
+      serif = [
+        "Source Serif Pro"
+        "Source Han Serif JP"
+      ];
+      sansSerif = [
+        "Source Sans Pro"
+        "Source Han Sans JP"
+      ];
+      monospace = [
+        "Source Code Pro"
+      ];
+    };
   };
 
   # Set your time zone.
@@ -76,7 +82,6 @@
   # Nix options
   nix.trustedUsers = [ "@wheel" ];
   # nix.useSandbox = true;
-  nix.package = pkgs.nixUnstable;
   nix.buildCores = 6;
 
   # Nixpkgs options
@@ -88,11 +93,9 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    nix-repl
-    vim
   ];
   programs.fish.enable = true;
-
+  programs.vim.defaultEditor = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -101,6 +104,10 @@
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   # List services that you want to enable:
+
+  # Services for optimizations.
+  services.fstrim.enable = true;
+  services.thermald.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -139,13 +146,10 @@
     shell = "/run/current-system/sw/bin/fish";
   };
 
-  # Keep the NixOS system up-to-date.
-  # system.autoUpgrade.enable = true;
-
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "17.09"; # Did you read the comment?
+  system.stateVersion = "18.03"; # Did you read the comment?
 
 }
