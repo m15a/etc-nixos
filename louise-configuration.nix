@@ -111,15 +111,14 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     # nix-repl
-    vim
     nvme-cli
     pciutils
     powertop
   ];
   programs.fish.enable = true;
+  programs.vim.defaultEditor = true;
 
   environment.variables = {
-    EDITOR = "vim";
     GDK_SCALE = "2";          # for HiDPI display
     GDK_DPI_SCALE = "0.625";  # for HiDPI display
   };
