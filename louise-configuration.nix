@@ -98,7 +98,6 @@
   # Nix options
   nix.trustedUsers = [ "@wheel" ];
   # nix.useSandbox = true;
-  nix.package = pkgs.nixUnstable;
   nix.buildCores = 6;
 
   # Nixpkgs options
