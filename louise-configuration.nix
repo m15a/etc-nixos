@@ -10,22 +10,12 @@
       ./hardware-configuration.nix
     ];
 
-  # Use Bluetooth.
-  hardware.bluetooth.enable = true;
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use Pulseaudio.
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
-
-  boot.extraModprobeConfig = ''
-    # See https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Module-based_Powersaving_Options
-    options i915 modeset=1 enable_rc6=1 enable_guc_loading=1 enable_guc_submission=1 enable_psr=0
-  '';
-
-  boot.blacklistedKernelModules = [
-    # See https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Remove_psmouse_errors_from_dmesg
-    "psmouse"
-  ];
+  # Use the latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.kernelParams = [
     # See https://gist.github.com/greigdp/bb70fbc331a0aaf447c2d38eacb85b8f#sleep-mode-power-usage
@@ -39,17 +29,21 @@
     # "pcie_aspm=force"  # questionable if it is effective on Dell XPS 9370
   ];
 
+  boot.blacklistedKernelModules = [
+    # See https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Remove_psmouse_errors_from_dmesg
+    "psmouse"
+  ];
+
+  boot.extraModprobeConfig = ''
+    # See https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Module-based_Powersaving_Options
+    options i915 modeset=1 enable_rc6=1 enable_guc_loading=1 enable_guc_submission=1 enable_psr=0
+  '';
+
+  # For HiDPI display
+  boot.earlyVconsoleSetup = true;
+
   # Various optimizations.
   boot.kernel.sysctl."vm.swappiness" = 10;
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use the latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  boot.earlyVconsoleSetup = true;  # for HiDPI display
 
   networking.hostName = "louise"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -146,22 +140,29 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+  # Enable bluetooth.
+  hardware.bluetooth.enable = true;
+
+  # Enable sound.
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.exportConfiguration = true;
-
-  # Set the video card driver.
-  services.xserver.videoDrivers = [ "i915" ];
+  services.xserver.layout = "us";
+  services.xserver.xkbOptions = "terminate:ctrl_alt_bksp,ctrl:swapcaps";
+  # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
   services.xserver.libinput.accelSpeed = "1";
   services.xserver.libinput.naturalScrolling = true;
 
-  # Set the fallback keyboard.
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "terminate:ctrl_alt_bksp,ctrl:swapcaps";
- 
+  # Set the video card driver.
+  services.xserver.videoDrivers = [ "i915" ];
+
   # Extra devices.
   services.xserver.inputClassSections = [
     ''

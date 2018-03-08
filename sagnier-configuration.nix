@@ -10,17 +10,12 @@
       ./hardware-configuration.nix
     ];
 
-  # Use Bluetooth.
-  hardware.bluetooth.enable = true;
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use Pulseaudio.
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
-
-  boot.extraModprobeConfig = ''
-    # Set the sound card driver.
-    options snd_hda_intel model=generic
-  '';
+  # Use the latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.blacklistedKernelModules = [
     # sp5100_tco: I/O address 0x0cd6 already in use
@@ -28,12 +23,10 @@
     "sp5100_tco"
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use the latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.extraModprobeConfig = ''
+  #   Set the sound card driver.
+  #   options snd_hda_intel model=generic
+  # '';
 
   networking.hostName = "sagnier"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -93,6 +86,9 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+    nvme-cli
+    pciutils
+    # powertop
   ];
   programs.fish.enable = true;
   programs.vim.defaultEditor = true;
@@ -107,7 +103,7 @@
 
   # Services for optimizations.
   services.fstrim.enable = true;
-  services.thermald.enable = true;
+  # services.thermald.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -121,17 +117,27 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+  # Enable bluetooth.
+  hardware.bluetooth.enable = true;
+
+  # Enable sound.
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.exportConfiguration = true;
+  services.xserver.layout = "us";
+  services.xserver.xkbOptions = "terminate:ctrl_alt_bksp";
+  # services.xserver.xkbOptions = "eurosign:e";
+
+  # Enable touchpad support.
+  # services.xserver.libinput.enable = true;
 
   # Set the video card driver.
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  # Set the fallback keyboard.
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "terminate:ctrl_alt_bksp";
- 
   # Enable the KDE Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
