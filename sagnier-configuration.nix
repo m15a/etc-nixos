@@ -123,7 +123,10 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+
+  # Enjoy Steam.
   hardware.pulseaudio.support32Bit = true;
+  hardware.opengl.driSupport32Bit = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
