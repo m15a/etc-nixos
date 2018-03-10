@@ -112,8 +112,9 @@
   programs.vim.defaultEditor = true;
 
   environment.variables = {
-    GDK_SCALE = "2";          # for HiDPI display
-    GDK_DPI_SCALE = "0.625";  # for HiDPI display
+    # For HiDPI display
+    GDK_SCALE = "2";
+    GDK_DPI_SCALE = "0.625";  # 0.5 is a bit too small
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -124,10 +125,14 @@
 
   # List services that you want to enable:
 
-  # Services for optimizations.
+  # Services for hardware optimizations.
   services.fstrim.enable = true;
   services.thermald.enable = true;
   services.tlp.enable = true;
+
+  # Enable the chrony deamon.
+  # KDE runs nptdate at the start time so no need to do it.
+  # services.chrony.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -157,7 +162,6 @@
   services.xserver.exportConfiguration = true;
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "terminate:ctrl_alt_bksp,ctrl:swapcaps";
-  # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
@@ -174,7 +178,7 @@
       MatchIsKeyboard        "on"
       MatchDevicePath        "/dev/input/event*"
       MatchProduct           "HHKB-BT"
-      Option "XkbModel"      "pc101"
+      Option "XkbModel"      "pc104"
       Option "XkbLayout"     "us"
       Option "XkbOptions"    "terminate:ctrl_alt_bksp"
       Option "XkbVariant"    ""

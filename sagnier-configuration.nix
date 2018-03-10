@@ -23,10 +23,10 @@
     "sp5100_tco"
   ];
 
-  # boot.extraModprobeConfig = ''
-  #   Set the sound card driver.
-  #   options snd_hda_intel model=generic
-  # '';
+  boot.extraModprobeConfig = ''
+    Set the sound card driver.
+    options snd_hda_intel model=generic
+  '';
 
   networking.hostName = "sagnier"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -89,7 +89,6 @@
     gptfdisk
     nvme-cli
     pciutils
-    # powertop
   ];
   programs.fish.enable = true;
   programs.vim.defaultEditor = true;
@@ -102,9 +101,13 @@
 
   # List services that you want to enable:
 
-  # Services for optimizations.
+  # Services for hardware optimizations.
   services.fstrim.enable = true;
-  # services.thermald.enable = true;
+  # services.thermald.enable = true;  # It does not work correctly.
+
+  # Enable the chrony deamon.
+  # KDE runs nptdate at the start time so no need to do it.
+  # services.chrony.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -134,10 +137,6 @@
   services.xserver.exportConfiguration = true;
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "terminate:ctrl_alt_bksp";
-  # services.xserver.xkbOptions = "eurosign:e";
-
-  # Enable touchpad support.
-  # services.xserver.libinput.enable = true;
 
   # Set the video card driver.
   services.xserver.videoDrivers = [ "amdgpu" ];
