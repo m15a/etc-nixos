@@ -170,7 +170,7 @@ in
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.exportConfiguration = true;
+  # services.xserver.exportConfiguration = true;
   services.xserver.dpi = 192;  # for HiDPI
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "terminate:ctrl_alt_bksp,ctrl:swapcaps";
