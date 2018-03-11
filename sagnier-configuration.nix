@@ -4,11 +4,22 @@
 
 { config, pkgs, ... }:
 
+let
+  # Mount options for Btrfs on SSD
+  commonMountOptions = [ "defaults" "noatime" "compress=lzo" "commit=120" ];
+
+in
+
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+
+  fileSystems."/".options = commonMountOptions;
+  fileSystems."/nix".options = commonMountOptions;
+  fileSystems."/var".options = commonMountOptions;
+  fileSystems."/home".options = commonMountOptions;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
