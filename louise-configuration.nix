@@ -160,6 +160,7 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.exportConfiguration = true;
+  services.xserver.dpi = 192;  # for HiDPI
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "terminate:ctrl_alt_bksp,ctrl:swapcaps";
 
@@ -187,11 +188,6 @@
 
   # Enable the KDE Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.extraConfig = ''
-    [X11]
-    # For HiDPI display
-    ServerArguments=-nolisten tcp -dpi 192
-  '';
   services.xserver.desktopManager.plasma5.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
