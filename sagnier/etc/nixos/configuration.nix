@@ -97,6 +97,12 @@ in
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+    dunst
+    feh
+    lightlocker
+    rofi
+    termite
+    yabar
   ] ++ (with kdeApplications; [
     okular
     spectacle
@@ -158,9 +164,11 @@ in
     { output = "DisplayPort-1"; primary = true }
   ];
 
-  # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # Enable LightDM and bspwm environment.
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.windowManager.bspwm.enable = true;
+  services.compton.enable = true;
+  services.gnome3.gnome-keyring.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.mnacamura = {
