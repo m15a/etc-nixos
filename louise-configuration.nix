@@ -6,7 +6,7 @@
 
 let
   # Mount options for Btrfs on SSD
-  commonMountOptions = [ "defaults" "noatime" "compress=lzo" "commit=120" ];
+  commonMountOptions = [ "defaults" "noatime" "compress=lzo" "commit=60" ];
 
 in
 
@@ -137,6 +137,10 @@ in
   services.fstrim.enable = true;
   services.thermald.enable = true;
   services.tlp.enable = true;
+  services.tlp.extraConfig = ''
+    CPU_SCALING_GOVERNOR_ON_AC=powersave
+    CPU_SCALING_GOVERNOR_ON_BAT=powersave
+  '';
 
   # Enable the chrony deamon.
   # KDE runs nptdate at the start time so no need to do it.

@@ -6,7 +6,7 @@
 
 let
   # Mount options for Btrfs on SSD
-  commonMountOptions = [ "defaults" "noatime" "compress=lzo" "commit=120" ];
+  commonMountOptions = [ "defaults" "noatime" "compress=lzo" "commit=60" ];
 
 in
 
