@@ -86,7 +86,7 @@ in
   # Nix options
   nix.trustedUsers = [ "@wheel" ];
   # nix.useSandbox = true;
-  nix.buildCores = 6;
+  nix.buildCores = 8;
 
   # Nixpkgs options
   nixpkgs.config = {
@@ -97,9 +97,6 @@ in
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    gptfdisk
-    nvme-cli
-    pciutils
   ];
   programs.fish.enable = true;
   programs.vim.defaultEditor = true;

@@ -103,7 +103,7 @@ in
   # Nix options
   nix.trustedUsers = [ "@wheel" ];
   # nix.useSandbox = true;
-  nix.buildCores = 6;
+  nix.buildCores = 8;
 
   # Nixpkgs options
   nixpkgs.config = {
@@ -114,16 +114,13 @@ in
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    gptfdisk
-    nvme-cli
-    pciutils
-    powertop
   ];
   programs.fish.enable = true;
   programs.vim.defaultEditor = true;
 
   environment.variables = {
     # For HiDPI display
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     GDK_SCALE = "2";
     GDK_DPI_SCALE = "0.625";  # 0.5 is a bit too small
   };
