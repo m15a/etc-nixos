@@ -7,8 +7,8 @@
   nix.maxJobs = 4;
   nix.buildCores = 4;
   nix.nixPath = [
-    "darwin-config=$HOME/Repos/nix-configurations/suzon-configuration.nix"
-    "/Users/mnacamura/.nix-defexpr/channels"
+    "darwin-config=$HOME/.config/nixpkgs/darwin-configuration.nix"
+    "$HOME/.nix-defexpr/channels"
   ];
 
   # List packages installed in system profile. To search by name, run:
