@@ -125,7 +125,7 @@ in
     # For HiDPI display
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.625";  # 0.5 is a bit too small
+    GDK_DPI_SCALE = "0.5";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -176,7 +176,7 @@ in
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   # services.xserver.exportConfiguration = true;
-  services.xserver.dpi = 240;  # for HiDPI (96dpi * 2.5)
+  services.xserver.dpi = 192;  # for HiDPI (96dpi * 2)
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "terminate:ctrl_alt_bksp,ctrl:swapcaps";
 
