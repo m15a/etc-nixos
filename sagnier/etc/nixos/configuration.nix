@@ -153,6 +153,11 @@ in
   # Set the video card driver.
   services.xserver.videoDrivers = [ "amdgpu" ];
 
+  # Extra monitor settings.
+  services.xserver.xrandrHeads = [
+    { output = "DisplayPort-1"; primary = true }
+  ];
+
   # Enable the KDE Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
