@@ -78,9 +78,9 @@ in
       source-code-pro
       source-han-serif-japanese
       source-han-sans-japanese
-      cantarell-fonts
-      fira-code
       noto-fonts-emoji
+      font-awesome-ttf
+      fira-code
     ];
     fontconfig.defaultFonts = {
       serif = [
@@ -119,7 +119,11 @@ in
     lightlocker
     rofi
     termite
-    yabar
+    yabar-unstable
+    numix-cursor-theme
+    numix-gtk-theme
+    # numix-icon-theme-circle
+    adapta-backgrounds
   ] ++ (with kdeApplications; [
     okular
     spectacle
@@ -209,10 +213,39 @@ in
   ];
 
   # Enable LightDM and bspwm environment.
-  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm = {
+    enable = true;
+    background = "${pkgs.adapta-backgrounds}/share/backgrounds/adapta/suna.jpg";
+  };
+  services.xserver.displayManager.lightdm.greeters.gtk = {
+    indicators = [ "~clock" "~spacer" "~session" "~language" "~power" ];
+    clock-format = "%m %e %a %H:%M";
+    theme.name = "Adapta-Nokto";
+    theme.package = pkgs.adapta-gtk-theme;
+    # iconTheme.name = "Numix-Circle";
+    # iconTheme.package = pkgs.numix-icon-theme-circle;
+    extraConfig = ''
+      xft-dpi=192
+      font-name=Source Sans Pro 13
+    '';
+  };
   services.xserver.windowManager.bspwm.enable = true;
-  services.compton.enable = true;
-  services.gnome3.gnome-keyring.enable = true;
+  services.compton = {
+    enable = true;
+    backend = "glx";
+    fade = true;
+    fadeDelta = 3;
+    shadow = true;
+    shadowOpacity = "0.46";
+    shadowOffsets = [(-7) (-7)];
+    shadowExclude = [
+      "name = 'yabar'"
+    ];
+    extraOptions = ''
+      shadow-radius = 18;
+    '';
+  };
+  # services.gnome3.gnome-keyring.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.mnacamura = {
