@@ -197,7 +197,10 @@ in
   services.xserver.libinput.naturalScrolling = true;
 
   # Set the video card driver.
-  services.xserver.videoDrivers = [ "i915" ];
+  services.xserver.videoDrivers = [ "intel" ];
+  services.xserver.deviceSection = ''
+    Option "Backlight" "intel_backlight"
+  '';
 
   # Extra devices.
   services.xserver.inputClassSections = [
