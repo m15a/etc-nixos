@@ -116,18 +116,19 @@ in
   environment.systemPackages = with pkgs; [
     dunst
     feh
+    scrot
     lightlocker
     rofi
     termite
     yabar-unstable
+    xorg.xbacklight
+    pavucontrol
+  ] ++ [
     numix-cursor-theme
-    numix-gtk-theme
     # numix-icon-theme-circle
+    adapta-gtk-theme
     adapta-backgrounds
-  ] ++ (with kdeApplications; [
-    okular
-    spectacle
-  ]);
+  ];
   programs.fish.enable = true;
   programs.vim.defaultEditor = true;
 
