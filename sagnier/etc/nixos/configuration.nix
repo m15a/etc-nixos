@@ -126,8 +126,7 @@ in
   # services.thermald.enable = true;  # It does not work correctly.
 
   # Enable the chrony deamon.
-  # KDE runs nptdate at the start time so no need to do it.
-  # services.chrony.enable = true;
+  services.chrony.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
