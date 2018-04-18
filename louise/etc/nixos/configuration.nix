@@ -233,10 +233,11 @@ in
   in
   pkgs.runCommand "lightdm-gtk-greeter" { buildInputs = [ pkgs.makeWrapper ]; } ''
       # This wrapper ensures that we actually get themes
+      # Enable to use SVG icons. See https://github.com/NixOS/nixpkgs/issues/13537#issuecomment-332327760
       makeWrapper ${pkgs.lightdm_gtk_greeter}/sbin/lightdm-gtk-greeter \
         $out/greeter \
         --prefix PATH : "${pkgs.glibc.bin}/bin" \
-        --set GDK_PIXBUF_MODULE_FILE "${pkgs.gdk_pixbuf.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache" \
+        --set GDK_PIXBUF_MODULE_FILE "$(echo ${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/*/loaders.cache)" \
         --set GTK_PATH "${theme}:${pkgs.gtk3.out}" \
         --set GTK_EXE_PREFIX "${theme}" \
         --set GTK_DATA_PREFIX "${theme}" \
