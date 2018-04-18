@@ -164,7 +164,7 @@ in
 
   # Extra monitor settings.
   services.xserver.xrandrHeads = [
-    { output = "DisplayPort-1"; primary = true }
+    { output = "DisplayPort-1"; primary = true; }
   ];
 
   # Enable LightDM and bspwm environment.
