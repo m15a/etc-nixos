@@ -132,6 +132,9 @@ in
   programs.vim.defaultEditor = true;
 
   environment.variables = {
+    # Apps launched in ~/.xprofile need it if they use SVG icons.
+    GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
+
     # For HiDPI display
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     GDK_SCALE = "2";
