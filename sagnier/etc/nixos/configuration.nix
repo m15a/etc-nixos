@@ -176,57 +176,34 @@ in
     { output = "DisplayPort-1"; primary = true; }
   ];
 
-  # Enable LightDM and bspwm environment.
+  # Enable LightDM.
   services.xserver.displayManager.lightdm = {
     enable = true;
     background = "/var/pixmaps/default.jpg";
   };
-  services.xserver.displayManager.lightdm.greeter.package =
-  let
-    theme = pkgs.symlinkJoin {
-      name = "lightdm-gtk-greeter-custom-theme";
-      paths = with config.services.xserver.displayManager.lightdm.greeters; [
-        gtk.theme.package
-        gtk.iconTheme.package
-        pkgs.numix-cursor-theme
-      ];
+  services.xserver.displayManager.lightdm.greeters.mini = {
+    enable = true;
+    user = "mnacamura";
+    # showPasswordLabel = false;
+    theme = {
+      font = "Source Code Pro Medium";
+      fontSize = "13pt";
+      textColor = "#fce8c3";
+      errorColor = "#f75341";
+      windowColor = "#d65d0e";
+      passwordColor = "#fce8c3";
+      passwordBackgroundColor = "#1c1b19";
+      borderWidth = 0;
+      layoutSpace = 30;
     };
-  in
-  pkgs.runCommand "lightdm-gtk-greeter" { buildInputs = [ pkgs.makeWrapper ]; } ''
-      # This wrapper ensures that we actually get themes
-      # Enable to use SVG icons. See https://github.com/NixOS/nixpkgs/issues/13537#issuecomment-332327760
-      makeWrapper ${pkgs.lightdm_gtk_greeter}/sbin/lightdm-gtk-greeter \
-        $out/greeter \
-        --prefix PATH : "${pkgs.glibc.bin}/bin" \
-        --set GDK_PIXBUF_MODULE_FILE "$(echo ${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/*/loaders.cache)" \
-        --set GTK_PATH "${theme}:${pkgs.gtk3.out}" \
-        --set GTK_EXE_PREFIX "${theme}" \
-        --set GTK_DATA_PREFIX "${theme}" \
-        --set XDG_DATA_DIRS "${theme}/share" \
-        --set XDG_CONFIG_HOME "${theme}/share" \
-        --set XCURSOR_PATH "${theme}/share/icons"
-
-      cat - > $out/lightdm-gtk-greeter.desktop << EOF
-      [Desktop Entry]
-      Name=LightDM Greeter
-      Comment=This runs the LightDM Greeter
-      Exec=$out/greeter
-      Type=Application
-      EOF
-  '';
-  services.xserver.displayManager.lightdm.greeters.gtk = {
-    indicators = [ "~clock" "~spacer" "~session" "~language" "~power" ];
-    clock-format = "%m %e %a %H:%M";
-    theme.name = "Adapta-Nokto";
-    theme.package = pkgs.adapta-gtk-theme;
-    iconTheme.name = "Papirus-Adapta-Nokto";
-    iconTheme.package = pkgs.papirus-icon-theme;
-    extraConfig = ''
-      font-name=Source Sans Pro 13
-      cursor-theme-name = Numix
-    '';
   };
+
+  # Enable bspwm.
   services.xserver.windowManager.bspwm.enable = true;
+  services.xserver.desktopManager.default = "none";
+  services.xserver.windowManager.default = "bspwm";
+
+  # Enable compton.
   services.compton = {
     enable = true;
     backend = "glx";
