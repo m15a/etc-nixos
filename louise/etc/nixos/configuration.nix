@@ -104,6 +104,11 @@ in
   nix.trustedUsers = [ "@wheel" ];
   # nix.useSandbox = true;
   nix.buildCores = 8;
+  nix.nixPath = [
+    "nixpkgs=/var/repos/nixpkgs"
+    "nixos-config=/etc/nixos/configuration.nix"
+    "/nix/var/nix/profiles/per-user/root/channels"
+  ];
 
   # Nixpkgs options
   nixpkgs.config = {
