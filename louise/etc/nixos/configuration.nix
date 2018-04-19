@@ -257,12 +257,12 @@ in
     fadeDelta = 3;
     shadow = true;
     shadowOpacity = "0.46";
-    shadowOffsets = [(-12) (-15)];
+    shadowOffsets = [(-24) (-30)];
     shadowExclude = [
       "name = 'yabar'"
     ];
     extraOptions = ''
-      shadow-radius = 22;
+      shadow-radius = 44;
     '';
   };
   # services.gnome3.gnome-keyring.enable = true;
