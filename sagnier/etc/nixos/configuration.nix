@@ -113,7 +113,7 @@ in
     pavucontrol
   ] ++ [
     gtk2 gtk3  # Required to use Emacs key bindings in GTK apps
-    adapta-gtk-theme
+    arc-theme
     papirus-icon-theme
     numix-cursor-theme
   ];
