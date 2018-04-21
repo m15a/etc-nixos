@@ -14,6 +14,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./system-specific.nix
     ];
 
   fileSystems."/".options = commonMountOptions;
@@ -111,6 +112,7 @@ in
     yabar-unstable
     pavucontrol
   ] ++ [
+    gtk2 gtk3  # Required to use Emacs key bindings in GTK apps
     adapta-gtk-theme
     papirus-icon-theme
     numix-cursor-theme
