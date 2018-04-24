@@ -241,7 +241,7 @@ in
       passwordColor = "#fce8c3";
       passwordBackgroundColor = "#1c1b19";
       borderWidth = 0;
-      layoutSpace = 30;
+      layoutSpace = 40;
     };
   };
 
