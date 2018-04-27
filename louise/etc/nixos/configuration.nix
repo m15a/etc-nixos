@@ -253,20 +253,41 @@ in
   # Enable compton.
   services.compton = {
     enable = true;
-    backend = "glx";
+
     fade = true;
-    fadeDelta = 3;
+    fadeDelta = 5;
+    fadeSteps = [ "0.03" "0.03" ];
+
     shadow = true;
     shadowOpacity = "0.46";
     shadowOffsets = [(-24) (-30)];
-    shadowExclude = [
-      "name = 'yabar'"
-    ];
+
+    backend = "glx";
+    vSync = "opengl-swc";
     extraOptions = ''
+      mark-wmwin-focused = true;
+      mark-ovredir-focused = true;
+      paint-on-overlay = true;
+      use-ewmh-active-win = true;
+      sw-opti = true;
+      unredir-if-possible = true;
+      detect-transient = true;
+      detect-client-leader = true;
+      blur-kern = "3x3gaussian";
+
+      glx-no-stencil = true;
+      glx-copy-from-front = false;
+      glx-use-copysubbuffermesa = true;
+      glx-no-rebind-pixmap = true;
+      glx-swap-method = "buffer-age";
+
       shadow-radius = 44;
+      shadow-ignore-shaped = false;
+      no-dnd-shadow = true;
+      no-dock-shadow = true;
+      clear-shadow = true;
     '';
   };
-  # services.gnome3.gnome-keyring.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.mnacamura = {
