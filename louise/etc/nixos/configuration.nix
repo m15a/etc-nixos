@@ -134,7 +134,11 @@ in
     papirus-icon-theme
     numix-cursor-theme
   ];
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    # Don't override aliases after loading snippets in ~/.config/fish.
+    shellAliases = {};
+  };
   programs.vim.defaultEditor = true;
 
   environment.variables = {
