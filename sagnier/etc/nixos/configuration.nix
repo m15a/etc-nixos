@@ -25,6 +25,8 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # hardware.cpu.intel.updateMicrocode = true;
+
   # Use the latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
