@@ -131,7 +131,7 @@ in
     xorg.xbacklight
     pavucontrol
   ] ++ [
-    gtk2 gtk3  # Required to use Emacs key bindings in GTK apps
+    gtk3  # Required to use Emacs key bindings in GTK apps
     arc-theme
     papirus-icon-theme
     numix-cursor-theme
