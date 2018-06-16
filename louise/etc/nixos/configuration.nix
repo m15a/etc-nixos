@@ -138,6 +138,9 @@ in
   ];
   programs.fish = {
     enable = true;
+    shellInit = ''
+      umask 077
+    '';
     # Don't override aliases after loading snippets in ~/.config/fish.
     shellAliases = {};
   };
