@@ -55,7 +55,8 @@ in
   # For HiDPI display
   boot.earlyVconsoleSetup = true;
 
-  # Various optimizations.
+  # Various settings.
+  boot.tmpOnTmpfs = true;
   boot.kernel.sysctl."vm.swappiness" = 10;
 
   networking.hostName = "louise"; # Define your hostname.

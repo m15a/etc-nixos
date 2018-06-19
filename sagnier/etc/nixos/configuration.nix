@@ -41,6 +41,9 @@ in
     options snd_hda_intel model=generic
   '';
 
+  # Various settings.
+  boot.tmpOnTmpfs = true;
+
   networking.hostName = "sagnier"; # Define your hostname.
   networking.networkmanager.enable = true;
 
