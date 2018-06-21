@@ -152,6 +152,18 @@ in
   # Enable the chrony deamon.
   services.chrony.enable = true;
 
+  # Enable the autofs daemon.
+  services.autofs = {
+    enable = true;
+    autoMaster = let
+      mapConf = pkgs.writeText "auto" ''
+        usbdisk  -fstype=noauto,async,group,gid=100,fmask=117,dmask=007  :/dev/sdb1
+      '';
+    in ''
+      /media  file:${mapConf}  --timeout=10
+    '';
+  };
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
@@ -261,7 +273,7 @@ in
     isNormalUser = true;
     uid = 1000;
     description = "Mitsuhiro Nakamura";
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "users" "wheel" "networkmanager" ];
     createHome = true;
     shell = "/run/current-system/sw/bin/fish";
   };
