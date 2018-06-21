@@ -254,18 +254,18 @@ in
   services.xserver.displayManager.lightdm.greeters.mini = {
     enable = true;
     user = "mnacamura";
-    # showPasswordLabel = false;
-    theme = {
-      font = "Source Code Pro Medium";
-      fontSize = "13pt";
-      textColor = "#fce8c3";
-      errorColor = "#f75341";
-      windowColor = "#d65d0e";
-      passwordColor = "#fce8c3";
-      passwordBackgroundColor = "#1c1b19";
-      borderWidth = 0;
-      layoutSpace = 40;
-    };
+    extraConfig = ''
+      [greeter-theme]
+      font = Source Code Pro Medium
+      font-size = 13pt
+      text-color = "#fce8c3"
+      error-color = "#f75341"
+      window-color = "#d65d0e"
+      border-width = 0
+      layout-space = 40
+      password-color = "#fce8c3"
+      password-background-color = "#1c1b19"
+    '';
   };
 
   # Enable bspwm.
