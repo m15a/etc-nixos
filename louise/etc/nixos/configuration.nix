@@ -313,7 +313,7 @@ in
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.extraUsers.mnacamura = {
+  users.users.mnacamura = {
     isNormalUser = true;
     uid = 1000;
     description = "Mitsuhiro Nakamura";
