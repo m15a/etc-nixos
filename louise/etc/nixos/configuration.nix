@@ -260,7 +260,7 @@ in
       font-size = 13pt
       text-color = "#fce8c3"
       error-color = "#f75341"
-      window-color = "#d65d0e"
+      window-color = "#d75f00"
       border-width = 0
       layout-space = 40
       password-color = "#fce8c3"
