@@ -241,8 +241,10 @@ in
     shadowOpacity = "0.46";
     shadowOffsets = [(-12) (-15)];
 
-    backend = "glx";
-    vSync = "opengl-swc";
+    # glx with amdgpu does not work for now
+    # https://github.com/chjj/compton/issues/477
+    # backend = "glx";
+    # vSync = "opengl-swc";
     extraOptions = ''
       mark-wmwin-focused = true;
       mark-ovredir-focused = true;
