@@ -161,7 +161,7 @@
   };
 
   services.xserver.displayManager.lightdm = {
-    background = "/var/pixmaps/default.jpg";
+    background = "/etc/nixos/data/pixmaps/login_background.jpg";
     greeters.mini.enable = true;
     greeters.mini.user = "mnacamura";
     greeters.mini.extraConfig = ''
