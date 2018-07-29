@@ -11,14 +11,7 @@
       ./common.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   # hardware.cpu.intel.updateMicrocode = true;
-
-  # Use the latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.blacklistedKernelModules = [
     # sp5100_tco: I/O address 0x0cd6 already in use
@@ -30,9 +23,6 @@
     Set the sound card driver.
     options snd_hda_intel model=generic
   '';
-
-  # Various settings.
-  boot.tmpOnTmpfs = true;
 
   networking.hostName = "sagnier"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -269,11 +259,4 @@
     createHome = true;
     shell = "/run/current-system/sw/bin/fish";
   };
-
-  # This value determines the NixOS release with which your system is to be
-  # compatible, in order to avoid breaking some software such as database
-  # servers. You should change this only after NixOS release notes say you
-  # should.
-  system.stateVersion = "18.03"; # Did you read the comment?
-
 }

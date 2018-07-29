@@ -11,14 +11,7 @@
       ./common.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   # hardware.cpu.intel.updateMicrocode = true;
-
-  # Use the latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.kernelParams = [
     # See https://gist.github.com/greigdp/bb70fbc331a0aaf447c2d38eacb85b8f#sleep-mode-power-usage
@@ -46,7 +39,6 @@
   boot.earlyVconsoleSetup = true;
 
   # Various settings.
-  boot.tmpOnTmpfs = true;
   boot.kernel.sysctl."vm.swappiness" = 10;
 
   networking.hostName = "louise"; # Define your hostname.
@@ -311,11 +303,4 @@
     createHome = true;
     shell = "/run/current-system/sw/bin/fish";
   };
-
-  # This value determines the NixOS release with which your system is to be
-  # compatible, in order to avoid breaking some software such as database
-  # servers. You should change this only after NixOS release notes say you
-  # should.
-  system.stateVersion = "18.03"; # Did you read the comment?
-
 }
