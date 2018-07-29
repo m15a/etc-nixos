@@ -33,6 +33,45 @@
     networkmanager.enable = true;
   };
 
+  time.timeZone = "Asia/Tokyo";
+
+  i18n = {
+    # TODO: consoleColors = [ ... ];
+    consoleKeyMap = "us";
+    consoleUseXkbConfig = true;
+    defaultLocale = "ja_JP.UTF-8";
+    inputMethod = {
+      enabled = "fcitx";
+      fcitx.engines = with pkgs.fcitx-engines; [ mozc ];
+    };
+  };
+
+  fonts = {
+    fonts = with pkgs; [
+      source-serif-pro
+      source-sans-pro
+      source-code-pro
+      source-han-serif-japanese
+      source-han-sans-japanese
+      noto-fonts-emoji
+      font-awesome-ttf
+      fira-code
+    ];
+    fontconfig.defaultFonts = {
+      serif = [
+        "Source Serif Pro"
+        "Source Han Serif JP"
+      ];
+      sansSerif = [
+        "Source Sans Pro"
+        "Source Han Sans JP"
+      ];
+      monospace = [
+        "Source Code Pro"
+      ];
+    };
+  };
+
   nix = {
     trustedUsers = [ "@wheel" ];
     # useSandbox = true;
