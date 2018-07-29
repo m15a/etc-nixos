@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
+
+{ config, pkgs, ... }:
 
 {
   fileSystems = let
@@ -84,11 +88,9 @@
     ];
   };
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      pulseaudio = true;
-    };
+  nixpkgs.config = {
+    allowUnfree = true;
+    pulseaudio = true;
   };
 
   environment = {
@@ -116,11 +118,11 @@
 
   programs = {
     fish.enable = true;
+    # Don't override aliases after loading snippets in ~/.config/fish.
+    fish.shellAliases = {};
     fish.shellInit = ''
       umask 077
     '';
-    # Don't override aliases after loading snippets in ~/.config/fish.
-    fish.shellAliases = {};
     vim.defaultEditor = true;
     bash.enableCompletion = true;
   };
