@@ -138,21 +138,20 @@
     '';
     printing.enable = true;
     printing.drivers = [ pkgs.gutenprint ];
-    xserver.enable = true;
-    compton.enable = true;
   };
 
   services.xserver = {
+    enable = true;
     # exportConfiguration = true;
     layout = "us";
-    # Enable LightDM and bspwm environment.
-    displayManager.lightdm.enable = true;
+    # Enable bspwm environment.
     windowManager.bspwm.enable = true;
     desktopManager.default = "none";
     windowManager.default = "bspwm";
   };
 
   services.compton = {
+    enable = true;
     fade = true;
     fadeDelta = 5;
     fadeSteps = [ "0.03" "0.03" ];
@@ -161,6 +160,7 @@
   };
 
   services.xserver.displayManager.lightdm = {
+    enable = true;
     background = "/etc/nixos/data/pixmaps/login_background.jpg";
     greeters.mini.enable = true;
     greeters.mini.user = "mnacamura";
