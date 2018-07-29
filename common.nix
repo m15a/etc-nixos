@@ -37,7 +37,7 @@
 
   i18n = {
     # TODO: consoleColors = [ ... ];
-    consoleKeyMap = "us";
+    # consoleKeyMap = "us";  # conflicts with consoleUseXkbConfig
     consoleUseXkbConfig = true;
     defaultLocale = "ja_JP.UTF-8";
     inputMethod = {
