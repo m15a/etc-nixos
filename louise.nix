@@ -39,50 +39,17 @@
 
   nix.buildCores = 8;
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-    btops
-    dunst
-    feh
-    scrot
-    lightlocker
-    rofi
-    termite
-    yabar-unstable
-    xorg.xbacklight
-    pavucontrol
-  ] ++ [
-    gtk3  # Required to use Emacs key bindings in GTK apps
-    arc-theme
-    papirus-icon-theme
-    numix-cursor-theme
-  ];
-  programs.fish = {
-    enable = true;
-    shellInit = ''
-      umask 077
-    '';
-    # Don't override aliases after loading snippets in ~/.config/fish.
-    shellAliases = {};
+  environment = {
+    systemPackages = with pkgs; [
+      xorg.xbacklight
+    ];
+    variables = {
+      # For HiDPI display
+      QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+      GDK_SCALE = "2";
+      GDK_DPI_SCALE = "0.5";
+    };
   };
-  programs.vim.defaultEditor = true;
-
-  environment.variables = {
-    # Apps launched in ~/.xprofile need it if they use SVG icons.
-    GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
-
-    # For HiDPI display
-    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
-  };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  programs.bash.enableCompletion = true;
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   # List services that you want to enable:
 

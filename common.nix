@@ -91,6 +91,40 @@
     };
   };
 
+  environment = {
+    systemPackages = with pkgs; [
+      btops
+      dunst
+      feh
+      scrot
+      lightlocker
+      rofi
+      termite
+      yabar-unstable
+      pavucontrol
+    ] ++ [
+      gtk3  # Required to use Emacs key bindings in GTK apps
+      arc-theme
+      papirus-icon-theme
+      numix-cursor-theme
+    ];
+    variables = {
+      # Apps launched in ~/.xprofile need it if they use SVG icons.
+      GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
+    };
+  };
+
+  programs = {
+    fish.enable = true;
+    fish.shellInit = ''
+      umask 077
+    '';
+    # Don't override aliases after loading snippets in ~/.config/fish.
+    fish.shellAliases = {};
+    vim.defaultEditor = true;
+    bash.enableCompletion = true;
+  };
+
   users.users.mnacamura = {
     isNormalUser = true;
     uid = 1000;
