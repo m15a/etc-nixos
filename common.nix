@@ -80,7 +80,7 @@
     trustedUsers = [ "@wheel" ];
     # useSandbox = true;
     nixPath = [
-      "$HOME/.nix-defexpr/channels"
+      # "$HOME/.nix-defexpr/channels"
       "nixpkgs=/var/repos/nixpkgs"
       # "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
       "nixos-config=/etc/nixos/configuration.nix"
