@@ -5,13 +5,13 @@
 { config, pkgs, ... }:
 
 {
+  networking.hostName = "sagnier";
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./common.nix
     ];
-
-  # hardware.cpu.intel.updateMicrocode = true;
 
   boot.blacklistedKernelModules = [
     # sp5100_tco: I/O address 0x0cd6 already in use
@@ -23,9 +23,6 @@
     Set the sound card driver.
     options snd_hda_intel model=generic
   '';
-
-  networking.hostName = "sagnier"; # Define your hostname.
-  networking.networkmanager.enable = true;
 
   # Select internationalisation properties.
   i18n = {
@@ -68,21 +65,7 @@
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
 
-  # Nix options
-  nix.trustedUsers = [ "@wheel" ];
-  # nix.useSandbox = true;
   nix.buildCores = 8;
-  nix.nixPath = [
-    "nixpkgs=/var/repos/nixpkgs"
-    "nixos-config=/etc/nixos/configuration.nix"
-    "/nix/var/nix/profiles/per-user/root/channels"
-  ];
-
-  # Nixpkgs options
-  nixpkgs.config = {
-    allowUnfree = true;
-    pulseaudio = true;
-  };
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -156,17 +139,6 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
   services.printing.drivers = [ pkgs.gutenprint ];
-
-  # Enable bluetooth.
-  hardware.bluetooth.enable = true;
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
-  # Enjoy Steam.
-  hardware.pulseaudio.support32Bit = true;
-  hardware.opengl.driSupport32Bit = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -248,15 +220,5 @@
       no-dock-shadow = true;
       clear-shadow = true;
     '';
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.mnacamura = {
-    isNormalUser = true;
-    uid = 1000;
-    description = "Mitsuhiro Nakamura";
-    extraGroups = [ "users" "wheel" "networkmanager" ];
-    createHome = true;
-    shell = "/run/current-system/sw/bin/fish";
   };
 }
