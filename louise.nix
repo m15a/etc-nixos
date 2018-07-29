@@ -57,44 +57,14 @@
     };
   };
 
-  # List services that you want to enable:
-
-  # Services for hardware optimizations.
-  services.fstrim.enable = true;
-  services.thermald.enable = true;
-  services.tlp.enable = true;
-  services.tlp.extraConfig = ''
-    CPU_SCALING_GOVERNOR_ON_AC=powersave
-    CPU_SCALING_GOVERNOR_ON_BAT=powersave
-  '';
-
-  # Enable the chrony deamon.
-  services.chrony.enable = true;
-
-  # Enable the autofs daemon.
-  services.autofs = {
-    enable = true;
-    autoMaster = let
-      mapConf = pkgs.writeText "auto" ''
-        usbdisk  -fstype=noauto,async,group,gid=100,fmask=117,dmask=007  :/dev/sda1
-      '';
-    in ''
-      /media  file:${mapConf}  --timeout=10
+  services = {
+    thermald.enable = true;
+    tlp.enable = true;
+    tlp.extraConfig = ''
+      CPU_SCALING_GOVERNOR_ON_AC=powersave
+      CPU_SCALING_GOVERNOR_ON_BAT=powersave
     '';
   };
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.printing.drivers = [ pkgs.gutenprint ];
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;

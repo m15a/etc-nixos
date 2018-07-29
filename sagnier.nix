@@ -27,39 +27,10 @@
 
   nix.buildCores = 8;
 
-  # List services that you want to enable:
-
-  # Services for hardware optimizations.
-  services.fstrim.enable = true;
-  # services.thermald.enable = true;  # It does not work correctly.
-
-  # Enable the chrony deamon.
-  services.chrony.enable = true;
-
-  # Enable the autofs daemon.
-  services.autofs = {
-    enable = true;
-    autoMaster = let
-      mapConf = pkgs.writeText "auto" ''
-        usbdisk  -fstype=noauto,async,group,gid=100,fmask=117,dmask=007  :/dev/sdb1
-      '';
-    in ''
-      /media  file:${mapConf}  --timeout=10
-    '';
+  services = {
+    # thermald.enable = true;  # It does not work correctly.
+    openssh.enable = true;
   };
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.printing.drivers = [ pkgs.gutenprint ];
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
