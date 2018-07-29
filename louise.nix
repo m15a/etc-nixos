@@ -13,33 +13,27 @@
       ./common.nix
     ];
 
-  boot.kernelParams = [
-    # See https://gist.github.com/greigdp/bb70fbc331a0aaf447c2d38eacb85b8f#sleep-mode-power-usage
-    "mem_sleep_default=deep"
-
-    # DMAR: DRHD: handling fault status reg 2
-    # See https://bbs.archlinux.org/viewtopic.php?id=230362
-    "intel_iommu=off"
-
-    # See https://wiki.archlinux.org/index.php/Power_management#Bus_power_management
-    # "pcie_aspm=force"  # questionable if it is effective on Dell XPS 9370
-  ];
-
-  boot.blacklistedKernelModules = [
-    # See https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Remove_psmouse_errors_from_dmesg
-    "psmouse"
-  ];
-
-  boot.extraModprobeConfig = ''
-    # See https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Module-based_Powersaving_Options
-    options i915 modeset=1 enable_rc6=1 enable_guc_loading=1 enable_guc_submission=1 enable_psr=0
-  '';
-
-  # For HiDPI display
-  boot.earlyVconsoleSetup = true;
-
-  # Various settings.
-  boot.kernel.sysctl."vm.swappiness" = 10;
+  boot = {
+    kernelParams = [
+      # See https://gist.github.com/greigdp/bb70fbc331a0aaf447c2d38eacb85b8f#sleep-mode-power-usage
+      "mem_sleep_default=deep"
+      # DMAR: DRHD: handling fault status reg 2
+      # See https://bbs.archlinux.org/viewtopic.php?id=230362
+      "intel_iommu=off"
+      # See https://wiki.archlinux.org/index.php/Power_management#Bus_power_management
+      # "pcie_aspm=force"  # questionable if it is effective on Dell XPS 9370
+    ];
+    blacklistedKernelModules = [
+      # See https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Remove_psmouse_errors_from_dmesg
+      "psmouse"
+    ];
+    extraModprobeConfig = ''
+      # See https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Module-based_Powersaving_Options
+      options i915 modeset=1 enable_rc6=1 enable_guc_loading=1 enable_guc_submission=1 enable_psr=0
+    '';
+    kernel.sysctl."vm.swappiness" = 10;
+    earlyVconsoleSetup = true;  # For HiDPI display
+  };
 
   # Select internationalisation properties.
   i18n = {

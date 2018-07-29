@@ -13,16 +13,17 @@
       ./common.nix
     ];
 
-  boot.blacklistedKernelModules = [
-    # sp5100_tco: I/O address 0x0cd6 already in use
-    # See http://tsueyasu.blogspot.jp/2012/03/amdwatchdog.html
-    "sp5100_tco"
-  ];
-
-  boot.extraModprobeConfig = ''
-    Set the sound card driver.
-    options snd_hda_intel model=generic
-  '';
+  boot = {
+    blacklistedKernelModules = [
+      # sp5100_tco: I/O address 0x0cd6 already in use
+      # See http://tsueyasu.blogspot.jp/2012/03/amdwatchdog.html
+      "sp5100_tco"
+    ];
+    extraModprobeConfig = ''
+      Set the sound card driver.
+      options snd_hda_intel model=generic
+    '';
+  };
 
   # Select internationalisation properties.
   i18n = {
