@@ -32,7 +32,13 @@
       options i915 modeset=1 enable_rc6=1 enable_guc_loading=1 enable_guc_submission=1 enable_psr=0
     '';
     kernel.sysctl."vm.swappiness" = 10;
-    earlyVconsoleSetup = true;  # For HiDPI display
+    earlyVconsoleSetup = true;  # for HiDPI display
+  };
+
+  hardware = {
+    # Enjoy Steam.
+    pulseaudio.support32Bit = true;
+    opengl.driSupport32Bit = true;
   };
 
   i18n.consoleFont = "latarcyrheb-sun32";  # for HiDPI display
@@ -89,10 +95,6 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
   services.printing.drivers = [ pkgs.gutenprint ];
-
-  # Enjoy Steam.
-  hardware.pulseaudio.support32Bit = true;
-  hardware.opengl.driSupport32Bit = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
