@@ -144,7 +144,7 @@
       abbr --add  lla 'ls -la'
     '';
   } // { # Others
-    ccache.enable = true;
+    # ccache.enable = true;  # cannot use binary caches if ccache is enabled
     vim.defaultEditor = true;
   };
 
