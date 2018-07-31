@@ -120,15 +120,23 @@
     };
   };
 
-  programs = {
+  programs = let
+    # environment.shellAliases cannot be initialized cleanly
+    commonShellAliases = {
+      ls = "ls -Fh --time-style=long-iso";
+      cp = "cp -i";
+      mv = "mv -i";
+    };
+  in { # Shells
+    bash.shellAliases = commonShellAliases;
     fish.enable = true;
-    # Don't override aliases after loading snippets in ~/.config/fish.
-    fish.shellAliases = {};
+    fish.shellAliases = commonShellAliases;
     fish.shellInit = ''
       umask 077
     '';
+  } // { # Others
+    ccache.enable = true;
     vim.defaultEditor = true;
-    bash.enableCompletion = true;
   };
 
   services = {
