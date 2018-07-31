@@ -185,11 +185,10 @@
   };
 
   users.users.mnacamura = {
+    description = "Mitsuhiro Nakamura";
     isNormalUser = true;
     uid = 1000;
-    description = "Mitsuhiro Nakamura";
-    extraGroups = [ "users" "wheel" "networkmanager" ];
-    createHome = true;
+    extraGroups = [ "wheel" "networkmanager" ];
     shell = "/run/current-system/sw/bin/fish";
   };
 
