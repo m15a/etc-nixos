@@ -128,11 +128,20 @@
       mv = "mv -i";
     };
   in { # Shells
-    bash.shellAliases = commonShellAliases;
+    bash.shellAliases = commonShellAliases // {
+      la = "ls -a";
+      ll = "ls -l";
+      lla = "ls -la";
+    };
     fish.enable = true;
     fish.shellAliases = commonShellAliases;
     fish.shellInit = ''
       umask 077
+    '';
+    fish.interactiveShellInit = ''
+      abbr --add  la 'ls -a'
+      abbr --add  ll 'ls -l'
+      abbr --add  lla 'ls -la'
     '';
   } // { # Others
     ccache.enable = true;
