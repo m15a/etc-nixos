@@ -123,7 +123,7 @@
   programs = let
     # environment.shellAliases cannot be initialized cleanly
     commonShellAliases = {
-      ls = "ls -Fh --time-style=long-iso";
+      ls = "ls -Fh --color --time-style=long-iso";
       cp = "cp -i";
       mv = "mv -i";
     };
