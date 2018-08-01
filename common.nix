@@ -98,22 +98,27 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [
-      btops
-      dunst
-      feh
-      scrot
-      lightlocker
-      rofi
-      termite
-      yabar-unstable
-      pavucontrol
-    ] ++ [
-      gtk3  # Required to use Emacs key bindings in GTK apps
-      arc-theme
-      papirus-icon-theme
-      numix-cursor-theme
-    ];
+    systemPackages = with pkgs; let
+      desktopPkgs = [
+        btops
+        dunst
+        feh
+        lightlocker
+        rofi
+        termite
+        yabar-unstable
+        pavucontrol
+      ] ++ gtkPkgs;
+      gtkPkgs = [
+        gtk3 # Required to use Emacs key bindings in GTK apps
+        arc-theme
+        papirus-icon-theme
+        numix-cursor-theme
+      ];
+      miscPkgs = [
+        scrot
+      ];
+    in desktopPkgs ++ miscPkgs;
     variables = {
       # Apps launched in ~/.xprofile need it if they use SVG icons.
       GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
@@ -154,10 +159,10 @@
     autofs.enable = true;
     autofs.autoMaster = let
       mapConf = pkgs.writeText "auto" ''
-          usbdisk  -fstype=noauto,async,group,gid=100,fmask=117,dmask=007  :/dev/sda1
+        usbdisk -fstype=noauto,async,group,gid=100,fmask=117,dmask=007 :/dev/sda1
       '';
     in ''
-        /media  file:${mapConf}  --timeout=10
+      /media file:${mapConf} --timeout=10
     '';
     printing.enable = true;
     printing.drivers = [ pkgs.gutenprint ];
