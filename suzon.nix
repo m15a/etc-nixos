@@ -35,10 +35,29 @@
     shells = with pkgs; [
       fish
     ];
+    shellAliases = {
+      ls = "ls -Fh --color --time-style=long-iso";
+      cp = "cp -i";
+      mv = "mv -i";
+    };
   };
 
-  programs = {
+  programs = { # Shells
+    bash.interactiveShellInit = ''
+      alias la="ls -a"
+      alias ll="ls -l"
+      alias lla="ls -la"
+    '';
     fish.enable = true;
+    fish.shellInit = ''
+      umask 077
+    '';
+    fish.interactiveShellInit = ''
+      abbr --add  la 'ls -a'
+      abbr --add  ll 'ls -l'
+      abbr --add  lla 'ls -la'
+    '';
+  } // { # Others
   };
 
   services = {
