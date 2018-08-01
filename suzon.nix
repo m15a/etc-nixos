@@ -16,19 +16,25 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [
-      bzip2
-      coreutils
-      diffutils
-      findutils
-      gawk
-      gnugrep
-      gnused
-      gnutar
-      gzip
-      patch
-      xz
-    ];
+    systemPackages = with pkgs; let
+      consolePkgs = [
+        coreutils
+        findutils
+        gnumake
+        gnugrep
+        diffutils
+        gawk
+        gnused
+        strip
+        patch
+        gnutar
+        bzip2
+        gzip
+        xz
+      ];
+      miscPkgs = [
+      ];
+    in consolePkgs ++ miscPkgs;
     variables = {
       EDITOR = "vim";  # Available by default on macOS
     };
