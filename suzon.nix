@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  networking.hostName = "suzon";
+
   nix = {
     package = pkgs.nix;
     trustedUsers = [ "@admin" ];
