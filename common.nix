@@ -15,8 +15,7 @@
     ];
   in {
     "/".options = commonMountOptions;
-    "/nix".options = commonMountOptions;
-    "/var".options = commonMountOptions;
+    "/nix".options = commonMountOptions; "/var".options = commonMountOptions;
     "/home".options = commonMountOptions;
   };
 
@@ -144,9 +143,9 @@
       umask 077
     '';
     fish.interactiveShellInit = ''
-      abbr --add  la 'ls -a'
-      abbr --add  ll 'ls -l'
-      abbr --add  lla 'ls -la'
+      abbr --add la 'ls -a'
+      abbr --add ll 'ls -l'
+      abbr --add lla 'ls -la'
     '';
   } // { # Others
     # ccache.enable = true;  # cannot use binary caches if ccache is enabled

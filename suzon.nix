@@ -53,9 +53,9 @@
       umask 077
     '';
     fish.interactiveShellInit = ''
-      abbr --add  la 'ls -a'
-      abbr --add  ll 'ls -l'
-      abbr --add  lla 'ls -la'
+      abbr --add la 'ls -a'
+      abbr --add ll 'ls -l'
+      abbr --add lla 'ls -la'
     '';
   } // { # Others
   };
