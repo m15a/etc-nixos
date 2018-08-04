@@ -167,25 +167,22 @@
       # Apps launched in ~/.xprofile need it if they use SVG icons.
       GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
     };
-  };
-
-  programs = let
-    # environment.shellAliases cannot be initialized cleanly
-    commonShellAliases = {
+    shellAliases = {
       ls = "ls -Fh --color --time-style=long-iso";
       cp = "cp -i";
       mv = "mv -i";
       diff = "diff --color";
     };
-  in { # Shells
-    bash.shellAliases = commonShellAliases // {
+  };
+
+  programs = { # Shells
+    bash.shellAliases = {
       la = "ls -a";
       ll = "ls -l";
       lla = "ls -la";
     };
 
     fish.enable = true;
-    fish.shellAliases = commonShellAliases;
     fish.shellInit = ''
       umask 077
     '';
