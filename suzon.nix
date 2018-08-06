@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   networking.hostName = "suzon";
@@ -15,7 +15,13 @@
     maxJobs = 4;
   };
 
-  environment = {
+  environment = let
+    cfg = config.environment;
+    makeProfileRelativePath = suffixes:
+    with lib; concatStringsSep ":"
+    (flip concatMap cfg.profiles
+    (profile: flip map suffixes (suffix: "${profile}${suffix}")));
+  in {
     systemPackages = with pkgs; let
       consolePkgs = [
         coreutils
@@ -36,7 +42,10 @@
       ];
     in consolePkgs ++ miscPkgs;
     variables = {
+      PAGER = "less -R";
       EDITOR = "vim";  # Available by default on macOS
+      INFOPATH = makeProfileRelativePath [ "/info" "/share/info" ];
+      MANPATH = makeProfileRelativePath [ "/man" "/share/man" ];
     };
     shells = with pkgs; [
       fish
