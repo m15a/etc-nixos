@@ -196,7 +196,11 @@
 
   services.xserver.displayManager.lightdm = {
     enable = true;
-    background = "/etc/nixos/data/pixmaps/login_background.jpg";
+    background = let
+      backgroundImage = pkgs.runCommand "login-background" {} ''
+        cp ${./data/pixmaps/login_background.jpg} $out
+      '';
+    in "${backgroundImage}";
     greeters.mini.enable = true;
     greeters.mini.user = "mnacamura";
     greeters.mini.extraConfig = ''
