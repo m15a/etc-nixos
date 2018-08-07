@@ -133,6 +133,7 @@
       ls = "ls -Fh --color --time-style=long-iso";
       cp = "cp -i";
       mv = "mv -i";
+      diff = "diff --color";
     };
   in { # Shells
     bash.shellAliases = commonShellAliases // {
@@ -149,6 +150,10 @@
       abbr --add la 'ls -a'
       abbr --add ll 'ls -l'
       abbr --add lla 'ls -la'
+      abbr --add h history
+      abbr --add d  dirh
+      abbr --add nd nextd
+      abbr --add pd prevd
     '';
   } // { # Others
     # ccache.enable = true;  # cannot use binary caches if ccache is enabled
