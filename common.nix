@@ -172,6 +172,7 @@
       cp = "cp -i";
       mv = "mv -i";
       diff = "diff --color";
+      feh = "feh -B \"#1c1b19\"";  # Srcery black
     };
   };
 
