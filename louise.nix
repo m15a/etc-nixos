@@ -87,6 +87,11 @@
         Option "XkbVariant"    ""
       ''
     ];
+    windowManager.bspwm.configFile = pkgs.substituteAll {
+      src = ./data/config/bspwmrc;
+      postInstall = "chmod +x $out";
+      window_gap = "120";
+    };
   };
 
   services.compton = {

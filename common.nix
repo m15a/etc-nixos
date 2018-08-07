@@ -183,6 +183,9 @@
     windowManager.bspwm.enable = true;
     desktopManager.default = "none";
     windowManager.default = "bspwm";
+    windowManager.bspwm.sxhkd.configFile = pkgs.runCommand "sxhkdrc" {} ''
+      cp ${./data/config/sxhkdrc} $out
+    '';
   };
 
   services.compton = {

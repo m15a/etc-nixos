@@ -36,6 +36,11 @@
     xrandrHeads = [
       { output = "DisplayPort-1"; primary = true; }
     ];
+    windowManager.bspwm.configFile = pkgs.substituteAll {
+      src = ./data/config/bspwmrc;
+      postInstall = "chmod +x $out";
+      window_gap = "60";
+    };
   };
 
   services.compton = {
