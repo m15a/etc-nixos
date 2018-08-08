@@ -2,9 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
+  imports = [ ./hidpi.nix ];
+
   fileSystems = let
     # Mount options for Btrfs on SSD
     commonMountOptions = [
@@ -183,18 +185,57 @@
     windowManager.bspwm.enable = true;
     desktopManager.default = "none";
     windowManager.default = "bspwm";
+    windowManager.bspwm.configFile = let
+      cfg = config.environment.hidpi;
+      scale = if cfg.enable then cfg.scale else 1;
+    in pkgs.substituteAll {
+      src = ./data/config/bspwmrc;
+      postInstall = "chmod +x $out";
+      window_gap = toString (60 * scale);
+    };
     windowManager.bspwm.sxhkd.configFile = pkgs.runCommand "sxhkdrc" {} ''
       cp ${./data/config/sxhkdrc} $out
     '';
   };
 
-  services.compton = {
+  services.compton = let
+    inherit (lib) any;
+    cfg = config.environment.hidpi;
+    scale = if cfg.enable then cfg.scale else 1;
+    drivers = config.services.xserver.videoDrivers;
+  in {
     enable = true;
     fade = true;
     fadeDelta = 5;
     fadeSteps = [ "0.03" "0.03" ];
     shadow = true;
     shadowOpacity = "0.46";
+    shadowOffsets = [ (-12 * scale) (-15 * scale) ];
+    # glx with amdgpu does not work for now
+    # https://github.com/chjj/compton/issues/477
+    backend = if (any (d: d == "amdgpu") drivers) then "xrender" else "glx";
+    vSync = if (any (d: d == "amdgpu") drivers) then "none" else "opengl-swc";
+    extraOptions = ''
+      mark-wmwin-focused = true;
+      mark-ovredir-focused = true;
+      paint-on-overlay = true;
+      use-ewmh-active-win = true;
+      sw-opti = true;
+      unredir-if-possible = true;
+      detect-transient = true;
+      detect-client-leader = true;
+      blur-kern = "3x3gaussian";
+      glx-no-stencil = true;
+      glx-copy-from-front = false;
+      glx-use-copysubbuffermesa = true;
+      glx-no-rebind-pixmap = true;
+      glx-swap-method = "buffer-age";
+      shadow-radius = ${toString (22 * scale)};
+      shadow-ignore-shaped = false;
+      no-dnd-shadow = true;
+      no-dock-shadow = true;
+      clear-shadow = true;
+    '';
   };
 
   services.xserver.displayManager.lightdm = {

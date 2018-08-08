@@ -28,7 +28,6 @@
       options i915 modeset=1 enable_rc6=1 enable_guc_loading=1 enable_guc_submission=1 enable_psr=0
     '';
     kernel.sysctl."vm.swappiness" = 10;
-    earlyVconsoleSetup = true;  # for HiDPI display
   };
 
   hardware = {
@@ -37,20 +36,13 @@
     opengl.driSupport32Bit = true;
   };
 
-  i18n.consoleFont = "latarcyrheb-sun32";  # for HiDPI display
-
   nix.buildCores = 8;
 
   environment = {
     systemPackages = with pkgs; [
       xorg.xbacklight
     ];
-    variables = {
-      # For HiDPI display
-      QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-      GDK_SCALE = "2";
-      GDK_DPI_SCALE = "0.5";
-    };
+    hidpi.enable = true;
   };
 
   services = {
@@ -63,7 +55,6 @@
   };
 
   services.xserver = {
-    dpi = 192;  # for HiDPI (96dpi * 2)
     xkbOptions = "terminate:ctrl_alt_bksp,ctrl:swapcaps";
     # Enable touchpad support.
     libinput.enable = true;
@@ -87,37 +78,5 @@
         Option "XkbVariant"    ""
       ''
     ];
-    windowManager.bspwm.configFile = pkgs.substituteAll {
-      src = ./data/config/bspwmrc;
-      postInstall = "chmod +x $out";
-      window_gap = "120";
-    };
-  };
-
-  services.compton = {
-    shadowOffsets = [(-24) (-30)];
-    backend = "glx";
-    vSync = "opengl-swc";
-    extraOptions = ''
-      mark-wmwin-focused = true;
-      mark-ovredir-focused = true;
-      paint-on-overlay = true;
-      use-ewmh-active-win = true;
-      sw-opti = true;
-      unredir-if-possible = true;
-      detect-transient = true;
-      detect-client-leader = true;
-      blur-kern = "3x3gaussian";
-      glx-no-stencil = true;
-      glx-copy-from-front = false;
-      glx-use-copysubbuffermesa = true;
-      glx-no-rebind-pixmap = true;
-      glx-swap-method = "buffer-age";
-      shadow-radius = 44;
-      shadow-ignore-shaped = false;
-      no-dnd-shadow = true;
-      no-dock-shadow = true;
-      clear-shadow = true;
-    '';
   };
 }
