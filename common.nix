@@ -93,9 +93,33 @@
     ];
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    pulseaudio = true;
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      pulseaudio = true;
+    };
+    overlays = [(self: super: {
+      rofiWrapper = with super; let
+        cfg = config.environment.hidpi;
+        conf = substituteAll {
+          src = ./data/config/rofi.conf;
+          dpi = toString (96 * (if cfg.enable then cfg.scale else 1));
+        };
+      in buildEnv {
+        name = "${rofi.name}-wrapper";
+        paths = [ rofi ];
+        pathsToLink = [ "/share" ];
+        buildInputs = [ makeWrapper ];
+        postBuild = ''
+          mkdir $out/bin
+          makeWrapper ${rofi}/bin/rofi $out/bin/rofi --add-flags "-config ${conf}"
+          for path in ${rofi}/bin/*; do
+            name="$(basename "$path")"
+            [ "$name" != rofi ] && ln -s "$path" "$out/bin/$name"
+          done
+        '';
+      };
+    })];
   };
 
   environment = {
@@ -105,7 +129,7 @@
         dunst
         feh
         lightlocker
-        rofi
+        rofiWrapper
         termite
         yabar-unstable
         pavucontrol
