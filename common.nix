@@ -20,7 +20,8 @@
     ];
   in {
     "/".options = commonMountOptions;
-    "/nix".options = commonMountOptions; "/var".options = commonMountOptions;
+    "/nix".options = commonMountOptions;
+    "/var".options = commonMountOptions;
     "/home".options = commonMountOptions;
   };
 
@@ -45,10 +46,10 @@
 
   i18n = {
     # Srcery: https://github.com/srcery-colors/srcery-vim
-    consoleColors = [
-      "1C1B19" "EF2F27" "519F50" "FBB829" "2C78BF" "E02C6D" "0AAEB3" "918175"
-      "2D2C29" "F75341" "98BC37" "FED06E" "68A8E4" "FF5C8F" "53FDE9" "FCE8C3"
-    ];
+    # consoleColors = [
+    #   "1C1B19" "EF2F27" "519F50" "FBB829" "2C78BF" "E02C6D" "0AAEB3" "918175"
+    #   "2D2C29" "F75341" "98BC37" "FED06E" "68A8E4" "FF5C8F" "53FDE9" "FCE8C3"
+    # ];
     consoleKeyMap = "us";  # conflicts with consoleUseXkbConfig
     # consoleUseXkbConfig = true;
     defaultLocale = "ja_JP.UTF-8";
