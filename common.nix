@@ -288,6 +288,19 @@
     '';
   };
 
+  services.xserver.displayManager.sessionCommands = let
+    xresources = pkgs.writeText "Xresources" ''
+        Xcursor.theme: Numix
+    '';
+    backgroundImage = pkgs.runCommand "desktop-background" {} ''
+      cp ${./data/pixmaps/desktop_background.jpg} $out
+    '';
+  in ''
+    ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
+    ${pkgs.xorg.xrdb}/bin/xrdb -merge ${xresources}
+    ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${backgroundImage}
+  '';
+
   users.users.mnacamura = {
     description = "Mitsuhiro Nakamura";
     isNormalUser = true;
