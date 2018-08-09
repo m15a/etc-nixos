@@ -51,13 +51,7 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
-    assertions = [
-      { assertion = cfg.enable -> bwmcfg.enable;
-        message = "btops requires services.xserver.windowManager.bspwm enabled";
-      }
-    ];
-
+  config = mkIf (bwmcfg.enable && cfg.enable) {
     systemd.user.services.btops = {
       description = "btops service";
       wantedBy = [ "graphical-session.target" ];

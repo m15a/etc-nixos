@@ -57,13 +57,7 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
-    assertions = [
-      { assertion = cfg.enable -> ldmcfg.enable;
-        message = "light-locker requires services.xserver.displayManager.lightdm enabled";
-      }
-    ];
-
+  config = mkIf (ldmcfg.enable && cfg.enable) {
     services.xserver.displayManager.sessionCommands = ''
       ${pkgs.lightlocker}/bin/light-locker \
         --lock-after-screensaver=${toString cfg.lockAfterScreensaver} \
