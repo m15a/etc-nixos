@@ -42,7 +42,7 @@ in
       configFile = mkOption {
         type        = with types; nullOr path;
         default     = "${defaultConfigFile}";
-        example     = "${pkgs.btops.src}/examples/minmax.toml";
+        example     = "${cft.package.src}/examples/minmax.toml";
         description = ''
           Path to the btops configuration file.
           If null, $HOME/.config/btops/config.* will be used.
