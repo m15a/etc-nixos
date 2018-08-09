@@ -3,6 +3,7 @@
 with lib;
 
 let
+  ldmcfg = config.services.xserver.displayManager.lightdm;
   cfg = config.programs.lightlocker;
 in
 
@@ -57,7 +58,13 @@ in
   };
 
   config = mkIf cfg.enable {
-    systemd.user.services.lightlocker = {
+    assertions = [
+      { assertion = cfg.enable -> ldmcfg.enable;
+        message = "light-locker requires services.xserver.displayManager.lightdm enabled";
+      }
+    ];
+
+    systemd.user.services.light-locker = {
       description = "light-locker service";
       wantedBy = [ "graphical-session.target" ];
       partOf = [ "graphical-session.target" ];
