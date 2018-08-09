@@ -6,8 +6,8 @@
 
 {
   imports = [
-    ./btops.nix
-    ./hidpi.nix
+    ./modules/btops.nix
+    ./modules/hidpi.nix
   ];
 
   fileSystems = let
