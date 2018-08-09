@@ -5,7 +5,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./hidpi.nix ];
+  imports = [
+    ./btops.nix
+    ./hidpi.nix
+  ];
 
   fileSystems = let
     # Mount options for Btrfs on SSD
@@ -125,7 +128,6 @@
   environment = {
     systemPackages = with pkgs; let
       desktopPkgs = [
-        btops
         dunst
         feh
         lightlocker
@@ -206,9 +208,10 @@
     # exportConfiguration = true;
     layout = "us";
     # Enable bspwm environment.
-    windowManager.bspwm.enable = true;
     desktopManager.default = "none";
     windowManager.default = "bspwm";
+    windowManager.bspwm.enable = true;
+    windowManager.bspwm.btops.enable = true;
     windowManager.bspwm.configFile = let
       cfg = config.environment.hidpi;
       scale = if cfg.enable then cfg.scale else 1;

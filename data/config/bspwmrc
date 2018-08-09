@@ -1,7 +1,5 @@
 #!/bin/sh
 
-btops &
-
 bspc config border_width 0
 bspc config borderless_monocle true
 bspc config gapless_monocle true
