@@ -256,8 +256,9 @@
       cp ${./data/pixmaps/desktop_background.jpg} $out
     '';
   in ''
-    ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
     ${pkgs.xorg.xrdb}/bin/xrdb -merge ${xresources}
+    # xsetroot has to be after setting icon theme
+    ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
     ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${backgroundImage}
   '';
 
