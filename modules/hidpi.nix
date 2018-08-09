@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
@@ -34,5 +34,12 @@ in
       GDK_DPI_SCALE = "0.5";
     };
     services.xserver.dpi = 96 * cfg.scale;
+    services.xserver.displayManager.sessionCommands = let
+      xresources = pkgs.writeText "Xresources" ''
+        Xcursor.size: ${toString (24 * cfg.scale)}
+      '';
+    in ''
+      ${pkgs.xorg.xrdb}/bin/xrdb -merge ${xresources}
+    '';
   };
 }
