@@ -3,7 +3,7 @@
 with lib;
 
 let
-  bcfg = config.services.xserver.windowManager.bspwm;
+  bwmcfg = config.services.xserver.windowManager.bspwm;
   cfg = config.services.xserver.windowManager.bspwm.btops;
 
   defaultConfigFile = pkgs.writeText "btops-config.toml" ''
@@ -51,7 +51,13 @@ in
     };
   };
 
-  config = mkIf (bcfg.enable && cfg.enable) {
+  config = mkIf cfg.enable {
+    assertions = [
+      { assertion = cfg.enable -> bwmcfg.enable;
+        message = "btops requires services.xserver.windowManager.bspwm enabled";
+      }
+    ];
+
     systemd.user.services.btops = {
       description = "btops service";
       wantedBy = [ "graphical-session.target" ];
