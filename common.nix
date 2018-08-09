@@ -8,6 +8,7 @@
   imports = [
     ./modules/btops.nix
     ./modules/hidpi.nix
+    ./modules/lightlocker.nix
   ];
 
   fileSystems = let
@@ -131,7 +132,6 @@
       desktopPkgs = [
         dunst
         feh
-        lightlocker
         rofiWrapper
         termite
         yabar-unstable
@@ -186,6 +186,8 @@
     '';
   } // { # Others
     # ccache.enable = true;  # cannot use binary caches if ccache is enabled
+    lightlocker.enable = true;
+    lightlocker.lockAfterScreensaver = 10;
     vim.defaultEditor = true;
   };
 
