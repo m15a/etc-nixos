@@ -225,6 +225,42 @@
     '';
   };
 
+  services.xserver.displayManager.lightdm = {
+    enable = true;
+    background = let
+      backgroundImage = pkgs.runCommand "login-background" {} ''
+        cp ${./data/pixmaps/login_background.jpg} $out
+      '';
+    in "${backgroundImage}";
+    greeters.mini.enable = true;
+    greeters.mini.user = "mnacamura";
+    greeters.mini.extraConfig = ''
+      [greeter-theme]
+      font = Source Code Pro Medium
+      font-size = 13pt
+      text-color = "#fce8c3"
+      error-color = "#f75341"
+      window-color = "#d75f00"
+      border-width = 0
+      layout-space = 40
+      password-color = "#fce8c3"
+      password-background-color = "#1c1b19"
+    '';
+  };
+
+  services.xserver.displayManager.sessionCommands = let
+    xresources = pkgs.writeText "Xresources" ''
+        Xcursor.theme: Numix
+    '';
+    backgroundImage = pkgs.runCommand "desktop-background" {} ''
+      cp ${./data/pixmaps/desktop_background.jpg} $out
+    '';
+  in ''
+    ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
+    ${pkgs.xorg.xrdb}/bin/xrdb -merge ${xresources}
+    ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${backgroundImage}
+  '';
+
   services.compton = let
     inherit (lib) any;
     cfg = config.environment.hidpi;
@@ -264,42 +300,6 @@
       clear-shadow = true;
     '';
   };
-
-  services.xserver.displayManager.lightdm = {
-    enable = true;
-    background = let
-      backgroundImage = pkgs.runCommand "login-background" {} ''
-        cp ${./data/pixmaps/login_background.jpg} $out
-      '';
-    in "${backgroundImage}";
-    greeters.mini.enable = true;
-    greeters.mini.user = "mnacamura";
-    greeters.mini.extraConfig = ''
-      [greeter-theme]
-      font = Source Code Pro Medium
-      font-size = 13pt
-      text-color = "#fce8c3"
-      error-color = "#f75341"
-      window-color = "#d75f00"
-      border-width = 0
-      layout-space = 40
-      password-color = "#fce8c3"
-      password-background-color = "#1c1b19"
-    '';
-  };
-
-  services.xserver.displayManager.sessionCommands = let
-    xresources = pkgs.writeText "Xresources" ''
-        Xcursor.theme: Numix
-    '';
-    backgroundImage = pkgs.runCommand "desktop-background" {} ''
-      cp ${./data/pixmaps/desktop_background.jpg} $out
-    '';
-  in ''
-    ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
-    ${pkgs.xorg.xrdb}/bin/xrdb -merge ${xresources}
-    ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${backgroundImage}
-  '';
 
   users.users.mnacamura = {
     description = "Mitsuhiro Nakamura";
