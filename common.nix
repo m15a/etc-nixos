@@ -47,6 +47,11 @@
     pulseaudio.enable = true;
   };
 
+  sound = {
+    # ALSA problem: Failed to find module 'snd_pcm_oss'
+    enableOSSEmulation = false;
+  };
+
   networking = {
     networkmanager.enable = true;
   };
