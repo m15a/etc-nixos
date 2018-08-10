@@ -30,6 +30,9 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [
+      "nmi_watchdog=0"
+    ];
     tmpOnTmpfs = true;
   };
 
