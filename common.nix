@@ -219,6 +219,7 @@
 
     printing.enable = true;
     printing.drivers = [ pkgs.gutenprint ];
+    colord.enable = true;  # required by CUPS
   };
 
   services.xserver = {
