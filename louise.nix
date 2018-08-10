@@ -47,6 +47,14 @@
   };
 
   services = {
+    chrony.servers = [
+      # Add 'offline' as it is laptop
+      "0.nixos.pool.ntp.org offline"
+      "1.nixos.pool.ntp.org offline"
+      "2.nixos.pool.ntp.org offline"
+      "3.nixos.pool.ntp.org offline"
+    ];
+
     thermald.enable = true;
 
     tlp.enable = true;
