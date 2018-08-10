@@ -56,6 +56,7 @@ in
       description = "btops service";
       wantedBy = [ "graphical-session.target" ];
       partOf = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
 
       script = ''
           ${btopsWrapper}/bin/btops
