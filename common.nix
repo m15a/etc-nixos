@@ -120,6 +120,17 @@
     };
 
     overlays = [(self: super: {
+      fehWrapper = with super; buildEnv {
+        name = "${feh.name}-wrapper";
+        paths = [ feh.man ];
+        buildInputs = [ makeWrapper ];
+        postBuild = ''
+          mkdir $out/bin
+          makeWrapper ${feh.out}/bin/feh $out/bin/feh \
+            --add-flags "-B \"#1c1b19\""  # Srcery black
+        '';
+      };
+
       rofiWrapper = with super; let
         cfg = config.environment.hidpi;
         conf = substituteAll {
@@ -147,7 +158,7 @@
     systemPackages = with pkgs; let
       desktopPkgs = [
         dunst
-        feh
+        fehWrapper
         rofiWrapper
         termite
         yabar-unstable
@@ -177,7 +188,6 @@
       cp = "cp -i";
       mv = "mv -i";
       diff = "diff --color";
-      feh = "feh -B \"#1c1b19\"";  # Srcery black
     };
   };
 
