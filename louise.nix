@@ -3,11 +3,10 @@
 {
   networking.hostName = "louise";
 
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./common.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./common.nix
+  ];
 
   boot = {
     kernelParams = [
@@ -16,17 +15,18 @@
       # DMAR: DRHD: handling fault status reg 2
       # See https://bbs.archlinux.org/viewtopic.php?id=230362
       "intel_iommu=off"
-      # See https://wiki.archlinux.org/index.php/Power_management#Bus_power_management
-      # "pcie_aspm=force"  # questionable if it is effective on Dell XPS 9370
     ];
+
     blacklistedKernelModules = [
       # See https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Remove_psmouse_errors_from_dmesg
       "psmouse"
     ];
+
     extraModprobeConfig = ''
       # See https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Module-based_Powersaving_Options
       options i915 modeset=1 enable_fbc=1 enable_guc=3 enable_psr=0
     '';
+
     kernel.sysctl."vm.swappiness" = 10;
   };
 
@@ -39,14 +39,16 @@
   nix.buildCores = 8;
 
   environment = {
+    hidpi.enable = true;
+
     systemPackages = with pkgs; [
       xorg.xbacklight
     ];
-    hidpi.enable = true;
   };
 
   services = {
     thermald.enable = true;
+
     tlp.enable = true;
     tlp.extraConfig = ''
       CPU_SCALING_GOVERNOR_ON_AC=powersave
@@ -56,15 +58,18 @@
 
   services.xserver = {
     xkbOptions = "terminate:ctrl_alt_bksp,ctrl:swapcaps";
+
     # Enable touchpad support.
     libinput.enable = true;
     libinput.accelSpeed = "1";
     libinput.naturalScrolling = true;
-    # Set the video card driver.
+
     videoDrivers = [ "intel" ];
+
     deviceSection = ''
       Option "Backlight" "intel_backlight"
     '';
+
     # Extra devices.
     inputClassSections = [
       ''

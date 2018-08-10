@@ -29,16 +29,21 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
+
     kernelPackages = pkgs.linuxPackages_latest;
+
     kernelParams = [
       "nmi_watchdog=0"
     ];
+
     tmpOnTmpfs = true;
   };
 
   hardware = {
     # cpu.intel.updateMicrocode = true;
+
     bluetooth.enable = true;
+
     pulseaudio.enable = true;
   };
 
@@ -49,14 +54,17 @@
   time.timeZone = "Asia/Tokyo";
 
   i18n = {
-    # Srcery: https://github.com/srcery-colors/srcery-vim
     # consoleColors = [
+    #   # Srcery: https://github.com/srcery-colors/srcery-vim
     #   "1C1B19" "EF2F27" "519F50" "FBB829" "2C78BF" "E02C6D" "0AAEB3" "918175"
     #   "2D2C29" "F75341" "98BC37" "FED06E" "68A8E4" "FF5C8F" "53FDE9" "FCE8C3"
     # ];
+
     consoleKeyMap = "us";  # conflicts with consoleUseXkbConfig
     # consoleUseXkbConfig = true;
+
     defaultLocale = "ja_JP.UTF-8";
+
     inputMethod = {
       enabled = "fcitx";
       fcitx.engines = with pkgs.fcitx-engines; [ mozc ];
@@ -74,6 +82,7 @@
       font-awesome-ttf
       fira-code
     ];
+
     fontconfig.defaultFonts = {
       serif = [
         "Source Serif Pro"
@@ -91,11 +100,9 @@
 
   nix = {
     trustedUsers = [ "@wheel" ];
-    # useSandbox = true;
+
     nixPath = [
-      # "$HOME/.nix-defexpr/channels"
       "nixpkgs=/var/repos/nixpkgs"
-      # "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
       "nixos-config=/etc/nixos/configuration.nix"
       "/nix/var/nix/profiles/per-user/root/channels"
     ];
@@ -106,6 +113,7 @@
       allowUnfree = true;
       pulseaudio = true;
     };
+
     overlays = [(self: super: {
       rofiWrapper = with super; let
         cfg = config.environment.hidpi;
@@ -150,9 +158,11 @@
         scrot
       ];
     in desktopPkgs ++ miscPkgs;
+
     profileRelativeEnvVars = {
       MANPATH = [ "/man" "/share/man" ];
     };
+
     variables = {
       # Apps launched in ~/.xprofile need it if they use SVG icons.
       GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
@@ -173,6 +183,7 @@
       ll = "ls -l";
       lla = "ls -la";
     };
+
     fish.enable = true;
     fish.shellAliases = commonShellAliases;
     fish.shellInit = ''
@@ -188,15 +199,17 @@
       abbr --add pd prevd
     '';
   } // { # Others
-    # ccache.enable = true;  # cannot use binary caches if ccache is enabled
     lightlocker.enable = true;
     lightlocker.lockAfterScreensaver = 10;
+
     vim.defaultEditor = true;
   };
 
   services = {
     chrony.enable = true;
+
     fstrim.enable = true;
+
     autofs.enable = true;
     autofs.autoMaster = let
       mapConf = pkgs.writeText "auto" ''
@@ -205,14 +218,16 @@
     in ''
       /media file:${mapConf} --timeout=10
     '';
+
     printing.enable = true;
     printing.drivers = [ pkgs.gutenprint ];
   };
 
   services.xserver = {
     enable = true;
-    # exportConfiguration = true;
+
     layout = "us";
+
     # Enable bspwm environment.
     desktopManager.default = "none";
     windowManager.default = "bspwm";
@@ -233,11 +248,13 @@
 
   services.xserver.displayManager.lightdm = {
     enable = true;
+
     background = let
       backgroundImage = pkgs.runCommand "login-background" {} ''
         cp ${./data/pixmaps/login_background.jpg} $out
       '';
     in "${backgroundImage}";
+
     greeters.mini.enable = true;
     greeters.mini.user = "mnacamura";
     greeters.mini.extraConfig = ''
@@ -269,22 +286,25 @@
   '';
 
   services.compton = let
-    inherit (lib) any;
     cfg = config.environment.hidpi;
     scale = if cfg.enable then cfg.scale else 1;
-    drivers = config.services.xserver.videoDrivers;
+    hasAmdgpu = lib.any (d: d == "amdgpu") config.services.xserver.videoDrivers;
   in {
     enable = true;
+
     fade = true;
     fadeDelta = 5;
     fadeSteps = [ "0.03" "0.03" ];
+
     shadow = true;
     shadowOpacity = "0.46";
     shadowOffsets = [ (-12 * scale) (-15 * scale) ];
+
     # glx with amdgpu does not work for now
     # https://github.com/chjj/compton/issues/477
-    backend = if (any (d: d == "amdgpu") drivers) then "xrender" else "glx";
-    vSync = if (any (d: d == "amdgpu") drivers) then "none" else "opengl-swc";
+    backend = if hasAmdgpu then "xrender" else "glx";
+    vSync = if hasAmdgpu then "none" else "opengl-swc";
+
     extraOptions = ''
       mark-wmwin-focused = true;
       mark-ovredir-focused = true;
