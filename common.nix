@@ -151,7 +151,29 @@
           done
         '';
       };
-    })];
+
+      zathuraWrapper = with super; let
+        cfg = config.environment.hidpi;
+        configFile = substituteAll {
+          src = ./data/config/zathurarc;
+          page_padding = toString (if cfg.enable then cfg.scale else 1);
+        };
+        configDir = runCommand "zathura-config-dir" {} ''
+          install -D -m 444 "${configFile}" "$out/zathurarc"
+        '';
+      in
+      buildEnv {
+        name = "${zathura.name}-wrapper";
+        paths = [ zathura ];
+        pathsToLink = [ "/share" ];
+        buildInputs = [ makeWrapper ];
+        postBuild = ''
+          mkdir $out/bin
+          makeWrapper ${zathura}/bin/zathura $out/bin/zathura \
+            --add-flags "--config-dir ${configDir}"
+        '';
+      };
+  })];
   };
 
   environment = {
@@ -163,6 +185,7 @@
         termite
         yabar-unstable
         pavucontrol
+        zathuraWrapper
       ] ++ gtkPkgs;
       gtkPkgs = [
         gtk3 # Required to use Emacs key bindings in GTK apps
