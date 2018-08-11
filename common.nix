@@ -119,7 +119,7 @@
       pulseaudio = true;
     };
 
-    overlays = [(self: super: {
+    overlays = [ (self: super: {
       fehWrapper = with super; buildEnv {
         name = "${feh.name}-wrapper";
         paths = [ feh.man ];
@@ -133,7 +133,7 @@
 
       rofiWrapper = with super; let
         cfg = config.environment.hidpi;
-        conf = substituteAll {
+        configFile = substituteAll {
           src = ./data/config/rofi.conf;
           dpi = toString (96 * (if cfg.enable then cfg.scale else 1));
         };
@@ -144,7 +144,8 @@
         buildInputs = [ makeWrapper ];
         postBuild = ''
           mkdir $out/bin
-          makeWrapper ${rofi}/bin/rofi $out/bin/rofi --add-flags "-config ${conf}"
+          makeWrapper ${rofi}/bin/rofi $out/bin/rofi \
+            --add-flags "-config ${configFile}"
           for path in ${rofi}/bin/*; do
             name="$(basename "$path")"
             [ "$name" != rofi ] && ln -s "$path" "$out/bin/$name"
@@ -161,8 +162,7 @@
         configDir = runCommand "zathura-config-dir" {} ''
           install -D -m 444 "${configFile}" "$out/zathurarc"
         '';
-      in
-      buildEnv {
+      in buildEnv {
         name = "${zathura.name}-wrapper";
         paths = [ zathura ];
         pathsToLink = [ "/share" ];
@@ -173,7 +173,7 @@
             --add-flags "--config-dir ${configDir}"
         '';
       };
-  })];
+  }) ];
   };
 
   environment = {
