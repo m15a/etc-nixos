@@ -45,6 +45,7 @@
     bluetooth.enable = true;
 
     pulseaudio.enable = true;
+    pulseaudio.package = pkgs.pulseaudioFull;
   };
 
   sound = {
