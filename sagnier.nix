@@ -6,6 +6,7 @@
   imports = [
     ./hardware-configuration.nix
     ./common.nix
+    ./private.nix
   ];
 
   boot = {
