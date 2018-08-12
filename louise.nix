@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  # Dell XPS 13 (9370)
   networking.hostName = "louise";
 
   imports = [

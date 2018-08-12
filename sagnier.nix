@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  # LEVEL-R0X3-R8X-XZL (BTO PC)
   networking.hostName = "sagnier";
 
   imports = [

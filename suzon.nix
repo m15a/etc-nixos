@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
+  # MacBook Pro (Late 2016, 13-inch)
   networking.hostName = "suzon";
 
   nix = {
