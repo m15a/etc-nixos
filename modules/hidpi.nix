@@ -32,8 +32,8 @@ in
 
     environment.variables = {
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-      GDK_SCALE = "2";
-      GDK_DPI_SCALE = "0.5";
+      GDK_SCALE = toString cfg.scale;
+      GDK_DPI_SCALE = toString (1.0 / cfg.scale);
     };
 
     services.xserver.dpi = 96 * cfg.scale;
