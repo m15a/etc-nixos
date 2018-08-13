@@ -46,6 +46,8 @@ in
         description = ''
           Path to the btops configuration file.
           If null, $HOME/.config/btops/config.* will be used.
+          Make sure that the file has an appropreate extension such as .toml,
+          .yml, or .json (btops use Viper to load a configuration file).
         '';
       };
     };
