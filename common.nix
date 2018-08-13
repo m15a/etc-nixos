@@ -174,6 +174,27 @@
             --add-flags "--config-dir ${configDir}"
         '';
       };
+
+    gtk3Config = with super; let
+      cfg = config.environment.hidpi;
+      scale = if cfg.enable then cfg.scale else 1;
+      gtkCss = writeText "gtk.css" ''
+        VteTerminal, vte-terminal {
+            padding-left: ${toString (2 * scale)}px;
+        }
+      '';
+      settingsIni = writeText "settings.ini" ''
+        [Settings]
+        gtk-font-name = Source Han Sans JP 11
+        gtk-theme-name = Arc
+        gtk-icon-theme-name = Papirus
+        gtk-key-theme-name = Emacs
+      '';
+    in runCommand "gtk-3.0" {} ''
+      confd="$out/etc/xdg/gtk-3.0"
+      install -D -m 444 "${gtkCss}" "$confd/gtk.css"
+      install -D -m 444 "${settingsIni}" "$confd/settings.ini"
+    '';
   }) ];
   };
 
@@ -193,6 +214,7 @@
         arc-theme
         papirus-icon-theme
         numix-cursor-theme
+        gtk3Config
       ];
       miscPkgs = [
         scrot
@@ -207,6 +229,7 @@
       # Apps launched in ~/.xprofile need it if they use SVG icons.
       GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
     };
+
     shellAliases = {
       ls = "ls -Fh --color --time-style=long-iso";
       cp = "cp -i";
