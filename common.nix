@@ -270,7 +270,6 @@
     desktopManager.default = "none";
     windowManager.default = "bspwm";
     windowManager.bspwm.enable = true;
-    windowManager.bspwm.btops.enable = true;
     windowManager.bspwm.configFile = let
       cfg = config.environment.hidpi;
       scale = if cfg.enable then cfg.scale else 1;
@@ -281,6 +280,11 @@
     };
     windowManager.bspwm.sxhkd.configFile = pkgs.runCommand "sxhkdrc" {} ''
       cp ${./data/config/sxhkdrc} $out
+    '';
+    windowManager.bspwm.btops.enable = true;
+    windowManager.bspwm.btops.configFile = pkgs.writeText "config.toml" ''
+      watch-config = false
+      min = 4
     '';
   };
 
