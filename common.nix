@@ -109,7 +109,7 @@
 
     nixPath = [
       "nixpkgs=/var/repos/nixpkgs"
-      "nixos-config=/etc/nixos/configuration.nix"
+      "nixos-config=/etc/nixos/${config.networking.hostName}.nix"
       "/nix/var/nix/profiles/per-user/root/channels"
     ];
   };

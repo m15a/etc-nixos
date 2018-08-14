@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   # MacBook Pro (Late 2016, 13-inch)
@@ -9,7 +9,7 @@
     trustedUsers = [ "@admin" ];
     # useSandbox = true;
     nixPath = [
-      "darwin-config=$HOME/.config/nixpkgs/darwin-configuration.nix"
+      "darwin-config=$HOME/.config/nixos/${config.networking.hostName}.nix"
       "$HOME/.nix-defexpr/channels"
     ];
     buildCores = 4;
@@ -32,7 +32,7 @@
         diffutils
         gawk
         gnused
-        strip
+        # strip
         patch
         gnutar
         bzip2
