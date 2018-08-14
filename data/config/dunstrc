@@ -1,0 +1,46 @@
+[global]
+    geometry = "@geometry@"
+    separator_height = 0
+    frame_width = 0
+    separator_color = '#2d2c29'
+    font = Source Sans Pro @font_size@
+    format = "<b>%s</b>\n%b"
+    show_age_threshold = -1
+    icon_position = left
+    max_icon_size = @max_icon_size@
+    icon_path = @icon_path@
+    # sticky_history = yes
+    # history_length = 20
+    browser = firefox -new-tab
+    # startup_notification = true
+    padding = @padding@
+    horizontal_padding = @horizontal_padding@
+
+[experimental]
+    # per_monitor_dpi = true
+
+[shortcuts]
+    # Shortcuts are specified as [modifier+][modifier+]...key
+    # Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
+    # "mod3" and "mod4" (windows-key).
+    close = mod1+Escape
+    close_all = mod1+shift+Escape
+    history = mod1+grave
+    context = mod1+period
+
+[urgency_low]
+    background = "#fce8c3"
+    foreground = "#918175"
+    timeout = 10
+
+[urgency_normal]
+    background = "#fce8c3"
+    foreground = "#2d2c29"
+    timeout = 10
+
+[urgency_critical]
+    background = "#ef2f27"
+    foreground = "#fce8c3"
+    timeout = 0
+
+# vim: ft=cfg

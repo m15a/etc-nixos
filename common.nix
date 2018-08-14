@@ -154,6 +154,45 @@
         '';
       };
 
+      dunstWrapper = with super; let
+        cfg = config.environment.hidpi;
+        scale = if cfg.enable then cfg.scale else 1;
+        configFile = substituteAll {
+          src = ./data/config/dunstrc;
+          geometry = let
+            width = toString (450 * scale);
+            height = toString 5;
+            dx = let
+              d = if x >= 0 then "+" else "";
+              x = 15;
+            in d + toString (x * scale);
+            dy = let
+              d = if y >= 0 then "+" else "";
+              y = 30;
+            in d + toString (y * scale);
+          in "${width}x${height}${dx}${dy}";
+          font_size = toString (13 * scale);
+          max_icon_size = toString (24 * scale);
+          icon_path = let
+            s = toString (24 * scale);
+            path = "${papirus-icon-theme}/share/icons/Papirus";
+          in lib.concatStringsSep ":"
+          (map (cat: "${path}/${s}x${s}/${cat}") [ "status" "devices" "apps" ]);
+          padding = toString (3 * scale);
+          horizontal_padding = toString (5 * scale);
+        };
+      in buildEnv {
+        name = "${dunst.name}-wrapper";
+        paths = [ dunst ];
+        pathsToLink = [ "/share" ];
+        buildInputs = [ makeWrapper ];
+        postBuild = ''
+          mkdir $out/bin
+          makeWrapper ${dunst}/bin/dunst $out/bin/dunst \
+            --add-flags "-conf ${configFile}"
+        '';
+      };
+
       zathuraWrapper = with super; let
         cfg = config.environment.hidpi;
         configFile = substituteAll {
@@ -201,7 +240,7 @@
   environment = {
     systemPackages = with pkgs; let
       desktopPkgs = [
-        dunst
+        dunstWrapper
         fehWrapper
         rofiWrapper
         termite
