@@ -241,6 +241,7 @@
     systemPackages = with pkgs; let
       desktopPkgs = [
         dunstWrapper
+        libnotify
         fehWrapper
         rofiWrapper
         termite
