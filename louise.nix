@@ -6,7 +6,7 @@
 
   imports = [
     ./hardware-configuration.nix
-    ./common.nix
+    ./platforms/nixos.nix
     ./private.nix
   ];
 

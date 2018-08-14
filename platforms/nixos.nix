@@ -6,9 +6,9 @@
 
 {
   imports = [
-    ./modules/btops.nix
-    ./modules/hidpi.nix
-    ./modules/lightlocker.nix
+    ../modules/btops.nix
+    ../modules/hidpi.nix
+    ../modules/lightlocker.nix
   ];
 
   fileSystems = let
@@ -135,7 +135,7 @@
       rofiWrapper = with super; let
         cfg = config.environment.hidpi;
         configFile = substituteAll {
-          src = ./data/config/rofi.conf;
+          src = ../data/config/rofi.conf;
           dpi = toString (96 * (if cfg.enable then cfg.scale else 1));
         };
       in buildEnv {
@@ -157,7 +157,7 @@
       zathuraWrapper = with super; let
         cfg = config.environment.hidpi;
         configFile = substituteAll {
-          src = ./data/config/zathurarc;
+          src = ../data/config/zathurarc;
           page_padding = toString (if cfg.enable then cfg.scale else 1);
         };
         configDir = runCommand "zathura-config-dir" {} ''
@@ -297,12 +297,12 @@
       cfg = config.environment.hidpi;
       scale = if cfg.enable then cfg.scale else 1;
     in pkgs.substituteAll {
-      src = ./data/config/bspwmrc;
+      src = ../data/config/bspwmrc;
       postInstall = "chmod +x $out";
       window_gap = toString (60 * scale);
     };
     windowManager.bspwm.sxhkd.configFile = pkgs.runCommand "sxhkdrc" {} ''
-      cp ${./data/config/sxhkdrc} $out
+      cp ${../data/config/sxhkdrc} $out
     '';
     windowManager.bspwm.btops.enable = true;
     windowManager.bspwm.btops.configFile = pkgs.writeText "config.toml" ''
@@ -316,7 +316,7 @@
 
     background = let
       backgroundImage = pkgs.runCommand "login-background" {} ''
-        cp ${./data/pixmaps/login_background.jpg} $out
+        cp ${../data/pixmaps/login_background.jpg} $out
       '';
     in "${backgroundImage}";
 
@@ -341,7 +341,7 @@
         Xcursor.theme: Numix
     '';
     backgroundImage = pkgs.runCommand "desktop-background" {} ''
-      cp ${./data/pixmaps/desktop_background.jpg} $out
+      cp ${../data/pixmaps/desktop_background.jpg} $out
     '';
   in ''
     ${pkgs.xorg.xrdb}/bin/xrdb -merge ${xresources}
