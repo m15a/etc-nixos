@@ -133,10 +133,10 @@
       };
 
       rofiWrapper = with super; let
-        cfg = config.environment.hidpi;
+        scale = config.environment.hidpi.scale;
         configFile = substituteAll {
           src = ./data/config/rofi.conf;
-          dpi = toString (96 * (if cfg.enable then cfg.scale else 1));
+          dpi = toString (96 * scale);
         };
       in buildEnv {
         name = "${rofi.name}-wrapper";
@@ -155,8 +155,7 @@
       };
 
       dunstWrapper = with super; let
-        cfg = config.environment.hidpi;
-        scale = if cfg.enable then cfg.scale else 1;
+        scale = config.environment.hidpi.scale;
         configFile = substituteAll {
           src = ./data/config/dunstrc;
           geometry = let
@@ -194,10 +193,10 @@
       };
 
       zathuraWrapper = with super; let
-        cfg = config.environment.hidpi;
+        scale = config.environment.hidpi.scale;
         configFile = substituteAll {
           src = ./data/config/zathurarc;
-          page_padding = toString (if cfg.enable then cfg.scale else 1);
+          page_padding = toString scale;
         };
         configDir = runCommand "zathura-config-dir" {} ''
           install -D -m 444 "${configFile}" "$out/zathurarc"
@@ -215,8 +214,7 @@
       };
 
     gtk3Config = with super; let
-      cfg = config.environment.hidpi;
-      scale = if cfg.enable then cfg.scale else 1;
+      scale = config.environment.hidpi.scale;
       gtkCss = writeText "gtk.css" ''
         VteTerminal, vte-terminal {
             padding-left: ${toString (2 * scale)}px;
@@ -334,8 +332,7 @@
     windowManager.default = "bspwm";
     windowManager.bspwm.enable = true;
     windowManager.bspwm.configFile = let
-      cfg = config.environment.hidpi;
-      scale = if cfg.enable then cfg.scale else 1;
+      scale = config.environment.hidpi.scale;
     in pkgs.substituteAll {
       src = ./data/config/bspwmrc;
       postInstall = "chmod +x $out";
@@ -391,8 +388,7 @@
   '';
 
   services.compton = let
-    cfg = config.environment.hidpi;
-    scale = if cfg.enable then cfg.scale else 1;
+    scale = config.environment.hidpi.scale;
     hasAmdgpu = lib.any (d: d == "amdgpu") config.services.xserver.videoDrivers;
   in {
     enable = true;
