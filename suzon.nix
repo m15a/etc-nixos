@@ -4,6 +4,10 @@
   # MacBook Pro (Late 2016, 13-inch)
   networking.hostName = "suzon";
 
+  imports = [
+    ./platforms/darwin.nix
+  ];
+
   nix = {
     package = pkgs.nix;
     trustedUsers = [ "@admin" ];

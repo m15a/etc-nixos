@@ -6,6 +6,7 @@
 
 {
   imports = [
+    ./common.nix
     ../modules/btops.nix
     ../modules/hidpi.nix
     ../modules/lightlocker.nix
