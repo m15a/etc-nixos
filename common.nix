@@ -259,6 +259,15 @@
       abbr --add pd prevd
     '';
   } // { # Others
+    lightlocker.enable = true;
+    lightlocker.lockAfterScreensaver = 10;
+
+    vim.defaultEditor = true;
+  };
+
+  services = {
+    chrony.enable = true;
+
     dunst.enable = true;
     dunst.configFile = let
       scale = config.environment.hidpi.scale;
@@ -286,15 +295,6 @@
       padding = toString (3 * scale);
       horizontal_padding = toString (5 * scale);
     };
-
-    lightlocker.enable = true;
-    lightlocker.lockAfterScreensaver = 10;
-
-    vim.defaultEditor = true;
-  };
-
-  services = {
-    chrony.enable = true;
 
     fstrim.enable = true;
 

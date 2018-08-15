@@ -3,12 +3,12 @@
 with lib;
 
 let
-  cfg = config.programs.dunst;
+  cfg = config.services.dunst;
 in
 
 {
   options = {
-    programs.dunst = {
+    services.dunst = {
       enable = mkEnableOption "dunst";
 
       package = mkOption {
@@ -38,7 +38,6 @@ in
       description = "dunst service";
       wantedBy = [ "graphical-session.target" ];
       partOf = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
 
       script = let
         args = optionalString (! isNull cfg.configFile) " -conf ${cfg.configFile}";
@@ -46,7 +45,10 @@ in
         ${cfg.package}/bin/dunst${args}
       '';
 
-      serviceConfig.Restart = "always";
+      serviceConfig = {
+        Type = "dbus";
+        BusName = "org.freedesktop.Notifications";
+      };
     };
   };
 }
