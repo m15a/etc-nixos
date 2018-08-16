@@ -235,7 +235,12 @@
       cp = "cp -i";
       mv = "mv -i";
       diff = "diff --color";
-    };
+    } // (let
+      cfg = config.services.xserver;
+    in lib.optionalAttrs cfg.enable {
+      # Occasionally xkbmap gets to vanilla state after suspend/resume
+      resetxkbmap = "setxkbmap -layout ${cfg.layout} -option ${cfg.xkbOptions}";
+    });
   };
 
   programs = { # Shells
