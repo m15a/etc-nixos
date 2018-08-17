@@ -58,13 +58,24 @@ in
   };
 
   config = mkIf (ldmcfg.enable && cfg.enable) {
-    services.xserver.displayManager.sessionCommands = ''
-      ${pkgs.lightlocker}/bin/light-locker \
-        --lock-after-screensaver=${toString cfg.lockAfterScreensaver} \
-        ${if cfg.lateLocking then "--late-locking" else "--no-late-locking"} \
-        ${if cfg.lockOnSuspend then "--lock-on-suspend" else "--no-lock-on-suspend"} \
-        ${if cfg.idleHint then "--idle-hint" else "--no-idle-hint"} &
-    '';
+    systemd.user.services.light-locker = {
+      description = "light-locker service";
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+      serviceConfig = {
+        ExecStartPre = ''
+          ${pkgs.systemd}/bin/systemctl --user import-environment XDG_SESSION_PATH
+        '';
+        ExecStart = ''
+          ${pkgs.lightlocker}/bin/light-locker \
+            --lock-after-screensaver=${toString cfg.lockAfterScreensaver} \
+            ${if cfg.lateLocking then "--late-locking" else "--no-late-locking"} \
+            ${if cfg.lockOnSuspend then "--lock-on-suspend" else "--no-lock-on-suspend"} \
+            ${if cfg.idleHint then "--idle-hint" else "--no-idle-hint"}
+        '';
+        Restart = "always";
+      };
+    };
 
     environment.systemPackages = [ cfg.package ];
   };
