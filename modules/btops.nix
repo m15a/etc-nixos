@@ -59,12 +59,10 @@ in
       wantedBy = [ "graphical-session.target" ];
       partOf = [ "graphical-session.target" ];
       after = [ "graphical-session.target" ];
-
-      script = ''
-          ${btopsWrapper}/bin/btops
-      '';
-
-      serviceConfig.Restart = "always";
+      serviceConfig = {
+        ExecStart = "${btopsWrapper}/bin/btops";
+        Restart = "always";
+      };
     };
   };
 }
