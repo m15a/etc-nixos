@@ -38,12 +38,17 @@ in
       description = "dunst service";
       wantedBy = [ "graphical-session.target" ];
       partOf = [ "graphical-session.target" ];
+      environment.DISPLAY = let
+        inherit (config.services.xserver) display;
+        n = if isNull display then 0 else display;
+      in ":${toString n}";
       serviceConfig = {
         Type = "dbus";
         BusName = "org.freedesktop.Notifications";
         ExecStart = let
           arg = optionalString (!isNull cfg.configFile) " -conf ${cfg.configFile}";
         in "${cfg.package}/bin/dunst${arg}";
+        Restart = "always";
       };
     };
   };
