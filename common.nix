@@ -208,6 +208,8 @@
         termite
         pavucontrol
         zathuraWrapper
+        dropbox-cli
+        firefox-devedition-bin
       ] ++ gtkPkgs;
       gtkPkgs = [
         gtk3 # Required to use Emacs key bindings in GTK apps
@@ -299,6 +301,52 @@
 
     yabar.enable = true;
     yabar.package = pkgs.yabar-unstable;
+    yabar.configFile = let
+      inherit (config.environment.hidpi) scale;
+      showDropbox = pkgs.writeScript "show-dropbox" ''
+        #!${pkgs.stdenv.shell}
+        dropbox="${pkgs.dropbox-cli}/bin/dropbox"
+        # If true, confusingly, dropbox is not running!
+        "$dropbox" running && exit 0
+        status=$("$dropbox" status 2>/dev/null)
+        if [[ "$status" = 'Up to date' || "$status" = '最新の状態' ]]; then
+          echo ''
+        else
+          echo ''
+        fi
+      '';
+      makeBlockList = blockNames: let
+        contents = lib.concatStringsSep ", " (map (b: "\"${b}\"") blockNames);
+      in "[ ${contents} ]";
+    in pkgs.substituteAll {
+      src = ./data/config/yabar.conf;
+      height = toString (23 * scale);
+      slack_size = toString (5 * scale);
+      font_size = toString (13 * scale);
+      top_block_list = makeBlockList ([ "date" "dropbox" "title" ]
+        ++ ( if config.networking.hostName == "louise"  # TODO: generalize
+             then [ "wifi" "volume" "battery" ]
+             else [ "volume" ]
+           ));
+      bottom_block_list = makeBlockList [ "workspace" ];
+      date_fixed_size = toString (130 * scale);
+      dropbox_fixed_size = toString (23 * scale);
+      title_fixed_size = toString (1110 * scale);
+      wifi_fixed_size = toString (193 * scale);
+      volume_fixed_size = toString (65 * scale);
+      battery_fixed_size = toString (75 * scale);
+      workspace_fixed_size = toString (24 * scale);
+      # TODO: In Firefox launched by clicking yabar blocks,
+      # XCURSOR_{THEME,SIZE} are not applied somehow.
+      firefox = "${pkgs.firefox-devedition-bin}/bin/firefox-devedition";
+      dropbox = "${pkgs.dropbox-cli}/bin/dropbox";
+      show_dropbox = "${showDropbox}";
+      notify_send = "${pkgs.libnotify}/bin/notify-send";
+      termite = "${pkgs.termite}/bin/termite";
+      nmtui = "${pkgs.networkmanager}/bin/nmtui";
+      pactl = "${config.hardware.pulseaudio.package}/bin/pactl";
+      pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
+    };
 
     fstrim.enable = true;
 
