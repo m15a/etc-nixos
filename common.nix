@@ -134,7 +134,7 @@
       };
 
       rofiWrapper = with super; let
-        scale = config.environment.hidpi.scale;
+        inherit (config.environment.hidpi) scale;
         configFile = substituteAll {
           src = ./data/config/rofi.conf;
           dpi = toString (96 * scale);
@@ -156,7 +156,7 @@
       };
 
       zathuraWrapper = with super; let
-        scale = config.environment.hidpi.scale;
+        inherit (config.environment.hidpi) scale;
         configFile = substituteAll {
           src = ./data/config/zathurarc;
           page_padding = toString scale;
@@ -177,7 +177,7 @@
       };
 
     gtk3Config = with super; let
-      scale = config.environment.hidpi.scale;
+      inherit (config.environment.hidpi) scale;
       gtkCss = writeText "gtk.css" ''
         VteTerminal, vte-terminal {
             padding-left: ${toString (2 * scale)}px;
@@ -270,7 +270,7 @@
 
     dunst.enable = true;
     dunst.configFile = let
-      scale = config.environment.hidpi.scale;
+      inherit (config.environment.hidpi) scale;
     in pkgs.substituteAll {
       src = ./data/config/dunstrc;
       geometry = let
@@ -322,7 +322,7 @@
     windowManager.default = "bspwm";
     windowManager.bspwm.enable = true;
     windowManager.bspwm.configFile = let
-      scale = config.environment.hidpi.scale;
+      inherit (config.environment.hidpi) scale;
     in pkgs.substituteAll {
       src = ./data/config/bspwmrc;
       postInstall = "chmod +x $out";
@@ -378,7 +378,7 @@
   '';
 
   services.compton = let
-    scale = config.environment.hidpi.scale;
+    inherit (config.environment.hidpi) scale;
     hasAmdgpu = lib.any (d: d == "amdgpu") config.services.xserver.videoDrivers;
   in {
     enable = true;
