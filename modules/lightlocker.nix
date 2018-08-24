@@ -16,7 +16,7 @@ in
         type        = types.package;
         default     = pkgs.lightlocker;
         defaultText = "pkgs.lightlocker";
-        example     = "pkgs.lightlocker";
+        example     = literalExample "pkgs.lightlocker";
         description = ''
           light-locker package to use.
         '';

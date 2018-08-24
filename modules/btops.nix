@@ -33,7 +33,7 @@ in
         type        = types.package;
         default     = pkgs.btops;
         defaultText = "pkgs.btops";
-        example     = "pkgs.btops";
+        example     = literalExample "pkgs.btops";
         description = ''
           btops package to use.
         '';

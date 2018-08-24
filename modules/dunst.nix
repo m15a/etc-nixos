@@ -15,7 +15,7 @@ in
         type        = types.package;
         default     = pkgs.dunst;
         defaultText = "pkgs.dunst";
-        example     = "pkgs.dunst";
+        example     = literalExample "pkgs.dunst";
         description = ''
           dunst package to use.
         '';
