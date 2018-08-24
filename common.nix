@@ -8,6 +8,7 @@
   imports = [
     ./modules/btops.nix
     ./modules/dunst.nix
+    ./modules/yabar.nix
     ./modules/hidpi.nix
     ./modules/lightlocker.nix
   ];
@@ -205,7 +206,6 @@
         fehWrapper
         rofiWrapper
         termite
-        yabar-unstable
         pavucontrol
         zathuraWrapper
       ] ++ gtkPkgs;
@@ -296,6 +296,9 @@
       padding = toString (3 * scale);
       horizontal_padding = toString (5 * scale);
     };
+
+    yabar.enable = true;
+    yabar.package = pkgs.yabar-unstable;
 
     fstrim.enable = true;
 
