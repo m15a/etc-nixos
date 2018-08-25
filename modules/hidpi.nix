@@ -34,20 +34,13 @@ in
       i18n.consoleFont = "latarcyrheb-sun32";
 
       environment.variables = {
+        XCURSOR_SIZE = toString (24 * cfg.scale);
         QT_AUTO_SCREEN_SCALE_FACTOR = "1";
         GDK_SCALE = toString cfg.scale;
         GDK_DPI_SCALE = toString (1.0 / cfg.scale);
       };
 
       services.xserver.dpi = 96 * cfg.scale;
-
-      services.xserver.displayManager.sessionCommands = let
-        xresources = pkgs.writeText "Xresources" ''
-          Xcursor.size: ${toString (24 * cfg.scale)}
-        '';
-      in ''
-        ${pkgs.xorg.xrdb}/bin/xrdb -merge ${xresources}
-      '';
     })
 
     (mkIf (!cfg.enable) {

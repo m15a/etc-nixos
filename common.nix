@@ -226,6 +226,7 @@
     };
 
     variables = {
+      XCURSOR_THEME = "Numix";
       # Apps launched in ~/.xprofile need it if they use SVG icons.
       GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
     };
@@ -364,15 +365,10 @@
   };
 
   services.xserver.displayManager.sessionCommands = let
-    xresources = pkgs.writeText "Xresources" ''
-        Xcursor.theme: Numix
-    '';
     backgroundImage = pkgs.runCommand "desktop-background" {} ''
       cp ${./data/pixmaps/desktop_background.jpg} $out
     '';
   in ''
-    ${pkgs.xorg.xrdb}/bin/xrdb -merge ${xresources}
-    # xsetroot has to be after setting icon theme
     ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
     ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${backgroundImage}
   '';
