@@ -367,14 +367,7 @@
 
     fstrim.enable = true;
 
-    autofs.enable = true;
-    autofs.autoMaster = let
-      mapConf = pkgs.writeText "auto" ''
-        usbdisk -fstype=noauto,async,group,gid=100,fmask=117,dmask=007 :/dev/sda1
-      '';
-    in ''
-      /media file:${mapConf} --timeout=10
-    '';
+    devmon.enable = true;
 
     printing.enable = true;
     printing.drivers = [ pkgs.gutenprint ];
