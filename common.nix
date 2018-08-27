@@ -156,6 +156,23 @@
         '';
       };
 
+      termiteWrapper = with super; let
+        configFile = substituteAll {
+          src = ./data/config/termite;
+          font_size = toString 13;
+        };
+      in buildEnv {
+        name = "${termite.name}-wrapper";
+        paths = [ termite ];
+        pathsToLink = [ "/share" "/nix-support" ];
+        buildInputs = [ makeWrapper ];
+        postBuild = ''
+          mkdir $out/bin
+          makeWrapper ${termite}/bin/termite $out/bin/termite \
+            --add-flags "--config ${configFile}"
+        '';
+      };
+
       zathuraWrapper = with super; let
         inherit (config.environment.hidpi) scale;
         configFile = substituteAll {
@@ -205,7 +222,7 @@
         libnotify
         fehWrapper
         rofiWrapper
-        termite
+        termiteWrapper
         pavucontrol
         zathuraWrapper
         dropbox-cli
