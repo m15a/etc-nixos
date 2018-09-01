@@ -330,13 +330,15 @@
       showDropbox = pkgs.writeScript "show-dropbox" ''
         #!${pkgs.stdenv.shell}
         dropbox="${pkgs.dropbox-cli}/bin/dropbox"
-        # If true, confusingly, dropbox is not running!
-        "$dropbox" running && exit 0
-        status=$("$dropbox" status 2>/dev/null)
-        if [[ "$status" = 'Up to date' || "$status" = '最新の状態' ]]; then
-          echo ''
+        if "$dropbox" running; then
+          # If true, confusingly, dropbox is not running!
         else
-          echo ''
+          status=$("$dropbox" status 2>/dev/null)
+          if [[ "$status" = 'Up to date' || "$status" = '最新の状態' ]]; then
+            echo ''
+          else
+            echo ''
+          fi
         fi
       '';
       makeBlockList = blockNames: let
