@@ -403,10 +403,6 @@
       cp ${./data/config/sxhkdrc} $out
     '';
     windowManager.bspwm.btops.enable = true;
-    windowManager.bspwm.btops.configFile = pkgs.writeText "config.toml" ''
-      watch-config = false
-      min = 4
-    '';
   };
 
   services.xserver.displayManager.lightdm = {
