@@ -330,9 +330,9 @@
       showDropbox = pkgs.writeScript "show-dropbox" ''
         #!${pkgs.stdenv.shell}
         dropbox="${pkgs.dropbox-cli}/bin/dropbox"
-        if "$dropbox" running; then
-          # If true, confusingly, dropbox is not running!
-        else
+        # If status = 0, confusingly, dropbox is not running!
+        "$dropbox" running
+        if [[ $? -ne 0 ]]; then
           status=$("$dropbox" status 2>/dev/null)
           if [[ "$status" = 'Up to date' || "$status" = '最新の状態' ]]; then
             echo ''
