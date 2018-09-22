@@ -252,7 +252,7 @@
     };
 
     variables = {
-      XCURSOR_THEME = "Numix";
+      XCURSOR_THEME = "Numix-Cursor";
       # Apps launched in ~/.xprofile need it if they use SVG icons.
       GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
     };
