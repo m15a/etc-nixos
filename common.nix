@@ -189,14 +189,15 @@
         configDir = runCommand "zathura-config-dir" {} ''
           install -D -m 444 "${configFile}" "$out/zathurarc"
         '';
+        zathura' = zathura.override { synctexSupport = false; };
       in buildEnv {
-        name = "${zathura.name}-wrapper";
-        paths = [ zathura ];
+        name = "${zathura'.name}-wrapper";
+        paths = [ zathura' ];
         pathsToLink = [ "/share" ];
         buildInputs = [ makeWrapper ];
         postBuild = ''
           mkdir $out/bin
-          makeWrapper ${zathura}/bin/zathura $out/bin/zathura \
+          makeWrapper ${zathura'}/bin/zathura $out/bin/zathura \
             --add-flags "--config-dir ${configDir}"
         '';
       };
