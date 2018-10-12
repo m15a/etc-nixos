@@ -260,6 +260,10 @@
 
     shellAliases = {
       ls = "ls -Fh --color --time-style=long-iso";
+      l = null;
+      la = "ls -a";
+      ll = "ls -l";
+      lla = "ls -la";
       cp = "cp -i";
       mv = "mv -i";
       diff = "diff --color";
@@ -267,13 +271,12 @@
   };
 
   programs = { # Shells
-    bash.shellAliases = {
-      la = "ls -a";
-      ll = "ls -l";
-      lla = "ls -la";
-    };
-
     fish.enable = true;
+    fish.shellAliases = {
+      la = null;
+      ll = null;
+      lla = null;
+    };
     fish.shellInit = ''
       umask 077
     '';
