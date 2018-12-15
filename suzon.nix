@@ -12,6 +12,8 @@
       "$HOME/.nix-defexpr/channels"
     ];
 
+    useSandbox = false;
+
     buildCores = 4;
     maxJobs = 4;
   };
@@ -80,7 +82,7 @@
   };
 
   services = {
-    nix-daemon.enable = true;
+    nix-daemon.enable = false;
   };
 
   # Used for backwards compatibility, please read the changelog before changing.
