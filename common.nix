@@ -117,7 +117,7 @@
     trustedUsers = [ "@wheel" ];
 
     nixPath = [
-      "nixpkgs=/var/repos/nixpkgs"
+      "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
       "nixos-config=/etc/nixos/${config.networking.hostName}.nix"
       "/nix/var/nix/profiles/per-user/root/channels"
     ];
