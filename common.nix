@@ -425,7 +425,7 @@
       font = Source Code Pro Medium
       font-size = 13pt
       text-color = "#fce8c3"
-      error-color = "#f75341"
+      error-color = "#fce8c3"
       window-color = "#d75f00"
       border-width = 0
       layout-space = 40
