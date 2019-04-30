@@ -316,7 +316,7 @@
           y = 30;
         in d + toString (y * scale);
       in "${width}x${height}${dx}${dy}";
-      font_size = toString (13 * scale);
+      font_size = toString 13;
       max_icon_size = toString (24 * scale);
       icon_path = let
         s = toString (24 * scale);
@@ -360,12 +360,12 @@
            ));
       bottom_block_list = makeBlockList [ "workspace" ];
       date_fixed_size = toString (130 * scale);
-      dropbox_fixed_size = toString (23 * scale);
+      dropbox_fixed_size = toString (30 * scale);
       title_fixed_size = toString (1110 * scale);
-      wifi_fixed_size = toString (193 * scale);
-      volume_fixed_size = toString (65 * scale);
-      battery_fixed_size = toString (75 * scale);
-      workspace_fixed_size = toString (24 * scale);
+      wifi_fixed_size = toString (210 * scale);
+      volume_fixed_size = toString (80 * scale);
+      battery_fixed_size = toString (90 * scale);
+      workspace_fixed_size = toString (30 * scale);
       # TODO: In Firefox launched by clicking yabar blocks,
       # XCURSOR_{THEME,SIZE} are not applied somehow.
       firefox = "${pkgs.firefox-devedition-bin}/bin/firefox-devedition";
