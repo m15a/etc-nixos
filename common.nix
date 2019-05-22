@@ -290,6 +290,8 @@
       abbr --add pd prevd
     '';
   } // { # Others
+    dconf.enable = true;
+
     lightlocker.enable = true;
     lightlocker.lockAfterScreensaver = 10;
 
