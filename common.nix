@@ -452,38 +452,40 @@
     enable = true;
 
     fade = true;
-    fadeDelta = 5;
-    fadeSteps = [ "0.03" "0.03" ];
+    fadeSteps = [ "0.056" "0.06" ];
 
-    shadow = true;
-    shadowOpacity = "0.46";
-    shadowOffsets = [ (-12 * scale) (-15 * scale) ];
+    shadow = false;
+
+    activeOpacity = "1.0";
+    inactiveOpacity = "0.8";
 
     # glx with amdgpu does not work for now
     # https://github.com/chjj/compton/issues/477
     backend = if hasAmdgpu then "xrender" else "glx";
-    vSync = if hasAmdgpu then "none" else "opengl-swc";
+    vSync = true;
 
     extraOptions = ''
-      mark-wmwin-focused = true;
-      mark-ovredir-focused = true;
-      paint-on-overlay = true;
+      frame-opacity = 0.0;
+      inactive-opacity-override = true;
       use-ewmh-active-win = true;
-      sw-opti = true;
       unredir-if-possible = true;
       detect-transient = true;
       detect-client-leader = true;
-      blur-kern = "3x3gaussian";
+
+      ## wintypes has been set by `menuOpacity` before putting `extraConfig`
+      ## and this duplicated wintypes setting fails.
+      ## See https://github.com/NixOS/nixpkgs/pull/61681.
+      # wintypes:
+      # {
+      #   tooltip = { fade = false; };
+      #   dock = { fade = false; };
+      #   popup_menu = { fade = false; };
+      #   dropdown_menu = { fade = false; };
+      # };
+
       glx-no-stencil = true;
       glx-copy-from-front = false;
-      glx-use-copysubbuffermesa = true;
       glx-no-rebind-pixmap = true;
-      glx-swap-method = "buffer-age";
-      shadow-radius = ${toString (22 * scale)};
-      shadow-ignore-shaped = false;
-      no-dnd-shadow = true;
-      no-dock-shadow = true;
-      clear-shadow = true;
     '';
   };
 
