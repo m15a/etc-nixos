@@ -464,8 +464,8 @@
     backend = if hasAmdgpu then "xrender" else "glx";
     vSync = true;
 
-    extraOptions = ''
-      frame-opacity = 0.0;
+    settings = {
+      frame-opacity = "0.0";
       inactive-opacity-override = true;
       use-ewmh-active-win = true;
       unredir-if-possible = true;
@@ -475,8 +475,7 @@
       ## wintypes has been set by `menuOpacity` before putting `extraConfig`
       ## and this duplicated wintypes setting fails.
       ## See https://github.com/NixOS/nixpkgs/pull/61681.
-      # wintypes:
-      # {
+      # wintypes = {
       #   tooltip = { fade = false; };
       #   dock = { fade = false; };
       #   popup_menu = { fade = false; };
@@ -486,7 +485,7 @@
       glx-no-stencil = true;
       glx-copy-from-front = false;
       glx-no-rebind-pixmap = true;
-    '';
+    };
   };
 
   users.users.mnacamura = {
