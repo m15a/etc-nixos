@@ -36,6 +36,11 @@
   };
 
   boot = {
+    extraModprobeConfig = ''
+      # See https://github.com/NixOS/nixpkgs/issues/57053
+      options cfg80211 ieee80211_regdom="JP"
+    '';
+
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
 
@@ -50,6 +55,9 @@
 
   hardware = {
     # cpu.intel.updateMicrocode = true;
+
+    # platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+    firmware = with pkgs; [ wireless-regdb ];
 
     bluetooth.enable = true;
 
