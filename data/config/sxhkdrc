@@ -30,7 +30,9 @@ super + Escape
 
 # Lock the screen
 super + alt + l
-    light-locker-command --lock
+    dm-tool switch-to-greeter
+    # Workaround for light-locker hang.
+    # See https://github.com/the-cavalry/light-locker/issues/138
 
 #
 # Bspwm hotkeys
