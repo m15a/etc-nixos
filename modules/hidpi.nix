@@ -29,9 +29,9 @@ in
 
   config = mkMerge [
     (mkIf cfg.enable {
-      boot.earlyVconsoleSetup = true;
+      console.earlySetup = true;
 
-      i18n.consoleFont = "latarcyrheb-sun32";
+      console.font = "latarcyrheb-sun32";
 
       environment.variables = {
         XCURSOR_SIZE = toString (24 * cfg.scale);

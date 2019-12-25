@@ -76,16 +76,18 @@
 
   time.timeZone = "Asia/Tokyo";
 
-  i18n = {
-    # consoleColors = [
+  console = {
+    # colors = [
     #   # Srcery: https://github.com/srcery-colors/srcery-vim
     #   "1C1B19" "EF2F27" "519F50" "FBB829" "2C78BF" "E02C6D" "0AAEB3" "918175"
     #   "2D2C29" "F75341" "98BC37" "FED06E" "68A8E4" "FF5C8F" "53FDE9" "FCE8C3"
     # ];
 
-    consoleKeyMap = "us";  # conflicts with consoleUseXkbConfig
-    # consoleUseXkbConfig = true;
+    keyMap = "us";  # conflicts with console.useXkbConfig
+    # useXkbConfig = true;
+  };
 
+  i18n = {
     defaultLocale = "ja_JP.UTF-8";
 
     inputMethod = {
@@ -402,8 +404,7 @@
     layout = "us";
 
     # Enable bspwm environment.
-    desktopManager.default = "none";
-    windowManager.default = "bspwm";
+    displayManager.defaultSession = "none+bspwm";
     windowManager.bspwm.enable = true;
     windowManager.bspwm.configFile = let
       inherit (config.environment.hidpi) scale;
