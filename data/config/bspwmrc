@@ -10,4 +10,5 @@ bspc config window_gap @window_gap@
 bspc config automatic_scheme spiral
 bspc config initial_polarity first_child
 
+bspc rule --add Steam follow=no
 bspc rule --add Zathura state=tiled

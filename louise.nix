@@ -36,6 +36,7 @@
     # cpu.intel.updateMicrocode = true;
 
     # Enjoy Steam.
+    steam-hardware.enable = true;  # Steam Controller
     pulseaudio.support32Bit = true;
     opengl.driSupport32Bit = true;
   };
