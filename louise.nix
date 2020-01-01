@@ -70,6 +70,7 @@
     libinput = {
       enable = true;
       accelSpeed = "1";
+      disableWhileTyping = true;
       naturalScrolling = true;
     };
 
