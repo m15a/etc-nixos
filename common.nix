@@ -81,8 +81,7 @@
     #   "2D2C29" "F75341" "98BC37" "FED06E" "68A8E4" "FF5C8F" "53FDE9" "FCE8C3"
     # ];
 
-    keyMap = "us";  # conflicts with console.useXkbConfig
-    # useXkbConfig = true;
+    useXkbConfig = true;
   };
 
   i18n = {
