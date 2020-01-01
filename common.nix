@@ -8,9 +8,9 @@
   imports = [
     ./modules/btops.nix
     ./modules/dunst.nix
-    ./modules/yabar.nix
     ./modules/hidpi.nix
     ./modules/lightlocker.nix
+    ./modules/yabar.nix
   ];
 
   fileSystems = let
@@ -37,7 +37,7 @@
 
   boot = {
     extraModprobeConfig = ''
-      # See https://github.com/NixOS/nixpkgs/issues/57053
+      # https://github.com/NixOS/nixpkgs/issues/57053
       options cfg80211 ieee80211_regdom="JP"
     '';
 
@@ -54,8 +54,6 @@
   };
 
   hardware = {
-    # cpu.intel.updateMicrocode = true;
-
     # platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
     firmware = with pkgs; [ wireless-regdb ];
 
@@ -139,119 +137,127 @@
       pulseaudio = true;
     };
 
-    overlays = [ (self: super: {
-      fehWrapper = with super; buildEnv {
-        name = "${feh.name}-wrapper";
-        paths = [ feh.man ];
-        buildInputs = [ makeWrapper ];
-        postBuild = ''
-          mkdir $out/bin
-          makeWrapper ${feh.out}/bin/feh $out/bin/feh \
-            --add-flags "-B \"#1c1b19\""  # Srcery black
-        '';
-      };
+    overlays = [
+      (self: super: {
+        wrapped = {
+          feh = with super; buildEnv {
+            name = "${feh.name}-wrapped";
+            paths = [ feh.man ];
+            buildInputs = [ makeWrapper ];
+            postBuild = ''
+              mkdir $out/bin
+              makeWrapper ${feh.out}/bin/feh $out/bin/feh \
+                --add-flags "--image-bg \"#1c1b19\""  # Srcery black
+            '';
+          };
 
-      rofiWrapper = with super; let
-        inherit (config.environment.hidpi) scale;
-        configFile = substituteAll {
-          src = ./data/config/rofi.conf;
-          dpi = toString (96 * scale);
+          rofi = with super; let
+            inherit (config.environment.hidpi) scale;
+            configFile = substituteAll {
+              src = ./data/config/rofi.conf;
+              dpi = toString (96 * scale);
+              font_size = toString 13;
+            };
+          in buildEnv {
+            name = "${rofi.name}-wrapped";
+            paths = [ rofi ];
+            pathsToLink = [ "/share" ];
+            buildInputs = [ makeWrapper ];
+            postBuild = ''
+              mkdir $out/bin
+              makeWrapper ${rofi}/bin/rofi $out/bin/rofi \
+                --add-flags "-config ${configFile}"
+              for path in ${rofi}/bin/*; do
+                name="$(basename "$path")"
+                [ "$name" != rofi ] && ln -s "$path" "$out/bin/$name"
+              done
+            '';
+          };
+
+          termite = with super; let
+            configFile = substituteAll {
+              src = ./data/config/termite;
+              font_size = toString 13;
+            };
+          in buildEnv {
+            name = "${termite.name}-wrapped";
+            paths = [ termite ];
+            pathsToLink = [ "/share" "/nix-support" ];
+            buildInputs = [ makeWrapper ];
+            postBuild = ''
+              mkdir $out/bin
+              makeWrapper ${termite}/bin/termite $out/bin/termite \
+                --add-flags "--config ${configFile}"
+            '';
+          };
+
+          zathura = with super; let
+            inherit (config.environment.hidpi) scale;
+            configFile = substituteAll {
+              src = ./data/config/zathurarc;
+              font_size = toString 13;
+              page_padding = toString scale;
+            };
+            configDir = runCommand "zathura-config-dir" {} ''
+              install -D -m 444 "${configFile}" "$out/zathurarc"
+            '';
+          in buildEnv {
+            name = "${zathura.name}-wrapped";
+            paths = [ zathura ];
+            pathsToLink = [ "/share" ];
+            buildInputs = [ makeWrapper ];
+            postBuild = ''
+              mkdir $out/bin
+              makeWrapper ${zathura}/bin/zathura $out/bin/zathura \
+                --add-flags "--config-dir ${configDir}"
+            '';
+          };
         };
-      in buildEnv {
-        name = "${rofi.name}-wrapper";
-        paths = [ rofi ];
-        pathsToLink = [ "/share" ];
-        buildInputs = [ makeWrapper ];
-        postBuild = ''
-          mkdir $out/bin
-          makeWrapper ${rofi}/bin/rofi $out/bin/rofi \
-            --add-flags "-config ${configFile}"
-          for path in ${rofi}/bin/*; do
-            name="$(basename "$path")"
-            [ "$name" != rofi ] && ln -s "$path" "$out/bin/$name"
-          done
-        '';
-      };
 
-      termiteWrapper = with super; let
-        configFile = substituteAll {
-          src = ./data/config/termite;
-          font_size = toString 13;
-        };
-      in buildEnv {
-        name = "${termite.name}-wrapper";
-        paths = [ termite ];
-        pathsToLink = [ "/share" "/nix-support" ];
-        buildInputs = [ makeWrapper ];
-        postBuild = ''
-          mkdir $out/bin
-          makeWrapper ${termite}/bin/termite $out/bin/termite \
-            --add-flags "--config ${configFile}"
+        gtk3Config = with super; let
+          inherit (config.environment.hidpi) scale;
+          gtkCss = writeText "gtk.css" ''
+            VteTerminal, vte-terminal {
+                padding-left: ${toString (2 * scale)}px;
+            }
+          '';
+          settingsIni = writeText "settings.ini" ''
+            [Settings]
+            gtk-font-name = Source Han Sans JP 11
+            gtk-theme-name = Arc
+            gtk-icon-theme-name = Papirus
+            gtk-key-theme-name = Emacs
+          '';
+        in runCommand "gtk-3.0" {} ''
+          confd="$out/etc/xdg/gtk-3.0"
+          install -D -m 444 "${gtkCss}" "$confd/gtk.css"
+          install -D -m 444 "${settingsIni}" "$confd/settings.ini"
         '';
-      };
-
-      zathuraWrapper = with super; let
-        inherit (config.environment.hidpi) scale;
-        configFile = substituteAll {
-          src = ./data/config/zathurarc;
-          page_padding = toString scale;
-        };
-        configDir = runCommand "zathura-config-dir" {} ''
-          install -D -m 444 "${configFile}" "$out/zathurarc"
-        '';
-      in buildEnv {
-        name = "${zathura.name}-wrapper";
-        paths = [ zathura ];
-        pathsToLink = [ "/share" ];
-        buildInputs = [ makeWrapper ];
-        postBuild = ''
-          mkdir $out/bin
-          makeWrapper ${zathura}/bin/zathura $out/bin/zathura \
-            --add-flags "--config-dir ${configDir}"
-        '';
-      };
-
-    gtk3Config = with super; let
-      inherit (config.environment.hidpi) scale;
-      gtkCss = writeText "gtk.css" ''
-        VteTerminal, vte-terminal {
-            padding-left: ${toString (2 * scale)}px;
-        }
-      '';
-      settingsIni = writeText "settings.ini" ''
-        [Settings]
-        gtk-font-name = Source Han Sans JP 11
-        gtk-theme-name = Arc
-        gtk-icon-theme-name = Papirus
-        gtk-key-theme-name = Emacs
-      '';
-    in runCommand "gtk-3.0" {} ''
-      confd="$out/etc/xdg/gtk-3.0"
-      install -D -m 444 "${gtkCss}" "$confd/gtk.css"
-      install -D -m 444 "${settingsIni}" "$confd/settings.ini"
-    '';
-  }) ];
+      })
+    ];
   };
 
   environment = {
     systemPackages = with pkgs; let
       desktopPkgs = [
-        libnotify
-        fehWrapper
-        rofiWrapper
-        termiteWrapper
-        pavucontrol
-        zathuraWrapper
         dropbox-cli
         firefox-devedition-bin
+        libnotify
+        pavucontrol
+        wrapped.feh
+        wrapped.rofi
+        wrapped.termite
+        wrapped.zathura
       ] ++ gtkPkgs;
+
       gtkPkgs = [
         gtk3 # Required to use Emacs key bindings in GTK apps
-        arc-theme
-        papirus-icon-theme
-        numix-cursor-theme
         gtk3Config
+        arc-theme
+        numix-cursor-theme
+        papirus-icon-theme
       ];
+
       miscPkgs = [
         scrot
       ];
@@ -318,15 +324,9 @@
       geometry = let
         width = toString (450 * scale);
         height = toString 5;
-        dx = let
-          d = if x >= 0 then "+" else "";
-          x = 15;
-        in d + toString (x * scale);
-        dy = let
-          d = if y >= 0 then "+" else "";
-          y = 30;
-        in d + toString (y * scale);
-      in "${width}x${height}${dx}${dy}";
+        d = x:
+        "${if x >= 0 then "+" else ""}${toString (x * scale)}";
+      in "${width}x${height}${d 15}${d 30}";
       font_size = toString 13;
       max_icon_size = toString (24 * scale);
       icon_path = let
@@ -342,8 +342,8 @@
     yabar.package = pkgs.yabar-unstable;
     yabar.configFile = let
       inherit (config.environment.hidpi) scale;
-      showDropbox = pkgs.writeScript "show-dropbox" ''
-        #!${pkgs.stdenv.shell}
+      dropboxStatusIcon = pkgs.writeScript "dropbox-status-icon" ''
+        #!${pkgs.runtimeShell}
         dropbox="${pkgs.dropbox-cli}/bin/dropbox"
         # If status = 0, confusingly, dropbox is not running!
         "$dropbox" running
@@ -365,7 +365,7 @@
       slack_size = toString (5 * scale);
       font_size = toString (13 * scale);
       top_block_list = makeBlockList ([ "date" "dropbox" "title" ]
-        ++ ( if config.networking.hostName == "louise"  # TODO: generalize
+        ++ ( if config.networking.hostName == "louise"  # TODO: Generalize it.
              then [ "wifi" "volume" "battery" ]
              else [ "volume" ]
            ));
@@ -381,7 +381,7 @@
       # XCURSOR_{THEME,SIZE} are not applied somehow.
       firefox = "${pkgs.firefox-devedition-bin}/bin/firefox-devedition";
       dropbox = "${pkgs.dropbox-cli}/bin/dropbox";
-      show_dropbox = "${showDropbox}";
+      dropbox_status_icon = "${dropboxStatusIcon}";
       notify_send = "${pkgs.libnotify}/bin/notify-send";
       termite = "${pkgs.termite}/bin/termite";
       nmtui = "${pkgs.networkmanager}/bin/nmtui";
@@ -405,18 +405,20 @@
 
     # Enable bspwm environment.
     displayManager.defaultSession = "none+bspwm";
-    windowManager.bspwm.enable = true;
-    windowManager.bspwm.configFile = let
-      inherit (config.environment.hidpi) scale;
-    in pkgs.substituteAll {
-      src = ./data/config/bspwmrc;
-      postInstall = "chmod +x $out";
-      window_gap = toString (60 * scale);
+    windowManager = {
+      bspwm.enable = true;
+      bspwm.configFile = let
+        inherit (config.environment.hidpi) scale;
+      in pkgs.substituteAll {
+        src = ./data/config/bspwmrc;
+        postInstall = "chmod +x $out";
+        window_gap = toString (60 * scale);
+      };
+      bspwm.sxhkd.configFile = pkgs.runCommand "sxhkdrc" {} ''
+        cp ${./data/config/sxhkdrc} $out
+      '';
+      bspwm.btops.enable = true;
     };
-    windowManager.bspwm.sxhkd.configFile = pkgs.runCommand "sxhkdrc" {} ''
-      cp ${./data/config/sxhkdrc} $out
-    '';
-    windowManager.bspwm.btops.enable = true;
   };
 
   services.xserver.displayManager.lightdm = {
@@ -467,7 +469,7 @@
     activeOpacity = "1.0";
     inactiveOpacity = "0.8";
 
-    # glx with amdgpu does not work for now
+    # glx with amdgpu does not work for now.
     # https://github.com/chjj/compton/issues/477
     backend = if hasAmdgpu then "xrender" else "glx";
     vSync = true;

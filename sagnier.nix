@@ -13,7 +13,7 @@
   boot = {
     blacklistedKernelModules = [
       # sp5100_tco: I/O address 0x0cd6 already in use
-      # See http://tsueyasu.blogspot.jp/2012/03/amdwatchdog.html
+      # http://tsueyasu.blogspot.jp/2012/03/amdwatchdog.html
       "sp5100_tco"
     ];
 
@@ -22,18 +22,20 @@
     '';
   };
 
+  hardware = {
+    # cpu.amd.updateMicrocode = true;
+  };
+
   nix.buildCores = 8;
 
   services = {
-    # TODO: fix it to run correctly.
+    # TODO: Fix it to run correctly.
     # thermald.enable = true;
 
     openssh.enable = true;
   };
 
   services.xserver = {
-    xkbOptions = "terminate:ctrl_alt_bksp";
-
     videoDrivers = [ "amdgpu" ];
 
     xrandrHeads = [

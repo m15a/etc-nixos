@@ -12,20 +12,20 @@
 
   boot = {
     kernelParams = [
-      # See https://gist.github.com/greigdp/bb70fbc331a0aaf447c2d38eacb85b8f#sleep-mode-power-usage
+      # https://gist.github.com/greigdp/bb70fbc331a0aaf447c2d38eacb85b8f#sleep-mode-power-usage
       "mem_sleep_default=deep"
       # DMAR: DRHD: handling fault status reg 2
-      # See https://bbs.archlinux.org/viewtopic.php?id=230362
+      # https://bbs.archlinux.org/viewtopic.php?id=230362
       "intel_iommu=off"
     ];
 
     blacklistedKernelModules = [
-      # See https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Remove_psmouse_errors_from_dmesg
+      # https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Remove_psmouse_errors_from_dmesg
       "psmouse"
     ];
 
     extraModprobeConfig = ''
-      # See https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Module-based_Powersaving_Options
+      # https://wiki.archlinux.org/index.php/Dell_XPS_13_(9360)#Module-based_Powersaving_Options
       options i915 modeset=1 enable_fbc=1 enable_guc=3 enable_psr=0
     '';
 
@@ -33,6 +33,8 @@
   };
 
   hardware = {
+    # cpu.intel.updateMicrocode = true;
+
     # Enjoy Steam.
     pulseaudio.support32Bit = true;
     opengl.driSupport32Bit = true;
@@ -62,9 +64,11 @@
     xkbOptions = "terminate:ctrl_alt_bksp,ctrl:swapcaps";
 
     # Enable touchpad support.
-    libinput.enable = true;
-    libinput.accelSpeed = "1";
-    libinput.naturalScrolling = true;
+    libinput = {
+      enable = true;
+      accelSpeed = "1";
+      naturalScrolling = true;
+    };
 
     videoDrivers = [ "intel" ];
 
