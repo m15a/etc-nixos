@@ -7,6 +7,7 @@
 {
   imports = [
     ./modules/btops.nix
+    ./modules/dropbox.nix
     ./modules/dunst.nix
     ./modules/hidpi.nix
     ./modules/lightlocker.nix
