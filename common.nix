@@ -102,7 +102,6 @@
       source-han-sans-japanese
       noto-fonts-emoji
       font-awesome-ttf
-      fira-code
     ];
 
     fontconfig.defaultFonts = {
@@ -237,30 +236,22 @@
   };
 
   environment = {
-    systemPackages = with pkgs; let
-      desktopPkgs = [
-        dropbox-cli
-        firefox-devedition-bin
-        libnotify
-        pavucontrol
-        wrapped.feh
-        wrapped.rofi
-        wrapped.termite
-        wrapped.zathura
-      ] ++ gtkPkgs;
-
-      gtkPkgs = [
-        gtk3 # Required to use Emacs key bindings in GTK apps
-        gtk3Config
-        arc-theme
-        numix-cursor-theme
-        papirus-icon-theme
-      ];
-
-      miscPkgs = [
-        scrot
-      ];
-    in desktopPkgs ++ miscPkgs;
+    systemPackages = with pkgs; [
+      dropbox-cli
+      firefox-devedition-bin
+      libnotify
+      pavucontrol
+      wrapped.feh
+      wrapped.rofi
+      wrapped.termite
+      wrapped.zathura
+    ] ++ [
+      gtk3 # Required to use Emacs key bindings in GTK apps
+      gtk3Config
+      arc-theme
+      numix-cursor-theme
+      papirus-icon-theme
+    ];
 
     profileRelativeEnvVars = {
       MANPATH = [ "/man" "/share/man" ];
