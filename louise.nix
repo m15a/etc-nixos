@@ -35,6 +35,8 @@
   hardware = {
     # cpu.intel.updateMicrocode = true;
 
+    bluetooth.powerOnBoot = false;
+
     # Enjoy Steam.
     steam-hardware.enable = true;  # Steam Controller
     pulseaudio.support32Bit = true;
