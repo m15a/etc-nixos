@@ -325,7 +325,8 @@
         height = toString 5;
         d = x:
         "${if x >= 0 then "+" else ""}${toString (x * scale)}";
-      in "${width}x${height}${d 15}${d 30}";
+        # 23 is derived from [bspwm window gap: 60] / (1 + [phi: 1.618])
+      in "${width}x${height}${d (1920 - 450 - 23)}${d (23 + 23)}";
       font_size = toString 13;
       max_icon_size = toString (24 * scale);
       icon_path = let
