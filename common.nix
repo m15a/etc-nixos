@@ -404,6 +404,8 @@
         src = ./data/config/bspwmrc;
         postInstall = "chmod +x $out";
         window_gap = toString (60 * scale);
+        # 37 is derived from [bspwm window gap: 60] / [phi: 1.618]
+        monocle_padding = toString (37 * scale);
       };
       bspwm.sxhkd.configFile = pkgs.runCommand "sxhkdrc" {} ''
         cp ${./data/config/sxhkdrc} $out
