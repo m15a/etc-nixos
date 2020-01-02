@@ -347,37 +347,68 @@
           fi
         fi
       '';
+      wifiSwitch = pkgs.writeScript "wifi-switch" ''
+        #!${pkgs.runtimeShell}
+        nmcli="${pkgs.networkmanager}/bin/nmcli"
+        if [[ "$($nmcli radio wifi)" = enabled ]]; then
+            "$nmcli" radio wifi off
+        else
+            "$nmcli" radio wifi on
+        fi
+      '';
+      bluetoothStatusIcon = pkgs.writeScript "bluetooth-status-icon" ''
+        #!${pkgs.runtimeShell}
+        btctl="${pkgs.bluez}/bin/bluetoothctl"
+        if [[ "$($btctl show | grep Powered | cut -d' ' -f2)" = yes ]]; then
+          echo ''
+        else
+          echo '!YFG0x44fce8c3Y!'
+        fi
+      '';
+      bluetoothSwitch = pkgs.writeScript "bluetooth-switch" ''
+        #!${pkgs.runtimeShell}
+        btctl="${pkgs.bluez}/bin/bluetoothctl"
+        if [[ "$($btctl show | grep Powered | cut -d' ' -f2)" = yes ]]; then
+            "$btctl" power off
+        else
+            "$btctl" power on
+        fi
+      '';
       makeBlockList = blockNames: let
         contents = lib.concatStringsSep ", " (map (b: "\"${b}\"") blockNames);
       in "[ ${contents} ]";
     in pkgs.substituteAll {
       src = ./data/config/yabar.conf;
       height = toString (23 * scale);
+      gap_horizontal = toString (5 * scale);
       slack_size = toString (5 * scale);
       font_size = toString (13 * scale);
-      top_block_list = makeBlockList ([ "date" "dropbox" "title" ]
+      top_block_list = makeBlockList ([ "workspace" "title" "dropbox" ]
         ++ ( if config.networking.hostName == "louise"  # TODO: Generalize it.
-             then [ "wifi" "volume" "battery" ]
-             else [ "volume" ]
-           ));
-      bottom_block_list = makeBlockList [ "workspace" ];
-      date_fixed_size = toString (130 * scale);
-      dropbox_fixed_size = toString (30 * scale);
-      title_fixed_size = toString (1110 * scale);
-      wifi_fixed_size = toString (210 * scale);
-      volume_fixed_size = toString (80 * scale);
-      battery_fixed_size = toString (90 * scale);
-      workspace_fixed_size = toString (30 * scale);
-      # TODO: In Firefox launched by clicking yabar blocks,
-      # XCURSOR_{THEME,SIZE} are not applied somehow.
-      firefox = "${pkgs.firefox-devedition-bin}/bin/firefox-devedition";
+             then [ "wifi" "bluetooth" "volume" "battery" ]
+             else [ "bluetooth" "volume" ]
+           ) ++ [ "date" ]);
+      workspace_fixed_size = toString (36 * scale);
+      title_fixed_size = toString (1353 * scale);
+      dropbox_fixed_size = toString (18 * scale);
       dropbox = "${pkgs.dropbox-cli}/bin/dropbox";
       dropbox_status_icon = "${dropboxStatusIcon}";
       notify_send = "${pkgs.libnotify}/bin/notify-send";
+      # TODO: In Firefox launched by clicking yabar blocks,
+      # XCURSOR_{THEME,SIZE} are not applied somehow.
+      firefox = "${pkgs.firefox-devedition-bin}/bin/firefox-devedition";
+      wifi_fixed_size = toString (201 * scale);
+      wifi_switch = "${wifiSwitch}";
       termite = "${pkgs.termite}/bin/termite";
       nmtui = "${pkgs.networkmanager}/bin/nmtui";
+      bluetooth_fixed_size = toString (12 * scale);
+      bluetooth_status_icon = "${bluetoothStatusIcon}";
+      bluetooth_switch = "${bluetoothSwitch}";
+      volume_fixed_size = toString (63 * scale);
       pactl = "${config.hardware.pulseaudio.package}/bin/pactl";
       pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
+      battery_fixed_size = toString (71 * scale);
+      date_fixed_size = toString (121 * scale);
     };
 
     fstrim.enable = true;
