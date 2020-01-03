@@ -13,13 +13,8 @@ set selection-clipboard 'clipboard'
 
 ## Key mappings
 
-map [normal] b navigate previous
 map [fullscreen] b navigate previous
 map [presentation] b navigate previous
-map [presentation] j navigate next
-map [presentation] k navigate previous
-map [presentation] n navigate next
-map [presentation] p navigate previous
 
 ## Color settings
 
