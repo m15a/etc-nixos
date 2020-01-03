@@ -24,9 +24,9 @@ super + Return
 alt + space
     rofi -show run
 
-# Make sxhkd reload its configuration files:
-super + Escape
-    pkill -USR1 -x sxhkd && pkill -USR1 -x yabar && yabar &
+# Make sxhkd and yabar reload their configuration files:
+super + alt + Escape
+    pkill -USR1 -x sxhkd && pkill -USR1 -x yabar
 
 # Lock the screen
 super + alt + l
@@ -46,9 +46,9 @@ super + {_,shift + }q
 super + m
     bspc desktop --layout next
 
-# Swap the current node and the biggest node
+# Swap the current node and the biggest node in the desktop
 super + g
-    bspc node --swap biggest
+    bspc node --swap biggest.local
 
 #
 # State/flags
@@ -59,8 +59,8 @@ super + {t,shift + t,s,f}
     bspc node --state {tiled,pseudo_tiled,floating,fullscreen}
 
 # Set the node flags
-super + {x,y,z}
-    bspc node --flag {locked,sticky,private}
+super + ctrl + {m,shift + l,s,p}
+    bspc node --flag {marked,locked,sticky,private}
 
 #
 # Focus/swap
@@ -115,6 +115,14 @@ super + ctrl + shift + space
 #
 # Move/resize
 #
+
+# Expand a window by moving one of its side outward
+super + shift + {Left,Down,Up,Right}
+    bspc node --resize {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# Contract a window by moving one of its side inward
+super + shift + alt + {Left,Down,Up,Right}
+    bspc node --resize {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # Move a floating window
 super + {Left,Down,Up,Right}
