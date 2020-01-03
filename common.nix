@@ -402,6 +402,7 @@
       termite = "${pkgs.wrapped.termite}/bin/termite";
       nmtui = "${pkgs.networkmanager}/bin/nmtui";
       bluetooth_fixed_size = toString (12 * scale);
+      bluetoothctl = "${pkgs.bluez}/bin/bluetoothctl";
       bluetooth_status_icon = "${bluetoothStatusIcon}";
       bluetooth_switch = "${bluetoothSwitch}";
       volume_fixed_size = toString (63 * scale);
