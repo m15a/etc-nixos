@@ -399,7 +399,7 @@
       firefox = "${pkgs.firefox-devedition-bin}/bin/firefox-devedition";
       wifi_fixed_size = toString (201 * scale);
       wifi_switch = "${wifiSwitch}";
-      termite = "${pkgs.termite}/bin/termite";
+      termite = "${pkgs.wrapped.termite}/bin/termite";
       nmtui = "${pkgs.networkmanager}/bin/nmtui";
       bluetooth_fixed_size = toString (12 * scale);
       bluetooth_status_icon = "${bluetoothStatusIcon}";
