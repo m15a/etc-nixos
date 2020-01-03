@@ -46,8 +46,10 @@ super + {_,shift + }q
 super + m
     bspc desktop --layout next
 
-# Swap the current node and the biggest node in the desktop
+# Send the current node to the preselection if any or swap it with the biggest node
 super + g
+    bspc query --nodes --node .!automatic.local && \
+    bspc node --to-node last.!automatic.local || \
     bspc node --swap biggest.local
 
 #
