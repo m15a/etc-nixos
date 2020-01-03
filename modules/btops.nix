@@ -16,7 +16,7 @@ let
     install -D -m 444 "$file" "$out/btops/config.$ext"
   '';
 
-  btopsWrapper = pkgs.runCommand "btops-wrappper"
+  wrapped = pkgs.runCommand "btops-wrapped"
   { nativeBuildInputs = [ pkgs.makeWrapper ]; }
   ''
     makeWrapper ${cfg.package}/bin/btops $out/bin/btops \
@@ -60,7 +60,7 @@ in
       partOf = [ "graphical-session.target" ];
       after = [ "graphical-session.target" ];
       serviceConfig = {
-        ExecStart = "${btopsWrapper}/bin/btops";
+        ExecStart = "${wrapped}/bin/btops";
         Restart = "always";
       };
     };
