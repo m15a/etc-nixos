@@ -388,7 +388,8 @@
              then [ "wifi" "bluetooth" "volume" "battery" ]
              else [ "bluetooth" "volume" ]
            ) ++ [ "date" ]);
-      workspace_fixed_size = toString (36 * scale);
+      workspace_fixed_size = toString (42 * scale);
+      bspc = "${config.services.xserver.windowManager.bspwm.package}/bin/bspc";
       title_fixed_size = toString (1353 * scale);
       dropbox_fixed_size = toString (18 * scale);
       dropbox = "${pkgs.dropbox-cli}/bin/dropbox";
