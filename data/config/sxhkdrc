@@ -22,7 +22,7 @@ super + Return
 
 # Program launcher
 alt + space
-    rofi -show run
+    rofi -modi run,drun,window -show run
 
 # Make sxhkd and yabar reload their configuration files:
 super + alt + Escape
