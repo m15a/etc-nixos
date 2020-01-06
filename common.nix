@@ -198,12 +198,12 @@
             inherit (config.environment) colortheme;
             configFile = substituteAll (colortheme // {
               src = ./data/config/termite;
-              fonts = concatStringsSep "\n" (map (s: "font = ${s}") [
+              fonts = lib.concatStringsSep "\n" (map (s: "font = ${s}") [
                 # The later declared, the more prioritized
                 "Rounded Mgen+ 1m 13"
                 "Source Code Pro 13"
               ]);
-              hints_fonts = concatStringsSep "\n" (map (s: "font = ${s}") [
+              hints_fonts = lib.concatStringsSep "\n" (map (s: "font = ${s}") [
                 "Source Code Pro Bold 13"
               ]);
             });

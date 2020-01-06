@@ -53,30 +53,30 @@ in
     };
   };
 
-  assertions = [
-    {
-      assertion = let
-        definedNames = attrNames cfg.colortheme;
-        expectedNames = [
-          "black"   "red"   "green"   "yellow"   "blue"   "magenta"   "cyan"   "white"
-          "brblack" "brred" "brgreen" "bryellow" "brblue" "brmagenta" "brcyan" "brwhite"
-        ];
-      in all (map (n: elem n definedNames) expectedNames);
-      message = ''
-        At least 16 colors should be defined. See description of
-        <option>environment.colortheme</option>.
-      '';
-    }
-
-    {
-      assertion = all (map isHexColorCode (attrValues cfg.colortheme));
-      message = ''
-        Invalid hexadicimal color code found.
-      '';
-    }
-  ];
-
   config = {
+    assertions = [
+      {
+        assertion = let
+          definedNames = attrNames cfg.colortheme;
+          expectedNames = [
+            "black"   "red"   "green"   "yellow"   "blue"   "magenta"   "cyan"   "white"
+            "brblack" "brred" "brgreen" "bryellow" "brblue" "brmagenta" "brcyan" "brwhite"
+          ];
+        in all (n: elem n definedNames) expectedNames;
+        message = ''
+          At least 16 colors should be defined. See description of
+          <option>environment.colortheme</option>.
+        '';
+      }
+
+      {
+        assertion = all isHexColorCode (attrValues cfg.colortheme);
+        message = ''
+          Invalid hexadicimal color code found.
+        '';
+      }
+    ];
+
     console.colors = with cfg.colortheme;
     map (substring 1 8) [
         black   red   green   yellow   blue   magenta   cyan   white
