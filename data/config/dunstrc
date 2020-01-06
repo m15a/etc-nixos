@@ -2,7 +2,7 @@
     geometry = "@geometry@"
     separator_height = 0
     frame_width = 0
-    separator_color = '#2d2c29'
+    separator_color = @brblack@
     font = Source Sans Pro @font_size@
     format = "<b>%s</b>\n%b"
     show_age_threshold = -1
@@ -29,18 +29,18 @@
     context = mod1+period
 
 [urgency_low]
-    background = "#fce8c3"
-    foreground = "#918175"
+    background = @brwhite@
+    foreground = @white@
     timeout = 10
 
 [urgency_normal]
-    background = "#fce8c3"
-    foreground = "#2d2c29"
+    background = @brwhite@
+    foreground = @brblack@
     timeout = 10
 
 [urgency_critical]
-    background = "#ef2f27"
-    foreground = "#fce8c3"
+    background = @red@
+    foreground = @brwhite@
     timeout = 0
 
 # vim: ft=cfg

@@ -7,6 +7,7 @@
 {
   imports = [
     ./modules/btops.nix
+    ./modules/colortheme.nix
     ./modules/dunst.nix
     ./modules/hidpi.nix
     ./modules/lightlocker.nix
@@ -74,13 +75,31 @@
 
   time.timeZone = "Asia/Tokyo";
 
-  console = {
-    colors = [
-      # Srcery: https://github.com/srcery-colors/srcery-vim
-      "1C1B19" "EF2F27" "519F50" "FBB829" "2C78BF" "E02C6D" "0AAEB3" "918175"
-      "2D2C29" "F75341" "98BC37" "FED06E" "68A8E4" "FF5C8F" "53FDE9" "FCE8C3"
-    ];
+  environment.colortheme = {
+    # Srcery: https://github.com/srcery-colors/srcery-vim
+    black     = "#1C1B19";
+    red       = "#EF2F27";
+    green     = "#519F50";
+    yellow    = "#FBB829";
+    blue      = "#2C78BF";
+    magenta   = "#E02C6D";
+    cyan      = "#0AAEB3";
+    white     = "#918175";
+    brblack   = "#2D2C29";
+    brred     = "#F75341";
+    brgreen   = "#98BC37";
+    bryellow  = "#FED06E";
+    brblue    = "#68A8E4";
+    brmagenta = "#FF5C8F";
+    brcyan    = "#53FDE9";
+    brwhite   = "#FCE8C3";
 
+    # Gruvbox Dark: https://github.com/morhetz/gruvbox
+    orange    = "#D65D0E";
+    brorange  = "#FE8019";
+  };
+
+  console = {
     useXkbConfig = true;
   };
 
@@ -138,24 +157,27 @@
     overlays = [
       (self: super: {
         wrapped = {
-          feh = with super; buildEnv {
+          feh = with super; let
+            inherit (config.environment) colortheme;
+          in buildEnv {
             name = "${feh.name}-wrapped";
             paths = [ feh.man ];
             buildInputs = [ makeWrapper ];
-            postBuild = ''
+            postBuild = with colortheme; ''
               mkdir $out/bin
               makeWrapper ${feh.out}/bin/feh $out/bin/feh \
-                --add-flags "--image-bg \"#1c1b19\""  # Srcery black
+                --add-flags "--image-bg \"${black}\""
             '';
           };
 
           rofi = with super; let
             inherit (config.environment.hidpi) scale;
-            configFile = substituteAll {
+            inherit (config.environment) colortheme;
+            configFile = substituteAll (colortheme // {
               src = ./data/config/rofi.conf;
               dpi = toString (96 * scale);
               font_size = toString 13;
-            };
+            });
           in buildEnv {
             name = "${rofi.name}-wrapped";
             paths = [ rofi ];
@@ -173,10 +195,11 @@
           };
 
           termite = with super; let
-            configFile = substituteAll {
+            inherit (config.environment) colortheme;
+            configFile = substituteAll (colortheme // {
               src = ./data/config/termite;
               font_size = toString 13;
-            };
+            });
           in buildEnv {
             name = "${termite.name}-wrapped";
             paths = [ termite ];
@@ -191,11 +214,12 @@
 
           zathura = with super; let
             inherit (config.environment.hidpi) scale;
-            configFile = substituteAll {
+            inherit(config.environment) colortheme;
+            configFile = substituteAll (colortheme // {
               src = ./data/config/zathurarc;
               font_size = toString 13;
               page_padding = toString scale;
-            };
+            });
             configDir = runCommand "zathura-config-dir" {} ''
               install -D -m 444 "${configFile}" "$out/zathurarc"
             '';
@@ -309,7 +333,8 @@
     dunst.enable = true;
     dunst.configFile = let
       inherit (config.environment.hidpi) scale;
-    in pkgs.substituteAll {
+      inherit (config.environment) colortheme;
+    in pkgs.substituteAll (colortheme // {
       src = ./data/config/dunstrc;
       geometry = let
         width = toString (450 * scale);
@@ -327,7 +352,7 @@
       (map (cat: "${path}/${s}x${s}/${cat}") [ "status" "devices" "apps" ]);
       padding = toString (3 * scale);
       horizontal_padding = toString (5 * scale);
-    };
+    });
 
     yabar.enable = true;
     yabar.package = pkgs.yabar-unstable;
@@ -433,13 +458,14 @@
       bspwm.enable = true;
       bspwm.configFile = let
         inherit (config.environment.hidpi) scale;
-      in pkgs.substituteAll {
+        inherit (config.environment) colortheme;
+      in pkgs.substituteAll (colortheme // {
         src = ./data/config/bspwmrc;
         postInstall = "chmod +x $out";
         window_gap = toString (60 * scale);
         # 37 is derived from [bspwm window gap: 60] / [phi: 1.618]
         monocle_padding = toString (37 * scale);
-      };
+      });
       bspwm.sxhkd.configFile = pkgs.runCommand "sxhkdrc" {} ''
         cp ${./data/config/sxhkdrc} $out
       '';
@@ -458,17 +484,19 @@
 
     greeters.mini.enable = true;
     greeters.mini.user = "mnacamura";
-    greeters.mini.extraConfig = ''
+    greeters.mini.extraConfig = let
+      inherit (config.environment) colortheme;
+    in with colortheme; ''
       [greeter-theme]
       font = Source Code Pro Medium
       font-size = 13pt
-      text-color = "#fce8c3"
-      error-color = "#fce8c3"
-      window-color = "#d75f00"
+      text-color = "${brwhite}"
+      error-color = "${brwhite}"
+      window-color = "${orange}"
       border-width = 0
       layout-space = 40
-      password-color = "#fce8c3"
-      password-background-color = "#1c1b19"
+      password-color = "${brwhite}"
+      password-background-color = "${black}"
     '';
   };
 

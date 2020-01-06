@@ -1,51 +1,26 @@
-# ============================================================================
-# SRCERY color scheme
-# https://github.com/srcery-colors/srcery-terminal
-# ============================================================================
-
 [colors]
 
-# special
-foreground      = #fce8c3
-foreground_bold = #fce8c3
-cursor          = #fce8c3
-background      = #1c1b19
+foreground      = @brwhite@
+foreground_bold = @brwhite@
+cursor          = @brwhite@
+background      = @black@
 
-# black
-color0  = #1c1b19
-color8  = #2d2c29
-
-# red
-color1  = #ef2f27
-color9  = #f75341
-
-# green
-color2  = #519f50
-color10 = #98bc37
-
-# yellow
-color3  = #fbb829
-color11 = #fed06e
-
-# blue
-color4  = #2c78bf
-color12 = #68a8e4
-
-# magenta
-color5  = #e02c6d
-color13 = #ff5c8f
-
-# cyan
-color6  = #0aaeb3
-color14 = #53fde9
-
-# white
-color7  = #918175
-color15 = #fce8c3
-
-# ============================================================================
-# Other options
-# ============================================================================
+color0  = @black@
+color1  = @red@
+color2  = @green@
+color3  = @yellow@
+color4  = @blue@
+color5  = @magenta@
+color6  = @cyan@
+color7  = @white@
+color8  = @brblack@
+color9  = @brred@
+color10 = @brgreen@
+color11 = @bryellow@
+color12 = @brblue@
+color13 = @brmagenta@
+color14 = @brcyan@
+color15 = @brwhite@
 
 [options]
 
@@ -97,11 +72,10 @@ font = Source Code Pro Bold @font_size@
 border_width = 0
 roundness = 2.2
 
-# Adjust colors to SRCERY
-foreground = #fce8c3
-background = #d75f00
-active_foreground = #fce8c3
-active_background = #fe8019
-# border = #ef2f27
+foreground = @brwhite@
+background = @orange@
+active_foreground = @brwhite@
+active_background = @brorange@
+# border = @red@
 
 # vim: ft=dosini cms=#%s
