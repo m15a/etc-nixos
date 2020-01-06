@@ -1,7 +1,7 @@
 ## Options
 
 set n-completion-items 10
-set font 'Source Code Pro @font_size@'
+set font '@font@'
 set guioptions ''
 # set continuous-hist-save
 set page-padding @page_padding@

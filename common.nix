@@ -176,7 +176,7 @@
             configFile = substituteAll (colortheme // {
               src = ./data/config/rofi.conf;
               dpi = toString (96 * scale);
-              font_size = toString 13;
+              font = "Source Code Pro Medium 13";
             });
           in buildEnv {
             name = "${rofi.name}-wrapped";
@@ -198,7 +198,14 @@
             inherit (config.environment) colortheme;
             configFile = substituteAll (colortheme // {
               src = ./data/config/termite;
-              font_size = toString 13;
+              fonts = concatStringsSep "\n" (map (s: "font = ${s}") [
+                # The later declared, the more prioritized
+                "Rounded Mgen+ 1m 13"
+                "Source Code Pro 13"
+              ]);
+              hints_fonts = concatStringsSep "\n" (map (s: "font = ${s}") [
+                "Source Code Pro Bold 13"
+              ]);
             });
           in buildEnv {
             name = "${termite.name}-wrapped";
@@ -217,7 +224,7 @@
             inherit(config.environment) colortheme;
             configFile = substituteAll (colortheme // {
               src = ./data/config/zathurarc;
-              font_size = toString 13;
+              font = "Source Code Pro 13";
               page_padding = toString scale;
             });
             configDir = runCommand "zathura-config-dir" {} ''
@@ -343,7 +350,7 @@
         "${if x >= 0 then "+" else ""}${toString (x * scale)}";
         # 23 is derived from [bspwm window gap: 60] / (1 + [phi: 1.618])
       in "${width}x${height}${d (1920 - 450 - 23)}${d (23 + 23)}";
-      font_size = toString 13;
+      font = "Source Sans Pro 13";
       max_icon_size = toString (24 * scale);
       icon_path = let
         s = toString (24 * scale);
@@ -407,7 +414,7 @@
       height = toString (23 * scale);
       gap_horizontal = toString (5 * scale);
       slack_size = toString (5 * scale);
-      font_size = toString (13 * scale);
+      font = "Source Sans Pro, FontAwesome ${toString (13 * scale)}";
       top_block_list = makeBlockList ([ "workspace" "title" "dropbox" ]
         ++ ( if config.networking.hostName == "louise"  # TODO: Generalize it.
              then [ "wifi" "bluetooth" "volume" "battery" ]

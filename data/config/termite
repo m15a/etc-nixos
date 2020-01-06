@@ -37,8 +37,7 @@ urgent_on_bell = true
 #hyperlinks = false
 
 # The later declared, the more prioritized
-font = Rounded Mgen+ 1m @font_size@
-font = Source Code Pro @font_size@
+@fonts@
 
 # Length of the scrollback buffer, 0 disabled the scrollback buffer
 # and setting it to a negative value means "infinite scrollback"
@@ -67,7 +66,7 @@ scrollbar = off
 
 [hints]
 
-font = Source Code Pro Bold @font_size@
+@hists_fonts@
 #padding = 2
 border_width = 0
 roundness = 2.2
