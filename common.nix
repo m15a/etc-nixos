@@ -368,6 +368,8 @@
     yabar.package = pkgs.yabar-unstable;
     yabar.configFile = let
       inherit (config.environment.hidpi) scale;
+      colortheme = lib.mapAttrs (_: c: "0x${lib.substring 1 7 c}")
+      config.environment.colortheme;
       dropboxStatusIcon = pkgs.writeScript "dropbox-status-icon" ''
         #!${pkgs.runtimeShell}
         dropbox="${pkgs.dropbox-cli}/bin/dropbox"
@@ -412,7 +414,7 @@
       makeBlockList = blockNames: let
         contents = lib.concatStringsSep ", " (map (b: "\"${b}\"") blockNames);
       in "[ ${contents} ]";
-    in pkgs.substituteAll {
+    in pkgs.substituteAll (colortheme // {
       src = ./data/config/yabar.conf;
       height = toString (23 * scale);
       gap_horizontal = toString (5 * scale);
@@ -446,7 +448,7 @@
       pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
       battery_fixed_size = toString (71 * scale);
       date_fixed_size = toString (121 * scale);
-    };
+    });
 
     fstrim.enable = true;
 
