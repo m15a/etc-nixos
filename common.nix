@@ -177,6 +177,7 @@
               src = ./data/config/rofi.conf;
               dpi = toString (96 * scale);
               font = "Source Code Pro Medium 13";
+              terminal = "${pkgs.wrapped.termite}/bin/termite";
             });
           in buildEnv {
             name = "${rofi.name}-wrapped";
@@ -203,6 +204,7 @@
                 "Rounded Mgen+ 1m 13"
                 "Source Code Pro 13"
               ]);
+              browser = "${pkgs.firefox-devedition-bin}/bin/firefox-devedition";
               hints_fonts = lib.concatStringsSep "\n" (map (s: "font = ${s}") [
                 "Source Code Pro Bold 13"
               ]);
@@ -357,6 +359,7 @@
         path = "${pkgs.papirus-icon-theme}/share/icons/Papirus";
       in lib.concatStringsSep ":"
       (map (cat: "${path}/${s}x${s}/${cat}") [ "status" "devices" "apps" ]);
+      browser = "${pkgs.firefox-devedition-bin}/bin/firefox-devedition -new-tab";
       padding = toString (3 * scale);
       horizontal_padding = toString (5 * scale);
     });

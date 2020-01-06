@@ -11,7 +11,7 @@
     icon_path = @icon_path@
     # sticky_history = yes
     # history_length = 20
-    browser = firefox -new-tab
+    browser = @browser@
     # startup_notification = true
     padding = @padding@
     horizontal_padding = @horizontal_padding@
