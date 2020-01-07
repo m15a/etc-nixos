@@ -8,6 +8,7 @@
   imports = [
     ./modules/btops.nix
     ./modules/colortheme.nix
+    ./modules/dropbox.nix
     ./modules/dunst.nix
     ./modules/hidpi.nix
     ./modules/lightlocker.nix
@@ -270,7 +271,6 @@
 
   environment = {
     systemPackages = with pkgs; [
-      dropbox-cli
       firefox-devedition-bin
       libnotify
       pavucontrol
@@ -338,6 +338,8 @@
 
   services = {
     chrony.enable = true;
+
+    dropbox.enable = true;
 
     dunst.enable = true;
     dunst.configFile = let
