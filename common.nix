@@ -384,6 +384,8 @@
           else
             echo ''
           fi
+        else
+          echo '!YFG0x44fce8c3Y!'
         fi
       '';
       wifiSwitch = pkgs.writeScript "wifi-switch" ''
