@@ -66,13 +66,7 @@
   services.xserver = {
     xkbOptions = "terminate:ctrl_alt_bksp,ctrl:swapcaps";
 
-    # Enable touchpad support.
-    libinput = {
-      enable = true;
-      accelSpeed = "1";
-      disableWhileTyping = true;
-      naturalScrolling = true;
-    };
+    libinput.disableWhileTyping = true;
 
     videoDrivers = [ "intel" ];
 

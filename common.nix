@@ -489,6 +489,13 @@
     };
   };
 
+  sevices.xserver.libinput = {
+    enable = true;
+    accelProfile = "flat";
+    accelSpeed = "1";
+    naturalScrolling = true;
+  };
+
   services.xserver.displayManager.lightdm = {
     enable = true;
 
