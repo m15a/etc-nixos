@@ -489,7 +489,7 @@
     };
   };
 
-  sevices.xserver.libinput = {
+  services.xserver.libinput = {
     enable = true;
     accelProfile = "flat";
     accelSpeed = "1";
