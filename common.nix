@@ -431,7 +431,7 @@
            ) ++ [ "date" ]);
       workspace_fixed_size = toString (42 * scale);
       bspc = "${config.services.xserver.windowManager.bspwm.package}/bin/bspc";
-      title_fixed_size = toString (1353 * scale);
+      title_fixed_size = toString (1344 * scale);
       dropbox_fixed_size = toString (18 * scale);
       dropbox = "${pkgs.dropbox-cli}/bin/dropbox";
       dropbox_status_icon = "${dropboxStatusIcon}";
@@ -451,7 +451,7 @@
       pactl = "${config.hardware.pulseaudio.package}/bin/pactl";
       pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
       battery_fixed_size = toString (71 * scale);
-      date_fixed_size = toString (121 * scale);
+      date_fixed_size = toString (124 * scale);
     });
 
     fstrim.enable = true;
