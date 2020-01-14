@@ -79,12 +79,11 @@
       ''
         Identifier             "HHKB-BT"
         MatchIsKeyboard        "on"
-        MatchDevicePath        "/dev/input/event*"
         MatchProduct           "HHKB-BT"
-        Option "XkbModel"      "pc104"
+        Option "XkbModel"      "hhk"
         Option "XkbLayout"     "us"
-        Option "XkbOptions"    "terminate:ctrl_alt_bksp"
         Option "XkbVariant"    ""
+        Option "XkbOptions"    "terminate:ctrl_alt_bksp"
       ''
     ];
   };
