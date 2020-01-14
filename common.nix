@@ -278,6 +278,8 @@
       wrapped.rofi
       wrapped.termite
       wrapped.zathura
+      # Manually load libinput module. See below.
+      xorg.xf86inputlibinput
     ] ++ [
       gtk3 # Required to use Emacs key bindings in GTK apps
       gtk3Config
@@ -489,12 +491,42 @@
     };
   };
 
-  services.xserver.libinput = {
-    enable = true;
-    accelProfile = "flat";
-    accelSpeed = "1";
-    naturalScrolling = true;
+  # Manually load libinput module.
+  # See https://github.com/NixOS/nixpkgs/issues/75007.
+  services.xserver.modules = [ pkgs.xorg.xf86inputlibinput ];
+  environment.etc = let
+    path = "X11/xorg.conf.d/40-libinput.conf";
+  in {
+    ${path} = {
+      source = "${pkgs.xorg.xf86inputlibinput.out}/share/${path}";
+    };
   };
+  services.udev.packages = [ pkgs.libinput.out ];
+  services.xserver.inputClassSections = [
+    ''
+      Identifier       "libinput touchpad"
+      MatchDriver      "libinput"
+      MatchIsTouchpad  "on"
+
+      Option "AccelProfile"        "adaptive"
+      Option "AccelSpeed"          "1"
+      Option "DisableWhileTyping"  "on"
+      Option "NaturalScrolling"    "on"
+      Option "ScrollMethod"        "twofinger"
+      Option "SendEventsMode"      "disabled-on-external-mouse"
+      Option "Tapping"             "on"
+      Option "TappingDragLock"     "on"
+    ''
+    ''
+      Identifier      "libinput mouse"
+      MatchDriver     "libinput"
+      MatchIsPointer  "on"
+
+      Option "AccelProfile"    "flat"
+      Option "AccelSpeed"      "1"
+      Option "SendEventsMode"  "enabled"
+    ''
+  ];
 
   services.xserver.displayManager.lightdm = {
     enable = true;
