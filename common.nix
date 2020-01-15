@@ -157,6 +157,17 @@
 
     overlays = [
       (self: super: {
+        fish = with super; fish.overrideAttrs (_: {
+          patches = [
+            # Fix fish systemctl completion
+            # https://github.com/fish-shell/fish-shell/issues/5689#issuecomment-490830435
+            (fetchpatch {
+              url = https://github.com/fish-shell/fish-shell/commit/c6ec4235136e82c709e8d7b455f7c463f9714b48.patch;
+              sha256 = "06j355ix0ricrk0zml712qvk5lhf2kaf3j5c676w8pk9mvqpfh5p";
+            })
+          ];
+        });
+
         wrapped = {
           feh = with super; let
             inherit (config.environment) colortheme;
