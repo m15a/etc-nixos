@@ -348,36 +348,46 @@
     fadeDelta = 8;
     fadeSteps = [ "0.056" "0.06" ];
 
+    activeOpacity = "0.92";
+    inactiveOpacity = "0.68";
+    shadowOpacity = "0.32";
+    opacityRules = [
+      # 100% opacity for fullscreen
+      "100:_NET_WM_STATE@[0]:32a = '_NET_WM_STATE_FULLSCREEN'"
+      "100:_NET_WM_STATE@[1]:32a = '_NET_WM_STATE_FULLSCREEN'"
+      "100:_NET_WM_STATE@[2]:32a = '_NET_WM_STATE_FULLSCREEN'"
+      "100:_NET_WM_STATE@[3]:32a = '_NET_WM_STATE_FULLSCREEN'"
+      "100:_NET_WM_STATE@[4]:32a = '_NET_WM_STATE_FULLSCREEN'"
+    ];
+
     shadow = true;
     shadowOffsets = map (x: x * scale) [ (-10) (-10) ];
-    shadowOpacity = "0.32";
 
-    activeOpacity = "1.0";
-    inactiveOpacity = "0.8";
-    menuOpacity = "1.0";
+    wintypes = {
+      dock = { shadow = false; };
+      dropdown_menu = { opacity = 0.92; };
+      popup_menu = { opacity = 0.92; };
+    };
 
     # glx with amdgpu does not work for now.
     # https://github.com/chjj/compton/issues/477
     backend = if hasAmdgpu then "xrender" else "glx";
     vSync = true;
 
-    wintypes = {
-      dock = { shadow = false; };
-    };
-
     settings = {
       shadow-radius = 38;
 
       frame-opacity = "0.0";
       inactive-opacity-override = true;
-      use-ewmh-active-win = true;
-      unredir-if-possible = true;
-      detect-transient = true;
-      detect-client-leader = true;
 
-      glx-no-stencil = true;
+      detect-client-leader = false;
+      detect-transient = false;
+      unredir-if-possible = true;
+      use-ewmh-active-win = true;
+
       glx-copy-from-front = false;
       glx-no-rebind-pixmap = true;
+      glx-no-stencil = true;
     };
   };
 
