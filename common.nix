@@ -338,7 +338,7 @@
     ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${backgroundImage}
   '';
 
-  services.compton = let
+  services.picom = let
     inherit (config.environment.hidpi) scale;
     hasAmdgpu = lib.any (d: d == "amdgpu") config.services.xserver.videoDrivers;
   in {
