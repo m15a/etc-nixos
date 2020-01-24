@@ -352,6 +352,8 @@
     inactiveOpacity = "0.68";
     shadowOpacity = "0.32";
     opacityRules = [
+      "100:class_g *?= 'Firefox'"
+      "100:class_g ?= 'Steam'"
       # 100% opacity for fullscreen
       "100:_NET_WM_STATE@[0]:32a = '_NET_WM_STATE_FULLSCREEN'"
       "100:_NET_WM_STATE@[1]:32a = '_NET_WM_STATE_FULLSCREEN'"
@@ -378,7 +380,7 @@
       shadow-radius = 38;
 
       frame-opacity = "0.0";
-      inactive-opacity-override = true;
+      inactive-opacity-override = false;
 
       detect-client-leader = false;
       detect-transient = false;
