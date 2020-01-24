@@ -350,7 +350,7 @@
 
     activeOpacity = "0.92";
     inactiveOpacity = "0.68";
-    shadowOpacity = "0.32";
+    shadowOpacity = "0.36";
     opacityRules = [
       "100:class_g *?= 'Firefox'"
       "100:class_g ?= 'Steam'"
