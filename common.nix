@@ -164,6 +164,7 @@
     systemPackages = with pkgs; [
       firefox-devedition-bin
       libnotify
+      maim
       pavucontrol
       wrapped.feh
       wrapped.rofi
