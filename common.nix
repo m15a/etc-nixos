@@ -354,7 +354,9 @@
     shadowOpacity = "0.36";
     opacityRules = [
       "100:class_g *?= 'Firefox'"
+      "100:class_g *?= 'Nightly'"
       "100:class_g ?= 'Steam'"
+      "100:class_g ?= 'Zathura'"
       # 100% opacity for fullscreen
       "100:_NET_WM_STATE@[0]:32a = '_NET_WM_STATE_FULLSCREEN'"
       "100:_NET_WM_STATE@[1]:32a = '_NET_WM_STATE_FULLSCREEN'"
