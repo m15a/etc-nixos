@@ -26,7 +26,7 @@ alt + space
 
 # Make sxhkd and yabar reload their configuration files:
 super + alt + Escape
-    pkill -USR1 -x sxhkd && pkill -USR1 -x yabar
+    pkill -USR1 -x sxhkd && pkill -USR1 -x yabar && yabar &
 
 # Lock the screen
 super + alt + l

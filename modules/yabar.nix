@@ -4,6 +4,18 @@ with lib;
 
 let
   cfg = config.services.yabar;
+
+  yabarWrapped = pkgs.buildEnv {
+    name = "${cfg.package.name}-wrapped";
+    paths = [ cfg.package ];
+    buildInputs = [ pkgs.makeWrapper ];
+    pathsToLink = [ "/share" ];
+    postBuild = ''
+      mkdir $out/bin
+      makeWrapper ${cfg.package}/bin/yabar $out/bin/yabar \
+      --add-flags "-c ${cfg.configFile}"
+    '';
+  };
 in
 
 {
@@ -34,16 +46,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    systemd.user.services.yabar = {
-      description = "yabar service";
-      wantedBy = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
-      serviceConfig = {
-        ExecStart = let
-          arg = optionalString (!isNull cfg.configFile) " -c ${cfg.configFile}";
-        in "${cfg.package}/bin/yabar${arg}";
-        Restart = "always";
-      };
-    };
+    environment.systemPackages = [ yabarWrapped ];
+    services.xserver.displayManager.sessionCommands = ''
+      ${yabarWrapped}/bin/yabar &
+    '';
   };
 }
