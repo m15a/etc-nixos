@@ -57,7 +57,7 @@ self: super:
         path = "${papirus-icon-theme}/share/icons/Papirus";
       in lib.concatStringsSep ":"
       (map (cat: "${path}/${s}x${s}/${cat}") [ "status" "devices" "apps" ]);
-      browser = "${firefox-devedition-bin}/bin/firefox-devedition";
+      browser = "${xdg_utils}/bin/xdg-open";
       padding = toString (3 * scale);
       horizontal_padding = toString (5 * scale);
     });
@@ -135,7 +135,7 @@ self: super:
       notify_send = "${libnotify}/bin/notify-send";
       # TODO: In Firefox launched by clicking yabar blocks,
       # XCURSOR_{THEME,SIZE} are not applied somehow.
-      firefox = "${firefox-devedition-bin}/bin/firefox-devedition";
+      browser = "${xdg_utils}/bin/xdg-open";
       wifi_fixed_size = toString (201 * scale);
       wifi_switch = "${wifiSwitch}";
       termite = "${self.wrapped.termite}/bin/termite";
@@ -222,7 +222,6 @@ self: super:
           "Rounded Mgen+ 1m 13"
           "Source Code Pro 13"
         ]);
-        browser = "${firefox-devedition-bin}/bin/firefox-devedition";
         hints_fonts = lib.concatStringsSep "\n" (map (s: "font = ${s}") [
           "Source Code Pro Bold 13"
         ]);

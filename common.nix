@@ -162,7 +162,7 @@
 
   environment = {
     systemPackages = with pkgs; [
-      firefox-devedition-bin
+      # firefox-devedition-bin
       libnotify
       maim
       pavucontrol
