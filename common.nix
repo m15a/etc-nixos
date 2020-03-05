@@ -120,6 +120,7 @@
       source-code-pro
       source-han-serif-japanese
       source-han-sans-japanese
+      rounded-mgenplus
       noto-fonts-emoji
       font-awesome-ttf
     ];
