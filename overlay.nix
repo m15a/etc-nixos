@@ -14,7 +14,7 @@ self: super:
       settingsIni = writeText "settings.ini" ''
         [Settings]
         gtk-font-name = Source Han Sans JP 11
-        gtk-theme-name = Arc
+        gtk-theme-name = Arc-Darker
         gtk-icon-theme-name = Papirus
         gtk-key-theme-name = Emacs
       '';
