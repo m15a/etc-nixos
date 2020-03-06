@@ -30,9 +30,12 @@ super + alt + Escape
 
 # Lock the screen
 super + alt + l
-    dm-tool switch-to-greeter
+    dm-tool lock
     # Workaround for light-locker hang.
     # See https://github.com/the-cavalry/light-locker/issues/138
+    # Using external monitor (as primary) instead of built-in (off),
+    # switch-to-greeter puts lock screen in the built-in instead of the
+    # external monitor.
 
 #
 # Bspwm hotkeys
