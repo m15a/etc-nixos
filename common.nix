@@ -120,6 +120,7 @@
       source-code-pro
       source-han-serif-japanese
       source-han-sans-japanese
+      source-han-code-jp
       rounded-mgenplus
       noto-fonts-emoji
       font-awesome-ttf
@@ -132,10 +133,11 @@
       ];
       sansSerif = [
         "Source Sans Pro"
-        "Source Han Sans JP"
+        "Rounded Mgen+ 1c"
       ];
       monospace = [
         "Source Code Pro"
+        "Rounded Mgen+ 1m"
       ];
     };
   };

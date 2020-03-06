@@ -207,7 +207,7 @@ self: super:
         src = ./data/config/termite;
         fonts = lib.concatStringsSep "\n" (map (s: "font = ${s}") [
           # The later declared, the more prioritized
-          "Rounded Mgen+ 1m 13"
+          # "Rounded Mgen+ 1m 13"  # in the fallback fonts
           "Source Code Pro 13"
         ]);
         hints_fonts = lib.concatStringsSep "\n" (map (s: "font = ${s}") [
