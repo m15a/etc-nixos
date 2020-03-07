@@ -74,16 +74,22 @@
       Option "Backlight" "intel_backlight"
     '';
 
-    # Extra devices.
     inputClassSections = [
       ''
-        Identifier             "HHKB-BT"
-        MatchIsKeyboard        "on"
-        MatchProduct           "HHKB-BT"
-        Option "XkbModel"      "hhk"
-        Option "XkbLayout"     "us"
-        Option "XkbVariant"    ""
-        Option "XkbOptions"    "terminate:ctrl_alt_bksp"
+        Identifier          "Disable touchscreen"
+        MatchIsTouchscreen  "on"
+
+        Option "Ignore"  "on"
+      ''
+      ''
+        Identifier       "HHKB-BT"
+        MatchIsKeyboard  "on"
+        MatchProduct     "HHKB-BT"
+
+        Option "XkbModel"    "hhk"
+        Option "XkbLayout"   "us"
+        Option "XkbVariant"  ""
+        Option "XkbOptions"  "terminate:ctrl_alt_bksp"
       ''
     ];
   };
