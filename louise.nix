@@ -93,4 +93,41 @@
       ''
     ];
   };
+
+  services.xserver.displayManager.setupCommands = let
+    xrandr = "${pkgs.xorg.xrandr}/bin/xrandr";
+  in ''
+    LID=eDP1
+    OTHER_MONITORS=$(${xrandr} -q | grep '\<connected\>' | grep -v "^$LID\>" | cut -d' ' -f1)
+    if [ -z "$OTHER_MONITORS" ]; then
+        MONITOR="$LID"
+        if ${xrandr} -q | grep "^$MONITOR\>" | grep "\<primary\>" 2>&1 >/dev/null; then
+          MONITOR_IS_PRIMARY=1
+        fi
+    else
+      if grep open /proc/acpi/button/lid/LID0/state 2>&1 >/dev/null; then
+        MONITOR=$(${xrandr} -q | grep '\<connected primary\>' | cut -d' ' -f1)
+        MONITOR_IS_PRIMARY=1
+      else
+        MONITOR=$(${xrandr} -q | grep '\<connected primary\>' | grep -v "^$LID\>" | cut -d' ' -f1)
+        if [ -n "$MONITOR" ]; then
+          MONITOR_IS_PRIMARY=1
+        else
+          MONITOR=$(echo "$OTHER_MONITORS" | cut -d' ' -f1)
+        fi
+      fi
+    fi
+    CMD="${xrandr} --output $MONITOR --primary --auto"
+    if [ -n "$MONITOR_IS_PRIMARY" ]; then
+      AREA=$(${xrandr} -q | grep "^$MONITOR\>" | cut -d' ' -f4 | cut -d'+' -f1)
+    else
+      AREA=$(${xrandr} -q | grep "^$MONITOR\>" | cut -d' ' -f3 | cut -d'+' -f1)
+    fi
+    WIDTH=$(echo "$AREA" | cut -d'x' -f1)
+    HEIGHT=$(echo "$AREA" | cut -d'x' -f2)
+    if [ $WIDTH -lt 3840 ] || [ $HEIGHT -lt 2160 ]; then
+      CMD="$CMD --scale 2x2"
+    fi
+    $CMD
+  '';
 }
