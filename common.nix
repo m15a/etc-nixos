@@ -358,6 +358,7 @@
     opacityRules = [
       "100:class_g *?= 'Firefox'"
       "100:class_g *?= 'Nightly'"
+      "92:class_g ?= 'Rofi'"
       "100:class_g ?= 'Steam'"
       "100:class_g ?= 'Zathura'"
       # 100% opacity for fullscreen
