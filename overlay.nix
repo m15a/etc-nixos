@@ -116,7 +116,7 @@ self: super:
            ) ++ [ "date" ]);
       workspace_fixed_size = toString (42 * scale);
       bspc = "${config.services.xserver.windowManager.bspwm.package}/bin/bspc";
-      title_fixed_size = toString (1344 * scale);
+      title_fixed_size = toString (1343 * scale);
       dropbox_fixed_size = toString (18 * scale);
       dropbox = "${dropbox-cli}/bin/dropbox";
       dropbox_status_icon = "${dropboxStatusIcon}";
@@ -136,7 +136,7 @@ self: super:
       pactl = "${config.hardware.pulseaudio.package}/bin/pactl";
       pavucontrol = "${pavucontrol}/bin/pavucontrol";
       battery_fixed_size = toString (71 * scale);
-      date_fixed_size = toString (124 * scale);
+      date_fixed_size = toString (125 * scale);
     });
 
     bspwm = with super;
