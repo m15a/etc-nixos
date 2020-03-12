@@ -109,11 +109,11 @@ self: super:
       gap_horizontal = toString (5 * scale);
       slack_size = toString (5 * scale);
       font = "Source Sans Pro, FontAwesome ${toString (13 * scale)}";
-      top_block_list = makeBlockList ([ "workspace" "title" "dropbox" ]
+      top_block_list = makeBlockList ([ "date" "workspace" "title" "dropbox" ]
         ++ ( if config.networking.hostName == "louise"  # TODO: Generalize it.
              then [ "wifi" "bluetooth" "volume" "battery" ]
              else [ "bluetooth" "volume" ]
-           ) ++ [ "date" ]);
+           ));
       workspace_fixed_size = toString (42 * scale);
       bspc = "${config.services.xserver.windowManager.bspwm.package}/bin/bspc";
       title_fixed_size = toString (1343 * scale);
