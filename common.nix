@@ -361,6 +361,8 @@
       "92:class_g ?= 'Rofi'"
       "100:class_g ?= 'Steam'"
       "100:class_g ?= 'Zathura'"
+      "100:class_g ?= 'Gimp'"
+      "100:class_g ?= 'Inkscape'"
       # 100% opacity for fullscreen
       "100:_NET_WM_STATE@[0]:32a = '_NET_WM_STATE_FULLSCREEN'"
       "100:_NET_WM_STATE@[1]:32a = '_NET_WM_STATE_FULLSCREEN'"
