@@ -304,6 +304,16 @@
       Option "AccelSpeed"      "1"
       Option "SendEventsMode"  "enabled"
     ''
+    ''
+      Identifier       "HHKB Professional BT"
+      MatchIsKeyboard  "on"
+      MatchProduct     "HHKB-BT"
+
+      Option "XkbModel"    "hhk"
+      Option "XkbLayout"   "us"
+      Option "XkbVariant"  ""
+      Option "XkbOptions"  "terminate:ctrl_alt_bksp"
+    ''
   ];
 
   services.xserver.displayManager.lightdm = {

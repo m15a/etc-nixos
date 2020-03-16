@@ -81,16 +81,6 @@
 
         Option "Ignore"  "on"
       ''
-      ''
-        Identifier       "HHKB-BT"
-        MatchIsKeyboard  "on"
-        MatchProduct     "HHKB-BT"
-
-        Option "XkbModel"    "hhk"
-        Option "XkbLayout"   "us"
-        Option "XkbVariant"  ""
-        Option "XkbOptions"  "terminate:ctrl_alt_bksp"
-      ''
     ];
   };
 
