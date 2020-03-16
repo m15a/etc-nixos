@@ -257,8 +257,6 @@
   services.xserver = {
     enable = true;
 
-    layout = "us";
-
     # Enable bspwm environment.
     displayManager.defaultSession = "none+bspwm";
     windowManager = {
