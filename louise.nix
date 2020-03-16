@@ -64,8 +64,6 @@
   };
 
   services.xserver = {
-    xkbOptions = "terminate:ctrl_alt_bksp,ctrl:swapcaps";
-
     libinput.disableWhileTyping = true;
 
     videoDrivers = [ "intel" ];
@@ -80,6 +78,16 @@
         MatchIsTouchscreen  "on"
 
         Option "Ignore"  "on"
+      ''
+      ''
+        Identifier       "Built-in keyboard"
+        MatchIsKeyboard  "on"
+        MatchProduct     "AT Translated Set 2 keyboard"
+
+        Option "XkbModel"    "pc104"
+        Option "XkbLayout"   "us"
+        Option "XkbVariant"  ""
+        Option "XkbOptions"  "terminate:ctrl_alt_bksp,ctrl:swapcaps,altwin:swap_alt_win,ctrl:rctrl_ralt"
       ''
     ];
   };

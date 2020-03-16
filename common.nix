@@ -100,10 +100,6 @@
     brorange  = "#FE8019";
   };
 
-  console = {
-    useXkbConfig = true;
-  };
-
   i18n = {
     defaultLocale = "ja_JP.UTF-8";
 
