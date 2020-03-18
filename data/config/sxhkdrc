@@ -7,10 +7,12 @@ XF86MonBrightness{Up,Down}
     xbacklight -steps 10 {-inc 10,-dec 10}
 
 # Adjust audio volume
+XF86Audio{Lower,Raise}Volume
+    pactl set-sink-volume @DEFAULT_SINK@ {-5%,+5%}
+
+# Toggle audio mute/unmute
 XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle
-XF86Audio{Lower,Raise}Volume
-    pactl set-sink-volume @DEFAULT_SINK@ {-4%,+4%}
 
 # Control audio play
 XF86Audio{Prev,Play,Next}
@@ -21,12 +23,8 @@ super + Return
     termite -e 'fish --login'
 
 # Program launcher
-alt + space
+super + space
     rofi -modi run,drun,window -show run
-
-# Make sxhkd and yabar reload their configuration files:
-super + alt + Escape
-    pkill -USR1 -x sxhkd && pkill -USR1 -x yabar && yabar &
 
 # Lock the screen
 super + alt + l
@@ -42,17 +40,18 @@ super + alt + l
 #
 
 # Close and kill
-super + {_,shift + }q
+super + {w,q}
     bspc node --{close,kill}
 
 # Alternate between the tiled and monocle layout
 super + m
     bspc desktop --layout next
 
-# Send the current node to the preselection if any or swap it with the biggest node
+# Send the current node to the newest preselected node if any; otherwise swap
+# it with the biggest node
 super + g
     bspc query --nodes --node .!automatic.local && \
-    bspc node --to-node last.!automatic.local || \
+    bspc node --to-node newest.!automatic.local || \
     bspc node --swap biggest.local
 
 #
@@ -64,28 +63,30 @@ super + {t,shift + t,s,f}
     bspc node --state {tiled,pseudo_tiled,floating,fullscreen}
 
 # Set the node flags
-super + ctrl + {m,shift + l,s,p}
-    bspc node --flag {marked,locked,sticky,private}
+super + ctrl + {w,s,p}
+    bspc node --flag {locked,sticky,private}
 
 #
 # Focus/swap
 #
 
-# Focus the node in the given direction
+# Focus the node in the given direction or swap it with the current node
 super + {_,shift + }{h,j,k,l}
     bspc node --{focus,swap} {west,south,north,east}
 
-# Focus the next/previous node in the current desktop
-super + {n,p}
-    bspc node --focus {next,prev}.local
+# Focus the next/previous node in the current desktop or swap it with the
+# current node
+super + {_,shift + }{n,p}
+    bspc node --{focus,swap} {next,prev}.local
 
-# Focus the next/previous desktop in the current monitor
+# Focus the next/previous desktop in the current monitor or swap it with the
+# current desktop
 super + {_,shift + }bracket{left,right}
     bspc desktop --{focus,swap} {prev,next}.local
 
 # Focus the last node/desktop
-super + {space,Tab}
-    bspc {node,desktop} --focus last
+super + {grave,apostrophe,Tab}
+    bspc {node,node,desktop} --focus last
 
 # Focus the older or newer node in the focus history
 super + {o,i}
@@ -93,7 +94,7 @@ super + {o,i}
     bspc node {older,newer} --focus; \
     bspc wm --record-history on
 
-# Focus or send to the given desktop
+# Focus the given desktop or send to it the current desktop
 super + {_,shift + }{1,2,3,4,5,6,7,8,9,0}
     bspc {desktop --focus,node --to-desktop} '^{1,2,3,4,5,6,7,8,9,10}'
 
@@ -102,12 +103,8 @@ super + {_,shift + }{1,2,3,4,5,6,7,8,9,0}
 #
 
 # Preselect the direction
-super + ctrl + {h,j,k,l}
-    bspc node --presel-dir {west,south,north,east}
-
-# Preselect the ratio
-super + ctrl + {1-9}
-    bspc node --presel-ratio 0.{1-9}
+super + ctrl + {_,shift + }{h,j,k,l}
+    bspc node{_, --presel-ratio 0.5} --presel-dir {west,south,north,east}
 
 # Cancel the preselection for the focused node
 super + ctrl + space
@@ -115,20 +112,17 @@ super + ctrl + space
 
 # Cancel the preselection for the focused desktop
 super + ctrl + shift + space
-    bspc query --nodes --desktop | xargs -I id -n 1 bspc node id --presel-dir cancel
+    bspc query --nodes --desktop | \
+    xargs -I id -n 1 bspc node id --presel-dir cancel
 
 #
-# Move/resize
+# Resize
 #
 
 # Expand a window by moving one of its side outward
-super + shift + {Left,Down,Up,Right}
+super + {Left,Down,Up,Right}
     bspc node --resize {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # Contract a window by moving one of its side inward
-super + shift + alt + {Left,Down,Up,Right}
+super + shift + {Left,Down,Up,Right}
     bspc node --resize {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
-# Move a floating window
-super + {Left,Down,Up,Right}
-    bspc node --move {-20 0,0 20,0 -20,20 0}
