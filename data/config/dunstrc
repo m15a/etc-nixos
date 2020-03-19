@@ -1,6 +1,9 @@
 [global]
     geometry = "@geometry@"
+    transparency = 8  # picom active opacity 1 - .92 = 8%
     separator_height = 0
+    padding = @padding@
+    horizontal_padding = @horizontal_padding@
     frame_width = 0
     separator_color = "@brblack@"
     font = @font@
@@ -9,12 +12,8 @@
     icon_position = left
     max_icon_size = @max_icon_size@
     icon_path = @icon_path@
-    # sticky_history = yes
-    # history_length = 20
     browser = @browser@
     # startup_notification = true
-    padding = @padding@
-    horizontal_padding = @horizontal_padding@
 
 [experimental]
     # per_monitor_dpi = true
@@ -23,10 +22,10 @@
     # Shortcuts are specified as [modifier+][modifier+]...key
     # Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
     # "mod3" and "mod4" (windows-key).
-    close = mod1+Escape
-    close_all = mod1+shift+Escape
-    history = mod1+grave
-    context = mod1+period
+    close = mod4+mod1+space
+    close_all = mod4+mod1+shift+space
+    history = mod4+mod1+h
+    context = mod4+mod1+Return
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
