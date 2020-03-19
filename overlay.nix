@@ -159,9 +159,12 @@ self: super:
         monocle_padding = toString (37 * scale);
     });
 
-    sxhkd = super.runCommand "sxhkdrc" {} ''
-      cp ${./data/config/sxhkdrc} $out
-    '';
+    sxhkd = let
+      inherit (config.environment.hidpi) scale;
+    in super.substituteAll {
+      src = ./data/config/sxhkdrc;
+      window_move_step = toString (10 * scale);
+    };
   };
 
   wrapped = {

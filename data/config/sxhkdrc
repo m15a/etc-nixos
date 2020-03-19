@@ -121,8 +121,8 @@ super + ctrl + shift + space
 
 # Expand a window by moving one of its side outward
 super + {Left,Down,Up,Right}
-    bspc node --resize {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+    bspc node --resize {left -@window_move_step@ 0,bottom 0 @window_move_step@,top 0 -@window_move_step@,right @window_move_step@ 0}
 
 # Contract a window by moving one of its side inward
 super + shift + {Left,Down,Up,Right}
-    bspc node --resize {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+    bspc node --resize {right -@window_move_step@ 0,top 0 @window_move_step@,bottom 0 -@window_move_step@,left @window_move_step@ 0}
