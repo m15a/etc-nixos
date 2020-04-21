@@ -2,6 +2,30 @@
 
 self: super:
 {
+  adapta-gtk-theme-colorpack = with self;
+  stdenv.mkDerivation rec {
+    pname = "adapta-gtk-theme-colorpack";
+    version = "3.94.0.149";
+    src = fetchurl {
+      url = "https://github.com/ivankra/${pname}/releases/download/${version}-colorpack/${pname}_${version}.tar";
+      sha256 = "09n8pzh0i5z42pplnhhbhp6z9qgcfrb07sxx3a3qlqnk422cpamz";
+    };
+    dontUnpack = true;
+    installPhase = ''
+      mkdir -p "$out/share/themes"
+      tar xf "$src" -C "$out/share/themes"
+      rm "$out/share/themes"/*/{COPYING,LICENSE*,README*}
+    '';
+    propagatedUserEnvPkgs = [ gtk-engine-murrine ];
+    meta = with stdenv.lib; {
+      description = "Adapta GTK+ theme with a variety of material design colors";
+      homepage = "https://github.com/ivankra/adapta-gtk-theme-colorpack";
+      license = with licenses; [ gpl2 cc-by-sa-30 ];
+      platforms = platforms.linux;
+      maintainers = with maintainers; [ mnacamura ];
+    };
+  };
+
   configFiles = {
     gtk3 = with super;
     let
@@ -14,8 +38,8 @@ self: super:
       settingsIni = writeText "settings.ini" ''
         [Settings]
         gtk-font-name = Source Han Sans JP 11
-        gtk-theme-name = Arc-Darker
-        gtk-icon-theme-name = Papirus
+        gtk-theme-name = Adapta-DeepOrange-Eta
+        gtk-icon-theme-name = Paper
         gtk-key-theme-name = Emacs
       '';
     in runCommand "gtk-3.0" {} ''
@@ -42,7 +66,7 @@ self: super:
       max_icon_size = toString (24 * scale);
       icon_path = let
         s = toString (24 * scale);
-        path = "${papirus-icon-theme}/share/icons/Papirus";
+        path = "${qogir-icon-theme}/share/icons/Qogir";
       in lib.concatStringsSep ":"
       (map (cat: "${path}/${s}x${s}/${cat}") [ "status" "devices" "apps" ]);
       browser = "${xdg_utils}/bin/xdg-open";

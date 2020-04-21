@@ -172,9 +172,8 @@
     ] ++ [
       gtk3 # Required to use Emacs key bindings in GTK apps
       configFiles.gtk3
-      arc-theme
-      numix-cursor-theme
-      papirus-icon-theme
+      adapta-gtk-theme-colorpack
+      paper-icon-theme
     ];
 
     profileRelativeEnvVars = {
@@ -182,7 +181,7 @@
     };
 
     variables = {
-      XCURSOR_THEME = "Numix-Cursor";
+      XCURSOR_THEME = "Paper";
       # Apps launched in ~/.xprofile need it if they use SVG icons.
       GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
     };
