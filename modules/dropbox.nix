@@ -31,6 +31,8 @@ in
       after = [ "graphical-session.target" ];
       serviceConfig = {
         ExecStart = "${pkgs.dropbox}/bin/dropbox";
+        ExecReload = "${pkgs.coreutils}/bin/kill -HUP $MAINPID";
+        KillMode = "control-group";  # upstream recommends process
         Restart = "on-failure";
         PrivateTmp = true;
         ProtectSystem = "full";
