@@ -94,10 +94,15 @@
     brmagenta = "#FF5C8F";
     brcyan    = "#53FDE9";
     brwhite   = "#FCE8C3";
-
-    # Gruvbox Dark: https://github.com/morhetz/gruvbox
-    orange    = "#D65D0E";
-    brorange  = "#FE8019";
+    orange    = "#D75F00";
+    brorange  = "#FF8700";
+    hardblack = "#121212";
+    xgray1    = "#262626";
+    xgray2    = "#303030";
+    xgray3    = "#3A3A3A";
+    xgray4    = "#444444";
+    xgray5    = "#4E4E4E";
+    xgray6    = "#585858";
   };
 
   i18n = {
