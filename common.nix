@@ -28,13 +28,6 @@
     "/nix".options = commonMountOptions;
     "/var".options = commonMountOptions;
     "/home".options = commonMountOptions;
-
-    # Required as Dropbox only supports ext4 on Linux.
-    "/home/mnacamura/Dropbox" = {
-      device = "/var/dropbox/mnacamura.img";
-      fsType = "ext4";
-      options = [ "loop" "defaults" "noatime" ];
-    };
   };
 
   boot = {
