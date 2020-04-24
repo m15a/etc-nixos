@@ -6,7 +6,7 @@
     horizontal_padding = @horizontal_padding@
     frame_width = 0
     separator_color = "@brblack@"
-    font = @font@
+    font = Source Sans Pro 13
     format = "<b>%s</b>\n%b"
     show_age_threshold = -1
     icon_position = left
