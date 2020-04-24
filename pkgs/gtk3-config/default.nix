@@ -6,7 +6,7 @@ let
   gtkCss = substituteAll {
     src = ../../data/config/gtk3/gtk.css;
 
-    padding_left = toString (2 * scale);
+    termite_padding = toString 8;  # seems being scaled by GDK_SCALE
   };
 
   settingsIni = substituteAll {
