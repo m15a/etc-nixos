@@ -2,29 +2,7 @@
 
 self: super:
 {
-  adapta-gtk-theme-colorpack = with self;
-  stdenv.mkDerivation rec {
-    pname = "adapta-gtk-theme-colorpack";
-    version = "3.94.0.149";
-    src = fetchurl {
-      url = "https://github.com/ivankra/${pname}/releases/download/${version}-colorpack/${pname}_${version}.tar";
-      sha256 = "09n8pzh0i5z42pplnhhbhp6z9qgcfrb07sxx3a3qlqnk422cpamz";
-    };
-    dontUnpack = true;
-    installPhase = ''
-      mkdir -p "$out/share/themes"
-      tar xf "$src" -C "$out/share/themes"
-      rm "$out/share/themes"/*/{COPYING,LICENSE*,README*}
-    '';
-    propagatedUserEnvPkgs = [ gtk-engine-murrine ];
-    meta = with stdenv.lib; {
-      description = "Adapta GTK+ theme with a variety of material design colors";
-      homepage = "https://github.com/ivankra/adapta-gtk-theme-colorpack";
-      license = with licenses; [ gpl2 cc-by-sa-30 ];
-      platforms = platforms.linux;
-      maintainers = with maintainers; [ mnacamura ];
-    };
-  };
+  adapta-gtk-theme-colorpack = self.callPackage ./adapta-gtk-theme-colorpack {};
 
   configFiles = {
     gtk3 = with super;
@@ -54,7 +32,7 @@ self: super:
       inherit (config.environment) colortheme;
     in
     substituteAll (colortheme // {
-      src = ./data/config/dunstrc;
+      src = ../data/config/dunstrc;
       geometry = let
         width = toString (450 * scale);
         height = toString 5;
@@ -129,7 +107,7 @@ self: super:
       in
       "[ ${contents} ]";
     in substituteAll (colortheme // {
-      src = ./data/config/yabar.conf;
+      src = ../data/config/yabar.conf;
       height = toString (23 * scale);
       gap_horizontal = toString (5 * scale);
       slack_size = toString (5 * scale);
@@ -176,7 +154,7 @@ self: super:
       inherit (config.environment) colortheme;
     in
     substituteAll (colortheme // {
-      src = ./data/config/bspwmrc;
+      src = ../data/config/bspwmrc;
       postInstall = "chmod +x $out";
       window_gap = toString (60 * scale);
         # 37 is derived from [bspwm window gap: 60] / [phi: 1.618]
@@ -186,7 +164,7 @@ self: super:
     sxhkd = let
       inherit (config.environment.hidpi) scale;
     in super.substituteAll {
-      src = ./data/config/sxhkdrc;
+      src = ../data/config/sxhkdrc;
       window_move_step = toString (10 * scale);
     };
   };
@@ -212,7 +190,7 @@ self: super:
       inherit (config.environment.hidpi) scale;
       inherit (config.environment) colortheme;
       configFile = substituteAll (colortheme // {
-        src = ./data/config/rofi.conf;
+        src = ../data/config/rofi.conf;
         dpi = toString (96 * scale);
         font = "Source Code Pro Medium 13";
         terminal = "${self.wrapped.termite}/bin/termite";
@@ -238,7 +216,7 @@ self: super:
     let
       inherit (config.environment) colortheme;
       configFile = substituteAll (colortheme // {
-        src = ./data/config/termite;
+        src = ../data/config/termite;
         fonts = lib.concatStringsSep "\n" (map (s: "font = ${s}") [
           # The later declared, the more prioritized
           # "Rounded Mgen+ 1m 13"  # in the fallback fonts
@@ -266,7 +244,7 @@ self: super:
       inherit (config.environment.hidpi) scale;
       inherit(config.environment) colortheme;
       configFile = substituteAll (colortheme // {
-        src = ./data/config/zathurarc;
+        src = ../data/config/zathurarc;
         font = "Source Code Pro 13";
         page_padding = toString scale;
       });

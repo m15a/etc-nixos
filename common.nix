@@ -153,7 +153,7 @@
     };
 
     overlays = [
-      (import ./pkgs.nix { inherit config; })
+      (import ./pkgs { inherit config; })
     ];
   };
 
