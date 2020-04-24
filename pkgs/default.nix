@@ -5,26 +5,7 @@ self: super:
   adapta-gtk-theme-colorpack = self.callPackage ./adapta-gtk-theme-colorpack {};
 
   configFiles = {
-    gtk3 = with super;
-    let
-      inherit (config.environment.hidpi) scale;
-      gtkCss = writeText "gtk.css" ''
-        VteTerminal, vte-terminal {
-            padding-left: ${toString (2 * scale)}px;
-        }
-      '';
-      settingsIni = writeText "settings.ini" ''
-        [Settings]
-        gtk-font-name = Source Han Sans JP 11
-        gtk-theme-name = Adapta-DeepOrange-Eta
-        gtk-icon-theme-name = Paper
-        gtk-key-theme-name = Emacs
-      '';
-    in runCommand "gtk-3.0" {} ''
-        confd="$out/etc/xdg/gtk-3.0"
-        install -D -m 444 "${gtkCss}" "$confd/gtk.css"
-        install -D -m 444 "${settingsIni}" "$confd/settings.ini"
-    '';
+    gtk3 = self.callPackage ./gtk3-config { inherit config; };
 
     dunst = with super;
     let
