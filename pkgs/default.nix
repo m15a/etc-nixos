@@ -6,9 +6,9 @@ self: super:
 
   adapta-gtk-theme-customized = with config.environment.colortheme;
   self.callPackage ./adapta-gtk-theme-customized {
-    selectionColor = orange;
-    accentColor = yellow;
-    suggestionColor = yellow;
+    selectionColor = brorange;
+    accentColor = orange;
+    suggestionColor = orange;
     destructionColor = red;
     enableParallel = true;
     enableTelegram = true;
