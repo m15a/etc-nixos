@@ -2,9 +2,13 @@
 
 foreground      = @brwhite@
 foreground_bold = @brwhite@
-cursor          = @brwhite@
+cursor          = @brorange@
 background      = @black@
 
+# If unset, will reverse foreground and background
+# highlight = @brorange@
+
+# Colors from color0 to color254 can be set
 color0  = @black@
 color1  = @red@
 color2  = @green@
@@ -24,50 +28,15 @@ color15 = @brwhite@
 
 [options]
 
-allow_bold = true
-audible_bell = false
-clickable_url = true
-dynamic_title = true
-icon_name = terminal
+bold_is_bright = false
 mouse_autohide = true
-scroll_on_output = false
-scroll_on_keystroke = true
-search_wrap = true
-urgent_on_bell = true
-#hyperlinks = false
 
 # The later declared, the more prioritized
 @fonts@
 
-# Length of the scrollback buffer, 0 disabled the scrollback buffer
-# and setting it to a negative value means "infinite scrollback"
-scrollback_lines = 10000
-
-# $BROWSER is used by default if set, with xdg-open as a fallback
-# browser = @browser@
-
-# "system", "on" or "off"
-cursor_blink = system
-
-# "block", "underline" or "ibeam"
-cursor_shape = block
-
-# Hide links that are no longer valid in url select overlay mode
-filter_unmatched_urls = true
-
-# Emit escape sequences for extra modified keys
-modify_other_keys = false
-
-# set size hints for the window
-size_hints = false
-
-# "off", "left" or "right"
-scrollbar = off
-
 [hints]
 
 @hints_fonts@
-#padding = 2
 border_width = 0
 roundness = 2.2
 
@@ -75,6 +44,5 @@ foreground = @brwhite@
 background = @orange@
 active_foreground = @brwhite@
 active_background = @brorange@
-# border = @red@
 
 # vim: ft=dosini cms=#%s
