@@ -4,6 +4,16 @@ self: super:
 {
   adapta-gtk-theme-colorpack = self.callPackage ./adapta-gtk-theme-colorpack {};
 
+  adapta-gtk-theme-customized = with config.environment.colortheme;
+  self.callPackage ./adapta-gtk-theme-customized {
+    selectionColor = orange;
+    accentColor = yellow;
+    suggestionColor = yellow;
+    destructionColor = red;
+    enableParallel = true;
+    enableTelegram = true;
+  };
+
   configFiles = {
     gtk3 = self.callPackage ./gtk3-config { inherit config; };
 

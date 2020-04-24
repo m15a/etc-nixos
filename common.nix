@@ -172,7 +172,7 @@
     ] ++ [
       gtk3 # Required to use Emacs key bindings in GTK apps
       configFiles.gtk3
-      adapta-gtk-theme-colorpack
+      adapta-gtk-theme-customized
       paper-icon-theme
       papirus-icon-theme
     ];
