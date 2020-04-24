@@ -1,4 +1,4 @@
-{ config, lib, substituteAll, paper-icon-theme, papirus-icon-theme, xdg_utils }:
+{ config, lib, substituteAll, papirus-icon-theme, xdg_utils }:
 
 let
   inherit (config.environment.hidpi) scale;
@@ -24,14 +24,9 @@ substituteAll (colortheme // {
 
   icon_path = let
     s = toString (24 * scale);
-    paper_paths = lib.concatStringsSep ":"
-    (map (c: "${paper-icon-theme}/share/icons/Paper/${s}x${s}/${c}")
-    [ "status" "devices" "apps" ]);
-    # Fallback for e.g. dropbox, which is missing in Paper 24x24 and 48x48
-    papirus_paths = lib.concatStringsSep ":"
-    (map (c: "${papirus-icon-theme}/share/icons/Papirus/${s}x${s}/${c}")
-    [ "status" "devices" "apps" ]);
-  in "${paper_paths}:${papirus_paths}";
+    path = "${papirus-icon-theme}/share/icons/Papirus";
+  in lib.concatStringsSep ":"
+  (map (c: "${path}/${s}x${s}/${c}") [ "status" "devices" "apps" ]);
 
   browser = "${xdg_utils}/bin/xdg-open";
 })

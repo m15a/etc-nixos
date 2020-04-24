@@ -174,6 +174,7 @@
       configFiles.gtk3
       adapta-gtk-theme-colorpack
       paper-icon-theme
+      papirus-icon-theme
     ];
 
     profileRelativeEnvVars = {
