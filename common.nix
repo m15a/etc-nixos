@@ -170,13 +170,15 @@
       wrapped.zathura
     ] ++ [
       gtk3 # Required to use Emacs key bindings in GTK apps
-      configFiles.gtk3
       adapta-gtk-theme-customized
       paper-icon-theme
       papirus-icon-theme
     ];
 
     etc = {
+      "xdg/gtk-3.0/gtk.css".source = "${pkgs.configFiles.gtk3}/etc/xdg/gtk-3.0/gtk.css";
+      "xdg/gtk-3.0/settings.ini".source = "${pkgs.configFiles.gtk3}/etc/xdg/gtk-3.0/settings.ini";
+
       "xdg/termite/config".source = "${pkgs.configFiles.termite}/etc/xdg/termite/config";
     };
 
