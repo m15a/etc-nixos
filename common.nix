@@ -12,7 +12,7 @@
     ./modules/dunst.nix
     ./modules/hidpi.nix
     ./modules/libinput.nix
-    ./modules/lightlocker.nix
+    ./modules/light-locker.nix
     ./modules/yabar.nix
   ];
 
@@ -226,8 +226,8 @@
   } // { # Others
     dconf.enable = true;
 
-    lightlocker.enable = true;
-    lightlocker.lockAfterScreensaver = 10;
+    light-locker.enable = true;
+    light-locker.lockAfterScreensaver = 10;
 
     vim.defaultEditor = true;
   };
