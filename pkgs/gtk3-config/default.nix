@@ -4,13 +4,13 @@ let
   inherit (config.environment.hidpi) scale;
 
   gtkCss = substituteAll {
-    src = ../../data/config/gtk3/gtk.css;
+    src = ../../data/etc/xdg/gtk-3.0/gtk.css;
 
     termite_padding = toString 8;  # seems being scaled by GDK_SCALE
   };
 
   settingsIni = substituteAll {
-    src = ../../data/config/gtk3/settings.ini;
+    src = ../../data/etc/xdg/gtk-3.0/settings.ini;
   };
 in
 
