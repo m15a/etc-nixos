@@ -64,8 +64,6 @@
   };
 
   services.xserver = {
-    libinput.disableWhileTyping = true;
-
     videoDrivers = [ "intel" ];
 
     deviceSection = ''
