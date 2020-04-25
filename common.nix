@@ -166,7 +166,7 @@
       pavucontrol
       wrapped.feh
       wrapped.rofi
-      wrapped.termite
+      termite
       wrapped.zathura
     ] ++ [
       gtk3 # Required to use Emacs key bindings in GTK apps
@@ -175,6 +175,10 @@
       paper-icon-theme
       papirus-icon-theme
     ];
+
+    etc = {
+      "xdg/termite/config".source = "${pkgs.configFiles.termite}/etc/xdg/termite/config";
+    };
 
     profileRelativeEnvVars = {
       MANPATH = [ "/man" "/share/man" ];

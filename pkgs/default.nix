@@ -19,6 +19,8 @@ self: super:
 
     dunst = self.callPackage ./dunst-config { inherit config; };
 
+    termite = self.callPackage ./termite-config { inherit config; };
+
     yabar = with super;
     let
       inherit (config.environment.hidpi) scale;
@@ -103,7 +105,7 @@ self: super:
       browser = "${xdg_utils}/bin/xdg-open";
       wifi_fixed_size = toString (201 * scale);
       wifi_switch = "${wifiSwitch}";
-      termite = "${self.wrapped.termite}/bin/termite";
+      termite = "${termite}/bin/termite";
       nmtui = "${networkmanager}/bin/nmtui";
       bluetooth_fixed_size = toString (12 * scale);
       bluetoothctl = "${bluez}/bin/bluetoothctl";
@@ -160,7 +162,7 @@ self: super:
         src = ../data/config/rofi.conf;
         dpi = toString (96 * scale);
         font = "Source Code Pro Medium 13";
-        terminal = "${self.wrapped.termite}/bin/termite";
+        terminal = "${termite}/bin/termite";
       });
     in
     buildEnv {
@@ -176,33 +178,6 @@ self: super:
           name="$(basename "$path")"
           [ "$name" != rofi ] && ln -s "$path" "$out/bin/$name"
         done
-      '';
-    };
-
-    termite = with super;
-    let
-      inherit (config.environment) colortheme;
-      configFile = substituteAll (colortheme // {
-        src = ../data/config/termite;
-        fonts = lib.concatStringsSep "\n" (map (s: "font = ${s}") [
-          # The later declared, the more prioritized
-          # "Rounded Mgen+ 1m 13"  # in the fallback fonts
-          "Source Code Pro 13"
-        ]);
-        hints_fonts = lib.concatStringsSep "\n" (map (s: "font = ${s}") [
-          "Source Code Pro Bold 13"
-        ]);
-      });
-    in
-    buildEnv {
-      name = "${termite.name}-wrapped";
-      paths = [ termite ];
-      pathsToLink = [ "/share" "/nix-support" ];
-      buildInputs = [ makeWrapper ];
-      postBuild = ''
-        mkdir $out/bin
-        makeWrapper ${termite}/bin/termite $out/bin/termite \
-          --add-flags "--config ${configFile}"
       '';
     };
 
