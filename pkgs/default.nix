@@ -4,8 +4,8 @@ self: super:
 {
   adapta-gtk-theme-colorpack = self.callPackage ./adapta-gtk-theme-colorpack {};
 
-  adapta-gtk-theme-customized = with config.environment.colortheme;
-  self.callPackage ./adapta-gtk-theme-customized {
+  adapta-gtk-theme-custom = with config.environment.colortheme;
+  self.callPackage ./adapta-gtk-theme/custom.nix {
     selectionColor = brorange;
     accentColor = orange;
     suggestionColor = orange;
@@ -15,11 +15,11 @@ self: super:
   };
 
   configFiles = {
-    gtk3 = self.callPackage ./gtk3-config { inherit config; };
+    gtk3 = self.callPackage ./gtk3/config.nix { inherit config; };
 
-    dunst = self.callPackage ./dunst-config { inherit config; };
+    dunst = self.callPackage ./dunst/config.nix { inherit config; };
 
-    termite = self.callPackage ./termite-config { inherit config; };
+    termite = self.callPackage ./termite/config.nix { inherit config; };
 
     yabar = with super;
     let

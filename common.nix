@@ -170,7 +170,7 @@
       wrapped.zathura
     ] ++ [
       gtk3 # Required to use Emacs key bindings in GTK apps
-      adapta-gtk-theme-customized
+      adapta-gtk-theme-custom
       paper-icon-theme
       papirus-icon-theme
     ];

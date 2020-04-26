@@ -17,7 +17,8 @@
 }:
 
 adapta-gtk-theme.overrideAttrs (old: {
-  pname = old.pname + "-customized";
+  pname = old.pname + "-custom";
+
   configureFlags = lib.optionals enableParallel [
     "--enable-parallel"
   ] ++ lib.optionals (!enableGnome) [
