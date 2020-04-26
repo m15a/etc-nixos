@@ -187,6 +187,9 @@
       XCURSOR_THEME = "Paper";
       # Apps launched in ~/.xprofile need it if they use SVG icons.
       GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
+      PAGER = "less";
+      LESS = "-R -ig -j.5";
+      LESSCHARSET = "utf-8";
     };
 
     shellAliases = {
