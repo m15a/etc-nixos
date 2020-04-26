@@ -77,16 +77,14 @@ in
 
   config = mkIf (ldmcfg.enable && cfg.enable) {
     services.xserver.displayManager.sessionCommands = let
-      args = lib.escapeShellArgs ([
+      args = escapeShellArgs ([
         "--lock-after-screensaver=${toString cfg.lockAfterScreensaver}"
         (if cfg.lateLocking then "--late-locking" else "--no-late-locking")
         (if cfg.lockOnSuspend then "--lock-on-suspend" else "--no-lock-on-suspend")
         (if cfg.lockOnLid then "--lock-on-lid" else "--no-lock-on-lid")
         (if cfg.idleHint then "--idle-hint" else "--no-idle-hint")
       ] ++ cfg.extraOptions);
-    in ''
-      ${cfg.package}/bin/light-locker ${args} &
-    '';
+    in "${cfg.package}/bin/light-locker ${args} &";
 
     environment.systemPackages = [ cfg.package ];
   };

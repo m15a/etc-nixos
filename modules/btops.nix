@@ -20,7 +20,7 @@ let
   { nativeBuildInputs = [ pkgs.makeWrapper ]; }
   ''
     makeWrapper ${cfg.package}/bin/btops $out/bin/btops \
-      --set XDG_CONFIG_HOME ${configHome}
+        --set XDG_CONFIG_HOME ${configHome}
   '';
 in
 

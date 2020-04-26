@@ -40,8 +40,11 @@ in
       partOf = [ "graphical-session.target" ];
       serviceConfig = {
         ExecStart = let
-          arg = optionalString (!isNull cfg.configFile) " -c ${cfg.configFile}";
-        in "${pkgs.coreutils}/bin/env ${cfg.package}/bin/yabar${arg}";
+          arg = escapeShellArg "-c ${cfg.configFile}";
+        in concatStringsSep " " ([
+          "${pkgs.coreutils}/bin/env"
+          "${cfg.package}/bin/yabar"
+        ] ++ optional (!isNull cfg.configFile) arg);
         Restart = "always";
       };
     };

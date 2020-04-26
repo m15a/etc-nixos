@@ -40,8 +40,10 @@ in
       partOf = [ "graphical-session.target" ];
       serviceConfig = {
         ExecStart = let
-          arg = optionalString (!isNull cfg.configFile) " -conf ${cfg.configFile}";
-        in "${cfg.package}/bin/dunst${arg}";
+          arg = escapeShellArg "-conf ${cfg.configFile}";
+        in concatStringsSep " " ([
+          "${cfg.package}/bin/dunst"
+        ] ++ optional (!isNull cfg.configFile) arg);
         Restart = "always";
       };
     };
