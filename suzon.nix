@@ -59,14 +59,16 @@
       ls = "ls -Fh --color --time-style=long-iso";
       cp = "cp -i";
       mv = "mv -i";
+      diff = "diff --color";
     };
   };
 
   programs = { # Shells
     bash.interactiveShellInit = ''
-      alias la="ls -a"
-      alias ll="ls -l"
-      alias lla="ls -la"
+      alias l='ls'
+      alias la='ls -a'
+      alias ll='ls -l'
+      alias lla='ls -la'
     '';
 
     fish.enable = true;
@@ -80,9 +82,14 @@
       end
     '';
     fish.interactiveShellInit = ''
+      abbr --add l 'ls'
       abbr --add la 'ls -a'
       abbr --add ll 'ls -l'
       abbr --add lla 'ls -la'
+      abbr --add h history
+      abbr --add d  dirh
+      abbr --add nd nextd
+      abbr --add pd prevd
     '';
   } // { # Others
   };

@@ -194,7 +194,7 @@
 
     shellAliases = {
       ls = "ls -Fh --color --time-style=long-iso";
-      l = null;
+      l = "ls";
       la = "ls -a";
       ll = "ls -l";
       lla = "ls -la";
@@ -207,6 +207,7 @@
   programs = {
     fish.enable = true;
     fish.shellAliases = {
+      l = null;
       la = null;
       ll = null;
       lla = null;
@@ -215,6 +216,7 @@
       umask 077
     '';
     fish.interactiveShellInit = ''
+      abbr --add l 'ls'
       abbr --add la 'ls -a'
       abbr --add ll 'ls -l'
       abbr --add lla 'ls -la'
