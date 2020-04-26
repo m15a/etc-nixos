@@ -8,6 +8,7 @@ in
 substituteAll (colortheme // {
   src = ../../data/config/dunstrc;
 
+  # TODO: Fix it to treat negative x correctly
   geometry = let
     width = toString (450 * scale);
     height = toString 5;
