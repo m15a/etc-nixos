@@ -31,7 +31,7 @@ in
     (mkIf cfg.enable {
       boot.loader.systemd-boot.consoleMode = "1";
 
-      console.earlySetup = true;
+      # console.earlySetup = true;
 
       console.font = "latarcyrheb-sun32";
 
