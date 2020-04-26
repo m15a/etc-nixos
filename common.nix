@@ -70,42 +70,11 @@
 
   time.timeZone = "Asia/Tokyo";
 
-  environment.colortheme = {
-    # Srcery: https://github.com/srcery-colors/srcery-vim
-    black     = "#1C1B19";
-    red       = "#EF2F27";
-    green     = "#519F50";
-    yellow    = "#FBB829";
-    blue      = "#2C78BF";
-    magenta   = "#E02C6D";
-    cyan      = "#0AAEB3";
-    white     = "#918175";
-    brblack   = "#2D2C29";
-    brred     = "#F75341";
-    brgreen   = "#98BC37";
-    bryellow  = "#FED06E";
-    brblue    = "#68A8E4";
-    brmagenta = "#FF5C8F";
-    brcyan    = "#53FDE9";
-    brwhite   = "#FCE8C3";
-    orange    = "#D75F00";
-    brorange  = "#FF8700";
-    hardblack = "#121212";
-    xgray1    = "#262626";
-    xgray2    = "#303030";
-    xgray3    = "#3A3A3A";
-    xgray4    = "#444444";
-    xgray5    = "#4E4E4E";
-    xgray6    = "#585858";
-  };
+  i18n.defaultLocale = "ja_JP.UTF-8";
 
-  i18n = {
-    defaultLocale = "ja_JP.UTF-8";
-
-    inputMethod = {
-      enabled = "fcitx";
-      fcitx.engines = with pkgs.fcitx-engines; [ mozc ];
-    };
+  i18n.inputMethod = {
+    enabled = "fcitx";
+    fcitx.engines = with pkgs.fcitx-engines; [ mozc ];
   };
 
   fonts = {
@@ -159,6 +128,35 @@
   };
 
   environment = {
+    colortheme = {
+      # Srcery: https://github.com/srcery-colors/srcery-vim
+      black     = "#1C1B19";
+      red       = "#EF2F27";
+      green     = "#519F50";
+      yellow    = "#FBB829";
+      blue      = "#2C78BF";
+      magenta   = "#E02C6D";
+      cyan      = "#0AAEB3";
+      white     = "#918175";
+      brblack   = "#2D2C29";
+      brred     = "#F75341";
+      brgreen   = "#98BC37";
+      bryellow  = "#FED06E";
+      brblue    = "#68A8E4";
+      brmagenta = "#FF5C8F";
+      brcyan    = "#53FDE9";
+      brwhite   = "#FCE8C3";
+      orange    = "#D75F00";
+      brorange  = "#FF8700";
+      hardblack = "#121212";
+      xgray1    = "#262626";
+      xgray2    = "#303030";
+      xgray3    = "#3A3A3A";
+      xgray4    = "#444444";
+      xgray5    = "#4E4E4E";
+      xgray6    = "#585858";
+    };
+
     systemPackages = with pkgs; [
       # firefox-devedition-bin
       libnotify
@@ -175,11 +173,10 @@
       papirus-icon-theme
     ];
 
-    etc = {
-      "xdg/gtk-3.0/gtk.css".source = "${pkgs.configFiles.gtk3}/etc/xdg/gtk-3.0/gtk.css";
-      "xdg/gtk-3.0/settings.ini".source = "${pkgs.configFiles.gtk3}/etc/xdg/gtk-3.0/settings.ini";
-
-      "xdg/termite/config".source = "${pkgs.configFiles.termite}/etc/xdg/termite/config";
+    etc = with pkgs.configFiles; {
+      "xdg/gtk-3.0/gtk.css".source = "${gtk3}/etc/xdg/gtk-3.0/gtk.css";
+      "xdg/gtk-3.0/settings.ini".source = "${gtk3}/etc/xdg/gtk-3.0/settings.ini";
+      "xdg/termite/config".source = "${termite}/etc/xdg/termite/config";
     };
 
     profileRelativeEnvVars = {
@@ -204,7 +201,7 @@
     };
   };
 
-  programs = { # Shells
+  programs = {
     fish.enable = true;
     fish.shellAliases = {
       la = null;
@@ -223,7 +220,7 @@
       abbr --add nd nextd
       abbr --add pd prevd
     '';
-  } // { # Others
+
     dconf.enable = true;
 
     light-locker.enable = true;
@@ -258,64 +255,66 @@
 
     myLibinput.enable = true;
 
+    inputClassSections = [
+      ''
+        Identifier       "HHKB Professional BT"
+        MatchIsKeyboard  "on"
+        MatchProduct     "HHKB-BT"
+
+        Option "XkbModel"    "hhk"
+        Option "XkbLayout"   "us"
+        Option "XkbVariant"  ""
+        Option "XkbOptions"  "terminate:ctrl_alt_bksp"
+      ''
+    ];
+
+    displayManager.sessionCommands = let
+      backgroundImage = pkgs.runCommand "desktop-background" {} ''
+        cp ${./data/pixmaps/desktop_background.jpg} $out
+      '';
+    in ''
+      ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
+      ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${backgroundImage}
+    '';
+
+    displayManager.lightdm = {
+      enable = true;
+
+      background = let
+        backgroundImage = pkgs.runCommand "login-background" {} ''
+          cp ${./data/pixmaps/login_background.jpg} $out
+        '';
+      in "${backgroundImage}";
+
+      greeters.mini = {
+        enable = true;
+        user = "mnacamura";
+        extraConfig = let
+          inherit (config.environment) colortheme;
+        in with colortheme; ''
+          [greeter-theme]
+          font = Source Code Pro Medium
+          font-size = 13pt
+          text-color = "${brwhite}"
+          error-color = "${brwhite}"
+          window-color = "${brorange}"
+          border-width = 0
+          layout-space = 40
+          password-color = "${brwhite}"
+          password-background-color = "${black}"
+        '';
+      };
+    };
+
     # Enable bspwm environment.
     displayManager.defaultSession = "none+bspwm";
-    windowManager = {
-      bspwm.enable = true;
-      bspwm.configFile = pkgs.configFiles.bspwm;
-      bspwm.sxhkd.configFile = pkgs.configFiles.sxhkd;
-      bspwm.btops.enable = true;
+    windowManager.bspwm = {
+      enable = true;
+      configFile = pkgs.configFiles.bspwm;
+      sxhkd.configFile = pkgs.configFiles.sxhkd;
+      btops.enable = true;
     };
   };
-
-  services.xserver.inputClassSections = [
-    ''
-      Identifier       "HHKB Professional BT"
-      MatchIsKeyboard  "on"
-      MatchProduct     "HHKB-BT"
-
-      Option "XkbModel"    "hhk"
-      Option "XkbLayout"   "us"
-      Option "XkbVariant"  ""
-      Option "XkbOptions"  "terminate:ctrl_alt_bksp"
-    ''
-  ];
-
-  services.xserver.displayManager.lightdm = {
-    enable = true;
-
-    background = let
-      backgroundImage = pkgs.runCommand "login-background" {} ''
-        cp ${./data/pixmaps/login_background.jpg} $out
-      '';
-    in "${backgroundImage}";
-
-    greeters.mini.enable = true;
-    greeters.mini.user = "mnacamura";
-    greeters.mini.extraConfig = let
-      inherit (config.environment) colortheme;
-    in with colortheme; ''
-      [greeter-theme]
-      font = Source Code Pro Medium
-      font-size = 13pt
-      text-color = "${brwhite}"
-      error-color = "${brwhite}"
-      window-color = "${brorange}"
-      border-width = 0
-      layout-space = 40
-      password-color = "${brwhite}"
-      password-background-color = "${black}"
-    '';
-  };
-
-  services.xserver.displayManager.sessionCommands = let
-    backgroundImage = pkgs.runCommand "desktop-background" {} ''
-      cp ${./data/pixmaps/desktop_background.jpg} $out
-    '';
-  in ''
-    ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
-    ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${backgroundImage}
-  '';
 
   services.picom = let
     inherit (config.environment.hidpi) scale;
@@ -383,7 +382,7 @@
     isNormalUser = true;
     uid = 1000;
     extraGroups = [ "wheel" "networkmanager" ];
-    shell = "/run/current-system/sw/bin/fish";
+    shell = "${pkgs.fish}/bin/fish";
   };
 
   # This value determines the NixOS release with which your system is to be
