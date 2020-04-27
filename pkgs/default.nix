@@ -36,20 +36,7 @@ self: super:
       configDir = "${self.configFiles.termite}/etc/xdg";
     };
 
-    feh = with super;
-    let
-      inherit (config.environment) colortheme;
-    in
-    buildEnv {
-      name = "${feh.name}-wrapped";
-      paths = [ feh.man ];
-      buildInputs = [ makeWrapper ];
-      postBuild = with colortheme; ''
-        mkdir $out/bin
-        makeWrapper ${feh.out}/bin/feh $out/bin/feh \
-          --add-flags "--image-bg \"${black}\""
-      '';
-    };
+    feh = self.callPackage ./feh/wrapper.nix { inherit config; };
 
     rofi = with super;
     let
