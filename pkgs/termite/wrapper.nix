@@ -1,7 +1,7 @@
 { termite-unwrapped, configDir }:
 
 termite-unwrapped.overrideAttrs (old: {
-  name = old.name + "-wrapped";
+  name = with old; "${pname}-${version}-wrapped";
 
   preFixup = ''
     gappsWrapperArgs+=(--prefix XDG_CONFIG_DIRS : "${configDir}")
