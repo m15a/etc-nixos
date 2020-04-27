@@ -20,5 +20,4 @@ bspc config bottom_monocle_padding @monocle_padding@
 bspc config left_monocle_padding @monocle_padding@
 bspc config right_monocle_padding @monocle_padding@
 
-bspc rule --add Steam follow=no
-bspc rule --add Zathura state=tiled
+@rules@
