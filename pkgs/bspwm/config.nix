@@ -10,6 +10,8 @@ substituteAll (colortheme // {
 
   postInstall = "chmod +x $out";
 
+  border_width = toString (1 * scale);
+
   window_gap = toString (60 * scale);
 
   # 37 is derived from [bspwm window gap: 60] / [phi: 1.618]
