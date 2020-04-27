@@ -330,6 +330,7 @@
     inactiveOpacity = "0.68";
     shadowOpacity = "0.36";
     opacityRules = [
+      "100:class_g ?= 'feh'"
       "100:class_g *?= 'Firefox'"
       "100:class_g *?= 'Nightly'"
       "92:class_g ?= 'Rofi'"
