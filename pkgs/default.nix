@@ -39,14 +39,14 @@ self: super:
   };
 
   wrapped = {
-    termite = self.callPackage ./termite/wrapper.nix {
-      configDir = "${self.configFiles.termite}/etc/xdg";
-    };
-
     feh = self.callPackage ./feh/wrapper.nix { inherit config; };
 
     rofi = self.callPackage ./rofi/wrapper.nix {
       configFile = self.configFiles.rofi;
+    };
+
+    termite = self.callPackage ./termite/wrapper.nix {
+      configDir = "${self.configFiles.termite}/etc/xdg";
     };
 
     zathura = self.callPackage ./zathura/wrapper.nix {
