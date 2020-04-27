@@ -117,25 +117,9 @@ self: super:
       battery_fixed_size = toString (71 * scale);
     });
 
-    bspwm = with super;
-    let
-      inherit (config.environment.hidpi) scale;
-      inherit (config.environment) colortheme;
-    in
-    substituteAll (colortheme // {
-      src = ../data/config/bspwmrc;
-      postInstall = "chmod +x $out";
-      window_gap = toString (60 * scale);
-        # 37 is derived from [bspwm window gap: 60] / [phi: 1.618]
-        monocle_padding = toString (37 * scale);
-    });
+    bspwm = self.callPackage ./bspwm/config.nix { inherit config; };
 
-    sxhkd = let
-      inherit (config.environment.hidpi) scale;
-    in super.substituteAll {
-      src = ../data/config/sxhkdrc;
-      window_move_step = toString (10 * scale);
-    };
+    sxhkd = self.callPackage ./sxhkd/config.nix { inherit config; };
   };
 
   wrapped = {
