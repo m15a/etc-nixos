@@ -139,6 +139,10 @@ self: super:
   };
 
   wrapped = {
+    termite = self.callPackage ./termite/wrapper.nix {
+      configDir = "${self.configFiles.termite}/etc/xdg";
+    };
+
     feh = with super;
     let
       inherit (config.environment) colortheme;

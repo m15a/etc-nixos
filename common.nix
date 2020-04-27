@@ -164,7 +164,7 @@
       pavucontrol
       wrapped.feh
       wrapped.rofi
-      termite
+      wrapped.termite
       wrapped.zathura
     ] ++ [
       gtk3 # Required to use Emacs key bindings in GTK apps
@@ -176,7 +176,6 @@
     etc = with pkgs.configFiles; {
       "xdg/gtk-3.0/gtk.css".source = "${gtk3}/etc/xdg/gtk-3.0/gtk.css";
       "xdg/gtk-3.0/settings.ini".source = "${gtk3}/etc/xdg/gtk-3.0/settings.ini";
-      "xdg/termite/config".source = "${termite}/etc/xdg/termite/config";
     };
 
     profileRelativeEnvVars = {
