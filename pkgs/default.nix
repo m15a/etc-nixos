@@ -34,6 +34,8 @@ self: super:
       inherit config;
       termite = self.wrapped.termite;
     };
+
+    zathura = self.callPackage ./zathura/config.nix { inherit config; };
   };
 
   wrapped = {
@@ -47,29 +49,8 @@ self: super:
       configFile = self.configFiles.rofi;
     };
 
-    zathura = with super;
-    let
-      inherit (config.environment.hidpi) scale;
-      inherit(config.environment) colortheme;
-      configFile = substituteAll (colortheme // {
-        src = ../data/config/zathura/zathurarc;
-        font = "Source Code Pro 13";
-        page_padding = toString scale;
-      });
-      configDir = runCommand "zathura-config-dir" {} ''
-        install -D -m 444 "${configFile}" "$out/zathurarc"
-      '';
-    in
-    buildEnv {
-      name = "${zathura.name}-wrapped";
-      paths = [ zathura ];
-      pathsToLink = [ "/share" ];
-      buildInputs = [ makeWrapper ];
-      postBuild = ''
-        mkdir $out/bin
-        makeWrapper ${zathura}/bin/zathura $out/bin/zathura \
-          --add-flags "--config-dir ${configDir}"
-      '';
+    zathura = self.callPackage ./zathura/wrapper.nix {
+      configFile = self.configFiles.zathura;
     };
   };
 }
