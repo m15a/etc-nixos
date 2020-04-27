@@ -15,9 +15,13 @@ self: super:
   };
 
   configFiles = {
-    gtk3 = self.callPackage ./gtk3/config.nix { inherit config; };
+    bspwm = self.callPackage ./bspwm/config.nix { inherit config; };
 
     dunst = self.callPackage ./dunst/config.nix { inherit config; };
+
+    gtk3 = self.callPackage ./gtk3/config.nix { inherit config; };
+
+    sxhkd = self.callPackage ./sxhkd/config.nix { inherit config; };
 
     termite = self.callPackage ./termite/config.nix { inherit config; };
 
@@ -25,10 +29,6 @@ self: super:
       inherit config;
       termite = self.wrapped.termite;
     };
-
-    bspwm = self.callPackage ./bspwm/config.nix { inherit config; };
-
-    sxhkd = self.callPackage ./sxhkd/config.nix { inherit config; };
   };
 
   wrapped = {
