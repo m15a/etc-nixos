@@ -21,6 +21,11 @@ self: super:
 
     gtk3 = self.callPackage ./gtk3/config.nix { inherit config; };
 
+    rofi = self.callPackage ./rofi/config.nix {
+      inherit config;
+      termite = self.wrapped.termite;
+    };
+
     sxhkd = self.callPackage ./sxhkd/config.nix { inherit config; };
 
     termite = self.callPackage ./termite/config.nix { inherit config; };
@@ -38,31 +43,8 @@ self: super:
 
     feh = self.callPackage ./feh/wrapper.nix { inherit config; };
 
-    rofi = with super;
-    let
-      inherit (config.environment.hidpi) scale;
-      inherit (config.environment) colortheme;
-      configFile = substituteAll (colortheme // {
-        src = ../data/config/rofi/config;
-        dpi = toString (96 * scale);
-        font = "Source Code Pro Medium 13";
-        terminal = "${termite}/bin/termite";
-      });
-    in
-    buildEnv {
-      name = "${rofi.name}-wrapped";
-      paths = [ rofi ];
-      pathsToLink = [ "/share" ];
-      buildInputs = [ makeWrapper ];
-      postBuild = ''
-        mkdir $out/bin
-        makeWrapper ${rofi}/bin/rofi $out/bin/rofi \
-          --add-flags "-config ${configFile}"
-        for path in ${rofi}/bin/*; do
-          name="$(basename "$path")"
-          [ "$name" != rofi ] && ln -s "$path" "$out/bin/$name"
-        done
-      '';
+    rofi = self.callPackage ./rofi/wrapper.nix {
+      configFile = self.configFiles.rofi;
     };
 
     zathura = with super;
