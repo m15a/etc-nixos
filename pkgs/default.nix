@@ -56,7 +56,7 @@ self: super:
       inherit (config.environment.hidpi) scale;
       inherit (config.environment) colortheme;
       configFile = substituteAll (colortheme // {
-        src = ../data/config/rofi.conf;
+        src = ../data/config/rofi/config;
         dpi = toString (96 * scale);
         font = "Source Code Pro Medium 13";
         terminal = "${termite}/bin/termite";
@@ -83,7 +83,7 @@ self: super:
       inherit (config.environment.hidpi) scale;
       inherit(config.environment) colortheme;
       configFile = substituteAll (colortheme // {
-        src = ../data/config/zathurarc;
+        src = ../data/config/zathura/zathurarc;
         font = "Source Code Pro 13";
         page_padding = toString scale;
       });
