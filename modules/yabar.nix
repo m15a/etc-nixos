@@ -40,7 +40,7 @@ in
       partOf = [ "graphical-session.target" ];
       serviceConfig = {
         ExecStart = let
-          arg = escapeShellArg "-c ${cfg.configFile}";
+          arg = "-c ${cfg.configFile}";
         in concatStringsSep " " ([
           "${pkgs.coreutils}/bin/env"
           "${cfg.package}/bin/yabar"

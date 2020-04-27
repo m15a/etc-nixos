@@ -7,13 +7,13 @@ let
   cfg = config.programs.light-locker;
 
   wrapped = let
-      args = map escapeShellArg ([
+      args = [
         "--lock-after-screensaver=${toString cfg.lockAfterScreensaver}"
         (if cfg.lateLocking then "--late-locking" else "--no-late-locking")
         (if cfg.lockOnSuspend then "--lock-on-suspend" else "--no-lock-on-suspend")
         (if cfg.lockOnLid then "--lock-on-lid" else "--no-lock-on-lid")
         (if cfg.idleHint then "--idle-hint" else "--no-idle-hint")
-      ] ++ cfg.extraOptions);
+      ] ++ cfg.extraOptions;
   in
   pkgs.buildEnv {
     name = cfg.package.name + "-wrapped";
