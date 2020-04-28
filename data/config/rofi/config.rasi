@@ -1,0 +1,56 @@
+/* vim: set ft=css: */
+configuration {
+    modi: "combi,run,drun,window";
+    combi-modi: "run,drun,window";
+    m: "-1";
+    terminal: "@terminal@";
+
+    dpi: @dpi@;
+    font: "@font@";
+    show-icons: true;
+    sidebar-mode: true;
+    combi-hide-mode-prefix: true;
+    drun-display-format: "{name} [<span size='small'><i>({generic})</i></span>]";
+    window-format: "{c} [{w}]   {t}";
+    display-combi: "all";
+    display-run: "command";
+    display-drun: "application";
+    display-window: "window";
+    width: 50;
+    lines: 16;
+    bw: 2;
+    padding: 0;
+    line-margin: 0;
+    line-padding: 2;
+    separator-style: "solid";
+    hide-scrollbar: true;
+
+    /*             bg       fg       bgalt    hlbg     hlfg */
+    color-normal: "@xglay3@, @brwhite@, @xglay3@, @brorange@, @black@";
+    color-urgent: "@xglay3@, @brwhite@, @xglay3@, @brorange@, @black@";
+    color-active: "@orange@, @brwhite@, @orange@, @brorange@, @black@";
+    /*             bg       border   sepalator */
+    color-window: "@xglay2@, @xglay3@, @xglay3@";
+
+    kb-clear-line: "Control+l";
+    kb-move-front: "Control+a"; 
+    kb-move-end: "Control+e"; 
+    kb-move-word-back: "Alt+b,Control+Left"; 
+    kb-move-word-forward: "Alt+f,Control+Right"; 
+    kb-remove-word-back: "Alt+BackSpace,Control+w";
+    kb-remove-word-forward: "Alt+d";
+    kb-remove-char-back: "BackSpace,Control+h";
+    kb-delete-entry: "Shift+Delete,Shift+BackSpace";
+    kb-mode-next: "Shift+Right,Alt+Tab";
+    kb-mode-previous: "Shift+Left,Alt+ISO_Left_Tab";
+    kb-select-1: "Control+Alt+1";
+    kb-select-2: "Control+Alt+2";
+    kb-select-3: "Control+Alt+3";
+    kb-select-4: "Control+Alt+4";
+    kb-select-5: "Control+Alt+5";
+    kb-select-6: "Control+Alt+6";
+    kb-select-7: "Control+Alt+7";
+    kb-select-8: "Control+Alt+8";
+    kb-select-9: "Control+Alt+9";
+    kb-select-10: "Control+Alt+0";
+}

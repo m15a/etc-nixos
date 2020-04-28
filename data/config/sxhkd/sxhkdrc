@@ -24,7 +24,7 @@ super + Return
 
 # Program launcher
 super + space
-    rofi -modi run,drun,window -show run
+    rofi -show combi
 
 # Lock the screen
 super + alt + l

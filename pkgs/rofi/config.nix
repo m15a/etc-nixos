@@ -6,7 +6,7 @@ let
 in
 
 substituteAll (colortheme // {
-  src = ../../data/config/rofi/config;
+  src = ../../data/config/rofi/config.rasi;
 
   dpi = toString (96 * scale);
 
