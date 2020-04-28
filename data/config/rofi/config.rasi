@@ -26,11 +26,11 @@ configuration {
     hide-scrollbar: true;
 
     /*             bg       fg       bgalt    hlbg     hlfg */
-    color-normal: "@xglay3@, @brwhite@, @xglay3@, @brorange@, @black@";
-    color-urgent: "@xglay3@, @brwhite@, @xglay3@, @brorange@, @black@";
+    color-normal: "@xgray3@, @brwhite@, @xgray3@, @brorange@, @black@";
+    color-urgent: "@xgray3@, @brwhite@, @xgray3@, @brorange@, @black@";
     color-active: "@orange@, @brwhite@, @orange@, @brorange@, @black@";
     /*             bg       border   sepalator */
-    color-window: "@xglay2@, @xglay3@, @xglay3@";
+    color-window: "@xgray2@, @xgray3@, @xgray3@";
 
     kb-clear-line: "Control+l";
     kb-move-front: "Control+a"; 
