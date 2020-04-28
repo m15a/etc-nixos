@@ -2,7 +2,6 @@
 configuration {
     modi: "combi,run,drun,window";
     combi-modi: "run,drun,window";
-    m: "-1";
     terminal: "@terminal@";
 
     dpi: @dpi@;
