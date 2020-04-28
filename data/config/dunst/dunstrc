@@ -1,47 +1,43 @@
 [global]
-    geometry = "@geometry@"
-    transparency = 8  # picom active opacity 1 - .92 = 8%
-    separator_height = 0
-    padding = @padding@
-    horizontal_padding = @horizontal_padding@
-    frame_width = 0
-    separator_color = "@brblack@"
-    font = Source Sans Pro 13
-    format = "<b>%s</b>\n%b"
-    show_age_threshold = -1
-    icon_position = left
-    max_icon_size = @max_icon_size@
-    icon_path = @icon_path@
-    browser = @browser@
-    # startup_notification = true
+geometry = "@geometry@"
+transparency = 8  # picom active opacity 1 - .92 = 8%
+padding = @padding@
+horizontal_padding = @horizontal_padding@
+frame_width = @frame_width@
+frame_color = "@xgray3@"
+separator_height = 0
+font = Source Sans Pro 13
+format = "<b>%s</b>\n%b"
+show_age_threshold = -1
+icon_position = left
+max_icon_size = @max_icon_size@
+icon_path = @icon_path@
+browser = @browser@
+# corner_radius = 0
 
-[experimental]
-    # per_monitor_dpi = true
+mouse_left_click = close_current
+mouse_middle_click = close_all
+mouse_right_click = do_action
 
 [shortcuts]
-    # Shortcuts are specified as [modifier+][modifier+]...key
-    # Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
-    # "mod3" and "mod4" (windows-key).
-    close = mod4+mod1+space
-    close_all = mod4+mod1+shift+space
-    history = mod4+mod1+h
-    context = mod4+mod1+Return
+close = mod4+mod1+space
+close_all = mod4+mod1+shift+space
+history = mod4+mod1+h
+context = mod4+mod1+Return
 
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background = "@brwhite@"
-    foreground = "@white@"
-    timeout = 10
+background = "@xgray3@"
+foreground = "@white@"
+timeout = 10
 
 [urgency_normal]
-    background = "@brwhite@"
-    foreground = "@brblack@"
-    timeout = 10
+background = "@xgray3@"
+foreground = "@brwhite@"
+timeout = 10
 
 [urgency_critical]
-    background = "@red@"
-    foreground = "@brwhite@"
-    timeout = 0
+background = "@red@"
+foreground = "@brwhite@"
+timeout = 0
 
 # vim: ft=cfg

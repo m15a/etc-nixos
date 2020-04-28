@@ -21,6 +21,8 @@ substituteAll (colortheme // {
 
   horizontal_padding = toString (5 * scale);
 
+  frame_width = toString (1 * scale);
+
   max_icon_size = toString (24 * scale);
 
   icon_path = let
