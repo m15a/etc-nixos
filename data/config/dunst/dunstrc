@@ -4,7 +4,7 @@ transparency = 8  # picom active opacity 1 - .92 = 8%
 padding = @padding@
 horizontal_padding = @horizontal_padding@
 frame_width = @frame_width@
-frame_color = "@xgray3@"
+frame_color = "@xgray6@"
 separator_height = 0
 font = Source Sans Pro 13
 format = "<b>%s</b>\n%b"

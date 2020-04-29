@@ -29,7 +29,7 @@ configuration {
     color-urgent: "@xgray3@, @brwhite@, @xgray3@, @brorange@, @black@";
     color-active: "@orange@, @brwhite@, @orange@, @brorange@, @black@";
     /*             bg       border   sepalator */
-    color-window: "@xgray2@, @xgray3@, @xgray3@";
+    color-window: "@xgray2@, @xgray6@, @xgray3@";
 
     kb-clear-line: "Control+l";
     kb-move-front: "Control+a"; 
