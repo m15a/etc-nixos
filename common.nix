@@ -292,6 +292,9 @@
         extraConfig = let
           inherit (config.environment) colortheme;
         in with colortheme; ''
+          [greeter]
+          show-password-label = false
+          invalid-password-text = beep! beep!
           [greeter-theme]
           font = Source Code Pro Medium
           font-size = 13pt
@@ -302,6 +305,7 @@
           layout-space = 40
           password-color = "${brwhite}"
           password-background-color = "${black}"
+          password-border-width = 0px
         '';
       };
     };
