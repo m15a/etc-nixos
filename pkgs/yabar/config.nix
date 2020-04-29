@@ -15,21 +15,24 @@ let
     dropbox="${dropbox-cli}/bin/dropbox"
     # If status = 0, confusingly, dropbox is not running!
     "$dropbox" running
-    if [[ $? -ne 0 ]]; then
-      status="$("$dropbox" status 2>/dev/null)"
-      if [[ "$status" = 'Up to date' || "$status" = '最新の状態' ]]; then
-        echo ''
-      else
-        echo ''
-      fi
+    if [ $? -ne 0 ]; then
+        status="$("$dropbox" status 2>/dev/null)"
+        case "$status" in
+            'Up to date'|'最新の状態')
+                echo ''
+                ;;
+            *)
+                echo ''
+                ;;
+        esac
     else
-      echo '!YFG0x44fce8c3Y!'
+        echo '!YFG0x44fce8c3Y!'
     fi
   '';
 
   wifiSwitch = writeShellScript "wifi-switch" ''
     nmcli="${networkmanager}/bin/nmcli"
-    if [[ "$("$nmcli" radio wifi)" = enabled ]]; then
+    if [ "$("$nmcli" radio wifi)" = enabled ]; then
         "$nmcli" radio wifi off
     else
         "$nmcli" radio wifi on
@@ -38,16 +41,16 @@ let
 
   bluetoothStatusIcon = writeShellScript "bluetooth-status-icon" ''
     btctl="${bluez}/bin/bluetoothctl"
-    if [[ "$("$btctl" show | grep Powered | cut -d' ' -f2)" = yes ]]; then
-      echo ''
+    if [ "$("$btctl" show | grep Powered | cut -d' ' -f2)" = yes ]; then
+        echo ''
     else
-      echo '!YFG0x44fce8c3Y!'
+        echo '!YFG0x44fce8c3Y!'
     fi
   '';
 
   bluetoothSwitch = writeShellScript "bluetooth-switch" ''
     btctl="${bluez}/bin/bluetoothctl"
-    if [[ "$($btctl show | grep Powered | cut -d' ' -f2)" = yes ]]; then
+    if [ "$($btctl show | grep Powered | cut -d' ' -f2)" = yes ]; then
         "$btctl" power off
     else
         "$btctl" power on
