@@ -34,8 +34,6 @@ self: super:
       inherit config;
       termite = self.wrapped.termite;
     };
-
-    zathura = self.callPackage ./zathura/config.nix { inherit config; };
   };
 
   wrapped = {
@@ -47,10 +45,6 @@ self: super:
 
     termite = self.callPackage ./termite/wrapper.nix {
       configDir = "${self.configFiles.termite}/etc/xdg";
-    };
-
-    zathura = self.callPackage ./zathura/wrapper.nix {
-      configFile = self.configFiles.zathura;
     };
   };
 }
