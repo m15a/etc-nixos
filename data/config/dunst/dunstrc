@@ -1,6 +1,6 @@
 [global]
 geometry = "@geometry@"
-transparency = 8  # picom active opacity 1 - .92 = 8%
+transparency = 16  # picom active opacity (1 - .92) * 2 = 16%
 padding = @padding@
 horizontal_padding = @horizontal_padding@
 frame_width = @frame_width@
