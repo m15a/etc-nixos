@@ -299,7 +299,7 @@
           font-size = 13pt
           text-color = "${brwhite}"
           error-color = "${brwhite}"
-          window-color = "${brorange}"
+          window-color = "${orange}"
           border-width = 0
           layout-space = 40
           password-color = "${brwhite}"

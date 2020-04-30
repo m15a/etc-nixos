@@ -26,12 +26,12 @@ history = mod4+mod1+h
 context = mod4+mod1+Return
 
 [urgency_low]
-background = "@xgray3@"
+background = "@xgray2@"
 foreground = "@white@"
 timeout = 10
 
 [urgency_normal]
-background = "@xgray3@"
+background = "@xgray2@"
 foreground = "@brwhite@"
 timeout = 10
 

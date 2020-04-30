@@ -6,7 +6,7 @@ cursor          = @brorange@
 background      = @black@
 
 # If unset, will reverse foreground and background
-# highlight = @brorange@
+# highlight = @orange@
 
 # Colors from color0 to color254 can be set
 color0  = @black@
