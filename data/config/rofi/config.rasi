@@ -27,7 +27,7 @@ configuration {
     /*             bg       fg       bgalt    hlbg     hlfg */
     color-normal: "@xgray2@, @brwhite@, @xgray2@, @orange@, @brwhite@";
     color-urgent: "@red@, @brwhite@, @red@, @orange@, @brwhite@";
-    color-active: "@brorange@, @brwhite@, @xgray6@, @orange@, @brwhite@";
+    color-active: "@xgray3@, @brorange@, @xgray3@, @orange@, @brwhite@";
     /*             bg       border   sepalator */
     color-window: "@xgray1@, @xgray6@, @xgray2@";
 
