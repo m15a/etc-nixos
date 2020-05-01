@@ -20,7 +20,7 @@ let
     ];
 
     hints_fonts = lib.concatMapStringsSep "\n" (s: "font = ${s}") [
-      "Source Code Pro Bold 13"
+      "Source Code Pro Semibold 13"
     ];
   });
 in
