@@ -316,6 +316,11 @@
       configFile = pkgs.configFiles.bspwm;
       sxhkd.configFile = pkgs.configFiles.sxhkd;
       btops.enable = true;
+      btops.configFile = pkgs.writeText "btops-config.toml" ''
+        min = 4
+        max = 10
+        renamers = [ "numeric" ]
+      '';
     };
   };
 
