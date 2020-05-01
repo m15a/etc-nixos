@@ -5,7 +5,7 @@ self: super:
   adapta-gtk-theme-colorpack = self.callPackage ./adapta-gtk-theme-colorpack {};
 
   adapta-gtk-theme-custom = let
-    colortheme = self.lib.mapAttrs (_: c: c.hex) config.environment.colortheme;
+    colortheme = self.lib.mapAttrs (_: c: c.hex) config.environment.colortheme.palette;
   in with colortheme;
   self.callPackage ./adapta-gtk-theme/custom.nix {
     selectionColor = orange;

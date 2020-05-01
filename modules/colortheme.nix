@@ -3,9 +3,9 @@
 with lib;
 
 let
-  cfg = config.environment;
+  cfg = config.environment.colortheme;
 
-  defaultColorTheme = {
+  defaultPalette = {
     black     = { nr =  0; hex = "#000000"; };
     red       = { nr =  1; hex = "#800000"; };
     green     = { nr =  2; hex = "#008000"; };
@@ -39,10 +39,10 @@ in
 
 {
   options = {
-    environment.colortheme = mkOption {
+    environment.colortheme.palette = mkOption {
       type = with types; attrsOf attrs;
-      default = defaultColorTheme;
-      example = defaultColorTheme;
+      default = defaultPalette;
+      example = defaultPalette;
       description = ''
         Color theme to be used for various packages (console, vim, ...). Each
         color is defined by an attrset which may have <code>nr</code> key and
@@ -60,7 +60,7 @@ in
     assertions = [
       {
         assertion = let
-          definedNames = attrNames cfg.colortheme;
+          definedNames = attrNames cfg.palette;
           expectedNames = [
             "black"   "red"   "green"   "yellow"   "blue"   "magenta"   "cyan"   "white"
             "brblack" "brred" "brgreen" "bryellow" "brblue" "brmagenta" "brcyan" "brwhite"
@@ -68,34 +68,36 @@ in
         in all (n: elem n definedNames) expectedNames;
         message = ''
           At least 16 colors should be defined. See description of
-          <option>environment.colortheme</option>.
+          <option>environment.colortheme.palette</option>.
         '';
       }
 
       {
-        assertion = all (b: b) (mapAttrsToList (_: c: c ? hex) cfg.colortheme);
+        assertion = all (b: b) (mapAttrsToList (_: c: c ? hex) cfg.palette);
         message = ''
           Color(s) with no hex value found. See description of
-          <option>environment.colortheme</option>.
+          <option>environment.colortheme.palette</option>.
         '';
       }
 
       {
-        assertion = all isInt (mapAttrsToList (_: c: c.nr) cfg.colortheme);
+        assertion = all isInt (mapAttrsToList (_: c: c.nr) cfg.palette);
         message = ''
-          Invalid xterm color number found.
+          Invalid xterm color number found. See description of
+          <option>environment.colortheme.palette</option>.
         '';
       }
 
       {
-        assertion = all isHexColorCode (mapAttrsToList (_: c: c.hex) cfg.colortheme);
+        assertion = all isHexColorCode (mapAttrsToList (_: c: c.hex) cfg.palette);
         message = ''
-          Invalid hexadicimal color code found.
+          Invalid hexadicimal color code found. See description of
+          <option>environment.colortheme.palette</option>.
         '';
       }
     ];
 
-    console.colors = with mapAttrs (_: c: c.hex) cfg.colortheme;
+    console.colors = with mapAttrs (_: c: c.hex) cfg.palette;
     map (substring 1 8) [
         black   red   green   yellow   blue   magenta   cyan   white
       brblack brred brgreen bryellow brblue brmagenta brcyan brwhite

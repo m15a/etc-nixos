@@ -1,7 +1,7 @@
 { config, lib, feh, buildEnv, makeWrapper }:
 
 let
-  colortheme = lib.mapAttrs (_: c: c.hex) config.environment.colortheme;
+  colortheme = lib.mapAttrs (_: c: c.hex) config.environment.colortheme.palette;
 in
 
 buildEnv {

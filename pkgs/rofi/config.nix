@@ -2,7 +2,7 @@
 
 let
   inherit (config.environment.hidpi) scale;
-  colortheme = lib.mapAttrs (_: c: c.hex) config.environment.colortheme;
+  colortheme = lib.mapAttrs (_: c: c.hex) config.environment.colortheme.palette;
 in
 
 substituteAll (colortheme // {

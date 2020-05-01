@@ -128,7 +128,7 @@
   };
 
   environment = {
-    colortheme = {
+    colortheme.palette = {
       # Srcery: https://github.com/srcery-colors/srcery-vim
       black     = { nr =   0; hex = "#1C1B19"; };
       red       = { nr =   1; hex = "#EF2F27"; };
@@ -289,7 +289,7 @@
         enable = true;
         user = "mnacamura";
         extraConfig = let
-          colortheme = lib.mapAttrs (_: c: c.hex) config.environment.colortheme; 
+          colortheme = lib.mapAttrs (_: c: c.hex) config.environment.colortheme.palette; 
         in with colortheme; ''
           [greeter]
           show-password-label = false
