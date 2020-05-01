@@ -5,8 +5,8 @@
 let
   inherit (config.environment.hidpi) scale;
 
-  colortheme = lib.mapAttrs (_: c: "0x${lib.substring 1 7 c.hex}")
-  config.environment.colortheme.palette;
+  colortheme = lib.mapAttrs (_: c: "0x${lib.substring 1 7 c}")
+  config.environment.colortheme.hex;
 
   # TODO: Generalize it
   isLaptop = lib.elem config.networking.hostName [ "louise" ];

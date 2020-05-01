@@ -1,7 +1,7 @@
 { config, lib, writeText, substituteAll, runCommand }:
 
 let
-  colortheme = lib.mapAttrs (_: c: c.hex) config.environment.colortheme.palette;
+  inherit (config.environment) colortheme;
 
   # TODO: Somehow this works only in ~/.config/gtk-3.0/gtk.css
   gtkCss = writeText "gtk.css" ''
@@ -10,7 +10,7 @@ let
     }
   '';
 
-  configFile = substituteAll (colortheme // {
+  configFile = substituteAll (colortheme.hex // {
     src = ../../data/etc/xdg/termite/config;
 
     fonts = lib.concatMapStringsSep "\n" (s: "font = ${s}") [

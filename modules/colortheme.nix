@@ -54,6 +54,20 @@ in
         brcyan, and brwhite.
       '';
     };
+
+    environment.colortheme.nr = mkOption {
+      type = with types; attrsOf int;
+      description = ''
+        <code>nr</code> values of <option>environment.colortheme.palette</option>.
+      '';
+    };
+
+    environment.colortheme.hex = mkOption {
+      type = with types; attrsOf str;
+      description = ''
+        <code>hex</code> values of <option>environment.colortheme.palette</option>.
+      '';
+    };
   };
 
   config = {
@@ -81,7 +95,7 @@ in
       }
 
       {
-        assertion = all isInt (mapAttrsToList (_: c: c.nr) cfg.palette);
+        assertion = all isInt (attrValues cfg.nr);
         message = ''
           Invalid xterm color number found. See description of
           <option>environment.colortheme.palette</option>.
@@ -89,7 +103,7 @@ in
       }
 
       {
-        assertion = all isHexColorCode (mapAttrsToList (_: c: c.hex) cfg.palette);
+        assertion = all isHexColorCode (attrValues cfg.hex);
         message = ''
           Invalid hexadicimal color code found. See description of
           <option>environment.colortheme.palette</option>.
@@ -97,7 +111,11 @@ in
       }
     ];
 
-    console.colors = with mapAttrs (_: c: c.hex) cfg.palette;
+    environment.colortheme.nr = mapAttrs (_: c: c.nr) cfg.palette;
+
+    environment.colortheme.hex = mapAttrs (_: c: c.hex) cfg.palette;
+
+    console.colors = with cfg.hex;
     map (substring 1 8) [
         black   red   green   yellow   blue   magenta   cyan   white
       brblack brred brgreen bryellow brblue brmagenta brcyan brwhite

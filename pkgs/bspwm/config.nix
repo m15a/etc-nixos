@@ -2,14 +2,14 @@
 
 let
   inherit (config.environment.hidpi) scale;
-  colortheme = lib.mapAttrs (_: c: c.hex) config.environment.colortheme.palette;
+  inherit (config.environment) colortheme;
 
   makeRules = rules:
   lib.concatStringsSep "\n"
   (lib.mapAttrsToList (name: rule: "bspc rule --add ${name} ${rule}") rules);
 in
 
-substituteAll (colortheme // {
+substituteAll (colortheme.hex // {
   src = ../../data/config/bspwm/bspwmrc;
 
   postInstall = "chmod +x $out";
