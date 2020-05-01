@@ -93,7 +93,7 @@
     fontconfig.defaultFonts = {
       serif = [
         "Source Serif Pro"
-        "Source Han Serif JP"
+        "Source Han Serif"
       ];
       sansSerif = [
         "Source Sans Pro"
