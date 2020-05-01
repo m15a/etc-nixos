@@ -1,7 +1,7 @@
 { config, lib, writeText, substituteAll, runCommand }:
 
 let
-  inherit (config.environment) colortheme;
+  colortheme = lib.mapAttrs (_: c: c.hex) config.environment.colortheme;
 
   # TODO: Somehow this works only in ~/.config/gtk-3.0/gtk.css
   gtkCss = writeText "gtk.css" ''

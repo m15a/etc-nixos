@@ -1,8 +1,8 @@
-{ config, substituteAll, termite }:
+{ config, lib, substituteAll, termite }:
 
 let
   inherit (config.environment.hidpi) scale;
-  inherit (config.environment) colortheme;
+  colortheme = lib.mapAttrs (_: c: c.hex) config.environment.colortheme;
 in
 
 substituteAll (colortheme // {

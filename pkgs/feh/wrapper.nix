@@ -1,7 +1,7 @@
-{ config, feh, buildEnv, makeWrapper }:
+{ config, lib, feh, buildEnv, makeWrapper }:
 
 let
-  inherit (config.environment) colortheme;
+  colortheme = lib.mapAttrs (_: c: c.hex) config.environment.colortheme;
 in
 
 buildEnv {
