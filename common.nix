@@ -299,9 +299,9 @@
           font-size = 13pt
           text-color = "${brwhite}"
           error-color = "${brwhite}"
-          window-color = "${orange}"
+          window-color = "${brorange}"
           border-width = 0
-          layout-space = 40
+          layout-space = 44
           password-color = "${brwhite}"
           password-background-color = "${black}"
           password-border-width = 0px
