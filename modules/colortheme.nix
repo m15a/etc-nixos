@@ -95,7 +95,7 @@ in
       }
 
       {
-        assertion = all isInt (attrValues cfg.nr);
+        assertion = all (n: isInt n && 0 <= n && n < 256) (attrValues cfg.nr);
         message = ''
           Invalid xterm color number found. See description of
           <option>environment.colortheme.palette</option>.
@@ -111,7 +111,7 @@ in
       }
     ];
 
-    environment.colortheme.nr = mapAttrs (_: c: c.nr) cfg.palette;
+    environment.colortheme.nr = mapAttrs (_: c: c.nr) (filterAttrs (_: c: c ?  nr) cfg.palette);
 
     environment.colortheme.hex = mapAttrs (_: c: c.hex) cfg.palette;
 
