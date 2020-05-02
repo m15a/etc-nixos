@@ -334,34 +334,12 @@
     fadeDelta = 8;
     fadeSteps = [ "0.056" "0.06" ];
 
-    activeOpacity = "0.92";
-    inactiveOpacity = "0.68";
-    shadowOpacity = "0.36";
-    opacityRules = [
-      "100:class_g ?= 'feh'"
-      "100:class_g *?= 'Firefox'"
-      "100:class_g *?= 'Nightly'"
-      "84:class_g ?= 'Rofi'"
-      "100:class_g ?= 'Steam'"
-      "100:class_g ?= 'Zathura'"
-      "100:class_g ?= 'Gimp'"
-      "100:class_g ?= 'Inkscape'"
-      "100:class_g ?= 'zoom'"
-      # 100% opacity for fullscreen
-      "100:_NET_WM_STATE@[0]:32a = '_NET_WM_STATE_FULLSCREEN'"
-      "100:_NET_WM_STATE@[1]:32a = '_NET_WM_STATE_FULLSCREEN'"
-      "100:_NET_WM_STATE@[2]:32a = '_NET_WM_STATE_FULLSCREEN'"
-      "100:_NET_WM_STATE@[3]:32a = '_NET_WM_STATE_FULLSCREEN'"
-      "100:_NET_WM_STATE@[4]:32a = '_NET_WM_STATE_FULLSCREEN'"
-    ];
-
     shadow = true;
     shadowOffsets = map (x: x * scale) [ (-10) (-10) ];
+    shadowOpacity = "0.36";
 
     wintypes = {
       dock = { shadow = false; };
-      dropdown_menu = { opacity = 0.92; };
-      popup_menu = { opacity = 0.92; };
     };
 
     # glx with amdgpu does not work for now.
@@ -375,8 +353,8 @@
       frame-opacity = "0.0";
       inactive-opacity-override = false;
 
-      detect-client-leader = false;
-      detect-transient = false;
+      detect-client-leader = true;
+      detect-transient = true;
       unredir-if-possible = true;
       use-ewmh-active-win = true;
 
