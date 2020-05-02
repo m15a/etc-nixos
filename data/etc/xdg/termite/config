@@ -6,7 +6,7 @@ cursor          = @brorange@
 background      = @black@
 
 # If unset, will reverse foreground and background
-# highlight = @orange@
+# highlight = @brorange@
 
 # Colors from color0 to color254 can be set
 color0  = @black@
@@ -40,9 +40,9 @@ mouse_autohide = true
 border_width = 0
 roundness = 2.2
 
-foreground = @brwhite@
-background = @orange@
-active_foreground = @brwhite@
+foreground = @black@
+background = @brorange@
+active_foreground = @black@
 active_background = @brorange@
 
 # vim: ft=dosini cms=#%s
