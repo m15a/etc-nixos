@@ -8,12 +8,11 @@ self: super:
     inherit (config.environment) colortheme;
   in with colortheme.hex;
   self.callPackage ./adapta-gtk-theme/custom.nix {
-    selectionColor = orange;
-    accentColor = brorange;
+    selectionColor = brorange;
+    accentColor = brgreen;
     suggestionColor = brorange;
     destructionColor = red;
     enableParallel = true;
-    enableTelegram = true;
   };
 
   configFiles = {
