@@ -348,7 +348,7 @@
     vSync = true;
 
     settings = {
-      shadow-radius = 38;
+      shadow-radius = 19 * scale;
 
       frame-opacity = "0.0";
       inactive-opacity-override = false;
