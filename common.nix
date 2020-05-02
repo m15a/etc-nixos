@@ -335,8 +335,8 @@
     fadeSteps = [ "0.056" "0.06" ];
 
     shadow = true;
-    shadowOffsets = map (x: x * scale) [ (-10) (-10) ];
-    shadowOpacity = "0.36";
+    shadowOffsets = map (x: x * scale) [ 5 4 ];
+    shadowOpacity = "0.24";
 
     wintypes = {
       dock = { shadow = false; };
@@ -348,7 +348,7 @@
     vSync = true;
 
     settings = {
-      shadow-radius = 19 * scale;
+      shadow-radius = 3 * scale;
 
       frame-opacity = "0.0";
       inactive-opacity-override = false;
