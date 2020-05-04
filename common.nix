@@ -334,22 +334,12 @@
     fadeDelta = 8;
     fadeSteps = [ "0.056" "0.06" ];
 
-    shadow = true;
-    shadowOffsets = map (x: x * scale) [ 5 4 ];
-    shadowOpacity = "0.24";
-
-    wintypes = {
-      dock = { shadow = false; };
-    };
-
     # glx with amdgpu does not work for now.
     # https://github.com/chjj/compton/issues/477
     backend = if hasAmdgpu then "xrender" else "glx";
     vSync = true;
 
     settings = {
-      shadow-radius = 3 * scale;
-
       frame-opacity = "0.0";
       inactive-opacity-override = false;
 
