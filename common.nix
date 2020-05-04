@@ -137,8 +137,8 @@
       blue      = { nr =   4; hex = "#2C78BF"; };
       magenta   = { nr =   5; hex = "#E02C6D"; };
       cyan      = { nr =   6; hex = "#0AAEB3"; };
-      white     = { nr =   7; hex = "#918175"; };
-      brblack   = { nr =   8; hex = "#2D2C29"; };
+      white     = { nr =   7; hex = "#D0BFA1"; };
+      brblack   = { nr =   8; hex = "#918175"; };
       brred     = { nr =   9; hex = "#F75341"; };
       brgreen   = { nr =  10; hex = "#98BC37"; };
       bryellow  = { nr =  11; hex = "#FED06E"; };
