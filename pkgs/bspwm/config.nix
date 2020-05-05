@@ -22,6 +22,7 @@ substituteAll (colortheme.hex // {
   monocle_padding = toString (37 * scale);
 
   rules = makeRules {
+    Nightly = "state=tiled";
     Steam = "follow=no";
     Zathura = "state=tiled";
   };
