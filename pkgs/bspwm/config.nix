@@ -14,7 +14,7 @@ substituteAll (colortheme.hex // {
 
   postInstall = "chmod +x $out";
 
-  border_width = toString (1 * scale);
+  border_width = toString (3 * scale);
 
   window_gap = toString (60 * scale);
 

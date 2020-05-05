@@ -21,7 +21,7 @@ substituteAll (colortheme.hex // {
 
   horizontal_padding = toString (5 * scale);
 
-  frame_width = toString (1 * scale);
+  frame_width = toString (3 * scale);
 
   max_icon_size = toString (24 * scale);
 
