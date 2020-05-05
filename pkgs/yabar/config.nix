@@ -5,7 +5,7 @@
 let
   inherit (config.environment.hidpi) scale;
 
-  colortheme = lib.mapAttrs (_: c: "0x${lib.substring 1 7 c}")
+  colortheme = lib.mapAttrs (_: c: "0x${lib.substring 1 6 c}")
   config.environment.colortheme.hex;
 
   # TODO: Generalize it
