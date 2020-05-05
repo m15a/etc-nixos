@@ -39,12 +39,14 @@ let
     fi
   '';
 
-  bluetoothStatusIcon = writeShellScript "bluetooth-status-icon" ''
+  bluetoothStatusIcon = with colortheme; let
+    fg = lib.substring 2 6 brwhite;
+  in writeShellScript "bluetooth-status-icon" ''
     btctl="${bluez}/bin/bluetoothctl"
     if [ "$("$btctl" show | grep Powered | cut -d' ' -f2)" = yes ]; then
         echo ''
     else
-        echo '!YFG0x44fce8c3Y!'
+        echo '!YFG0x44${fg}Y!'
     fi
   '';
 
