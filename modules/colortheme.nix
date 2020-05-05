@@ -45,13 +45,16 @@ in
       example = defaultPalette;
       description = ''
         Color theme to be used for various packages (console, vim, ...). Each
-        color is defined by an attrset which may have <code>nr</code> key and
-        must have <code>hex</code> key: <code>nr</code> key is a xterm color
-        number (e.g., black is 0), and <code>hex</code> key is a six-digit
-        hexadecimal string with prefix '#' (e.g., "#1c1c1a"). It should
-        include at least 16 colors: black, red, green, yellow, blue, magenta,
-        cyan, white, brblack, brred, brgreen, bryellow, brblue, brmagenta,
-        brcyan, and brwhite.
+        color is defined by an attrset which may have <code>nr</code> and must
+        have <code>hex</code> attrs: <code>nr</code> is a xterm color number
+        (e.g., black is 0), and <code>hex</code> is a hex color code with
+        prefix '#' (e.g., "#1c1c1a"). It should include at least 16 colors:
+        <code>black</code>, <code>red</code>, <code>green</code>,
+        <code>yellow</code>, <code>blue</code>, <code>magenta</code>,
+        <code>cyan</code>, <code>white</code>, <code>brblack</code>,
+        <code>brred</code>, <code>brgreen</code>, <code>bryellow</code>,
+        <code>brblue</code>, <code>brmagenta</code>, <code>brcyan</code>, and
+        <code>brwhite</code>.
       '';
     };
 
