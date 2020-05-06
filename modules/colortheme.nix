@@ -23,18 +23,6 @@ let
     brcyan    = { nr = 14; hex = "#00ffff"; };
     brwhite   = { nr = 15; hex = "#ffffff"; };
   };
-
-  isHexString = let
-    hexChars = stringToCharacters "0123456789abcdef";
-  in
-  s: all (c: elem c hexChars) (stringToCharacters (toLower s));
-
-  isHexColorCode = s:
-  let
-    prefix = substring 0 1 s;
-    body = substring 1 7 s;
-  in
-  stringLength s == 7 && prefix == "#" && isHexString body; 
 in
 
 {
@@ -59,14 +47,14 @@ in
     };
 
     environment.colortheme.nr = mkOption {
-      type = with types; attrsOf int;
+      type = with types; attrsOf (ints.between 0 255);
       description = ''
         <code>nr</code> values of <option>environment.colortheme.palette</option>.
       '';
     };
 
     environment.colortheme.hex = mkOption {
-      type = with types; attrsOf str;
+      type = with types; attrsOf (strMatching "^#[0-9abcdefABCDEF]{6}$");
       description = ''
         <code>hex</code> values of <option>environment.colortheme.palette</option>.
       '';
@@ -93,22 +81,6 @@ in
         assertion = all (b: b) (mapAttrsToList (_: c: c ? hex) cfg.palette);
         message = ''
           Color(s) with no hex value found. See description of
-          <option>environment.colortheme.palette</option>.
-        '';
-      }
-
-      {
-        assertion = all (n: isInt n && 0 <= n && n < 256) (attrValues cfg.nr);
-        message = ''
-          Invalid xterm color number found. See description of
-          <option>environment.colortheme.palette</option>.
-        '';
-      }
-
-      {
-        assertion = all isHexColorCode (attrValues cfg.hex);
-        message = ''
-          Invalid hexadicimal color code found. See description of
           <option>environment.colortheme.palette</option>.
         '';
       }
