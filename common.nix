@@ -332,7 +332,7 @@
 
     fade = true;
     fadeDelta = 8;
-    fadeSteps = [ "0.056" "0.06" ];
+    fadeSteps = [ 0.056 0.06 ];
 
     # glx with amdgpu does not work for now.
     # https://github.com/chjj/compton/issues/477
