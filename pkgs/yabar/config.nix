@@ -75,7 +75,7 @@ substituteAll (colortheme // {
 
   slack_size = toString (5 * scale);
 
-  font = "Source Sans Pro, FontAwesome ${toString (13 * scale)}";
+  font = "Source Sans Pro, FontAwesome ${toString (12 * scale)}";
 
   top_block_list = makeBlockList ([
     "date"

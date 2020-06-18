@@ -82,6 +82,7 @@
       source-serif-pro
       source-sans-pro
       source-code-pro
+      mononoki
       source-han-serif-japanese
       source-han-sans-japanese
       source-han-code-jp
@@ -100,7 +101,7 @@
         "Rounded Mgen+ 1c"
       ];
       monospace = [
-        "Source Code Pro"
+        "mononoki"
         "Rounded Mgen+ 1m"
       ];
     };
@@ -293,8 +294,8 @@
           show-password-label = false
           invalid-password-text = beep! beep!
           [greeter-theme]
-          font = Source Code Pro Medium
-          font-size = 13pt
+          font = mononoki Bold
+          font-size = 12pt
           text-color = "${brwhite}"
           error-color = "${brwhite}"
           window-color = "${brorange}"

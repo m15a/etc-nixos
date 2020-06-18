@@ -16,11 +16,11 @@ let
     fonts = lib.concatMapStringsSep "\n" (s: "font = ${s}") [
       # The later declared, the more prioritized
       # "Rounded Mgen+ 1m 13"  # in the fallback fonts
-      "Source Code Pro 13"
+      "mononoki Regular 12"
     ];
 
     hints_fonts = lib.concatMapStringsSep "\n" (s: "font = ${s}") [
-      "Source Code Pro Semibold 13"
+      "mononoki Bold 12"
     ];
   });
 in
