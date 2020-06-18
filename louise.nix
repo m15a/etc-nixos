@@ -61,6 +61,8 @@
       CPU_SCALING_GOVERNOR_ON_AC=powersave
       CPU_SCALING_GOVERNOR_ON_BAT=powersave
     '';
+
+    dropbox.enable = true;
   };
 
   services.xserver = {

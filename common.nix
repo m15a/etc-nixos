@@ -231,8 +231,6 @@
   services = {
     chrony.enable = true;
 
-    dropbox.enable = true;
-
     dunst.enable = true;
     dunst.configFile = pkgs.configFiles.dunst;
 
