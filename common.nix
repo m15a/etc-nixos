@@ -88,6 +88,7 @@
       source-han-code-jp
       rounded-mgenplus
       noto-fonts-emoji
+      emojione
       font-awesome-ttf
     ];
 
@@ -295,7 +296,7 @@
           invalid-password-text = beep! beep!
           [greeter-theme]
           font = mononoki Bold
-          font-size = 12pt
+          font-size = 11pt
           text-color = "${brwhite}"
           error-color = "${brwhite}"
           window-color = "${brorange}"

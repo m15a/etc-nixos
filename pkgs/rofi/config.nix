@@ -10,7 +10,7 @@ substituteAll (colortheme.hex // {
 
   dpi = toString (96 * scale);
 
-  font = "mononoki Regular 12";
+  font = "monospace 11";
 
   terminal = "${termite}/bin/termite";
 })

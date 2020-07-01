@@ -14,13 +14,11 @@ let
     src = ../../data/etc/xdg/termite/config;
 
     fonts = lib.concatMapStringsSep "\n" (s: "font = ${s}") [
-      # The later declared, the more prioritized
-      # "Rounded Mgen+ 1m 13"  # in the fallback fonts
-      "mononoki Regular 12"
+      "monospace 11"
     ];
 
     hints_fonts = lib.concatMapStringsSep "\n" (s: "font = ${s}") [
-      "mononoki Bold 12"
+      "monospace Bold 11"
     ];
   });
 in
