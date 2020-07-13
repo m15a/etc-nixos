@@ -289,6 +289,7 @@
         enable = true;
         user = "mnacamura";
         extraConfig = let
+          inherit (config.environment.hidpi) scale;
           colortheme = lib.mapAttrs (_: c: c.hex) config.environment.colortheme.palette; 
         in with colortheme; ''
           [greeter]
@@ -301,7 +302,7 @@
           error-color = "${brwhite}"
           window-color = "${brorange}"
           border-width = 0
-          layout-space = 44
+          layout-space = ${toString (22 * scale)}
           password-color = "${brwhite}"
           password-background-color = "${black}"
           password-border-width = 0px
