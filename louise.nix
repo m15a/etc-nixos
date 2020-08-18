@@ -57,10 +57,10 @@
     thermald.enable = true;
 
     tlp.enable = true;
-    tlp.extraConfig = ''
-      CPU_SCALING_GOVERNOR_ON_AC=powersave
-      CPU_SCALING_GOVERNOR_ON_BAT=powersave
-    '';
+    tlp.settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "powersave";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+    };
 
     dropbox.enable = true;
   };
