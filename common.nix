@@ -256,6 +256,16 @@
 
     inputClassSections = [
       ''
+        Identifier       "HHKB Professional"
+        MatchIsKeyboard  "on"
+        MatchProduct     "HHKB Professional"
+
+        Option "XkbModel"    "hhk"
+        Option "XkbLayout"   "us"
+        Option "XkbVariant"  ""
+        Option "XkbOptions"  "terminate:ctrl_alt_bksp"
+      ''
+      ''
         Identifier       "HHKB Professional BT"
         MatchIsKeyboard  "on"
         MatchProduct     "HHKB-BT"
