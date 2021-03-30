@@ -200,6 +200,19 @@
     };
   };
 
+  # Hot fix for recent bluetooth failing, see https://github.com/NixOS/nixpkgs/pull/113600.
+  systemd.services.bluetooth.serviceConfig.ExecStart = let
+    cfg = config.hardware.bluetooth;
+    hasDisabledPlugins = builtins.length cfg.disabledPlugins > 0;
+    args = [ "-f" "/etc/bluetooth/main.conf" ] ++
+      lib.optional hasDisabledPlugins "--noplugin=${lib.concatStringsSep "," cfg.disabledPlugins}";
+  in
+  [
+    ""
+    "${cfg.package}/libexec/bluetooth/bluetoothd ${lib.escapeShellArgs args}"
+    ""
+  ];
+
   programs = {
     fish.enable = true;
     fish.shellAliases = {
