@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  # MacBook Pro (Late 2016, 13-inch)
-  networking.hostName = "suzon";
+  # MacBook Pro (2020, 13-inch)
+  networking.hostName = "Y-0371";
 
   imports = [
     ./darwin-common.nix
