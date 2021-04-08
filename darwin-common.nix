@@ -17,6 +17,22 @@
   in {
     darwinConfig = "$HOME/.config/nixos/${config.networking.hostName}.nix";
 
+    etc = {
+      # See https://github.com/LnL7/nix-darwin/issues/256.
+      #
+      # Required afterwards:
+      #     sudo chown root:wheel /etc/static/sudoers.d/yabai
+      #
+      # WARNING: The trailing newline is super important. Otherwise it won't parse
+      # correctly and sudo will refuse to work.
+      #
+      yabai = {
+        target = "sudoers.d/yabai";
+        text = "mitsuhiro_nakamura ALL = (root) NOPASSWD: ${config.services.yabai.package}/bin/yabai --load-sa
+        ";
+      };
+    };
+
     systemPackages = with pkgs; let
       consolePkgs = [
         coreutils
@@ -87,6 +103,10 @@
 
   services = {
     nix-daemon.enable = false;
+
+    yabai.enable = true;
+    yabai.package = pkgs.yabai;
+    yabai.enableScriptingAddition = true;
   };
 
   # Used for backwards compatibility, please read the changelog before changing.
