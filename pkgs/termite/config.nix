@@ -14,11 +14,11 @@ let
     src = ../../data/etc/xdg/termite/config;
 
     fonts = lib.concatMapStringsSep "\n" (s: "font = ${s}") [
-      "monospace 12"
+      "monospace 13"
     ];
 
     hints_fonts = lib.concatMapStringsSep "\n" (s: "font = ${s}") [
-      "monospace Bold 12"
+      "monospace Bold 13"
     ];
   });
 in

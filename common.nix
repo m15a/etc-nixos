@@ -320,7 +320,7 @@
           invalid-password-text = beep! beep!
           [greeter-theme]
           font = mononoki Bold
-          font-size = 12pt
+          font-size = 13pt
           text-color = "${brwhite}"
           error-color = "${brwhite}"
           window-color = "${brorange}"
