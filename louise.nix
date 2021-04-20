@@ -54,6 +54,8 @@
   };
 
   services = {
+    autorandr.enable = true;
+
     thermald.enable = true;
 
     tlp.enable = true;
