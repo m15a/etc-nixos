@@ -312,9 +312,10 @@
           error-color = "${brwhite}"
           window-color = "${brorange}"
           border-width = 0
-          layout-space = ${toString (22 * scale)}
+          layout-space = ${toString (19 * scale)}
           password-color = "${brwhite}"
           password-background-color = "${black}"
+          password-border-radius = 0
           password-border-width = 0px
         '';
       };
