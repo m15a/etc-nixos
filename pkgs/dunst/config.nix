@@ -15,7 +15,7 @@ substituteAll (colortheme.hex // {
     d = x:
     "${if x >= 0 then "+" else ""}${toString (x * scale)}";
     # 23 is derived from [bspwm window gap: 60] / (1 + [phi: 1.618])
-  in "${width}x${height}${d (1920 - 450 - 23)}${d (23 + 23)}";
+  in "${width}x${height}${d (- 23)}${d (23 + 23)}";
 
   padding = toString (3 * scale);
 
