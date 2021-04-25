@@ -88,8 +88,7 @@
       source-han-code-jp
       rounded-mgenplus
       noto-fonts-emoji
-      emojione
-      font-awesome-ttf
+      material-design-icons
     ];
 
     fontconfig.defaultFonts = {
@@ -99,10 +98,11 @@
       ];
       sansSerif = [
         "Source Sans Pro"
-        "Rounded Mgen+ 1c"
+        "Rounded Mgen+ 1p"
       ];
       monospace = [
         "mononoki"
+        "Source Code Pro"
         "Rounded Mgen+ 1m"
       ];
     };
