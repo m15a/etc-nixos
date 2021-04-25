@@ -15,6 +15,10 @@ self: super:
     enableParallel = true;
   };
 
+  polybar = super.polybar.override {
+    pulseSupport = true;
+  };
+
   rounded-mgenplus = with self;
   let
     pname = "rounded-mgenplus";
@@ -54,6 +58,11 @@ self: super:
     sxhkd = self.callPackage ./sxhkd/config.nix { inherit config; };
 
     termite = self.callPackage ./termite/config.nix { inherit config; };
+
+    polybar = self.callPackage ./polybar/config.nix {
+      inherit config;
+      termite = self.wrapped.termite;
+    };
 
     yabar = self.callPackage ./yabar/config.nix {
       inherit config;

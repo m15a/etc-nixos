@@ -13,7 +13,7 @@
     ./modules/hidpi.nix
     ./modules/libinput.nix
     ./modules/light-locker.nix
-    ./modules/yabar.nix
+    ./modules/polybar.nix
   ];
 
   fileSystems = let
@@ -236,9 +236,8 @@
     dunst.enable = true;
     dunst.configFile = pkgs.configFiles.dunst;
 
-    yabar.enable = true;
-    yabar.package = pkgs.yabar-unstable;
-    yabar.configFile = pkgs.configFiles.yabar;
+    polybar.enable = true;
+    polybar.configFile = pkgs.configFiles.polybar;
 
     fstrim.enable = true;
 

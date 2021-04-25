@@ -1,0 +1,129 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+background = #00000000
+background-alt = ${self.black}
+foreground = ${self.brwhite}
+foreground-alt = ${self.brblack}
+alert = ${self.brred}
+
+black = @black@
+red = @red@
+green = @green@
+yellow = @yellow@
+blue = @blue@
+magenta = @magenta@
+cyan = @cyan
+white = @white@
+brblack = @brblack@
+brred = @brred@
+brgreen = @brgreen@
+bryellow = @bryellow@
+brblue = @brblue@
+brmagenta = @brmagenta@
+brcyan = @brcyan
+brwhite = @brwhite@
+
+[bar/top]
+width = 100%
+height = @height@
+offset-y = @offset_y@
+padding = 1
+module-margin = 1
+line-size = 0
+background = ${colors.background}
+foreground = ${colors.foreground}
+@fonts@
+modules-left = @modules_left@
+modules-center = @modules_center@
+modules-right = @modules_right@
+
+[module/date]
+type = internal/date
+interval = 1
+label = %date% %time%
+date = "%b %e %a"
+date-alt =
+time = %H:%M
+time-alt = %H:%M:%S
+
+[module/bspwm]
+type = internal/bspwm
+reverse-scroll = false
+label-focused = %name%
+label-focused-foreground = ${colors.background-alt}
+label-focused-background = ${colors.foreground}
+label-focused-padding = 1
+label-urgent = %name%!
+label-urgent-foreground = ${colors.background-alt}
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+label-occupied = %name%
+label-occupied-padding = 1
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 1
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:100:...%
+
+[module/wifi]
+type = internal/network
+interface = wlp2s0
+format-connected = <ramp-signal><label-connected>
+label-connected = %signal%% %essid%
+format-disconnected = <label-disconnected>
+label-disconnected = 󰤭
+label-disconnected-foreground = ${colors.foreground-alt}
+ramp-signal-0 = 󰤟
+ramp-signal-1 = 󰤢
+ramp-signal-2 = 󰤥
+ramp-signal-3 = 󰤨
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+format-charging = <ramp-capacity><label-charging>
+format-discharging = <ramp-capacity><label-discharging>
+format-full = <ramp-capacity><label-full>
+label-charging = %percentage%%󰚥
+label-discharging = %percentage%%
+label-full = %percentage%%
+ramp-capacity-0 = 󰂃
+ramp-capacity-1 = 󰁺
+ramp-capacity-2 = 󰁻
+ramp-capacity-3 = 󰁼
+ramp-capacity-4 = 󰁽
+ramp-capacity-5 = 󰁾
+ramp-capacity-6 = 󰁿
+ramp-capacity-7 = 󰂀
+ramp-capacity-8 = 󰂁
+ramp-capacity-9 = 󰂂
+ramp-capacity-10 = 󰁹
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini
