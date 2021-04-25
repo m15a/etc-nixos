@@ -1,5 +1,5 @@
 { config, lib, writeShellScript, substituteAll, dropbox-cli, networkmanager
-, bluez, libnotify, xdg_utils, termite, pavucontrol
+, bluez, libnotify, xdg_utils, termite, pavucontrol, systemd
 }:
 
 let
@@ -9,6 +9,40 @@ let
 
   # TODO: Generalize it
   isLaptop = lib.elem config.networking.hostName [ "louise" ];
+
+  bluetoothStatusIcon = with colortheme;
+  let fg = brblack; in
+  writeShellScript "bluetooth-status-icon" ''
+    btctl=${bluez}/bin/bluetoothctl
+    if [ "$(${systemd}/bin/systemctl is-active bluetooth)" = active ] && \
+       [ "$($btctl show | grep Powered | cut -d' ' -f2)" = yes ]; then
+        echo -n '󰂯'
+        for d in $($btctl paired-devices | cut -d' ' -f2); do
+            if $btctl info "$d" | grep -q 'Connected: yes'; then
+                alias="$($btctl info "$d" | grep 'Alias:' | cut -d' ' -f2)"
+                if echo "$alias" | grep -iq mouse; then
+                    echo -n '󰍽'
+                elif echo "$alias" | grep -iq hhkb; then
+                    echo -n '󰌌'
+                elif echo "$alias" | grep -iq controller; then
+                    echo -n '󰊴'
+                else
+                    echo -n "$alias "
+                fi
+            fi
+        done
+    else
+        echo '%{F${fg}}󰂲%{F-}'
+    fi
+  '';
+  bluetoothSwitch = writeShellScript "bluetooth-switch" ''
+    btctl="${bluez}/bin/bluetoothctl"
+    if [ "$($btctl show | grep Powered | cut -d' ' -f2)" = yes ]; then
+        "$btctl" power off
+    else
+        "$btctl" power on
+    fi
+  '';
 in
 
 substituteAll (colortheme // {
@@ -36,6 +70,7 @@ substituteAll (colortheme // {
   ] ++ lib.optionals isLaptop [
     "wifi"
   ] ++ [
+    "bluetooth"
     "pulseaudio"
   ] ++ lib.optionals isLaptop [
     "battery"
@@ -45,6 +80,10 @@ substituteAll (colortheme // {
 
   nmcli = "${networkmanager}/bin/nmcli";
   nmtui = "${networkmanager}/bin/nmtui";
+
+  bluetoothctl = "${bluez}/bin/bluetoothctl";
+  bluetooth_status_icon = "${bluetoothStatusIcon}";
+  bluetooth_switch = "${bluetoothSwitch}";
 
   pavucontrol = "${pavucontrol}/bin/pavucontrol";
 })

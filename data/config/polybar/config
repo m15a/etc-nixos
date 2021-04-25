@@ -97,6 +97,15 @@ ramp-signal-1 = 󰤢
 ramp-signal-2 = 󰤥
 ramp-signal-3 = 󰤨
 
+[module/bluetooth]
+type = custom/script
+exec = @bluetooth_status_icon@
+interval = 1
+format = <label>
+label = %output:0:20:...%
+click-left = @bluetooth_switch@
+click-right = @termite@ -e @bluetoothctl@
+
 [module/pulseaudio]
 type = internal/pulseaudio
 interval = 4
