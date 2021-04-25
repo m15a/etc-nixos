@@ -36,6 +36,7 @@ substituteAll (colortheme // {
   ] ++ lib.optionals isLaptop [
     "wifi"
   ] ++ [
+    "pulseaudio"
   ] ++ lib.optionals isLaptop [
     "battery"
   ];
@@ -44,4 +45,6 @@ substituteAll (colortheme // {
 
   nmcli = "${networkmanager}/bin/nmcli";
   nmtui = "${networkmanager}/bin/nmtui";
+
+  pavucontrol = "${pavucontrol}/bin/pavucontrol";
 })

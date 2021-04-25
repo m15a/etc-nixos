@@ -97,6 +97,18 @@ ramp-signal-1 = 󰤢
 ramp-signal-2 = 󰤥
 ramp-signal-3 = 󰤨
 
+[module/pulseaudio]
+type = internal/pulseaudio
+interval = 4
+format-volume = <ramp-volume><label-volume>
+label-volume = %percentage%%
+label-muted = 󰝟
+label-muted-foreground = ${colors.foreground-alt}
+ramp-volume-0 = 󰕿
+ramp-volume-1 = 󰖀
+ramp-volume-2 = 󰕾
+click-right = @pavucontrol@
+
 [module/battery]
 type = internal/battery
 battery = BAT0
