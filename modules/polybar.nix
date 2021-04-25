@@ -41,8 +41,15 @@ in
       serviceConfig = {
         ExecStart = let
           arg = "-c ${cfg.configFile}";
+          inherit (config.environment.variables)
+          XCURSOR_SIZE
+          GDK_SCALE
+          GDK_DPI_SCALE;
         in concatStringsSep " " ([
           "${pkgs.coreutils}/bin/env"
+          "XCURSOR_SIZE=${XCURSOR_SIZE}"
+          "GDK_SCALE=${GDK_SCALE}"
+          "GDK_DPI_SCALE=${GDK_DPI_SCALE}"
           "${cfg.package}/bin/polybar"
         ] ++ optional (!isNull cfg.configFile) arg ++ [
           "top"
