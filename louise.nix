@@ -92,52 +92,5 @@
         Option "XkbOptions"  "terminate:ctrl_alt_bksp,ctrl:swapcaps,altwin:swap_alt_win,ctrl:rctrl_ralt"
       ''
     ];
-
-    displayManager.setupCommands = let
-      xrandr = "${pkgs.xorg.xrandr}/bin/xrandr";
-    in ''
-      connected_monitors() {
-        ${xrandr} -q | grep -w connected
-      }
-
-      other_than() {
-        grep -v "^$1\>"
-      }
-
-      LID_is_open() {
-        grep open /proc/acpi/button/lid/LID0/state 2>&1 >/dev/null
-      }
-
-      size_of() {
-        ${xrandr} -q | grep "^$1\>" | grep -o '[[:digit:]]\+x[[:digit:]]\+'
-      }
-
-      LID=eDP1
-      EXTS=$(connected_monitors | other_than "$LID" | cut -d' ' -f1)
-
-      if [ -z "$EXTS" ] || LID_is_open; then
-        MAIN="$LID"
-      else
-        MAIN=$(echo "$EXTS" | cut -d' ' -f1)
-      fi
-      SUBS=$(connected_monitors | other_than "$MAIN" | cut -d' ' -f1)
-
-      CMD="${xrandr} --output $MAIN --primary --auto"
-
-      SIZE=$(size_of "$MAIN")
-      if [ -n "$SIZE" ]; then
-        WIDTH=$(echo "$SIZE" | cut -d'x' -f1)
-        HEIGHT=$(echo "$SIZE" | cut -d'x' -f2)
-        if [ $WIDTH -lt 3840 ] || [ $HEIGHT -lt 2160 ]; then
-          CMD="$CMD --scale 2x2"
-        fi
-      fi
-
-      for SUB in $SUBS; do
-        CMD="$CMD --output $SUB --off"
-      done
-
-      $CMD
-    '';
   };
 }
