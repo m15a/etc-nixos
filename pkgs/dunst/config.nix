@@ -23,7 +23,7 @@ substituteAll (colortheme.hex // {
 
   frame_width = toString (3 * scale);
 
-  min_icon_size = toString (2 * 24 * scale);
+  min_icon_size = toString (36 * scale);
 
   icon_path = let
     s = toString (24 * scale);
