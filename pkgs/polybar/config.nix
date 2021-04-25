@@ -39,4 +39,9 @@ substituteAll (colortheme // {
   ] ++ lib.optionals isLaptop [
     "battery"
   ];
+
+  termite = "${termite}/bin/termite";
+
+  nmcli = "${networkmanager}/bin/nmcli";
+  nmtui = "${networkmanager}/bin/nmtui";
 })
