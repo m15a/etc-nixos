@@ -87,9 +87,9 @@ label = %title:0:100:...%
 [module/wifi]
 type = internal/network
 interface = wlp2s0
-format-connected = %{A1:@termite@ -e @nmtui@:}%{A3:@nmcli@ radio wifi off:}<ramp-signal><label-connected>%{A}%{A}
+format-connected = %{A3:@termite@ -e @nmtui@:}%{A1:@nmcli@ radio wifi off:}<ramp-signal><label-connected>%{A}%{A}
 label-connected = %signal%% %essid%
-format-disconnected = %{A3:@nmcli@ radio wifi on:}<label-disconnected>%{A}
+format-disconnected = %{A1:@nmcli@ radio wifi on:}<label-disconnected>%{A}
 label-disconnected = 󰤭
 label-disconnected-foreground = ${colors.foreground-alt}
 ramp-signal-0 = 󰤟
