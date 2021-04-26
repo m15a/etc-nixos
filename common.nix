@@ -124,8 +124,14 @@
       pulseaudio = true;
     };
 
-    overlays = [
+    overlays = let
+      nixpkgs-mozilla = builtins.fetchTarball {
+        url = "https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz";
+      };
+    in
+    [
       (import ./pkgs { inherit config; })
+      (import "${nixpkgs-mozilla}/firefox-overlay.nix")
     ];
   };
 
@@ -160,7 +166,7 @@
     };
 
     systemPackages = with pkgs; [
-      # firefox-devedition-bin
+      latest.firefox-nightly-bin
       libnotify
       maim
       pavucontrol
