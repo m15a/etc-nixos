@@ -57,7 +57,7 @@ modules-right = @modules_right@
 [module/date]
 type = internal/date
 interval = 1
-label = %date% %time%
+label = %{A3:@open_calendar@:}%date% %time%%{A}
 date = "%b %e %a"
 date-alt =
 time = %H:%M

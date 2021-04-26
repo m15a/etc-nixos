@@ -10,6 +10,12 @@ let
   # TODO: Generalize it
   isLaptop = lib.elem config.networking.hostName [ "louise" ];
 
+  openInBrowser = url:
+  writeShellScript "open-in-browser" ''
+    export PATH=$PATH''${PATH:+:}/run/current-system/sw/bin
+    ${xdg_utils}/bin/xdg-open "${url}"
+  '';
+
   bluetoothStatusIcon = with colortheme;
   let fg = brblack; in
   writeShellScript "bluetooth-status-icon" ''
@@ -75,6 +81,8 @@ substituteAll (colortheme // {
   ] ++ lib.optionals isLaptop [
     "battery"
   ];
+
+  open_calendar = openInBrowser "https://calendar.google.com/";
 
   termite = "${termite}/bin/termite";
 
