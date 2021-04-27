@@ -60,7 +60,7 @@ substituteAll (colortheme // {
 
   fonts = lib.concatStringsSep "\n" (lib.mapAttrsToList (i: s: "font-${i} = ${s}") {
     "0" = "mononoki:size=${toString (12 * scale)}";
-    "1" = "Source Code Pro:size=${toString (12 * scale)}";
+    "1" = "Rounded Mgen+ 1m:size=${toString (12 * scale)}";
     "2" = "Material Design Icons:size=${toString (12 * scale)}";
   });
 

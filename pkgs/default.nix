@@ -15,6 +15,8 @@ self: super:
     enableParallel = true;
   };
 
+  newsreader = self.callPackage ./newsreader {};
+
   polybar = super.polybar.override {
     pulseSupport = true;
   };
@@ -32,6 +34,8 @@ self: super:
     '';
     sha256 = "0vwdknagdrl5dqwpb1x5lxkbfgvbx8dpg7cb6yamgz71831l05v1";
   };
+
+  shippori = self.callPackage ./shippori {};
 
   yabar-unstable = super.yabar-unstable.overrideAttrs (old: rec {
     version = "2019-03-28";

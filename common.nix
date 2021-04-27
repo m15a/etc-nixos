@@ -79,30 +79,40 @@
 
   fonts = {
     fonts = with pkgs; [
+      # Serif
+      newsreader
+      shippori
       source-serif-pro
-      source-sans-pro
-      source-code-pro
-      mononoki
       source-han-serif-japanese
+
+      # Sans serif
+      raleway
+      rounded-mgenplus # (1p)
+      source-sans-pro
       source-han-sans-japanese
+
+      # Monospace
+      mononoki
+      # rounded-mgenplus (1m)
+      source-code-pro
       source-han-code-jp
-      rounded-mgenplus
+
+      # Emoji / Icons
       noto-fonts-emoji
       material-design-icons
     ];
 
     fontconfig.defaultFonts = {
       serif = [
-        "Source Serif Pro"
-        "Source Han Serif"
+        "Newsreader"
+        "Shippori Mincho"
       ];
       sansSerif = [
-        "Source Sans Pro"
+        "Raleway"
         "Rounded Mgen+ 1p"
       ];
       monospace = [
         "mononoki"
-        "Source Code Pro"
         "Rounded Mgen+ 1m"
       ];
     };
