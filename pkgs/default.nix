@@ -15,13 +15,9 @@ self: super:
     enableParallel = true;
   };
 
-  newsreader = self.callPackage ./newsreader {};
-
   polybar = super.polybar.override {
     pulseSupport = true;
   };
-
-  shippori = self.callPackage ./shippori {};
 
   yabar-unstable = super.yabar-unstable.overrideAttrs (old: rec {
     version = "2019-03-28";

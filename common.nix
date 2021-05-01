@@ -135,12 +135,16 @@
     };
 
     overlays = let
+      nixpkgs-misc = builtins.fetchTarball {
+        url = "https://github.com/mnacamura/nixpkgs-misc/archive/main.tar.gz";
+      };
       nixpkgs-mozilla = builtins.fetchTarball {
         url = "https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz";
       };
     in
     [
       (import ./pkgs { inherit config; })
+      (import nixpkgs-misc)
       (import "${nixpkgs-mozilla}/firefox-overlay.nix")
     ];
   };
