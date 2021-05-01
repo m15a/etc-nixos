@@ -92,5 +92,24 @@
         Option "XkbOptions"  "terminate:ctrl_alt_bksp,ctrl:swapcaps,altwin:swap_alt_win,ctrl:rctrl_ralt"
       ''
     ];
+
+    displayManager.setupCommands = let
+      xrandr = "${pkgs.xorg.xrandr}/bin/xrandr";
+      awk = "${pkgs.gawk}/bin/awk";
+    in
+    ''
+      LID=eDP1
+      EXTERNAL_MONITOR=DP1  # 4k display
+
+      connected_monitors() {
+          ${xrandr} -q | ${awk} -e '$2 == "connected" { print $1 }'
+      }
+
+      if connected_monitors | grep -qw "$EXTERNAL_MONITOR"; then
+          ${xrandr} --output "$LID" --off --output "$EXTERNAL_MONITOR" --primary --auto --scale 1.5
+      else
+          ${xrandr} --output "$LID" --primary --auto --scale 1 --output "$EXTERNAL_MONITOR" --off
+      fi
+    '';
   };
 }
