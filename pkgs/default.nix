@@ -15,6 +15,10 @@ self: super:
     enableParallel = true;
   };
 
+  desktop-background = self.runCommand "desktop-background" {} ''
+    cp ${../data/pixmaps/desktop_background.jpg} $out
+  '';
+
   polybar = super.polybar.override {
     pulseSupport = true;
   };

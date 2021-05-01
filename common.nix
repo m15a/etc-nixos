@@ -306,23 +306,16 @@
       ''
     ];
 
-    displayManager.sessionCommands = let
-      backgroundImage = pkgs.runCommand "desktop-background" {} ''
-        cp ${./data/pixmaps/desktop_background.jpg} $out
-      '';
-    in ''
+    displayManager.sessionCommands = ''
       ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
-      ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${backgroundImage}
+      ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${pkgs.desktop-background}
     '';
 
     displayManager.lightdm = {
       enable = true;
 
-      background = let
-        backgroundImage = pkgs.runCommand "login-background" {} ''
-          cp ${./data/pixmaps/login_background.jpg} $out
-        '';
-      in "${backgroundImage}";
+      # TODO: Here background is not scaled while session background above is scaled.
+      background = pkgs.desktop-background;
 
       greeters.mini = {
         enable = true;
