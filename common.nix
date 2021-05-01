@@ -11,7 +11,6 @@
     ./modules/dropbox.nix
     ./modules/dunst.nix
     ./modules/hidpi.nix
-    ./modules/libinput.nix
     ./modules/light-locker.nix
     ./modules/polybar.nix
   ];
@@ -271,7 +270,16 @@
   services.xserver = {
     enable = true;
 
-    myLibinput.enable = true;
+    libinput.enable = true;
+    libinput.touchpad = {
+      accelSpeed = "1";
+      disableWhileTyping = true;
+      naturalScrolling = true;
+      sendEventsMode = "disabled-on-external-mouse";
+    };
+    libinput.mouse = {
+      accelProfile = "flat";
+    };
 
     inputClassSections = [
       ''
