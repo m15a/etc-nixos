@@ -16,6 +16,31 @@ let
     ${xdg_utils}/bin/xdg-open "${url}"
   '';
 
+  dropbox_status_icon = with colors;
+  let fg = brblack; in
+  writeShellScript "dropbox-status-icon" ''
+    dropbox="${dropbox-cli}/bin/dropbox"
+    # If status = 0, confusingly, dropbox is not running!
+    "$dropbox" running
+    if [ $? -ne 0 ]; then
+        status="$("$dropbox" status 2>/dev/null)"
+        case "$status" in
+            'Up to date'|'最新の状態')
+                echo '󰇣'
+                ;;
+            *)
+                echo '󰓦'
+                ;;
+        esac
+    else
+        echo '%{F${fg}}󰇣%{F-}'
+    fi
+  '';
+
+  notify_dropbox_status = writeShellScript "notify-dropbox-status" ''
+    ${libnotify}/bin/notify-send -i dropbox Dropbox "$(${dropbox-cli}/bin/dropbox status)"
+  '';
+
   bluetoothStatusIcon = with colors;
   let fg = brblack; in
   writeShellScript "bluetooth-status-icon" ''
@@ -76,6 +101,7 @@ substituteAll (colors // {
   ] ++ lib.optionals isLaptop [
     "wifi"
   ] ++ [
+    "dropbox"
     "bluetooth"
     "pulseaudio"
   ] ++ lib.optionals isLaptop [
@@ -88,6 +114,10 @@ substituteAll (colors // {
 
   nmcli = "${networkmanager}/bin/nmcli";
   nmtui = "${networkmanager}/bin/nmtui";
+
+  inherit dropbox_status_icon notify_dropbox_status;
+  open_dropbox = openURL "https://dropbox.com/";
+
 
   bluetoothctl = "${bluez}/bin/bluetoothctl";
   bluetooth_status_icon = "${bluetoothStatusIcon}";
