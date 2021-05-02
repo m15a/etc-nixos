@@ -287,7 +287,7 @@
       ''
         Identifier       "HHKB Professional"
         MatchIsKeyboard  "on"
-        MatchProduct     "HHKB Professional"
+        MatchProduct     "Topre Corporation HHKB Professional"
 
         Option "XkbModel"    "hhk"
         Option "XkbLayout"   "us"
