@@ -5,7 +5,7 @@
 let
   inherit (config.environment.hidpi) scale;
 
-  colortheme = config.environment.colortheme.hex;
+  colors = config.environment.colors.hex;
 
   # TODO: Generalize it
   isLaptop = lib.elem config.networking.hostName [ "louise" ];
@@ -16,7 +16,7 @@ let
     ${xdg_utils}/bin/xdg-open "${url}"
   '';
 
-  bluetoothStatusIcon = with colortheme;
+  bluetoothStatusIcon = with colors;
   let fg = brblack; in
   writeShellScript "bluetooth-status-icon" ''
     btctl=${bluez}/bin/bluetoothctl
@@ -51,7 +51,7 @@ let
   '';
 in
 
-substituteAll (colortheme // {
+substituteAll (colors // {
   src = ../../data/config/polybar/config;
 
   height = toString (22 * scale);

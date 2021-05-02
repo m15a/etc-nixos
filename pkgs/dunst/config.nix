@@ -2,10 +2,10 @@
 
 let
   inherit (config.environment.hidpi) scale;
-  inherit (config.environment) colortheme;
+  inherit (config.environment) colors;
 in
 
-substituteAll (colortheme.hex // {
+substituteAll (colors.hex // {
   src = ../../data/config/dunst/dunstrc;
 
   # TODO: Fix it to treat negative x correctly

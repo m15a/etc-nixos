@@ -1,7 +1,7 @@
 { config, lib, feh, buildEnv, makeWrapper }:
 
 let
-  inherit (config.environment) colortheme;
+  inherit (config.environment) colors;
 in
 
 buildEnv {
@@ -11,7 +11,7 @@ buildEnv {
 
   buildInputs = [ makeWrapper ];
 
-  postBuild = with colortheme.hex; ''
+  postBuild = with colors.hex; ''
     mkdir "$out/bin"
     makeWrapper "${feh.out}/bin/feh" "$out/bin/feh" \
         --add-flags "--image-bg '${black}'"

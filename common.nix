@@ -7,7 +7,7 @@
 {
   imports = [
     ./modules/btops.nix
-    ./modules/colortheme.nix
+    ./modules/colors.nix
     ./modules/dropbox.nix
     ./modules/dunst.nix
     ./modules/hidpi.nix
@@ -149,7 +149,7 @@
   };
 
   environment = {
-    colortheme.palette = {
+    colors.palette = {
       # Srcery: https://github.com/srcery-colors/srcery-vim
       black     = { nr =   0; hex = "#1C1B19"; };
       red       = { nr =   1; hex = "#EF2F27"; };
@@ -322,8 +322,8 @@
         user = "mnacamura";
         extraConfig = let
           inherit (config.environment.hidpi) scale;
-          colortheme = lib.mapAttrs (_: c: c.hex) config.environment.colortheme.palette; 
-        in with colortheme; ''
+          colors = lib.mapAttrs (_: c: c.hex) config.environment.colors.palette; 
+        in with colors; ''
           [greeter]
           show-password-label = false
           invalid-password-text = beep! beep!

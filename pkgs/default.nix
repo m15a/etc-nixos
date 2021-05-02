@@ -5,8 +5,8 @@ self: super:
   adapta-gtk-theme-colorpack = self.callPackage ./adapta-gtk-theme-colorpack {};
 
   adapta-gtk-theme-custom = let
-    inherit (config.environment) colortheme;
-  in with colortheme.hex;
+    inherit (config.environment) colors;
+  in with colors.hex;
   self.callPackage ./adapta-gtk-theme/custom.nix {
     selectionColor = brorange;
     accentColor = brgreen;

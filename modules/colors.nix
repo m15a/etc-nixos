@@ -3,7 +3,7 @@
 with lib;
 
 let
-  cfg = config.environment.colortheme;
+  cfg = config.environment.colors;
 
   defaultPalette = {
     black     = { nr =  0; hex = "#000000"; };
@@ -27,7 +27,7 @@ in
 
 {
   options = {
-    environment.colortheme.palette = mkOption {
+    environment.colors.palette = mkOption {
       type = with types; attrsOf attrs;
       default = defaultPalette;
       example = defaultPalette;
@@ -46,17 +46,17 @@ in
       '';
     };
 
-    environment.colortheme.nr = mkOption {
+    environment.colors.nr = mkOption {
       type = with types; attrsOf (ints.between 0 255);
       description = ''
-        <code>nr</code> values of <option>environment.colortheme.palette</option>.
+        <code>nr</code> values of <option>environment.colors.palette</option>.
       '';
     };
 
-    environment.colortheme.hex = mkOption {
+    environment.colors.hex = mkOption {
       type = with types; attrsOf (strMatching "^#[0-9abcdefABCDEF]{6}$");
       description = ''
-        <code>hex</code> values of <option>environment.colortheme.palette</option>.
+        <code>hex</code> values of <option>environment.colors.palette</option>.
       '';
     };
   };
@@ -73,7 +73,7 @@ in
         in all (n: elem n definedNames) expectedNames;
         message = ''
           At least 16 colors should be defined. See description of
-          <option>environment.colortheme.palette</option>.
+          <option>environment.colors.palette</option>.
         '';
       }
 
@@ -81,14 +81,14 @@ in
         assertion = all (b: b) (mapAttrsToList (_: c: c ? hex) cfg.palette);
         message = ''
           Color(s) with no hex value found. See description of
-          <option>environment.colortheme.palette</option>.
+          <option>environment.colors.palette</option>.
         '';
       }
     ];
 
-    environment.colortheme.nr = mapAttrs (_: c: c.nr) (filterAttrs (_: c: c ?  nr) cfg.palette);
+    environment.colors.nr = mapAttrs (_: c: c.nr) (filterAttrs (_: c: c ?  nr) cfg.palette);
 
-    environment.colortheme.hex = mapAttrs (_: c: c.hex) cfg.palette;
+    environment.colors.hex = mapAttrs (_: c: c.hex) cfg.palette;
 
     console.colors = with cfg.hex;
     map (substring 1 8) [

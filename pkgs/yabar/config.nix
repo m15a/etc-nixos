@@ -5,8 +5,8 @@
 let
   inherit (config.environment.hidpi) scale;
 
-  colortheme = lib.mapAttrs (_: c: "0x${lib.substring 1 6 c}")
-  config.environment.colortheme.hex;
+  colors = lib.mapAttrs (_: c: "0x${lib.substring 1 6 c}")
+  config.environment.colors.hex;
 
   # TODO: Generalize it
   isLaptop = lib.elem config.networking.hostName [ "louise" ];
@@ -39,7 +39,7 @@ let
     fi
   '';
 
-  bluetoothStatusIcon = with colortheme; let
+  bluetoothStatusIcon = with colors; let
     fg = lib.substring 2 6 brwhite;
   in writeShellScript "bluetooth-status-icon" ''
     btctl="${bluez}/bin/bluetoothctl"
@@ -66,7 +66,7 @@ let
   "[ ${contents} ]";
 in
 
-substituteAll (colortheme // {
+substituteAll (colors // {
   src = ../../data/config/yabar/yabar.conf;
 
   height = toString (23 * scale);
