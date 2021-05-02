@@ -41,7 +41,7 @@ let
     ${libnotify}/bin/notify-send -i dropbox Dropbox "$(${dropbox-cli}/bin/dropbox status)"
   '';
 
-  bluetoothStatusIcon = with colors;
+  bluetooth_status_icon = with colors;
   let fg = brblack; in
   writeShellScript "bluetooth-status-icon" ''
     btctl=${bluez}/bin/bluetoothctl
@@ -66,7 +66,7 @@ let
         echo '%{F${fg}}󰂲%{F-}'
     fi
   '';
-  bluetoothSwitch = writeShellScript "bluetooth-switch" ''
+  bluetooth_switch = writeShellScript "bluetooth-switch" ''
     btctl="${bluez}/bin/bluetoothctl"
     if [ "$($btctl show | grep Powered | cut -d' ' -f2)" = yes ]; then
         "$btctl" power off
@@ -117,8 +117,7 @@ substituteAll (colors // {
 
 
   bluetoothctl = "${bluez}/bin/bluetoothctl";
-  bluetooth_status_icon = "${bluetoothStatusIcon}";
-  bluetooth_switch = "${bluetoothSwitch}";
+  inherit bluetooth_status_icon bluetooth_switch;
 
   pavucontrol = "${pavucontrol}/bin/pavucontrol";
 })
