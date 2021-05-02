@@ -97,11 +97,8 @@ substituteAll (colors // {
     "xwindow"
   ];
   modules_right = [
-  ] ++ [
-  ] ++ lib.optionals isLaptop [
-    "wifi"
-  ] ++ [
     "dropbox"
+    "wifi"
     "bluetooth"
     "pulseaudio"
   ] ++ lib.optionals isLaptop [
