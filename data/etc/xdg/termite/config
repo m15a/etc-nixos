@@ -1,12 +1,12 @@
 [colors]
 
-foreground      = @brwhite@
-foreground_bold = @brwhite@
-cursor          = @brorange@
-background      = @black@
+foreground      = @term_fg@
+foreground_bold = @term_fg@
+cursor          = @sel_bg@
+background      = @term_bg@
 
 # If unset, will reverse foreground and background
-# highlight = @brorange@
+# highlight = @sel_bg@
 
 # Colors from color0 to color254 can be set
 color0  = @black@
@@ -40,9 +40,9 @@ mouse_autohide = true
 border_width = 0
 roundness = 2.2
 
-foreground = @black@
-background = @brorange@
-active_foreground = @black@
-active_background = @brorange@
+foreground = @term_fg@
+background = @sel_bg@
+active_foreground = @term_fg@
+active_background = @sel_bg@
 
 # vim: ft=dosini cms=#%s
