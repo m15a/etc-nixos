@@ -18,10 +18,10 @@
 
 [colors]
 background = #00000000
-background-alt = ${self.black}
-foreground = ${self.brwhite}
-foreground-alt = ${self.brblack}
-alert = ${self.brred}
+background-alt = @bg@
+foreground = @fg@
+foreground-alt = @brblack@
+alert = @red@
 
 black = @black@
 red = @red@
@@ -29,7 +29,7 @@ green = @green@
 yellow = @yellow@
 blue = @blue@
 magenta = @magenta@
-cyan = @cyan
+cyan = @cyan@
 white = @white@
 brblack = @brblack@
 brred = @brred@
@@ -37,7 +37,7 @@ brgreen = @brgreen@
 bryellow = @bryellow@
 brblue = @brblue@
 brmagenta = @brmagenta@
-brcyan = @brcyan
+brcyan = @brcyan@
 brwhite = @brwhite@
 
 [bar/top]
