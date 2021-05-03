@@ -11,10 +11,10 @@ configuration {
     combi-hide-mode-prefix: true;
     drun-display-format: "{name} [<span size='small'><i>({generic})</i></span>]";
     window-format: "{c} [{w}]   {t}";
-    display-combi: "all";
-    display-run: "command";
-    display-drun: "application";
-    display-window: "window";
+    display-combi: "❱󰘔󱂬";
+    display-run: "❱";
+    display-drun: "󰘔";
+    display-window: "󱂬";
     width: 50;
     lines: 16;
     bw: 6;
