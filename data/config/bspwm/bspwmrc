@@ -7,11 +7,11 @@ bspc config initial_polarity first_child
 bspc config window_gap @window_gap@
 
 bspc config border_width @border_width@
-bspc config focused_border_color '@brorange@'
-bspc config active_border_color '@orange@'
-bspc config normal_border_color '@xgray6@'
+bspc config focused_border_color '@wm_border_focus@'
+bspc config active_border_color '@fg@'
+bspc config normal_border_color '@wm_border_unfocus@'
 
-bspc config presel_feedback_color '@brorange@'
+bspc config presel_feedback_color '@wm_border_focus@'
 
 bspc config borderless_monocle false
 bspc config gapless_monocle true
