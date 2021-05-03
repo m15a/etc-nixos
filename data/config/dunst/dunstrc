@@ -3,9 +3,9 @@ geometry = "@geometry@"
 padding = @padding@
 horizontal_padding = @horizontal_padding@
 frame_width = @frame_width@
-frame_color = "@xgray6@"
+frame_color = "@wm_border_unfocus@"
 separator_height = 0
-font = Source Sans Pro 13
+font = sans-serif 13
 format = "<b>%s</b>\n%b"
 show_age_threshold = -1
 icon_position = left
@@ -25,18 +25,18 @@ history = mod4+mod1+h
 context = mod4+mod1+Return
 
 [urgency_low]
-background = "@brwhite@"
-foreground = "@white@"
+background = "@term_bg@"
+foreground = "@brblack@"
 timeout = 10
 
 [urgency_normal]
-background = "@brwhite@"
-foreground = "@black@"
+background = "@term_bg@"
+foreground = "@term_fg@"
 timeout = 10
 
 [urgency_critical]
 background = "@red@"
-foreground = "@brwhite@"
+foreground = "@term_fg@"
 timeout = 0
 
 # vim: ft=cfg

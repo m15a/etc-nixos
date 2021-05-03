@@ -1,4 +1,4 @@
-{ config, lib, substituteAll, papirus-icon-theme, xdg_utils }:
+{ config, lib, substituteAll, xdg_utils }:
 
 let
   inherit (config.environment.hidpi) scale;
@@ -27,7 +27,7 @@ substituteAll (colors.hex // {
 
   icon_path = let
     s = toString (24 * scale);
-    path = "${papirus-icon-theme}/share/icons/Papirus";
+    path = "run/current-system/sw/share/icons/oomox-default";
   in lib.concatStringsSep ":"
   (map (c: "${path}/${s}x${s}/${c}") [ "status" "devices" "apps" ]);
 
