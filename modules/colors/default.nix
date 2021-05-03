@@ -22,13 +22,25 @@ in
         color is defined by an attrset which may have <code>nr</code> and must
         have <code>hex</code> attrs: <code>nr</code> is a xterm color number
         (e.g., black is 0), and <code>hex</code> is a hex color code with
-        prefix '#' (e.g., "#1c1c1a"). It should include at least 16 colors:
-        <code>black</code>, <code>red</code>, <code>green</code>,
-        <code>yellow</code>, <code>blue</code>, <code>magenta</code>,
-        <code>cyan</code>, <code>white</code>, <code>brblack</code>,
-        <code>brred</code>, <code>brgreen</code>, <code>bryellow</code>,
-        <code>brblue</code>, <code>brmagenta</code>, <code>brcyan</code>, and
-        <code>brwhite</code>.
+        prefix '#' (e.g., "#1c1c1a"). It should include colors for terminal use,
+        <code>term_fg</code>, <code>term_bg</code>, <code>black</code>,
+        <code>red</code>, <code>green</code>, <code>yellow</code>,
+        <code>blue</code>, <code>magenta</code>, <code>cyan</code>,
+        <code>white</code>, <code>brblack</code>, <code>brred</code>,
+        <code>brgreen</code>, <code>bryellow</code>, <code>brblue</code>,
+        <code>brmagenta</code>, <code>brcyan</code>, <code>brwhite</code>,
+        and colors for GUI use, <code>bg</code>, <code>fg</code>,
+        <code>menu_fg</code>, <code>menu_bg</code>, <code>hdr_fg</code>,
+        <code>hdr_bg</code>, <code>sel_bg</code>, <code>sel_fg</code>,
+        <code>accent</code>, <code>txt_bg</code>, <code>txt_fg</code>,
+        <code>btn_bg</code>, <code>btn_fg</code>, <code>hdr_btn_bg</code>,
+        <code>hdr_btn_fg</code>, <code>wm_border_focus</code>,
+        <code>wm_border_unfocus</code>, <code>caret1_fg</code>,
+        <code>caret2_fg</code>, <code>icons_light</code>,
+        <code>icons_medium</code>, <code>icons_dark</code>,
+        <code>icons_sym_action</code>, and <code>icons_sym_panel</code>.
+        For more information about these colors, try to use the Themix GUI
+        designer.
       '';
     };
 
