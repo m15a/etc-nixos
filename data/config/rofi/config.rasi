@@ -15,7 +15,7 @@ configuration {
     display-run: "❱";
     display-drun: "󰘔";
     display-window: "󱂬";
-    width: 50;
+    width: 32;
     lines: 16;
     bw: 6;
     padding: 0;
