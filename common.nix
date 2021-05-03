@@ -286,14 +286,14 @@
 
     displayManager.sessionCommands = ''
       ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
-      ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${pkgs.desktop-background}
+      ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${pkgs.marnie-background}
     '';
 
     displayManager.lightdm = {
       enable = true;
 
       # TODO: Here background is not scaled while session background above is scaled.
-      background = pkgs.desktop-background;
+      background = pkgs.marnie-background;
 
       greeters.mini = {
         enable = true;

@@ -9,6 +9,10 @@ self: super:
     cp ${../data/pixmaps/desktop_background.jpg} $out
   '';
 
+  marnie-background = self.runCommand "marnie-background" {} ''
+    cp ${../data/pixmaps/wallhaven-eyr6ow_4k.png} $out
+  '';
+
   polybar = super.polybar.override {
     pulseSupport = true;
   };
