@@ -15,6 +15,9 @@ self: super:
     enableParallel = true;
   };
 
+  oomox-default-theme = self.callPackage ./oomox-default/theme.nix { inherit config; };
+  oomox-default-icons = self.callPackage ./oomox-default/icons.nix { inherit config; };
+
   desktop-background = self.runCommand "desktop-background" {} ''
     cp ${../data/pixmaps/desktop_background.jpg} $out
   '';

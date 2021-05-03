@@ -1,6 +1,35 @@
 # Srcery: https://github.com/srcery-colors/srcery-vim
 
-{
+rec {
+  bg = xgray1;
+  fg = brwhite;
+  menu_fg = term_fg;
+  menu_bg = term_bg;
+  hdr_fg = term_fg;
+  hdr_bg = term_bg;
+  sel_bg = orange;
+  sel_fg = term_fg;
+  accent = brred;
+  txt_bg = term_bg;
+  txt_fg = term_fg;
+  btn_bg = term_bg;
+  btn_fg = term_fg;
+  hdr_btn_bg = term_bg;
+  hdr_btn_fg = term_fg;
+  wm_border_focus = sel_bg;
+  wm_border_unfocus = brblack;
+  caret1_fg = sel_bg;
+  caret2_fg = sel_bg;
+
+  icons_light = brred;
+  icons_medium = red;
+  icons_dark = red;
+  icons_sym_action = fg;
+  icons_sym_panel = fg;
+
+  term_fg = brwhite;
+  term_bg = black;
+
   black     = { nr =   0; hex = "#1C1B19"; };
   red       = { nr =   1; hex = "#EF2F27"; };
   green     = { nr =   2; hex = "#519F50"; };

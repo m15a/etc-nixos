@@ -137,6 +137,9 @@
       nixpkgs-misc = builtins.fetchTarball {
         url = "https://github.com/mnacamura/nixpkgs-misc/archive/main.tar.gz";
       };
+      nixpkgs-themix = builtins.fetchTarball {
+        url = "https://github.com/mnacamura/nixpkgs-themix/archive/main.tar.gz";
+      };
       nixpkgs-mozilla = builtins.fetchTarball {
         url = "https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz";
       };
@@ -144,6 +147,7 @@
     [
       (import ./pkgs { inherit config; })
       (import nixpkgs-misc)
+      (import nixpkgs-themix)
       (import "${nixpkgs-mozilla}/firefox-overlay.nix")
     ];
   };
@@ -162,9 +166,9 @@
     ] ++ [
       gtk3 # Required to use Emacs key bindings in GTK apps
       configFiles.gtk3
-      adapta-gtk-theme-custom
+      oomox-default-theme
+      oomox-default-icons
       paper-icon-theme
-      papirus-icon-theme
     ];
 
     profileRelativeEnvVars = {
