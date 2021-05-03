@@ -18,8 +18,8 @@
 
 [colors]
 background = #00000000
-background-alt = @term_bg@
-foreground = @term_fg@
+background-alt = @term_fg@
+foreground = @term_bg@
 foreground-alt = @brblack@
 accent = @accent@
 alert = @red@

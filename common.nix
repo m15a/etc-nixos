@@ -154,7 +154,7 @@
   };
 
   environment = {
-    colors.palette = config.environment.colors.palettes.srcery;
+    colors.palette = config.environment.colors.palettes.marnie;
 
     systemPackages = with pkgs; [
       latest.firefox-nightly-bin

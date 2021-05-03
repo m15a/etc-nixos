@@ -12,6 +12,7 @@ let
   palettes = {
     default = import ./palettes/default.nix;
     srcery = import ./palettes/srcery.nix;
+    marnie = import ./palettes/marnie.nix;
   };
 in
 
