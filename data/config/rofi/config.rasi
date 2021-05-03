@@ -25,11 +25,11 @@ configuration {
     hide-scrollbar: true;
 
     /*             bg       fg       bgalt    hlbg     hlfg */
-    color-normal: "@brwhite@, @black@, @brwhite@, @brorange@, @black@";
-    color-urgent: "@red@, @black@, @red@, @brorange@, @black@";
-    color-active: "@brwhite@, @orange@, @brwhite@, @brorange@, @black@";
+    color-normal: "@term_bg@, @term_fg@, @bg@, @sel_bg@, @sel_fg@";
+    color-urgent: "@red@, @term_fg@, @red@, @sel_bg@, @sel_fg@";
+    color-active: "@bg@, @term_fg@, @term_bg@, @sel_bg@, @sel_fg@";
     /*             bg       border   sepalator */
-    color-window: "@brwhite@, @xgray6@, @brwhite@";
+    color-window: "@term_bg@, @wm_border_unfocus@, @term_bg@";
 
     kb-clear-line: "Control+l";
     kb-move-front: "Control+a"; 
