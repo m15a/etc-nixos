@@ -26,16 +26,6 @@ self: super:
     pulseSupport = true;
   };
 
-  yabar-unstable = super.yabar-unstable.overrideAttrs (old: rec {
-    version = "2019-03-28";
-    src = self.fetchFromGitHub {
-      owner = "geommer";
-      repo = "yabar";
-      rev = "a0d3fdfed992149b741eb8fcf53f02b5d1a6142e";
-      sha256 = "01igivi2s96xxgy08cbhmvqcfq15rckh258gjy1iygkc8fzzlxjw";
-    };
-  });
-
   configFiles = {
     bspwm = self.callPackage ./bspwm/config.nix { inherit config; };
 
@@ -53,11 +43,6 @@ self: super:
     termite = self.callPackage ./termite/config.nix { inherit config; };
 
     polybar = self.callPackage ./polybar/config.nix {
-      inherit config;
-      termite = self.wrapped.termite;
-    };
-
-    yabar = self.callPackage ./yabar/config.nix {
       inherit config;
       termite = self.wrapped.termite;
     };
