@@ -27,7 +27,7 @@ substituteAll (colors.hex // {
 
   icon_path = let
     s = toString (24 * scale);
-    path = "run/current-system/sw/share/icons/oomox-default";
+    path = "/run/current-system/sw/share/icons/oomox-default";
   in lib.concatStringsSep ":"
   (map (c: "${path}/${s}x${s}/${c}") [ "status" "devices" "apps" ]);
 
