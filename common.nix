@@ -299,21 +299,21 @@
         user = "mnacamura";
         extraConfig = let
           inherit (config.environment.hidpi) scale;
-          colors = lib.mapAttrs (_: c: c.hex) config.environment.colors.palette; 
+          colors = config.environment.colors.hex; 
         in with colors; ''
           [greeter]
           show-password-label = false
           invalid-password-text = beep! beep!
           [greeter-theme]
-          font = mononoki Bold
+          font = monospace Bold
           font-size = 13pt
-          text-color = "${brwhite}"
-          error-color = "${brwhite}"
-          window-color = "${brorange}"
+          text-color = "${term_fg}"
+          error-color = "${term_fg}"
+          window-color = "${sel_bg}"
           border-width = 0
           layout-space = ${toString (19 * scale)}
-          password-color = "${brwhite}"
-          password-background-color = "${black}"
+          password-color = "${term_fg}"
+          password-background-color = "${term_bg}"
           password-border-radius = 0
           password-border-width = 0px
         '';
