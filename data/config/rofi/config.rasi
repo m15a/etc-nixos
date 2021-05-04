@@ -221,7 +221,7 @@ textbox-prompt-colon {
 }
 mode-switcher {
     border: 0px;
-    background-color: var(accent);
+    /* background-color: var(accent); */
 }
 
 /* vim: set ft=css : */

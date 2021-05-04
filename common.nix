@@ -299,7 +299,7 @@
         user = "mnacamura";
         extraConfig = let
           inherit (config.environment.hidpi) scale;
-          colors = config.environment.colors.hex; 
+          colors = config.environment.colors.hex;
         in with colors; ''
           [greeter]
           show-password-label = false

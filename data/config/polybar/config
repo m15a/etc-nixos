@@ -18,9 +18,10 @@
 
 [colors]
 background = #00000000
-background-alt = @bg@
-foreground = @fg@
+background-alt = @term_bg@
+foreground = @term_fg@
 foreground-alt = @brblack@
+accent = @accent@
 alert = @red@
 
 black = @black@
@@ -67,8 +68,7 @@ time-alt = %H:%M:%S
 type = internal/bspwm
 reverse-scroll = false
 label-focused = %name%
-label-focused-foreground = ${colors.background-alt}
-label-focused-background = ${colors.foreground}
+label-focused-background = ${colors.accent}
 label-focused-padding = 1
 label-urgent = %name%!
 label-urgent-foreground = ${colors.background-alt}
