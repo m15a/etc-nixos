@@ -1,41 +1,33 @@
-/* vim: set ft=css: */
 configuration {
-    modi: "combi,run,drun,window";
-    combi-modi: "run,drun,window";
+    dpi: @dpi@;
+
+    width: 32;
+    lines: 16;
+
+    font: "monospace 13";
+
     terminal: "@terminal@";
 
-    dpi: @dpi@;
-    font: "@font@";
-    show-icons: true;
-    sidebar-mode: true;
-    combi-hide-mode-prefix: true;
-    drun-display-format: "{name} [<span size='small'><i>({generic})</i></span>]";
-    window-format: "{c} [{w}]   {t}";
+    modi: "combi,run,drun,window";
+    combi-modi: "run,drun,window";
     display-combi: "❱󰘔󱂬";
     display-run: "❱";
     display-drun: "󰘔";
     display-window: "󱂬";
-    width: 32;
-    lines: 16;
-    bw: 6;
-    padding: 0;
-    line-margin: 0;
-    line-padding: 2;
-    separator-style: "solid";
+
+    drun-display-format: "{name} [<span size='small'><i>({generic})</i></span>]";
+    window-format: "{c} [{w}]   {t}";
+
+    combi-hide-mode-prefix: true;
+    show-icons: true;
+    sidebar-mode: true;
     hide-scrollbar: true;
 
-    /*             bg       fg       bgalt    hlbg     hlfg */
-    color-normal: "@term_fg@, @term_bg@, @term_fg@, @sel_bg@, @sel_fg@";
-    color-urgent: "@red@, @term_bg@, @red@, @sel_bg@, @sel_fg@";
-    color-active: "@term_bg@, @term_fg@, @term_bg@, @sel_bg@, @sel_fg@";
-    /*             bg       border   sepalator */
-    color-window: "@term_fg@, @wm_border_unfocus@, @term_fg@";
-
     kb-clear-line: "Control+l";
-    kb-move-front: "Control+a"; 
-    kb-move-end: "Control+e"; 
-    kb-move-word-back: "Alt+b,Control+Left"; 
-    kb-move-word-forward: "Alt+f,Control+Right"; 
+    kb-move-front: "Control+a";
+    kb-move-end: "Control+e";
+    kb-move-word-back: "Alt+b,Control+Left";
+    kb-move-word-forward: "Alt+f,Control+Right";
     kb-remove-word-back: "Alt+BackSpace,Control+w";
     kb-remove-word-forward: "Alt+d";
     kb-remove-char-back: "BackSpace,Control+h";
@@ -53,3 +45,183 @@ configuration {
     kb-select-9: "Control+Alt+9";
     kb-select-10: "Control+Alt+0";
 }
+
+/**
+ * rofi -dump-theme output.
+ * Rofi version: 1.6.1
+ **/
+* {
+    spacing:                     2;
+
+    foreground:                  @term_bg@;
+    background:                  @term_fg@;
+    selected-foreground:         @sel_fg@;
+    selected-background:         @sel_bg@;
+    accent:                      @accent@;
+    urgent:                      @red@;
+
+    background-color:            rgba ( 0, 0, 0, 0 % );
+    border-color:                var(selected-background);
+    separatorcolor:              var(background);
+
+    normal-foreground:           var(foreground);
+    normal-background:           var(background);
+    alternate-normal-foreground: var(normal-foreground);
+    alternate-normal-background: var(normal-background);
+    selected-normal-foreground:  var(selected-foreground);
+    selected-normal-background:  var(selected-background);
+
+    active-foreground:           var(foreground);
+    active-background:           var(accent);
+    alternate-active-foreground: var(active-foreground);
+    alternate-active-background: var(active-background);
+    selected-active-foreground:  var(selected-foreground);
+    selected-active-background:  var(selected-background);
+
+    urgent-foreground:           var(background);
+    urgent-background:           var(urgent);
+    alternate-urgent-foreground: var(urgent-foreground);
+    alternate-urgent-background: var(urgent-background);
+    selected-urgent-foreground:  var(selected-foreground);
+    selected-urgent-background:  var(selected-background);
+}
+element {
+    padding: 2px ;
+    spacing: 5px ;
+    border:  0;
+}
+element normal.normal {
+    background-color: var(normal-background);
+    text-color:       var(normal-foreground);
+}
+element normal.urgent {
+    background-color: var(urgent-background);
+    text-color:       var(urgent-foreground);
+}
+element normal.active {
+    background-color: var(active-background);
+    text-color:       var(active-foreground);
+}
+element selected.normal {
+    background-color: var(selected-normal-background);
+    text-color:       var(selected-normal-foreground);
+}
+element selected.urgent {
+    background-color: var(selected-urgent-background);
+    text-color:       var(selected-urgent-foreground);
+}
+element selected.active {
+    background-color: var(selected-active-background);
+    text-color:       var(selected-active-foreground);
+}
+element alternate.normal {
+    background-color: var(alternate-normal-background);
+    text-color:       var(alternate-normal-foreground);
+}
+element alternate.urgent {
+    background-color: var(alternate-urgent-background);
+    text-color:       var(alternate-urgent-foreground);
+}
+element alternate.active {
+    background-color: var(alternate-active-background);
+    text-color:       var(alternate-active-foreground);
+}
+element-text {
+    background-color: rgba ( 0, 0, 0, 0 % );
+    highlight:        inherit;
+    text-color:       inherit;
+}
+element-icon {
+    background-color: rgba ( 0, 0, 0, 0 % );
+    size:             1.0000em ;
+    text-color:       inherit;
+}
+window {
+    padding:          0;
+    background-color: var(background);
+    border:           6;
+}
+mainbox {
+    padding: 0;
+    border:  0;
+}
+message {
+    padding:      2px ;
+    border-color: var(separatorcolor);
+    border:       2px 0px 0px ;
+}
+textbox {
+    text-color: var(foreground);
+}
+listview {
+    padding:      2px 0px 0px ;
+    scrollbar:    false;
+    border-color: var(separatorcolor);
+    spacing:      0px ;
+    fixed-height: 0;
+    border:       2px 0px 0px ;
+}
+scrollbar {
+    width:        4px ;
+    padding:      0;
+    handle-width: 8px ;
+    border:       0;
+    handle-color: var(normal-foreground);
+}
+sidebar {
+    border-color: var(separatorcolor);
+    border:       2px dash 0px 0px ;
+}
+button {
+    spacing:    0;
+    text-color: var(normal-foreground);
+}
+button selected {
+    background-color: var(selected-normal-background);
+    text-color:       var(selected-normal-foreground);
+}
+num-filtered-rows {
+    expand:     false;
+    text-color: rgba ( 128, 128, 128, 100 % );
+}
+num-rows {
+    expand:     false;
+    text-color: rgba ( 128, 128, 128, 100 % );
+}
+textbox-num-sep {
+    expand:     false;
+    str:        "/";
+    text-color: rgba ( 128, 128, 128, 100 % );
+}
+inputbar {
+    padding:    2px ;
+    spacing:    0px ;
+    text-color: var(normal-foreground);
+    children:   [ prompt,textbox-prompt-colon,entry,num-filtered-rows,textbox-num-sep,num-rows,case-indicator ];
+}
+case-indicator {
+    spacing:    0;
+    text-color: var(normal-foreground);
+}
+entry {
+    text-color:        var(normal-foreground);
+    spacing:           0;
+    placeholder-color: rgba ( 128, 128, 128, 100 % );
+    placeholder:       "Type to filter";
+}
+prompt {
+    spacing:    0;
+    text-color: var(normal-foreground);
+}
+textbox-prompt-colon {
+    margin:     0px 0.3000em 0.0000em 0.0000em ;
+    expand:     false;
+    str:        "";
+    text-color: inherit;
+}
+mode-switcher {
+    border: 0px;
+    background-color: var(accent);
+}
+
+/* vim: set ft=css : */
