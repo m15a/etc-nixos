@@ -230,6 +230,9 @@
   services = {
     chrony.enable = true;
 
+    conky.enable = true;
+    conky.configFile = pkgs.configFiles.conky;
+
     dunst.enable = true;
     dunst.configFile = pkgs.configFiles.dunst;
 
