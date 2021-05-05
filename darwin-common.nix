@@ -86,7 +86,7 @@
   };
 
   services = {
-    nix-daemon.enable = false;
+    nix-daemon.enable = true;
   };
 
   # Used for backwards compatibility, please read the changelog before changing.
