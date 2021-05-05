@@ -8,6 +8,7 @@
   imports = [
     ./modules/btops.nix
     ./modules/colors
+    ./modules/conky.nix
     ./modules/dropbox.nix
     ./modules/dunst.nix
     ./modules/hidpi.nix
