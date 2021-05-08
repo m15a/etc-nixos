@@ -92,14 +92,13 @@
       source-han-sans-japanese
 
       # Monospace
-      mononoki
+      (nerdfonts.override { fonts = [ "Mononoki" ]; })
       # rounded-mgenplus (1m)
       source-code-pro
       source-han-code-jp
 
       # Emoji / Icons
       noto-fonts-emoji
-      material-design-icons
     ];
 
     fontconfig.defaultFonts = {
@@ -112,7 +111,7 @@
         "Rounded Mgen+ 1p"
       ];
       monospace = [
-        "mononoki"
+        "mononoki Nerd Font"
         "Rounded Mgen+ 1m"
       ];
     };
