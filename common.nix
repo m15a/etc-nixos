@@ -250,15 +250,15 @@
 
     libinput.enable = true;
     libinput.touchpad = {
-      accelSpeed = "0.77";
+      accelSpeed = "1";
       disableWhileTyping = true;
       naturalScrolling = true;
       sendEventsMode = "disabled-on-external-mouse";
     };
     libinput.mouse = {
       accelProfile = "flat";
-      # 4k display, scale 1.5 => cursor moving from left to right: 3.5inch
-      accelSpeed = "0.77";
+      # 4k display, scale 1.5 => cursor moving from left to right: ~3inch
+      accelSpeed = "1";
     };
 
     inputClassSections = [
