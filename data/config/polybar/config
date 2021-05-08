@@ -96,15 +96,12 @@ click-right = @open_dropbox@
 [module/wifi]
 type = internal/network
 interface = wlp2s0
-format-connected = %{A3:@termite@ -e @nmtui@:}%{A1:@nmcli@ radio wifi off:}<ramp-signal><label-connected>%{A}%{A}
+format-connected = %{A3:@termite@ -e @nmtui@:}%{A1:@nmcli@ radio wifi off:}<ramp-signal> <label-connected>%{A}%{A}
 label-connected = %signal%% %essid%
 format-disconnected = %{A1:@nmcli@ radio wifi on:}<label-disconnected>%{A}
-label-disconnected = 󰤭
+label-disconnected = 睊
 label-disconnected-foreground = ${colors.foreground-alt}
-ramp-signal-0 = 󰤟
-ramp-signal-1 = 󰤢
-ramp-signal-2 = 󰤥
-ramp-signal-3 = 󰤨
+ramp-signal-0 = 直
 
 [module/bluetooth]
 type = custom/script
@@ -118,36 +115,30 @@ click-right = @termite@ -e @bluetoothctl@
 [module/pulseaudio]
 type = internal/pulseaudio
 interval = 4
-format-volume = <ramp-volume><label-volume>
+format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
-label-muted = 󰝟
+label-muted = ﱝ
 label-muted-foreground = ${colors.foreground-alt}
-ramp-volume-0 = 󰕿
-ramp-volume-1 = 󰖀
-ramp-volume-2 = 󰕾
+ramp-volume-0 = 奄
+ramp-volume-1 = 奔
+ramp-volume-2 = 墳
 click-right = @pavucontrol@
 
 [module/battery]
 type = internal/battery
 battery = BAT0
 adapter = AC
-format-charging = <ramp-capacity><label-charging>
-format-discharging = <ramp-capacity><label-discharging>
-format-full = <ramp-capacity><label-full>
-label-charging = %percentage%%󰚥
+format-charging = <ramp-capacity>  <label-charging>
+format-discharging = <ramp-capacity>  <label-discharging>
+format-full = <ramp-capacity>  <label-full>
+label-charging = %percentage%%ﮣ
 label-discharging = %percentage%%
 label-full = %percentage%%
-ramp-capacity-0 = 󰂃
-ramp-capacity-1 = 󰁺
-ramp-capacity-2 = 󰁻
-ramp-capacity-3 = 󰁼
-ramp-capacity-4 = 󰁽
-ramp-capacity-5 = 󰁾
-ramp-capacity-6 = 󰁿
-ramp-capacity-7 = 󰂀
-ramp-capacity-8 = 󰂁
-ramp-capacity-9 = 󰂂
-ramp-capacity-10 = 󰁹
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
 
 [settings]
 screenchange-reload = true

@@ -26,14 +26,14 @@ let
         status="$("$dropbox" status 2>/dev/null)"
         case "$status" in
             'Up to date'|'最新の状態')
-                echo '󰇣'
+                echo ''
                 ;;
             *)
-                echo '󰓦'
+                echo ''
                 ;;
         esac
     else
-        echo '%{F${fg}}󰇣%{F-}'
+        echo '%{F${fg}}%{F-}'
     fi
   '';
 
@@ -47,23 +47,23 @@ let
     btctl=${bluez}/bin/bluetoothctl
     if [ "$(${systemd}/bin/systemctl is-active bluetooth)" = active ] && \
        [ "$($btctl show | grep Powered | cut -d' ' -f2)" = yes ]; then
-        echo -n '󰂯'
+        echo -n ' '
         for d in $($btctl paired-devices | cut -d' ' -f2); do
             if $btctl info "$d" | grep -q 'Connected: yes'; then
                 alias="$($btctl info "$d" | grep 'Alias:' | cut -d' ' -f2)"
                 if echo "$alias" | grep -iq mouse; then
-                    echo -n '󰍽'
+                    echo -n ''
                 elif echo "$alias" | grep -iq hhkb; then
-                    echo -n '󰌌'
+                    echo -n ''
                 elif echo "$alias" | grep -iq controller; then
-                    echo -n '󰊴'
+                    echo -n ''
                 else
                     echo -n "$alias "
                 fi
             fi
         done
     else
-        echo '%{F${fg}}󰂲%{F-}'
+        echo '%{F${fg}}%{F-}'
     fi
   '';
   bluetooth_switch = writeShellScript "bluetooth-switch" ''
@@ -84,9 +84,8 @@ substituteAll (colors // {
   offset_y = toString (4 * scale);
 
   fonts = lib.concatStringsSep "\n" (lib.mapAttrsToList (i: s: "font-${i} = ${s}") {
-    "0" = "mononoki:size=${toString (12 * scale)}";
+    "0" = "mononoki Nerd Font:size=${toString (12 * scale)}";
     "1" = "Rounded Mgen+ 1m:size=${toString (12 * scale)}";
-    "2" = "Material Design Icons:size=${toString (12 * scale)}";
   });
 
   modules_left = lib.concatStringsSep " " [

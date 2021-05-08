@@ -10,10 +10,10 @@ configuration {
 
     modi: "combi,run,drun,window";
     combi-modi: "run,drun,window";
-    display-combi: "❱󰘔󱂬";
-    display-run: "❱";
-    display-drun: "󰘔";
-    display-window: "󱂬";
+    display-combi: " ﬓ  ";
+    display-run: " ";
+    display-drun: "ﬓ ";
+    display-window: " ";
 
     drun-display-format: "{name} [<span size='small'><i>({generic})</i></span>]";
     window-format: "{c} [{w}]   {t}";
