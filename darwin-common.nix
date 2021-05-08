@@ -7,6 +7,20 @@
     useSandbox = false;
   };
 
+  nixpkgs = {
+    config.allowUnfree = true;
+
+    overlays = let
+      nixpkgs-misc = builtins.fetchTarball {
+        url = "https://github.com/mnacamura/nixpkgs-misc/archive/main.tar.gz";
+      };
+    in
+    [
+      (import ./pkgs { inherit config; })
+      (import nixpkgs-misc)
+    ];
+  };
+
   environment = let
     makeProfileRelativePath = suffixes:
     with lib;
