@@ -68,6 +68,7 @@ time-alt = %H:%M:%S
 type = internal/bspwm
 reverse-scroll = false
 label-focused = %name%
+label-focused-foreground = ${colors.background-alt}
 label-focused-background = ${colors.accent}
 label-focused-padding = 1
 label-urgent = %name%!
