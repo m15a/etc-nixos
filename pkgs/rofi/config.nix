@@ -1,4 +1,4 @@
-{ config, lib, substituteAll, termite }:
+{ config, lib, substituteAll, terminal }:
 
 let
   inherit (config.environment.hidpi) scale;
@@ -12,5 +12,5 @@ substituteAll (colors.hex // {
 
   font = "monospace 13";
 
-  terminal = "${termite}/bin/termite";
+  inherit terminal;
 })

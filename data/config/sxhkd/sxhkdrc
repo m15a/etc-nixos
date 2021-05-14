@@ -20,7 +20,7 @@ XF86Audio{Prev,Play,Next}
 
 # Terminal emulator
 super + Return
-    termite -e 'fish --login'
+    alacritty
 
 # Program launcher
 super + space
