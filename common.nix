@@ -162,7 +162,7 @@
       pavucontrol
       wrapped.feh
       wrapped.rofi
-      wrapped.termite
+      wrapped.alacritty
     ] ++ [
       gtk3 # Required to use Emacs key bindings in GTK apps
       configFiles.gtk3

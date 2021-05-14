@@ -1,5 +1,5 @@
 { config, lib, writeShellScript, substituteAll, dropbox-cli, networkmanager
-, bluez, libnotify, xdg_utils, termite, pavucontrol, systemd
+, bluez, libnotify, xdg_utils, terminal, pavucontrol, systemd
 }:
 
 let
@@ -106,7 +106,7 @@ substituteAll (colors // {
 
   open_calendar = openURL "https://calendar.google.com/";
 
-  termite = "${termite}/bin/termite";
+  inherit terminal;
 
   nmcli = "${networkmanager}/bin/nmcli";
   nmtui = "${networkmanager}/bin/nmtui";

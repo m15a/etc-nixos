@@ -28,16 +28,16 @@ self: super:
 
     rofi = self.callPackage ./rofi/config.nix {
       inherit config;
-      termite = self.wrapped.termite;
+      terminal = "${self.wrapped.alacritty}/bin/alacritty";
     };
 
     sxhkd = self.callPackage ./sxhkd/config.nix { inherit config; };
 
-    termite = self.callPackage ./termite/config.nix { inherit config; };
+    alacritty = self.callPackage ./alacritty/config.nix { inherit config; };
 
     polybar = self.callPackage ./polybar/config.nix {
       inherit config;
-      termite = self.wrapped.termite;
+      terminal = "${self.wrapped.alacritty}/bin/alacritty";
     };
   };
 
@@ -48,8 +48,8 @@ self: super:
       configFile = self.configFiles.rofi;
     };
 
-    termite = self.callPackage ./termite/wrapper.nix {
-      configDir = "${self.configFiles.termite}/etc/xdg";
+    alacritty = self.callPackage ./alacritty/wrapper.nix {
+      configFile = self.configFiles.alacritty;
     };
   };
 }
