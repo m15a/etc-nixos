@@ -156,6 +156,7 @@
     colors.palette = config.environment.colors.palettes.srcery;
 
     systemPackages = with pkgs; [
+      configFiles.fish
       latest.firefox-nightly-bin
       libnotify
       maim
@@ -169,6 +170,11 @@
       oomox-default-theme
       oomox-default-icons
       paper-icon-theme
+    ];
+
+    pathsToLink = [
+      "/etc/fish/conf.d"
+      "/etc/fish/functions"
     ];
 
     profileRelativeEnvVars = {

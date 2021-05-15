@@ -16,6 +16,8 @@ self: super:
   configFiles = {
     bspwm = self.callPackage ./bspwm/config.nix { inherit config; };
 
+    fish = self.callPackage ./fish/config.nix { inherit config; };
+
     conky = self.callPackage ./conky/config.nix { inherit config; };
 
     dunst = self.callPackage ./dunst/config.nix { inherit config; };
