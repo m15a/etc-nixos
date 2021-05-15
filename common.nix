@@ -185,7 +185,8 @@
     };
 
     shellAliases = {
-      ls = "ls -Fh --color --time-style=long-iso";
+      # ls = "ls -Fh --color --time-style=long-iso";
+      ls = null;
       l = "ls";
       la = "ls -a";
       ll = "ls -l";
