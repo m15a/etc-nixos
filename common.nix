@@ -230,16 +230,16 @@
       ll = null;
       lla = null;
     };
-    fish.interactiveShellInit = ''
-      abbr --add l 'ls'
-      abbr --add la 'ls -a'
-      abbr --add ll 'ls -l'
-      abbr --add lla 'ls -la'
-      abbr --add h history
-      abbr --add d  dirh
-      abbr --add nd nextd
-      abbr --add pd prevd
-    '';
+    fish.shellAbbrs = {
+      l = "ls";
+      la = "ls -a";
+      ll = "ls -l";
+      lla = "ls -la";
+      h = "history";
+      d = "dirh";
+      nd = "nextd";
+      pd = "prevd";
+    };
 
     dconf.enable = true;
 
