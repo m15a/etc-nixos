@@ -191,7 +191,6 @@
     };
 
     shellAliases = {
-      # ls = "ls -Fh --color --time-style=long-iso";
       ls = null;
       l = "ls";
       la = "ls -a";
@@ -213,6 +212,13 @@
           umask 022
       fi
     '';
+    bash.interactiveShellInit = ''
+      ls() {
+          type -f lsd >/dev/null 2>&1 \
+          && command lsd "$@" \
+          || command ls -Fh --color --time-style=long-iso "$@"
+      }
+    '';
 
     fish.enable = true;
     fish.loginShellInit = ''
@@ -222,6 +228,13 @@
           or  umask 077
       else
           umask 022
+      end
+    '';
+    fish.interactiveShellInit = ''
+      function ls
+          type -fq lsd
+          and command lsd $argv
+          or  command ls -Fh --color --time-style=long-iso $argv
       end
     '';
     fish.shellAliases = {

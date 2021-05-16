@@ -79,6 +79,12 @@
       fi
     '';
     bash.interactiveShellInit = ''
+      ls() {
+          type -f lsd >/dev/null 2>&1 \
+          && command lsd "$@" \
+          || command ls -Fh --color --time-style=long-iso "$@"
+      }
+
       alias l='ls'
       alias la='ls -a'
       alias ll='ls -l'
@@ -104,6 +110,12 @@
       end
     '';
     fish.interactiveShellInit = ''
+      function ls
+          type -fq lsd
+          and command lsd $argv
+          or  command ls -Fh --color --time-style=long-iso $argv
+      end
+
       abbr --add l 'ls'
       abbr --add la 'ls -a'
       abbr --add ll 'ls -l'
