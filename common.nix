@@ -204,16 +204,32 @@
   };
 
   programs = {
+    bash.loginShellInit = ''
+      if [ "$(id -u)" -ge 1000 ]; then  # normal user
+          [ "$(id -un)" = "$(id -gn)" ] \
+          && umask 007 \
+          || umask 077
+      else
+          umask 022
+      fi
+    '';
+
     fish.enable = true;
+    fish.loginShellInit = ''
+      if [ (id -u) -ge 1000 ]  # normal user
+          [ (id -un) = (id -gn) ]
+          and umask 007
+          or  umask 077
+      else
+          umask 022
+      end
+    '';
     fish.shellAliases = {
       l = null;
       la = null;
       ll = null;
       lla = null;
     };
-    fish.shellInit = ''
-      umask 077
-    '';
     fish.interactiveShellInit = ''
       abbr --add l 'ls'
       abbr --add la 'ls -a'

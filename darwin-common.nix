@@ -69,6 +69,15 @@
   };
 
   programs = { # Shells
+    bash.loginShellInit = ''
+      if [ "$(id -u)" -ge 1000 ]; then  # normal user
+          [ "$(id -un)" = "$(id -gn)" ] \
+          && umask 007 \
+          || umask 077
+      else
+          umask 022
+      fi
+    '';
     bash.interactiveShellInit = ''
       alias l='ls'
       alias la='ls -a'
@@ -78,12 +87,20 @@
 
     fish.enable = true;
     fish.shellInit = ''
-      umask 077
       # Hack for issue https://github.com/LnL7/nix-darwin/issues/122
       for p in /run/current-system/sw/bin
         if not contains $p $fish_user_paths
           set -g fish_user_paths $p $fish_user_paths
         end
+      end
+    '';
+    fish.loginShellInit = ''
+      if [ (id -u) -ge 1000 ]  # normal user
+          [ (id -un) = (id -gn) ]
+          and umask 007
+          or  umask 077
+      else
+          umask 022
       end
     '';
     fish.interactiveShellInit = ''
