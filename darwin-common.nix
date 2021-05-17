@@ -113,9 +113,14 @@
     '';
     fish.interactiveShellInit = ''
       function ls
-          type -fq lsd
-          and command lsd $argv
-          or  command ls -Fh --color --time-style=long-iso $argv
+          if type -fq lsd
+              # iTerm2 does not print Nerd Font icons...somehow
+              set -q ITERM_SESSION_ID
+              and command lsd --icon never $argv
+              or  command lsd $argv
+          else
+              command ls -Fh --color --time-style=long-iso $argv
+          end
       end
 
       abbr --add l 'ls'
