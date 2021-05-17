@@ -31,25 +31,25 @@
   in {
     darwinConfig = "$HOME/.config/nixos/${config.networking.hostName}.nix";
 
-    systemPackages = with pkgs; let
-      consolePkgs = [
-        coreutils
-        findutils
-        gnumake
-        gnugrep
-        diffutils
-        gawk
-        gnused
-        # strip
-        patch
-        gnutar
-        bzip2
-        gzip
-        xz
-      ];
-      miscPkgs = [
-      ];
-    in consolePkgs ++ miscPkgs;
+    systemPackages = with pkgs; [
+      coreutils
+      diffutils
+      findutils
+      gawk
+      gnugrep
+      gnumake
+      gnused
+      gnutar
+      curl
+      less
+      man
+      patch
+      which
+      bzip2
+      gzip
+      xz
+      configFiles.fish
+    ];
 
     variables = {
       PAGER = "less -R";
