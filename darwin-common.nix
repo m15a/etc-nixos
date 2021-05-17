@@ -69,15 +69,6 @@
   };
 
   programs = { # Shells
-    bash.loginShellInit = ''
-      if [ "$(id -u)" -ge 1000 ]; then  # normal user
-          [ "$(id -un)" = "$(id -gn)" ] \
-          && umask 007 \
-          || umask 077
-      else
-          umask 022
-      fi
-    '';
     bash.interactiveShellInit = ''
       ls() {
           type -f lsd >/dev/null 2>&1 \
