@@ -102,7 +102,7 @@
       end
     '';
     fish.loginShellInit = ''
-      if [ (id -u) -ge 1000 ]  # normal user
+      if [ (id -u) -ge 501 ]  # normal user
           [ (id -un) = (id -gn) ]
           and umask 007
           or  umask 077
