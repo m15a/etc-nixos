@@ -46,6 +46,7 @@
       gnused
       gnutar
       curl
+      git
       less
       man
       patch
