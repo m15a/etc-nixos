@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./modules/dummy.nix
+    ./modules/colors
+  ];
+
   nix = {
     trustedUsers = [ "@admin" ];
 
@@ -49,6 +54,11 @@
       gzip
       xz
       configFiles.fish
+    ];
+
+    pathsToLink = [
+      "/etc/fish/conf.d"
+      "/etc/fish/functions"
     ];
 
     variables = {
