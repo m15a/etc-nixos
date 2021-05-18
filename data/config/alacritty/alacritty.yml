@@ -25,7 +25,8 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     family: monospace
-  size: 11.0
+  # Use WINIT_X11_SCALE_FACTO=1 for multi-monitor setup
+  size: 13.0
   offset:
    x: 1
    y: 1
@@ -73,3 +74,6 @@ shell:
 
 mouse:
   hide_when_typing: true
+
+env:
+  WINIT_X11_SCALE_FACTOR: "@winit_x11_scale_factor@"
