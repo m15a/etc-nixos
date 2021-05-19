@@ -12,4 +12,10 @@
     buildCores = 4;
     maxJobs = 4;
   };
+
+  environment = {
+    systemPackages = [
+      pkgs.python3
+    ];
+  };
 }
