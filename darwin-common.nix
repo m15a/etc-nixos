@@ -42,7 +42,6 @@
       findutils
       gawk
       gnugrep
-      gnumake
       gnused
       gnutar
       curl
