@@ -122,6 +122,11 @@
               command ls -Fh --color --time-style=long-iso $argv
           end
       end
+      function cat
+          type -fq bat
+          and command bat $argv
+          or  command cat $argv
+      end
 
       abbr --add l 'ls'
       abbr --add la 'ls -a'

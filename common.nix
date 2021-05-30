@@ -219,6 +219,11 @@
           && command lsd "$@" \
           || command ls -Fh --color --time-style=long-iso "$@"
       }
+      cat() {
+          type -f bat >/dev/null 2>&1 \
+          && command bat "$@" \
+          || command cat "$@"
+      }
     '';
 
     fish.enable = true;
@@ -236,6 +241,11 @@
           type -fq lsd
           and command lsd $argv
           or  command ls -Fh --color --time-style=long-iso $argv
+      end
+      function cat
+          type -fq bat
+          and command bat $argv
+          or  command cat $argv
       end
     '';
     fish.shellAliases = {
