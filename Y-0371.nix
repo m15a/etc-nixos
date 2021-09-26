@@ -13,9 +13,17 @@
     maxJobs = 4;
   };
 
+  homebrew = {
+    enable = true;
+    brews = [
+      "python3"
+      "poetry"
+    ];
+  };
+
   environment = {
     systemPackages = [
-      pkgs.python3
+      # pkgs.python3
     ];
   };
 }
