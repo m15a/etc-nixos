@@ -4,6 +4,7 @@
   imports = [
     ./modules/dummy.nix
     ./modules/colors
+    ./modules/darwin/fish.nix
   ];
 
   nix = {
@@ -93,14 +94,6 @@
     '';
 
     fish.enable = true;
-    fish.shellInit = ''
-      # Hack for issue https://github.com/LnL7/nix-darwin/issues/122
-      for p in /run/current-system/sw/bin
-        if not contains $p $fish_user_paths
-          set -g fish_user_paths $p $fish_user_paths
-        end
-      end
-    '';
     fish.loginShellInit = ''
       if [ (id -u) -ge 501 ]  # normal user
           [ (id -un) = (id -gn) ]
