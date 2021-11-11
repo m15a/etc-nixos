@@ -4,7 +4,9 @@
   imports = [
     ./modules/dummy.nix
     ./modules/colors
+    ./modules/darwin/bash.nix
     ./modules/darwin/fish.nix
+    ./modules/darwin/zsh.nix
   ];
 
   nix = {
@@ -72,7 +74,6 @@
     shells = with pkgs; [ fish ];
 
     shellAliases = {
-      ls = "ls -Fh --color --time-style=long-iso";
       cp = "cp -i";
       mv = "mv -i";
       diff = "diff --color";
@@ -82,9 +83,11 @@
   programs = { # Shells
     bash.interactiveShellInit = ''
       ls() {
-          type -f lsd >/dev/null 2>&1 \
-          && command lsd "$@" \
-          || command ls -Fh --color --time-style=long-iso "$@"
+          if type -f lsd >/dev/null 2>&1; then
+              command lsd "$@"
+          else
+              command ls -Fh --color --time-style=long-iso "$@"
+          fi
       }
 
       alias l='ls'
