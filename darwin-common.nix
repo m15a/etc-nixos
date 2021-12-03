@@ -65,6 +65,7 @@
     ];
 
     variables = {
+      LANG = "ja_JP.UTF-8";
       PAGER = "less -R";
       EDITOR = "vim";  # Available by default on macOS
       INFOPATH = makeProfileRelativePath [ "/info" "/share/info" ];
