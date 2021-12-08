@@ -13,6 +13,10 @@
     trustedUsers = [ "@admin" ];
 
     useSandbox = false;
+
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
   };
 
   nixpkgs = {

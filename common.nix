@@ -125,6 +125,10 @@
       "nixos-config=/etc/nixos/${config.networking.hostName}.nix"
       "/nix/var/nix/profiles/per-user/root/channels"
     ];
+
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
   };
 
   nixpkgs = {
