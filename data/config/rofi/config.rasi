@@ -23,7 +23,7 @@ configuration {
     sidebar-mode: true;
     hide-scrollbar: true;
 
-    kb-clear-line: "Control+l";
+    /* kb-clear-line: "Control+l";
     kb-move-front: "Control+a";
     kb-move-end: "Control+e";
     kb-move-word-back: "Alt+b,Control+Left";
@@ -43,7 +43,7 @@ configuration {
     kb-select-7: "Control+Alt+7";
     kb-select-8: "Control+Alt+8";
     kb-select-9: "Control+Alt+9";
-    kb-select-10: "Control+Alt+0";
+    kb-select-10: "Control+Alt+0"; */
 }
 
 /**
