@@ -146,7 +146,7 @@
     in
     [
       (import ./pkgs { inherit config; })
-      (import nixpkgs-misc)
+      (import "${nixpkgs-misc}/overlay.nix")
       (import nixpkgs-themix)
       (import "${nixpkgs-mozilla}/firefox-overlay.nix")
     ];
