@@ -4,14 +4,14 @@ let
   colors = lib.mapAttrs (_: s: lib.strings.substring 1 6 s) config.environment.colors.hex;
 
   colors_fish = substituteAll (colors // {
-    src = ../../data/etc/fish/conf.d/colors.fish;
+    src = ./conf.d/colors.fish;
   });
 in
 
 stdenv.mkDerivation {
   name = "fish-etc";
 
-  src = ../../data/etc/fish;
+  src = ./.;
 
   buildCommand = ''
     for file in $src/conf.d/*; do
