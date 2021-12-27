@@ -6,6 +6,7 @@
 
 {
   imports = [
+    ./modules/alacritty.nix
     ./modules/btops.nix
     ./modules/colors
     ./modules/conky.nix
@@ -168,7 +169,6 @@
       maim
       pavucontrol
       wrapped.feh
-      wrapped.alacritty
     ] ++ [
       gtk3 # Required to use Emacs key bindings in GTK apps
       configFiles.gtk3
@@ -208,6 +208,9 @@
   };
 
   programs = {
+    alacritty.enable = true;
+    alacritty.configFile = pkgs.configFiles.alacritty;
+
     bash.loginShellInit = ''
       if [ "$(id -u)" -ge 1000 ]; then  # normal user
           [ "$(id -un)" = "$(id -gn)" ] \

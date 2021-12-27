@@ -42,9 +42,5 @@ final: prev:
 
   wrapped = {
     feh = final.callPackage ./feh/wrapper.nix { inherit config; };
-
-    alacritty = final.callPackage ./alacritty/wrapper.nix {
-      configFile = final.configFiles.alacritty;
-    };
   };
 }

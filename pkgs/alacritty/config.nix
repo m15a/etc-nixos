@@ -4,7 +4,7 @@ let
   inherit (config.environment) colors;
 
   configFile = substituteAll (colors.hex // {
-    src = ../../data/config/alacritty/alacritty.yml;
+    src = ./alacritty.yml;
 
     winit_x11_scale_factor = toString config.environment.hidpi.scale;
   });
