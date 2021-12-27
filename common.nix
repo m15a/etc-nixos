@@ -275,7 +275,7 @@
     light-locker.lockAfterScreensaver = 10;
 
     rofi.enable = true;
-    rofi.configFile = pkgs.rofi.configFile;
+    rofi.configFile = pkgs.configFiles.rofi;
 
     vim.defaultEditor = true;
   };
@@ -284,7 +284,7 @@
     chrony.enable = true;
 
     dunst.enable = true;
-    dunst.configFile = pkgs.dunst.configFile;
+    dunst.configFile = pkgs.configFiles.dunst;
 
     polybar.enable = true;
     polybar.configFile = pkgs.configFiles.polybar;
