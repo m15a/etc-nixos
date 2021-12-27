@@ -77,7 +77,7 @@ let
 in
 
 substituteAll (colors // {
-  src = ../../data/config/polybar/config;
+  src = ./config;
 
   height = toString (22 * scale);
 
