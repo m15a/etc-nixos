@@ -39,8 +39,4 @@ final: prev:
 
     sxhkd = final.callPackage ./sxhkd/config.nix { inherit config; };
   };
-
-  wrapped = {
-    feh = final.callPackage ./feh/wrapper.nix { inherit config; };
-  };
 }

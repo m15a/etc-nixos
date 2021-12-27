@@ -10,6 +10,7 @@
     ./modules/btops.nix
     ./modules/colors
     ./modules/conky.nix
+    ./modules/feh.nix
     ./modules/dropbox.nix
     ./modules/dunst.nix
     ./modules/hidpi.nix
@@ -164,7 +165,6 @@
       libnotify
       maim
       pavucontrol
-      wrapped.feh
     ] ++ [
       gtk3 # Required to use Emacs key bindings in GTK apps
       configFiles.gtk3
@@ -228,6 +228,8 @@
           || command cat "$@"
       }
     '';
+
+    feh.enable = true;
 
     fish.enable = true;
     fish.loginShellInit = ''
