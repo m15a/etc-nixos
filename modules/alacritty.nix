@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.programs.alacritty;
 
-  wrapped = buildEnv {
+  wrapped = pkgs.buildEnv {
     name = "${cfg.package.name}-wrapped";
 
     paths = [ cfg.package ];
@@ -42,6 +42,14 @@ in
         '';
       };
 
+      wrappedPackage = mkOption {
+        type        = types.package;
+        default     = wrapped;
+        description = ''
+          alacritty package wrapped with <code>config.programs.alacritty.configFile</code>.
+        '';
+      };
+
       configFile = mkOption {
         type        = with types; nullOr path;
         default     = null;
@@ -57,7 +65,7 @@ in
     environment.systemPackages = [
       (if isNull cfg.configFile
       then cfg.package
-      else wrapped)
+      else cfg.wrappedPackage)
     ];
   };
 }

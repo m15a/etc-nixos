@@ -29,12 +29,12 @@ final: prev:
 
     polybar = final.callPackage ./polybar/config.nix {
       inherit config;
-      terminal = "${final.wrapped.alacritty}/bin/alacritty";
+      terminal = "${config.programs.alacritty.wrappedPackage}/bin/alacritty";
     };
 
     rofi = final.callPackage ./rofi/config.nix {
       inherit config;
-      terminal = "${final.wrapped.alacritty}/bin/alacritty";
+      terminal = "${config.programs.alacritty.wrappedPackage}/bin/alacritty";
     };
 
     sxhkd = final.callPackage ./sxhkd/config.nix { inherit config; };

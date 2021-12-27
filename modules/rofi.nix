@@ -42,6 +42,14 @@ in
         '';
       };
 
+      wrappedPackage = mkOption {
+        type        = types.package;
+        default     = wrapped;
+        description = ''
+          rofi package wrapped with <code>config.programs.rofi.configFile</code>.
+        '';
+      };
+
       configFile = mkOption {
         type        = with types; nullOr path;
         default     = null;
@@ -57,7 +65,7 @@ in
     environment.systemPackages = [
       (if isNull cfg.configFile
       then cfg.package
-      else wrapped)
+      else cfg.wrappedPackage)
     ];
   };
 }

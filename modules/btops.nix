@@ -39,6 +39,14 @@ in
         '';
       };
 
+      wrappedPackage = mkOption {
+        type        = types.package;
+        default     = wrapped;
+        description = ''
+          btops package wrapped with <code>config.services.xserver.windowManager.bspwm.btops.configFile</code>.
+        '';
+      };
+
       configFile = mkOption {
         type        = with types; nullOr path;
         default     = "${defaultConfigFile}";
@@ -60,7 +68,7 @@ in
       partOf = [ "graphical-session.target" ];
       after = [ "graphical-session.target" ];
       serviceConfig = {
-        ExecStart = "${wrapped}/bin/btops";
+        ExecStart = "${cfg.wrappedPackage}/bin/btops";
         Restart = "always";
       };
     };

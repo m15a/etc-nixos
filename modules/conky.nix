@@ -5,8 +5,7 @@ with lib;
 let
   cfg = config.services.conky;
 
-  wrapped = if isNull cfg.configFile then cfg.package else
-  pkgs.runCommand "conky-wrapped"
+  wrapped = pkgs.runCommand "conky-wrapped"
   { nativeBuildInputs = [ pkgs.makeWrapper ]; }
   ''
     makeWrapper ${cfg.package}/bin/conky $out/bin/conky \
@@ -29,6 +28,14 @@ in
         '';
       };
 
+      wrappedPackage = mkOption {
+        type        = types.package;
+        default     = wrapped;
+        description = ''
+          conky package wrapped with <code>config.services.conky.configFile</code>.
+        '';
+      };
+
       configFile = mkOption {
         type        = with types; nullOr path;
         default     = null;
@@ -42,10 +49,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ wrapped ];
+    environment.systemPackages = [
+      (if isNull cfg.configFile
+      then cfg.package
+      else cfg.wrappedPackage)
+    ];
 
     services.xserver.displayManager.sessionCommands = ''
-      ${wrapped}/bin/conky
+      ${if isNull cfg.configFile then cfg.package else cfg.wrappedPackage}/bin/conky
     '';
   };
 }
