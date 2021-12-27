@@ -6,7 +6,7 @@ let
 in
 
 substituteAll (colors.hex // {
-  src = ../../data/config/conky/conky.conf;
+  src = ./conky.conf;
 
   gap_x = toString (140 * scale);
 })
