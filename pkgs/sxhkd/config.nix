@@ -5,7 +5,7 @@ let
 in
 
 substituteAll {
-  src = ../../data/config/sxhkd/sxhkdrc;
+  src = ./sxhkdrc;
 
   window_move_step = toString (10 * scale);
 }
