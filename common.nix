@@ -14,6 +14,7 @@
     ./modules/hidpi.nix
     ./modules/light-locker.nix
     ./modules/polybar.nix
+    ./modules/rofi.nix
   ];
 
   fileSystems = let
@@ -167,7 +168,6 @@
       maim
       pavucontrol
       wrapped.feh
-      rofi.withConfig
       wrapped.alacritty
     ] ++ [
       gtk3 # Required to use Emacs key bindings in GTK apps
@@ -273,6 +273,9 @@
 
     light-locker.enable = true;
     light-locker.lockAfterScreensaver = 10;
+
+    rofi.enable = true;
+    rofi.configFile = pkgs.rofi.configFile;
 
     vim.defaultEditor = true;
   };

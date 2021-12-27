@@ -47,9 +47,6 @@ final: prev:
         inherit config;
         terminal = "${final.wrapped.alacritty}/bin/alacritty";
       };
-      withConfig = final.callPackage ./rofi/wrapper.nix {
-        inherit configFile;
-      };
     };
   });
 
