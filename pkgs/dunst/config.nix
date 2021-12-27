@@ -6,7 +6,7 @@ let
 in
 
 substituteAll (colors.hex // {
-  src = ../../data/config/dunst/dunstrc;
+  src = ./dunstrc;
 
   # TODO: Fix it to treat negative x correctly
   geometry = let

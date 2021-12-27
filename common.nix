@@ -281,7 +281,7 @@
     chrony.enable = true;
 
     dunst.enable = true;
-    dunst.configFile = pkgs.configFiles.dunst;
+    dunst.configFile = pkgs.dunst.configFile;
 
     polybar.enable = true;
     polybar.configFile = pkgs.configFiles.polybar;

@@ -21,8 +21,6 @@ final: prev:
 
     conky = final.callPackage ./conky/config.nix { inherit config; };
 
-    dunst = final.callPackage ./dunst/config.nix { inherit config; };
-
     gtk3 = final.callPackage ./gtk3/config.nix { inherit config; };
 
     sxhkd = final.callPackage ./sxhkd/config.nix { inherit config; };
@@ -34,6 +32,14 @@ final: prev:
       terminal = "${final.wrapped.alacritty}/bin/alacritty";
     };
   };
+
+  dunst = prev.dunst.overrideAttrs (old: {
+    passthru = (old.passthru or {}) // {
+      configFile = final.callPackage ./dunst/config.nix {
+        inherit config;
+      };
+    };
+  });
 
   rofi = prev.rofi.overrideAttrs (old: {
     passthru = (old.passthru or {}) // rec {
