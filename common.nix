@@ -140,20 +140,16 @@
     };
 
     overlays = let
-      nixpkgs-misc = builtins.fetchTarball {
-        url = "https://github.com/mnacamura/nixpkgs-misc/archive/main.tar.gz";
-      };
-      nixpkgs-themix = builtins.fetchTarball {
-        url = "https://github.com/mnacamura/nixpkgs-themix/archive/main.tar.gz";
-      };
+      nixpkgs-misc = builtins.getFlake "github:mnacamura/nixpkgs-misc";
+      nixpkgs-themix = builtins.getFlake "github:mnacamura/nixpkgs-themix";
       nixpkgs-mozilla = builtins.fetchTarball {
         url = "https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz";
       };
     in
     [
       (import ./pkgs { inherit config; })
-      (import "${nixpkgs-misc}/overlay.nix")
-      (import nixpkgs-themix)
+      nixpkgs-misc.overlay
+      nixpkgs-themix.overlay
       (import "${nixpkgs-mozilla}/firefox-overlay.nix")
     ];
   };
