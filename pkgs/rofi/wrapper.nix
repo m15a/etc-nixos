@@ -2,7 +2,7 @@
 
 
 buildEnv {
-  name = "${rofi.name}-wrapped";
+  name = "${rofi.name}-with-config";
 
   paths = [ rofi ];
   pathsToLink = [ "/share" ];

@@ -1,49 +1,57 @@
 configuration {
     dpi: @dpi@;
 
-    width: 32;
-    lines: 16;
+    /* window { width: 32; } */
+
+    /* listview { lines: 16; } */
 
     font: "monospace 13";
 
     terminal: "@terminal@";
 
-    modi: "combi,run,drun,window";
+    modi: "combi,run,drun,window,filebrowser,keys";
     combi-modi: "run,drun,window";
     display-combi: " ﬓ  ";
     display-run: " ";
     display-drun: "ﬓ ";
     display-window: " ";
+    display-ssh: "﫻 ";
+    display-filebrowser: " ";
+    display-keys: " ";
 
     drun-display-format: "{name} [<span size='small'><i>({generic})</i></span>]";
     window-format: "{c} [{w}]   {t}";
 
+    matching: "fuzzy";
     combi-hide-mode-prefix: true;
     show-icons: true;
     sidebar-mode: true;
     hide-scrollbar: true;
 
-    /* kb-clear-line: "Control+l";
+    /* kb-primary-paste: "Control+V,Shift+Insert"; */
+    /* kb-secondary-paste: "Control+v,Insert"; */
+    kb-clear-line: "Control+l";
     kb-move-front: "Control+a";
     kb-move-end: "Control+e";
-    kb-move-word-back: "Alt+b,Control+Left";
-    kb-move-word-forward: "Alt+f,Control+Right";
-    kb-remove-word-back: "Alt+BackSpace,Control+w";
-    kb-remove-word-forward: "Alt+d";
-    kb-remove-char-back: "BackSpace,Control+h";
+    kb-move-char-forward: "Control+f,Right";
+    kb-move-char-back: "Control+b,Left";
+    kb-remove-char-forward: "Control+d,Delete";
+    kb-remove-char-back: "Control+h,BackSpace";
+    kb-move-word-forward: "Alt+f,Alt+Right";
+    kb-move-word-back: "Alt+b,Alt+Left";
+    kb-remove-word-forward: "Alt+d,Alt+Delete";
+    kb-remove-word-back: "Control+w,Alt+BackSpace";
+    kb-remove-to-sol: "Control+u";
+    kb-remove-to-eol: "Control+k";
+    /* kb-accept-entry: "Control+j,Control+m,Return,KP_Enter"; */
+    /* kb-accept-custom: "Control+Return"; */
+    /* kb-accept-custom-alt: "Control+Shift+Return"; */
+    /* kb-accept-alt: "Shift+Return"; */
     kb-delete-entry: "Shift+Delete,Shift+BackSpace";
     kb-mode-next: "Shift+Right,Alt+Tab";
     kb-mode-previous: "Shift+Left,Alt+ISO_Left_Tab";
-    kb-select-1: "Control+Alt+1";
-    kb-select-2: "Control+Alt+2";
-    kb-select-3: "Control+Alt+3";
-    kb-select-4: "Control+Alt+4";
-    kb-select-5: "Control+Alt+5";
-    kb-select-6: "Control+Alt+6";
-    kb-select-7: "Control+Alt+7";
-    kb-select-8: "Control+Alt+8";
-    kb-select-9: "Control+Alt+9";
-    kb-select-10: "Control+Alt+0"; */
+    kb-mode-complete: "Control+o";
+    kb-cancel: "Escape,Control+c,Control+bracketleft";
 }
 
 /**

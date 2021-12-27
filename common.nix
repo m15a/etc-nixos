@@ -167,7 +167,7 @@
       maim
       pavucontrol
       wrapped.feh
-      wrapped.rofi
+      rofi.withConfig
       wrapped.alacritty
     ] ++ [
       gtk3 # Required to use Emacs key bindings in GTK apps

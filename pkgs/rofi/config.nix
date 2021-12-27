@@ -6,7 +6,7 @@ let
 in
 
 substituteAll (colors.hex // {
-  src = ../../data/config/rofi/config.rasi;
+  src = ./config.rasi;
 
   dpi = toString (96 * scale);
 
