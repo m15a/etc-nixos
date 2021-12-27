@@ -140,18 +140,8 @@
       pulseaudio = true;
     };
 
-    overlays = let
-      nixpkgs-misc = builtins.getFlake "github:mnacamura/nixpkgs-misc";
-      nixpkgs-themix = builtins.getFlake "github:mnacamura/nixpkgs-themix";
-      nixpkgs-mozilla = builtins.fetchTarball {
-        url = "https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz";
-      };
-    in
-    [
-      (import ./pkgs { inherit config; })
-      nixpkgs-misc.overlay
-      nixpkgs-themix.overlay
-      (import "${nixpkgs-mozilla}/firefox-overlay.nix")
+    overlays = [
+      (import ./overlay.nix { inherit config lib; })
     ];
   };
 

@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 final: prev:
 
@@ -14,7 +14,7 @@ final: prev:
     pulseSupport = true;
   };
 
-  configFiles = {
+  configFiles = lib.recurseIntoAttrs {
     alacritty = final.callPackage ./alacritty/config.nix { inherit config; };
 
     bspwm = final.callPackage ./bspwm/config.nix { inherit config; };
