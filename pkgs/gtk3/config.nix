@@ -4,11 +4,11 @@ let
   inherit (config.environment.hidpi) scale;
 
   gtkCss = substituteAll {
-    src = ../../data/etc/xdg/gtk-3.0/gtk.css;
+    src = ./gtk.css;
   };
 
   settingsIni = substituteAll {
-    src = ../../data/etc/xdg/gtk-3.0/settings.ini;
+    src = ./settings.ini;
   };
 in
 
