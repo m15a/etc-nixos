@@ -10,7 +10,7 @@ let
 in
 
 substituteAll (colors.hex // {
-  src = ../../data/config/bspwm/bspwmrc;
+  src = ./bspwmrc;
 
   postInstall = "chmod +x $out";
 
