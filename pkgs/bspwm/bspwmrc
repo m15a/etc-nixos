@@ -1,7 +1,7 @@
 #!/bin/sh
 
-bspc config split_ratio 0.62
-bspc config automatic_scheme spiral
+bspc config split_ratio 0.5
+bspc config automatic_scheme longest_side
 bspc config initial_polarity first_child
 
 bspc config window_gap @window_gap@
