@@ -5,9 +5,9 @@
   networking.hostName = "sagnier";
 
   imports = [
-    ./hardware-configuration.nix
-    ./common.nix
-    ./private.nix
+    ../hardware-configuration.nix
+    ../common.nix
+    ../private.nix
   ];
 
   boot = {

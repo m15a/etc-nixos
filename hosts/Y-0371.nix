@@ -5,7 +5,7 @@
   networking.hostName = "Y-0371";
 
   imports = [
-    ./darwin-common.nix
+    ../darwin-common.nix
   ];
 
   nix = {

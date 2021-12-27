@@ -125,7 +125,7 @@
 
     nixPath = [
       "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
-      "nixos-config=/etc/nixos/${config.networking.hostName}.nix"
+      "nixos-config=/etc/nixos/hosts/${config.networking.hostName}.nix"
       "/nix/var/nix/profiles/per-user/root/channels"
     ];
 

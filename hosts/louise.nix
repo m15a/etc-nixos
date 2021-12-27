@@ -5,9 +5,9 @@
   networking.hostName = "louise";
 
   imports = [
-    ./hardware-configuration.nix
-    ./common.nix
-    ./private.nix
+    ../hardware-configuration.nix
+    ../common.nix
+    ../private.nix
   ];
 
   boot = {
