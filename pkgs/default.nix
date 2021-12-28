@@ -6,9 +6,7 @@ final: prev:
   oomox-default-theme = final.callPackage ./oomox-default/theme.nix { inherit config; };
   oomox-default-icons = final.callPackage ./oomox-default/icons.nix { inherit config; };
 
-  desktop-background = final.runCommand "desktop-background" {} ''
-    cp ${../data/pixmaps/desktop_background.jpg} $out
-  '';
+  desktop-background = final.callPackage ./desktop-background {};
 
   polybar = prev.polybar.override {
     pulseSupport = true;
