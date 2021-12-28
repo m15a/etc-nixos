@@ -5,7 +5,7 @@
   networking.hostName = "suzon";
 
   imports = [
-    ../darwin-common.nix
+    ../../common/darwin.nix
   ];
 
   nix = {

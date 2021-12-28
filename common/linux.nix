@@ -6,17 +6,17 @@
 
 {
   imports = [
-    ./modules/alacritty.nix
-    ./modules/btops.nix
-    ./modules/colors
-    ./modules/conky.nix
-    ./modules/feh.nix
-    ./modules/dropbox.nix
-    ./modules/dunst.nix
-    ./modules/hidpi.nix
-    ./modules/light-locker.nix
-    ./modules/polybar.nix
-    ./modules/rofi.nix
+    ../modules/alacritty.nix
+    ../modules/btops.nix
+    ../modules/colors
+    ../modules/conky.nix
+    ../modules/feh.nix
+    ../modules/dropbox.nix
+    ../modules/dunst.nix
+    ../modules/hidpi.nix
+    ../modules/light-locker.nix
+    ../modules/polybar.nix
+    ../modules/rofi.nix
   ];
 
   fileSystems = let
@@ -125,7 +125,7 @@
 
     nixPath = [
       "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
-      "nixos-config=/etc/nixos/hosts/${config.networking.hostName}.nix"
+      "nixos-config=/etc/nixos/hosts/${config.networking.hostName}/default.nix"
       "/nix/var/nix/profiles/per-user/root/channels"
     ];
 

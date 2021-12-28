@@ -8,7 +8,7 @@
 
   outputs = { self, nixpkgs, nixpkgs-misc, nixpkgs-themix, nixpkgs-mozilla, ... }:
   let
-    overlays-module = { config, lib, pkgs, ...}: {
+    nixpkgs-overlays = { config, lib, pkgs, ...}: {
       nixpkgs.overlays = [
         (import ./pkgs { inherit config lib; })
         nixpkgs-misc.overlay
@@ -16,13 +16,14 @@
         (import "${nixpkgs-mozilla}/firefox-overlay.nix")
       ];
     };
+    hosts = import ./hosts;
   in {
     nixosConfigurations = {
       louise = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          overlays-module
-          (import ./hosts/louise.nix)
+          nixpkgs-overlays
+          hosts.louise
         ];
       };
     };

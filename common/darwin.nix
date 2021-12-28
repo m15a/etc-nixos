@@ -2,11 +2,11 @@
 
 {
   imports = [
-    ./modules/dummy.nix
-    ./modules/colors
-    ./modules/darwin/bash.nix
-    ./modules/darwin/fish.nix
-    ./modules/darwin/zsh.nix
+    ../modules/dummy.nix
+    ../modules/colors
+    ../modules/darwin/bash.nix
+    ../modules/darwin/fish.nix
+    ../modules/darwin/zsh.nix
   ];
 
   nix = {
@@ -21,16 +21,6 @@
 
   nixpkgs = {
     config.allowUnfree = true;
-
-    overlays = let
-      nixpkgs-misc = builtins.fetchTarball {
-        url = "https://github.com/mnacamura/nixpkgs-misc/archive/main.tar.gz";
-      };
-    in
-    [
-      (import ./pkgs { inherit config; })
-      (import nixpkgs-misc)
-    ];
   };
 
   environment = let
