@@ -6,6 +6,7 @@
 
 {
   imports = [
+    ../users/mnacamura.nix
     ../modules/alacritty.nix
     ../modules/btops.nix
     ../modules/colors
@@ -404,14 +405,6 @@
       glx-no-rebind-pixmap = true;
       glx-no-stencil = true;
     };
-  };
-
-  users.users.mnacamura = {
-    description = "Mitsuhiro Nakamura";
-    isNormalUser = true;
-    uid = 1000;
-    extraGroups = [ "wheel" "networkmanager" ];
-    shell = "${pkgs.fish}/bin/fish";
   };
 
   # This value determines the NixOS release with which your system is to be
