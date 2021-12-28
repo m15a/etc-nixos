@@ -1,8 +1,14 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-misc.url = "github:mnacamura/nixpkgs-misc";
-    nixpkgs-themix.url = "github:mnacamura/nixpkgs-themix";
+    nixpkgs-misc = {
+      url = "github:mnacamura/nixpkgs-misc";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixpkgs-themix = {
+      url = "github:mnacamura/nixpkgs-themix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs-mozilla = { url = "github:mozilla/nixpkgs-mozilla"; flake = false; };
   };
 
