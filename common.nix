@@ -139,10 +139,6 @@
       allowUnfree = true;
       pulseaudio = true;
     };
-
-    overlays = [
-      (import ./overlay.nix { inherit config lib; })
-    ];
   };
 
   environment = {
