@@ -83,6 +83,9 @@
     tlp.settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "powersave";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      # Bluetooth mouse disconnects after a few minutes of resting.
+      USB_EXCLUDE_BTUSB = true;
     };
 
     dropbox.enable = true;
