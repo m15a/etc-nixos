@@ -21,6 +21,21 @@
     '';
   };
 
+  fileSystems = let
+    # Mount options for Btrfs on SSD
+    commonMountOptions = [
+      "commit=60"
+      "compress=lzo"
+      "defaults"
+      "noatime"
+    ];
+  in {
+    "/".options = commonMountOptions;
+    "/nix".options = commonMountOptions;
+    "/var".options = commonMountOptions;
+    "/home".options = commonMountOptions;
+  };
+
   hardware = {
     # cpu.amd.updateMicrocode = true;
   };

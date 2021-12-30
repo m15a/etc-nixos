@@ -20,21 +20,6 @@
     ../modules/rofi.nix
   ];
 
-  fileSystems = let
-    # Mount options for Btrfs on SSD
-    commonMountOptions = [
-      "commit=60"
-      "compress=lzo"
-      "defaults"
-      "noatime"
-    ];
-  in {
-    "/".options = commonMountOptions;
-    "/nix".options = commonMountOptions;
-    "/var".options = commonMountOptions;
-    "/home".options = commonMountOptions;
-  };
-
   boot = {
     extraModprobeConfig = ''
       # https://github.com/NixOS/nixpkgs/issues/57053
