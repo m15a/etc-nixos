@@ -43,6 +43,7 @@
     firmware = with pkgs; [ wireless-regdb ];
 
     bluetooth.enable = true;
+    bluetooth.disabledPlugins = [ "sap" ];
 
     pulseaudio.enable = true;
     pulseaudio.package = pkgs.pulseaudioFull;
