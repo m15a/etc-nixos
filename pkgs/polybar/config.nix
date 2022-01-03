@@ -3,7 +3,7 @@
 }:
 
 let
-  inherit (config.environment.hidpi) scale;
+  inherit (config.hardware.video) hidpi;
 
   colors = config.environment.colors.hex;
 
@@ -79,13 +79,13 @@ in
 substituteAll (colors // {
   src = ./config;
 
-  height = toString (22 * scale);
+  height = toString (22 * hidpi.scale);
 
-  offset_y = toString (4 * scale);
+  offset_y = toString (4 * hidpi.scale);
 
   fonts = lib.concatStringsSep "\n" (lib.mapAttrsToList (i: s: "font-${i} = ${s}") {
-    "0" = "mononoki Nerd Font:size=${toString (12 * scale)}";
-    "1" = "Rounded Mgen+ 1m:size=${toString (12 * scale)}";
+    "0" = "mononoki Nerd Font:size=${toString (12 * hidpi.scale)}";
+    "1" = "Rounded Mgen+ 1m:size=${toString (12 * hidpi.scale)}";
   });
 
   modules_left = lib.concatStringsSep " " [

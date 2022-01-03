@@ -1,12 +1,12 @@
 { config, lib, substituteAll }:
 
 let
-  inherit (config.environment.hidpi) scale;
+  inherit (config.hardware.video) hidpi;
   inherit (config.environment) colors;
 in
 
 substituteAll (colors.hex // {
   src = ./conky.conf;
 
-  gap_x = toString (140 * scale);
+  gap_x = toString (140 * hidpi.scale);
 })

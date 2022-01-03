@@ -1,7 +1,7 @@
 { config, substituteAll, runCommand }:
 
 let
-  inherit (config.environment.hidpi) scale;
+  inherit (config.hardware.video) hidpi;
 
   gtkCss = substituteAll {
     src = ./gtk.css;

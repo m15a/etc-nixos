@@ -1,7 +1,7 @@
 { config, lib, substituteAll }:
 
 let
-  inherit (config.environment.hidpi) scale;
+  inherit (config.hardware.video) hidpi;
   inherit (config.environment) colors;
 
   makeRules = rules:
@@ -14,12 +14,12 @@ substituteAll (colors.hex // {
 
   postInstall = "chmod +x $out";
 
-  border_width = toString (3 * scale);
+  border_width = toString (3 * hidpi.scale);
 
-  window_gap = toString (60 * scale);
+  window_gap = toString (60 * hidpi.scale);
 
   # 37 is derived from [bspwm window gap: 60] / [phi: 1.618]
-  monocle_padding = toString (37 * scale);
+  monocle_padding = toString (37 * hidpi.scale);
 
   rules = makeRules {
     "Nightly:Navigator" = "state=tiled";

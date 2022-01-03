@@ -325,7 +325,7 @@
         enable = true;
         user = "mnacamura";
         extraConfig = let
-          inherit (config.environment.hidpi) scale;
+          inherit (config.hardware.video) hidpi;
           colors = config.environment.colors.hex;
         in with colors; ''
           [greeter]
@@ -338,7 +338,7 @@
           error-color = "${term_fg}"
           window-color = "${sel_bg}"
           border-width = 0
-          layout-space = ${toString (19 * scale)}
+          layout-space = ${toString (19 * hidpi.scale)}
           password-color = "${term_fg}"
           password-background-color = "${term_bg}"
           password-border-radius = 0
@@ -363,7 +363,7 @@
   };
 
   services.picom = let
-    inherit (config.environment.hidpi) scale;
+    inherit (config.hardware.video) hidpi;
     hasAmdgpu = lib.any (d: d == "amdgpu") config.services.xserver.videoDrivers;
   in {
     enable = true;

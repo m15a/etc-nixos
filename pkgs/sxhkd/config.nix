@@ -1,11 +1,11 @@
 { config, lib, substituteAll }:
 
 let
-  inherit (config.environment.hidpi) scale;
+  inherit (config.hardware.video) hidpi;
 in
 
 substituteAll {
   src = ./sxhkdrc;
 
-  window_move_step = toString (10 * scale);
+  window_move_step = toString (10 * hidpi.scale);
 }

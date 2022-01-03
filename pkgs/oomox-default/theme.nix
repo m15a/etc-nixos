@@ -7,5 +7,5 @@ in
 themixPlugins.theme-oomox.generate {
   preset = substituteAll (colors // { src = ./template; });
   name = "oomox-default";
-  hidpi = config.environment.hidpi.enable;
+  hidpi = config.hardware.video.hidpi.enable;
 } 

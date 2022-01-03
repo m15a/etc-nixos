@@ -53,6 +53,8 @@
   };
 
   hardware = {
+    video.hidpi.enable = true;
+
     # cpu.intel.updateMicrocode = true;
 
     # bluetooth.powerOnBoot = false;
@@ -66,8 +68,6 @@
   nix.buildCores = 8;
 
   environment = {
-    hidpi.enable = true;
-
     systemPackages = with pkgs; [
       xorg.xbacklight
     ];

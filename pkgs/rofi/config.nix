@@ -1,14 +1,14 @@
 { config, lib, substituteAll, terminal }:
 
 let
-  inherit (config.environment.hidpi) scale;
+  inherit (config.hardware.video) hidpi;
   inherit (config.environment) colors;
 in
 
 substituteAll (colors.hex // {
   src = ./config.rasi;
 
-  dpi = toString (96 * scale);
+  dpi = toString (96 * hidpi.scale);
 
   font = "monospace 13";
 
