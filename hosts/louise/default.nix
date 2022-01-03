@@ -58,11 +58,6 @@
     # cpu.intel.updateMicrocode = true;
 
     # bluetooth.powerOnBoot = false;
-
-    # Enjoy Steam.
-    steam-hardware.enable = true;  # Steam Controller
-    pulseaudio.support32Bit = true;
-    opengl.driSupport32Bit = true;
   };
 
   nix.buildCores = 8;
@@ -71,6 +66,10 @@
     systemPackages = with pkgs; [
       xorg.xbacklight
     ];
+  };
+
+  programs = {
+    steam.enable = true;
   };
 
   services = {
