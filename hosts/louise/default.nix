@@ -81,6 +81,10 @@
 
     tlp.enable = true;
     tlp.settings = {
+      # sadly, not available
+      # START_CHARGE_THRESH_BAT0 = 75;
+      # STOP_CHARGE_THRESH_BAT0 = 80;
+
       CPU_SCALING_GOVERNOR_ON_AC = "powersave";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
     };
