@@ -31,7 +31,7 @@
         (profile: flip map suffixes
                     (suffix: "${profile}${suffix}")));
   in {
-    darwinConfig = "$HOME/.config/nixos/${config.networking.hostName}.nix";
+    darwinConfig = "$HOME/.config/darwin/${config.networking.hostName}.nix";
 
     systemPackages = with pkgs; [
       coreutils

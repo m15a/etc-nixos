@@ -10,9 +10,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs-mozilla = { url = "github:mozilla/nixpkgs-mozilla"; flake = false; };
+
+    darwin.url = "github:lnl7/nix-darwin";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-misc, nixpkgs-themix, nixpkgs-mozilla, ... }:
+  outputs = { self, nixpkgs, nixpkgs-misc, nixpkgs-themix, nixpkgs-mozilla, darwin, ... }:
   let
     nixpkgs-overlays = { config, lib, pkgs, ...}: {
       nixpkgs.overlays = [
@@ -30,6 +33,16 @@
         modules = [
           nixpkgs-overlays
           hosts.louise
+        ];
+      };
+    };
+
+    darwinConfigurations = {
+      Y-0371 = darwin.lib.darwinSystem {
+        system = "x86_64-darwin";
+        modules = [
+          nixpkgs-overlays
+          hosts.Y-0371
         ];
       };
     };
