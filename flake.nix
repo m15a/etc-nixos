@@ -4,12 +4,16 @@
     nixpkgs-misc = {
       url = "github:mnacamura/nixpkgs-misc";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
     nixpkgs-themix = {
       url = "github:mnacamura/nixpkgs-themix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
     nixpkgs-mozilla = { url = "github:mozilla/nixpkgs-mozilla"; flake = false; };
+
+    flake-utils.url = "github:numtide/flake-utils";
 
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
