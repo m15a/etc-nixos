@@ -60,7 +60,7 @@
     # bluetooth.powerOnBoot = false;
   };
 
-  nix.buildCores = 8;
+  nix.settings.cores = 8;
 
   environment = {
     systemPackages = with pkgs; [

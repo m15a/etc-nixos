@@ -40,7 +40,7 @@
     # cpu.amd.updateMicrocode = true;
   };
 
-  nix.buildCores = 8;
+  nix.settings.cores = 8;
 
   services = {
     # TODO: Fix it to run correctly.

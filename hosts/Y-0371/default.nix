@@ -9,7 +9,7 @@
   ];
 
   nix = {
-    buildCores = 4;
+    settings.cores = 4;
     settings.max-jobs = 4;
   };
 
