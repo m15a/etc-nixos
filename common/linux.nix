@@ -71,7 +71,7 @@
   };
 
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       # Serif
       newsreader
       shippori
