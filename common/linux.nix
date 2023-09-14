@@ -111,7 +111,7 @@
   };
 
   nix = {
-    trustedUsers = [ "@wheel" ];
+    settings.trusted-users = [ "@wheel" ];
 
     nixPath = [
       "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"

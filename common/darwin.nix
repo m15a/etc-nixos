@@ -10,7 +10,7 @@
   ];
 
   nix = {
-    trustedUsers = [ "@admin" ];
+    settings.trusted-users = [ "@admin" ];
 
     useSandbox = false;
 
