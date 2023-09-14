@@ -329,7 +329,7 @@
         enable = true;
         user = "mnacamura";
         extraConfig = let
-          inherit (config.hardware.video) hidpi;
+          inherit (config.hardware.video.legacy) hidpi;
           colors = config.environment.colors.hex;
         in with colors; ''
           [greeter]
@@ -367,7 +367,7 @@
   };
 
   services.picom = let
-    inherit (config.hardware.video) hidpi;
+    inherit (config.hardware.video.legacy) hidpi;
     hasAmdgpu = lib.any (d: d == "amdgpu") config.services.xserver.videoDrivers;
   in {
     enable = true;

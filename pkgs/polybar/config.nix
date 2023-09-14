@@ -3,7 +3,7 @@
 }:
 
 let
-  inherit (config.hardware.video) hidpi;
+  inherit (config.hardware.video.legacy) hidpi;
 
   colors = config.environment.colors.hex;
 

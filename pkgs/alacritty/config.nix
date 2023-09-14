@@ -2,7 +2,7 @@
 
 let
   inherit (config.environment) colors;
-  inherit (config.hardware.video) hidpi;
+  inherit (config.hardware.video.legacy) hidpi;
 
   configFile = substituteAll (colors.hex // {
     src = ./alacritty.yml;

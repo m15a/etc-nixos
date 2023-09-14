@@ -1,7 +1,7 @@
 { config, lib, substituteAll, terminal }:
 
 let
-  inherit (config.hardware.video) hidpi;
+  inherit (config.hardware.video.legacy) hidpi;
   inherit (config.environment) colors;
 in
 

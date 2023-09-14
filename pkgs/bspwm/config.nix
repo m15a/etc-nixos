@@ -1,7 +1,7 @@
 { config, lib, substituteAll }:
 
 let
-  inherit (config.hardware.video) hidpi;
+  inherit (config.hardware.video.legacy) hidpi;
   inherit (config.environment) colors;
 
   makeRules = rules:

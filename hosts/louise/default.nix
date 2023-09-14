@@ -53,7 +53,7 @@
   };
 
   hardware = {
-    video.hidpi.enable = true;
+    video.legacy.hidpi.enable = true;
 
     # cpu.intel.updateMicrocode = true;
 

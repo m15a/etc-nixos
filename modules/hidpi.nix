@@ -6,17 +6,26 @@
 with lib;
 
 let
-  cfg = config.hardware.video.hidpi;
+  cfg = config.hardware.video.legacy.hidpi;
 in
 
 {
   options = {
-    hardware.video.hidpi.scale = mkOption {
+    hardware.video.legacy.hidpi.enable = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        When enabled, use <option>hardware.video.legacy.hidpi.scale</option> as HiDPI
+        scaling factor.
+      '';
+    };
+
+    hardware.video.legacy.hidpi.scale = mkOption {
       type = types.int;
       default = 2;
       description = ''
-        HiDPI scaling factor. If <option>hardware.video.hidpi.enable</option> is
-        false, <option>hardware.video.hidpi.scale</option> is set to 1.
+        HiDPI scaling factor. If <option>hardware.video.legacy.hidpi.enable</option> is
+        false, <option>hardware.video.legacy.hidpi.scale</option> is set to 1.
       '';
     };
   };
@@ -34,7 +43,7 @@ in
     })
 
     (mkIf (!cfg.enable) {
-      hardware.video.hidpi.scale = mkDefault 1;
+      hardware.video.legacy.hidpi.scale = mkDefault 1;
     })
   ];
 }
