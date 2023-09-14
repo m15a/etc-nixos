@@ -35,6 +35,8 @@
       "nmi_watchdog=0"
     ];
 
+    swraid.enable = false;
+
     tmp.useTmpfs = true;
   };
 
