@@ -10,6 +10,6 @@
 
   nix = {
     buildCores = 4;
-    maxJobs = 4;
+    settings.max-jobs = 4;
   };
 }
