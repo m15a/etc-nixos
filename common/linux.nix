@@ -35,7 +35,7 @@
       "nmi_watchdog=0"
     ];
 
-    tmpOnTmpfs = true;
+    tmp.useTmpfs = true;
   };
 
   hardware = {
