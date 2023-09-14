@@ -40,7 +40,7 @@ colors:
     matches:
      background: '@sel_bg@'
      foreground: '@brwhite@'
-    bar:
+  footer_bar:
       background: '@accent@'
       foreground: '@black@'
   line_indicator:
