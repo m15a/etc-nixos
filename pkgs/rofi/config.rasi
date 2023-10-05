@@ -9,15 +9,16 @@ configuration {
 
     terminal: "@terminal@";
 
+    /* Icons can be found at https://www.nerdfonts.com/cheat-sheet. */
     modi: "combi,run,drun,window,filebrowser,keys";
     combi-modi: "run,drun,window";
-    display-combi: " ﬓ  ";
-    display-run: " ";
-    display-drun: "ﬓ ";
-    display-window: " ";
-    display-ssh: "﫻 ";
-    display-filebrowser: " ";
-    display-keys: " ";
+    display-combi: " 󰣆  ";
+    display-run: " ";          /* nf-oct-command_palette */
+    display-drun: "󰣆 ";         /* nf-md-application */
+    display-window: " ";       /* nf-cod-multiple_windows */
+    display-ssh: "󰣀 ";          /* nf-md-ssh */
+    display-filebrowser: " ";  /* nf-oct-file_directory_fill */
+    display-keys: "󰥻 ";         /* nf-md-keyboard_outline */
 
     drun-display-format: "{name} [<span size='small'><i>({generic})</i></span>]";
     window-format: "{c} [{w}]   {t}";
