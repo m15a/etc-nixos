@@ -362,6 +362,10 @@
       configFile = pkgs.configFiles.bspwm;
       sxhkd.configFile = pkgs.configFiles.sxhkd;
     };
+
+    # Enable XDG autostart, especially for fcitx5.
+    # See https://nixos.org/manual/nixos/unstable/release-notes#sec-release-22.05-notable-changes.
+    desktopManager.runXdgAutostartIfNone = true;
   };
 
   services.picom = let
