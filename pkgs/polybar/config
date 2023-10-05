@@ -100,9 +100,11 @@ interface = wlp2s0
 format-connected = %{A3:@terminal@ -e @nmtui@:}%{A1:@nmcli@ radio wifi off:}<ramp-signal> <label-connected>%{A}%{A}
 label-connected = %signal%% %essid%
 format-disconnected = %{A1:@nmcli@ radio wifi on:}<label-disconnected>%{A}
-label-disconnected = 睊
+;; nf-md-wifi_off
+label-disconnected = 󰖪
 label-disconnected-foreground = ${colors.foreground-alt}
-ramp-signal-0 = 直
+;; nf-md-wifi
+ramp-signal-0 = 󰖩
 
 [module/bluetooth]
 type = custom/script
@@ -118,11 +120,11 @@ type = internal/pulseaudio
 interval = 4
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
-label-muted = ﱝ
+label-muted = 󰝟
 label-muted-foreground = ${colors.foreground-alt}
-ramp-volume-0 = 奄
-ramp-volume-1 = 奔
-ramp-volume-2 = 墳
+ramp-volume-0 = 󰕿
+ramp-volume-1 = 󰖀
+ramp-volume-2 = 󰕾
 click-right = @pavucontrol@
 
 [module/battery]
