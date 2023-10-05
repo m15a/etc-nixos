@@ -108,6 +108,9 @@
         "mononoki Nerd Font"
         "Rounded Mgen+ 1m"
       ];
+      emoji = [
+        "Noto Color Emoji"
+      ];
     };
   };
 
