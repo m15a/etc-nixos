@@ -284,7 +284,7 @@
 
     libinput.enable = true;
     libinput.touchpad = {
-      accelSpeed = "1";
+      accelSpeed = "0.8";
       disableWhileTyping = true;
       naturalScrolling = true;
       sendEventsMode = "disabled-on-external-mouse";
