@@ -68,10 +68,6 @@
     ];
   };
 
-  programs = {
-    steam.enable = true;
-  };
-
   services = {
     autorandr.enable = true;
 
