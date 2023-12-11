@@ -331,7 +331,7 @@
 
       greeters.mini = {
         enable = true;
-        user = "mnacamura";
+        user = config.users.users.mnacamura.name;
         extraConfig = let
           inherit (config.hardware.video.legacy) hidpi;
           colors = config.environment.colors.hex;
