@@ -15,9 +15,9 @@ in
       '')
       (mkAfter ''
         for p in $PATH
-            if not contains -- $p $_PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin
-                set -ag fish_user_paths $p
-            end
+           if not contains -- $p $_PATH /usr/local/bin /usr/bin /bin /usr/sbin /sbin
+              set -ag fish_user_paths $p
+           end
         end
         set -el _PATH
       '')
