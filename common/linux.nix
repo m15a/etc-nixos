@@ -337,9 +337,13 @@
           colors = config.environment.colors.hex;
         in with colors; ''
           [greeter]
-          show-password-label = false
-          invalid-password-text = beep! beep!
+          password-label-text =  password: 
+          invalid-password-text =  invalid password!
+          password-alignment = center
+          show-sys-info = true
+
           [greeter-theme]
+          background-image-size = cover
           font = monospace Bold
           font-size = 13pt
           text-color = "${term_fg}"

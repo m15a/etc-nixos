@@ -3,6 +3,10 @@
 final: prev:
 
 {
+  lightdm-mini-greeter = final.callPackage ./lightdm-mini-greeter {
+    origin = prev.lightdm-mini-greeter;
+  };
+
   oomox-default-theme = final.callPackage ./oomox-default/theme.nix { inherit config; };
   oomox-default-icons = final.callPackage ./oomox-default/icons.nix { inherit config; };
 
