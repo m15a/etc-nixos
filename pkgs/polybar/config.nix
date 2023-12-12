@@ -48,18 +48,15 @@ let
     if [ "$(${systemd}/bin/systemctl is-active bluetooth)" = active ] && \
        [ "$($btctl show | grep Powered | cut -d' ' -f2)" = yes ]; then
         echo -n '󰂯 '
-        for d in $($btctl paired-devices | cut -d' ' -f2); do
-            if $btctl info "$d" | grep -q 'Connected: yes'; then
-                alias="$($btctl info "$d" | grep 'Alias:' | cut -d' ' -f2)"
-                if echo "$alias" | grep -iq mouse; then
-                    echo -n '󰍽'
-                elif echo "$alias" | grep -iq hhkb; then
-                    echo -n '󰌌'
-                elif echo "$alias" | grep -iq controller; then
-                    echo -n '󰖺'
-                else
-                    echo -n "$alias "
-                fi
+        for connected_device in $($btctl devices Connected | cut -d' ' -f3); do
+            if echo "$connected_device" | grep -iq mouse; then
+                echo -n '󰍽'
+            elif echo "$connected_device" | grep -iq hhkb; then
+                echo -n '󰌌'
+            elif echo "$connected_device" | grep -iq controller; then
+                echo -n '󰖺'
+            else
+                echo -n "$connected_device "
             fi
         done
     else
