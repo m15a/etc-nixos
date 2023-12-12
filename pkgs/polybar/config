@@ -66,7 +66,7 @@ time-alt = %H:%M:%S
 
 [module/bspwm]
 type = internal/bspwm
-reverse-scroll = false
+reverse-scroll = true
 label-focused = %name%
 label-focused-foreground = ${colors.background-alt}
 label-focused-background = ${colors.accent}
@@ -117,7 +117,7 @@ click-right = @terminal@ -e @bluetoothctl@
 
 [module/pulseaudio]
 type = internal/pulseaudio
-interval = 4
+interval = 1
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
 label-muted = 󰝟
