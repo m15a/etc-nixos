@@ -1,24 +1,20 @@
 configuration {
     dpi: @dpi@;
 
-    /* window { width: 32; } */
-
-    /* listview { lines: 16; } */
-
     font: "monospace 13";
 
     terminal: "@terminal@";
 
     /* Icons can be found at https://www.nerdfonts.com/cheat-sheet. */
-    modi: "combi,run,drun,window,filebrowser,keys";
+    modi: "combi,run,drun,window,ssh,filebrowser,keys";
     combi-modi: "run,drun,window";
     display-combi: " 󰣆  ";
-    display-run: " ";          /* nf-oct-command_palette */
-    display-drun: "󰣆 ";         /* nf-md-application */
-    display-window: " ";       /* nf-cod-multiple_windows */
-    display-ssh: "󰣀 ";          /* nf-md-ssh */
-    display-filebrowser: " ";  /* nf-oct-file_directory_fill */
-    display-keys: "󰥻 ";         /* nf-md-keyboard_outline */
+    display-run: " run";            /* nf-oct-command_palette */
+    display-drun: "󰣆 drun";          /* nf-md-application */
+    display-window: " window";      /* nf-cod-multiple_windows */
+    display-ssh: "󰣀 ssh";            /* nf-md-ssh */
+    display-filebrowser: "  file";  /* nf-oct-file_directory_fill */
+    display-keys: "󰥻 keys";          /* nf-md-keyboard_outline */
 
     drun-display-format: "{name} [<span size='small'><i>({generic})</i></span>]";
     window-format: "{c} [{w}]   {t}";
@@ -29,30 +25,33 @@ configuration {
     sidebar-mode: true;
     hide-scrollbar: true;
 
-    /* kb-primary-paste: "Control+V,Shift+Insert"; */
-    /* kb-secondary-paste: "Control+v,Insert"; */
     kb-clear-line: "Control+l";
-    kb-move-front: "Control+a";
-    kb-move-end: "Control+e";
-    kb-move-char-forward: "Control+f,Right";
-    kb-move-char-back: "Control+b,Left";
-    kb-remove-char-forward: "Control+d,Delete";
-    kb-remove-char-back: "Control+h,BackSpace";
-    kb-move-word-forward: "Alt+f,Alt+Right";
-    kb-move-word-back: "Alt+b,Alt+Left";
-    kb-remove-word-forward: "Alt+d,Alt+Delete";
     kb-remove-word-back: "Control+w,Alt+BackSpace";
-    kb-remove-to-sol: "Control+u";
-    kb-remove-to-eol: "Control+k";
-    /* kb-accept-entry: "Control+j,Control+m,Return,KP_Enter"; */
-    /* kb-accept-custom: "Control+Return"; */
-    /* kb-accept-custom-alt: "Control+Shift+Return"; */
-    /* kb-accept-alt: "Shift+Return"; */
+    kb-remove-word-forward: "Alt+d,Alt+Delete";
+    kb-remove-char-back: "Control+h,BackSpace";
     kb-delete-entry: "Shift+Delete,Shift+BackSpace";
-    kb-mode-next: "Shift+Right,Alt+Tab";
-    kb-mode-previous: "Shift+Left,Alt+ISO_Left_Tab";
     kb-mode-complete: "Control+o";
-    kb-cancel: "Escape,Control+c,Control+bracketleft";
+    kb-row-select: "Shift+space";
+    kb-cancel: "Escape,Control+c,Control+g,Control+bracketleft";
+    kb-custom-11: "";
+    kb-custom-12: "";
+    kb-custom-13: "";
+    kb-custom-14: "";
+    kb-custom-15: "";
+    kb-custom-16: "";
+    kb-custom-17: "";
+    kb-custom-18: "";
+    kb-custom-19: "";
+    kb-select-1: "Alt+exclam";
+    kb-select-2: "Alt+at";
+    kb-select-3: "Alt+numbersign";
+    kb-select-4: "Alt+dollar";
+    kb-select-5: "Alt+percent";
+    kb-select-6: "Alt+dead_circumflex";
+    kb-select-7: "Alt+ampersand";
+    kb-select-8: "Alt+asterisk";
+    kb-select-9: "Alt+parenleft";
+    kb-select-10: "Alt+parenright";
 }
 
 /**
@@ -146,6 +145,7 @@ element-icon {
     text-color:       inherit;
 }
 window {
+    width:            33%;
     padding:          0;
     background-color: var(background);
     border:           6;
