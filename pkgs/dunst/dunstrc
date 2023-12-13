@@ -1,42 +1,25 @@
 [global]
-geometry = "@geometry@"
-padding = @padding@
-horizontal_padding = @horizontal_padding@
-frame_width = @frame_width@
-frame_color = "@accent@"
+offset = 30x50
 separator_height = 0
+frame_width = 0
 font = sans-serif 13
-format = "<b>%s</b>\n%b"
-show_age_threshold = -1
-icon_position = left
-min_icon_size = @min_icon_size@
-icon_path = @icon_path@
+icon_theme = oomox-default
 browser = @browser@
-# corner_radius = 0
 
 mouse_left_click = close_current
 mouse_middle_click = close_all
-mouse_right_click = do_action
-
-[shortcuts]
-close = mod4+mod1+space
-close_all = mod4+mod1+shift+space
-history = mod4+mod1+h
-context = mod4+mod1+Return
+mouse_right_click = do_action, close_current
 
 [urgency_low]
 background = "@term_fg@"
 foreground = "@brblack@"
-timeout = 10
 
 [urgency_normal]
 background = "@term_fg@"
 foreground = "@term_bg@"
-timeout = 10
 
 [urgency_critical]
 background = "@red@"
 foreground = "@term_fg@"
-timeout = 0
 
 # vim: ft=cfg

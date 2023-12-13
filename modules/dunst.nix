@@ -34,6 +34,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = [ cfg.package ];
+
     systemd.user.services.dunst = {
       description = "dunst service";
       wantedBy = [ "graphical-session.target" ];
