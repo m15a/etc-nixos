@@ -16,23 +16,30 @@ let
   '';
 
   dropbox_status_icon = with colors;
-  let fg = brblack; in
+  let
+    cmd = "${dropbox-cli}/bin/dropbox";
+    fg = brblack;
+  in
   writeShellScript "dropbox-status-icon" ''
-    dropbox="${dropbox-cli}/bin/dropbox"
-    # If status = 0, confusingly, dropbox is not running!
-    "$dropbox" running
-    if [ $? -ne 0 ]; then
-        status="$("$dropbox" status 2>/dev/null)"
-        case "$status" in
-            'Up to date'|'最新の状態')
-                echo '󰇣'
-                ;;
+    dropbox_is_running() {
+        # If $? = 0, confusingly, dropbox is not running!
+        ${cmd} running 2>&1 >/dev/null
+        test $? -ne 0
+    }
+    dropbox_is_synched() {
+        case "$(${cmd} status 2>/dev/null)" in
+            'Up to date' | '最新の状態')
+            true;;
             *)
-                echo '󰓦'
-                ;;
+            false;;
         esac
+    }
+    if ! dropbox_is_running; then
+        echo '%{F${fg}}󰇣%{F-}'
+    elif dropbox_is_synched; then
+        echo '󰇣'
     else
-        echo '%{F${fg}}%{F-}'
+        echo '󰓦'
     fi
   '';
 
@@ -41,33 +48,46 @@ let
   '';
 
   bluetooth_status_icon = with colors;
-  let fg = brblack; in
-  writeShellScript "bluetooth-status-icon" ''
-    btctl=${bluez}/bin/bluetoothctl
-    if [ "$(${systemd}/bin/systemctl is-active bluetooth)" = active ] && \
-       [ "$($btctl show | grep Powered | cut -d' ' -f2)" = yes ]; then
-        echo -n '󰂯 '
-        for connected_device in $($btctl devices Connected | cut -d' ' -f3); do
-            if echo "$connected_device" | grep -iq mouse; then
-                echo -n '󰍽'
-            elif echo "$connected_device" | grep -iq hhkb; then
-                echo -n '󰌌'
-            elif echo "$connected_device" | grep -iq controller; then
-                echo -n '󰖺'
-            else
-                echo -n "$connected_device "
-            fi
-        done
-    else
+  let
+    cmd = "${bluez}/bin/bluetoothctl";
+    fg = brblack;
+  in writeShellScript "bluetooth-status-icon" ''
+    bluetooth_is_powered() {
+        test "$(${cmd} show 2>/dev/null | grep Powered: | cut -d' ' -f2)" = yes
+    }
+    connected_devices() {
+        ${cmd} devices Connected 2>/dev/null | cut -d' ' -f3
+    }
+    show_device_icon() {
+        if echo "$1" | grep -iq mouse; then
+            echo -n '󰍽'
+        elif echo "$1" | grep -iq hhkb; then
+            echo -n '󰌌'
+        elif echo "$1" | grep -iq controller; then
+            echo -n '󰖺'
+        else
+            echo -n "$1"
+        fi
+    }
+    if ! bluetooth_is_powered; then
         echo '%{F${fg}}󰂲%{F-}'
+    else
+        echo -n '󰂯 '
+        for device in $(connected_devices); do
+            show_device_icon "$device"
+        done
     fi
   '';
-  bluetooth_switch = writeShellScript "bluetooth-switch" ''
-    btctl="${bluez}/bin/bluetoothctl"
-    if [ "$($btctl show | grep Powered | cut -d' ' -f2)" = yes ]; then
-        "$btctl" power off
+  bluetooth_switch = let
+    cmd = "${bluez}/bin/bluetoothctl";
+  in writeShellScript "bluetooth-switch" ''
+    bluetooth_is_powered() {
+        test "$(${cmd} show 2>/dev/null | grep Powered: | cut -d' ' -f2)" = yes
+    }
+    if bluetooth_is_powered; then
+        ${cmd} power off
     else
-        "$btctl" power on
+        ${cmd} power on
     fi
   '';
 in
