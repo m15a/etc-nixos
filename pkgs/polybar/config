@@ -97,7 +97,7 @@ click-right = @open_dropbox@
 [module/wifi]
 type = internal/network
 interface = wlp2s0
-format-connected = %{A3:@terminal@ -e @nmtui@:}%{A1:@nmcli@ radio wifi off:}<ramp-signal> <label-connected>%{A}%{A}
+format-connected = %{A3:@terminal@ -o window.dimensions.lines=30 -o window.dimensions.columns=80 --class nmtui --title NetworkManager\ TUI -e @nmtui@:}%{A1:@nmcli@ radio wifi off:}<ramp-signal> <label-connected>%{A}%{A}
 label-connected = %signal%% %essid%
 format-disconnected = %{A1:@nmcli@ radio wifi on:}<label-disconnected>%{A}
 ;; nf-md-wifi_off
@@ -113,7 +113,7 @@ interval = 1
 format = <label>
 label = %output:0:20:...%
 click-left = @bluetooth_switch@
-click-right = @terminal@ -e @bluetoothctl@
+click-right = @terminal@ -o window.dimensions.lines=30 -o window.dimensions.columns=80 --class bluetoothctl --title bluetoothctl -e @bluetoothctl@
 
 [module/pulseaudio]
 type = internal/pulseaudio

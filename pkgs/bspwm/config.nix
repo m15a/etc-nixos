@@ -25,5 +25,8 @@ substituteAll (colors.hex // {
     "Nightly:Navigator" = "state=tiled";
     Steam = "follow=no";
     Zathura = "state=tiled";
+    bluetoothctl = "state=floating";
+    nmtui = "state=floating";
+    Pavucontrol = "state=floating";
   };
 })
