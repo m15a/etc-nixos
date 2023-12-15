@@ -81,8 +81,8 @@ substituteAll (colors // {
   offset_y = toString (4 * hidpi.scale);
 
   fonts = lib.concatStringsSep "\n" (lib.mapAttrsToList (i: s: "font-${i} = ${s}") {
-    "0" = "mononoki Nerd Font:size=${toString (12 * hidpi.scale)}";
-    "1" = "Rounded Mgen+ 1m:size=${toString (12 * hidpi.scale)}";
+    "0" = "mononoki Nerd Font:size=${toString (13 * hidpi.scale)}";
+    "1" = "Rounded Mgen+ 1m:size=${toString (13 * hidpi.scale)}";
   });
 
   modules_left = lib.concatStringsSep " " [
