@@ -4,7 +4,6 @@
 
 let
   inherit (config.hardware.video.legacy) hidpi;
-
   colors = config.environment.colors.hex;
 
   # TODO: Generalize it
@@ -76,15 +75,6 @@ in
 substituteAll (colors // {
   src = ./config;
 
-  height = toString (22 * hidpi.scale);
-
-  offset_y = toString (4 * hidpi.scale);
-
-  fonts = lib.concatStringsSep "\n" (lib.mapAttrsToList (i: s: "font-${i} = ${s}") {
-    "0" = "mononoki Nerd Font:size=${toString (13 * hidpi.scale)}";
-    "1" = "Rounded Mgen+ 1m:size=${toString (13 * hidpi.scale)}";
-  });
-
   modules_left = lib.concatStringsSep " " [
     "date"
     "bspwm"
@@ -101,19 +91,22 @@ substituteAll (colors // {
     "battery"
   ];
 
-  open_calendar = openURL "https://calendar.google.com/";
-
+  height = toString (22 * hidpi.scale);
+  offset_y = toString (4 * hidpi.scale);
   inherit terminal;
 
-  nmcli = "${networkmanager}/bin/nmcli";
-  nmtui = "${networkmanager}/bin/nmtui";
+  fonts = lib.concatStringsSep "\n"
+  (lib.mapAttrsToList (i: s: "font-${i} = ${s}") {
+    "0" = "mononoki Nerd Font:size=${toString (13 * hidpi.scale)}";
+    "1" = "Rounded Mgen+ 1m:size=${toString (13 * hidpi.scale)}";
+  });
 
+  open_calendar = openURL "https://calendar.google.com/";
   inherit dropbox_status_icon notify_dropbox_status;
   open_dropbox = openURL "https://dropbox.com/";
-
-
+  nmcli = "${networkmanager}/bin/nmcli";
+  nmtui = "${networkmanager}/bin/nmtui";
   bluetoothctl = "${bluez}/bin/bluetoothctl";
   inherit bluetooth_status_icon bluetooth_switch;
-
   pavucontrol = "${pavucontrol}/bin/pavucontrol";
 })
