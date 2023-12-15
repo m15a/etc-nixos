@@ -3,7 +3,8 @@ offset = 30x50
 separator_height = 0
 frame_width = 0
 font = sans-serif 13
-icon_theme = oomox-default
+icon_theme = @icon_theme@
+icon_path = @icon_path@
 browser = @browser@
 
 mouse_left_click = close_current
