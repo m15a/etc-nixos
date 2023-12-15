@@ -22,7 +22,7 @@ substituteAll (colors.hex // {
   monocle_padding = toString (37 * hidpi.scale);
 
   rules = makeRules {
-    "Nightly:Navigator" = "state=tiled";
+    firefox-nightly = "state=tiled";
     Steam = "follow=no";
     Zathura = "state=tiled";
     bluetoothctl = "state=floating";
