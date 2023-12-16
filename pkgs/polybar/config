@@ -1,26 +1,9 @@
-;==========================================================
-;
-;
-;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
-;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
-;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
-;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
-;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
-;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-;
-;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/polybar/polybar
-;
-;   The README contains a lot of information
-;
-;==========================================================
-
 [colors]
 background = #00000000
 background-alt = @term_bg@
 foreground = @term_fg@
 foreground-alt = @brblack@
+focused = @sel_bg@
 accent = @accent@
 alert = @red@
 
@@ -42,44 +25,77 @@ brcyan = @brcyan@
 brwhite = @brwhite@
 
 [bar/top]
+dpi-x = @dpi_x@
+dpi-y = @dpi_y@
 width = 100%
-height = @height@
-offset-y = @offset_y@
+height = 44
+offset-y = 20
 padding = 1
 module-margin = 1
 line-size = 0
 background = ${colors.background}
 foreground = ${colors.foreground}
-@fonts@
+font-0 = mononoki Nerd Font:size=13
+font-1 = Rounded Mgen+ 1m:size=13
 modules-left = @modules_left@
 modules-center = @modules_center@
 modules-right = @modules_right@
 
 [module/date]
 type = internal/date
-interval = 1
 label = %{A3:@open_calendar@:}%date% %time%%{A}
-date = "%b %e %a"
-date-alt =
-time = %H:%M
-time-alt = %H:%M:%S
+date = "%b %e(%a)"
+time = %k:%M
+date-alt = "%b %e(%a)"
+time-alt = %k:%M:%S
 
 [module/bspwm]
 type = internal/bspwm
 reverse-scroll = true
+format = <label-mode> <label-state>
+label-dimmed-foreground = ${colors.foreground-alt}
+label-dimmed-focused-background = ${colors.foreground-alt}
+
 label-focused = %name%
-label-focused-foreground = ${colors.background-alt}
-label-focused-background = ${colors.accent}
-label-focused-padding = 1
-label-urgent = %name%!
-label-urgent-foreground = ${colors.background-alt}
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 1
+label-focused-foreground = ${colors.focused}
+label-focused-padding-right = 1
+label-urgent = %name%
+label-urgent-foreground = ${colors.alert}
+label-urgent-padding-right = 1
 label-occupied = %name%
-label-occupied-padding = 1
+label-occupied-padding-right = 1
 label-empty = %name%
 label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 1
+label-empty-padding-right = 1
+
+label-tiled = 󰕰 
+label-tiled-foreground = ${colors.focused}
+label-tiled-padding-left = 1
+label-pseudotiled = 󱇙 
+label-pseudotiled-foreground = ${colors.focused}
+label-pseudotiled-padding-left = 1
+label-floating =  
+label-floating-foreground = ${colors.focused}
+label-floating-padding-left = 1
+label-monocle = 󰝤 
+label-monocle-foreground = ${colors.focused}
+label-monocle-padding-left = 1
+label-fullscreen =  
+label-fullscreen-foreground = ${colors.focused}
+label-fullscreen-padding-left = 1
+
+label-locked =  
+label-locked-foreground = ${colors.focused}
+label-locked-padding-left = 1
+label-sticky = 󰎚 
+label-sticky-foreground = ${colors.focused}
+label-sticky-padding-left = 1
+label-private = 󰬗 
+label-private-foreground = ${colors.focused}
+label-private-padding-left = 1
+label-marked = 󰄲 
+label-marked-foreground = ${colors.focused}
+label-marked-padding-left = 1
 
 [module/xwindow]
 type = internal/xwindow
@@ -87,37 +103,37 @@ label = %title:0:100:...%
 
 [module/dropbox]
 type = custom/script
-exec = @dropbox_status_icon@
+exec = @dropbox_status@
 interval = 1
 format = <label>
 label = %output%
-click-left = @notify_dropbox_status@
+click-left = @dropbox_notify_status@
 click-right = @open_dropbox@
 
 [module/wifi]
 type = internal/network
 interface = wlp2s0
-format-connected = %{A3:@terminal@ -o window.dimensions.lines=30 -o window.dimensions.columns=80 --class nmtui --title NetworkManager\ TUI -e @nmtui@:}%{A1:@nmcli@ radio wifi off:}<ramp-signal> <label-connected>%{A}%{A}
-label-connected = %signal%% %essid%
-format-disconnected = %{A1:@nmcli@ radio wifi on:}<label-disconnected>%{A}
-;; nf-md-wifi_off
-label-disconnected = 󰖪
+interface-type = wireless
+format-connected = %{A3:@wifi_settings@:}%{A1:@wifi_off@:}<ramp-signal> <label-connected>%{A}%{A}
+format-disconnected = %{A1:@wifi_on@:}<label-disconnected>%{A}
+label-connected = %signal%% %essid% %netspeed%
+label-disconnected = 󰞃 
 label-disconnected-foreground = ${colors.foreground-alt}
-;; nf-md-wifi
-ramp-signal-0 = 󰖩
+ramp-signal-0 = 󰢼 
+ramp-signal-1 = 󰢽 
+ramp-signal-2 = 󰢾 
 
 [module/bluetooth]
 type = custom/script
-exec = @bluetooth_status_icon@
+exec = @bluetooth_status@
 interval = 1
 format = <label>
 label = %output:0:20:...%
-click-left = @bluetooth_switch@
-click-right = @terminal@ -o window.dimensions.lines=30 -o window.dimensions.columns=80 --class bluetoothctl --title bluetoothctl -e @bluetoothctl@
+click-left = @bluetooth_toggle@
+click-right = @bluetooth_settings@
 
 [module/pulseaudio]
 type = internal/pulseaudio
-interval = 1
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
 label-muted = 󰝟
@@ -125,29 +141,36 @@ label-muted-foreground = ${colors.foreground-alt}
 ramp-volume-0 = 󰕿
 ramp-volume-1 = 󰖀
 ramp-volume-2 = 󰕾
-click-right = @pavucontrol@
+click-right = @pulseaudio_settings@
 
 [module/battery]
 type = internal/battery
 battery = BAT0
 adapter = AC
-format-charging = <ramp-capacity>  <label-charging>
-format-discharging = <ramp-capacity>  <label-discharging>
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
 format-full = <ramp-capacity>  <label-full>
-label-charging = %percentage%%ﮣ
+format-low = <animation-low>  <label-low>
+label-charging = %percentage%%
 label-discharging = %percentage%%
 label-full = %percentage%%
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+label-low = %percentage%%
+ramp-capacity-0 =  
+ramp-capacity-1 =  
+ramp-capacity-2 =  
+ramp-capacity-3 =  
+ramp-capacity-4 =  
+animation-charging-0 = %{F@accent@} %{F-}
+animation-charging-1 = %{F@accent@} %{F-}
+animation-charging-2 = %{F@accent@} %{F-}
+animation-charging-3 = %{F@accent@} %{F-}
+animation-charging-4 = %{F@accent@} %{F-}
+animation-charging-framerate = 500
+animation-low-0 = %{F@red@} %{F-}
+animation-low-1 = %{F@red@}  %{F-}
+animation-low-framerate = 200
 
 [settings]
 screenchange-reload = true
-
-[global/wm]
-margin-top = 0
-margin-bottom = 0
 
 ; vim:ft=dosini

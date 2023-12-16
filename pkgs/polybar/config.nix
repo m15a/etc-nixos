@@ -5,6 +5,7 @@
 let
   inherit (config.hardware.video.legacy) hidpi;
   colors = config.environment.colors.hex;
+  dpi = toString (96 * hidpi.scale);
 
   # TODO: Generalize it
   isLaptop = lib.elem config.networking.hostName [ "louise" ];
@@ -15,12 +16,9 @@ let
     ${xdg_utils}/bin/xdg-open "${url}"
   '';
 
-  dropbox_status_icon = with colors;
-  let
-    cmd = "${dropbox-cli}/bin/dropbox";
-    fg = brblack;
-  in
-  writeShellScript "dropbox-status-icon" ''
+  dropbox_status = with colors;
+  let cmd = "${dropbox-cli}/bin/dropbox"; in
+  writeShellScript "dropbox-status" ''
     dropbox_is_running() {
         # If $? = 0, confusingly, dropbox is not running!
         ${cmd} running 2>&1 >/dev/null
@@ -35,23 +33,35 @@ let
         esac
     }
     if ! dropbox_is_running; then
-        echo '%{F${fg}}󰇣%{F-}'
+        echo '%{F${brblack}}󰇣%{F-}'
     elif dropbox_is_synched; then
         echo '󰇣'
     else
         echo '󰓦'
     fi
   '';
-
-  notify_dropbox_status = writeShellScript "notify-dropbox-status" ''
+  dropbox_notify_status = writeShellScript "dropbox-notify-status" ''
     ${libnotify}/bin/notify-send -i dropbox Dropbox "$(${dropbox-cli}/bin/dropbox status)"
   '';
 
-  bluetooth_status_icon = with colors;
-  let
-    cmd = "${bluez}/bin/bluetoothctl";
-    fg = brblack;
-  in writeShellScript "bluetooth-status-icon" ''
+  wifi_settings = writeShellScript "wifi-settings" ''
+    ${terminal} \
+        -o window.dimensions.lines=30 \
+        -o window.dimensions.columns=80 \
+        --class nmtui \
+        --title NetworkManager\ TUI \
+        -e ${networkmanager}/bin/nmtui
+  '';
+  wifi_on = writeShellScript "wifi-on" ''
+    ${networkmanager}/bin/nmcli radio wifi on
+  '';
+  wifi_off = writeShellScript "wifi-off" ''
+    ${networkmanager}/bin/nmcli radio wifi off
+  '';
+
+  bluetooth_status = with colors;
+  let cmd = "${bluez}/bin/bluetoothctl"; in
+  writeShellScript "bluetooth-status" ''
     bluetooth_is_powered() {
         test "$(${cmd} show 2>/dev/null | grep Powered: | cut -d' ' -f2)" = yes
     }
@@ -60,27 +70,30 @@ let
     }
     show_device_icon() {
         if echo "$1" | grep -iq mouse; then
-            echo -n '󰍽'
+            echo -n 󰍽
         elif echo "$1" | grep -iq hhkb; then
-            echo -n '󰌌'
+            echo -n 󰌌
         elif echo "$1" | grep -iq controller; then
-            echo -n '󰖺'
+            echo -n 󰖺
         else
             echo -n "$1"
         fi
     }
     if ! bluetooth_is_powered; then
-        echo '%{F${fg}}󰂲%{F-}'
+        echo '%{F${brblack}}󰂲 %{F-}'
     else
         echo -n '󰂯 '
-        for device in $(connected_devices); do
+        devices=($(connected_devices))
+        n=''${#devices[@]}
+        for device in "''${devices[@]}"; do
             show_device_icon "$device"
+            n=$((n - 1))
+            [ $n > 0 ] && echo -n ' '
         done
     fi
   '';
-  bluetooth_switch = let
-    cmd = "${bluez}/bin/bluetoothctl";
-  in writeShellScript "bluetooth-switch" ''
+  bluetooth_toggle = let cmd = "${bluez}/bin/bluetoothctl"; in
+  writeShellScript "bluetooth-toggle" ''
     bluetooth_is_powered() {
         test "$(${cmd} show 2>/dev/null | grep Powered: | cut -d' ' -f2)" = yes
     }
@@ -90,11 +103,26 @@ let
         ${cmd} power on
     fi
   '';
+  bluetooth_settings = writeShellScript "bluetooth-settings" ''
+    ${terminal} \
+        -o window.dimensions.lines=30 \
+        -o window.dimensions.columns=80 \
+        --class bluetoothctl \
+        --title bluetoothctl \
+        -e ${bluez}/bin/bluetoothctl
+  '';
+
+  pulseaudio_settings = writeShellScript "pulseaudio-settings" ''
+    ${pavucontrol}/bin/pavucontrol
+  '';
 in
 
 substituteAll (colors // {
   src = ./config;
 
+  # [bar/top]
+  dpi_x = dpi;
+  dpi_y = dpi;
   modules_left = lib.concatStringsSep " " [
     "date"
     "bspwm"
@@ -111,22 +139,19 @@ substituteAll (colors // {
     "battery"
   ];
 
-  height = toString (22 * hidpi.scale);
-  offset_y = toString (4 * hidpi.scale);
-  inherit terminal;
-
-  fonts = lib.concatStringsSep "\n"
-  (lib.mapAttrsToList (i: s: "font-${i} = ${s}") {
-    "0" = "mononoki Nerd Font:size=${toString (13 * hidpi.scale)}";
-    "1" = "Rounded Mgen+ 1m:size=${toString (13 * hidpi.scale)}";
-  });
-
+  # [module/date]
   open_calendar = openURL "https://calendar.google.com/";
-  inherit dropbox_status_icon notify_dropbox_status;
+
+  # [module/dropbox]
+  inherit dropbox_status dropbox_notify_status;
   open_dropbox = openURL "https://dropbox.com/";
-  nmcli = "${networkmanager}/bin/nmcli";
-  nmtui = "${networkmanager}/bin/nmtui";
-  bluetoothctl = "${bluez}/bin/bluetoothctl";
-  inherit bluetooth_status_icon bluetooth_switch;
-  pavucontrol = "${pavucontrol}/bin/pavucontrol";
+
+  # [module/wifi]
+  inherit wifi_settings wifi_on wifi_off;
+
+  # [module/bluetooth]
+  inherit bluetooth_status bluetooth_toggle bluetooth_settings;
+
+  # [module/pulseaudio]
+  inherit pulseaudio_settings;
 })
