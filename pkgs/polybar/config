@@ -97,6 +97,15 @@ label-marked = 󰄲
 label-marked-foreground = ${colors.focused}
 label-marked-padding-left = 1
 
+[module/fcitx5]
+type = custom/script
+exec = @fcitx5_input_method@
+interval = 1
+format = <label>
+label = %output:0:20:...%
+click-left = @fcitx5_toggle@
+click-right = @fcitx5_settings@
+
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:100:...%

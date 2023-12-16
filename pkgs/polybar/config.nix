@@ -6,6 +6,7 @@ let
   inherit (config.hardware.video.legacy) hidpi;
   colors = config.environment.colors.hex;
   dpi = toString (96 * hidpi.scale);
+  fcitx5 = config.i18n.inputMethod.package;
 
   # TODO: Generalize it
   isLaptop = lib.elem config.networking.hostName [ "louise" ];
@@ -14,6 +15,38 @@ let
   writeShellScript "open-url" ''
     export PATH=$PATH''${PATH:+:}/run/current-system/sw/bin
     ${xdg_utils}/bin/xdg-open "${url}"
+  '';
+
+  fcitx5_input_method = with colors;
+  let cmd = "${fcitx5}/bin/fcitx5-remote"; in
+  writeShellScript "fcitx5-status" ''
+    fcitx5_is_close() {
+        test "$(${cmd} 2>/dev/null)" -eq 0
+    }
+    show_input_method() {
+        local input_method
+        input_method="$(${cmd} -n 2>/dev/null)"
+        case "$input_method" in
+            keyboard-*)
+            echo -n "''${input_method^^}" | sed 's|KEYBOARD-||'
+            ;;
+            *)
+            echo -n "''${input_method^}"
+            ;;
+        esac
+    }
+    if fcitx5_is_close; then
+        echo '%{F${brblack}} %{F-}'
+    else
+        echo -n ' '
+        show_input_method
+    fi
+  '';
+  fcitx5_toggle = writeShellScript "fcitx5-toggle" ''
+    ${fcitx5}/bin/fcitx5-remote -t
+  '';
+  fcitx5_settings = writeShellScript "fcitx5-settings" ''
+    ${fcitx5}/bin/fcitx5-config-qt
   '';
 
   dropbox_status = with colors;
@@ -126,6 +159,7 @@ substituteAll (colors // {
   modules_left = lib.concatStringsSep " " [
     "date"
     "bspwm"
+    "fcitx5"
   ];
   modules_center = lib.concatStringsSep " " [
     "xwindow"
@@ -141,6 +175,9 @@ substituteAll (colors // {
 
   # [module/date]
   open_calendar = openURL "https://calendar.google.com/";
+
+  # [module/fcitx]
+  inherit fcitx5_input_method fcitx5_toggle fcitx5_settings;
 
   # [module/dropbox]
   inherit dropbox_status dropbox_notify_status;

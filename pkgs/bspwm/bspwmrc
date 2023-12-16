@@ -27,3 +27,4 @@ bspc rule -a Zathura state=tiled
 bspc rule -a bluetoothctl state=floating
 bspc rule -a nmtui state=floating
 bspc rule -a Pavucontrol state=floating
+bspc rule -a fcitx5-config-qt state=floating
