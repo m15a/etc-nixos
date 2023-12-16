@@ -338,7 +338,7 @@
         in with colors; ''
           [greeter]
           password-label-text =  password: 
-          invalid-password-text =  invalid password!
+          invalid-password-text =   invalid password!
           password-alignment = center
           show-sys-info = true
 
