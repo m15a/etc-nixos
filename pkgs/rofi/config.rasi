@@ -1,21 +1,15 @@
 configuration {
     dpi: @dpi@;
-
     font: "monospace 13";
-
     terminal: "@terminal@";
 
-    /* Icons can be found at https://www.nerdfonts.com/cheat-sheet. */
-    modi: "combi,run,drun,window,ssh,filebrowser,keys";
-    combi-modi: "run,drun,window";
+    modes: "combi,run,drun,window,ssh";
+    combi-modes: "run,drun,window";
     display-combi: " 󰣆  ";
-    display-run: " run";            /* nf-oct-command_palette */
-    display-drun: "󰣆 drun";          /* nf-md-application */
-    display-window: " window";      /* nf-cod-multiple_windows */
-    display-ssh: "󰣀 ssh";            /* nf-md-ssh */
-    display-filebrowser: "  file";  /* nf-oct-file_directory_fill */
-    display-keys: "󰥻 keys";          /* nf-md-keyboard_outline */
-
+    display-run: " run";
+    display-drun: "󰣆 drun";
+    display-window: " window";
+    display-ssh: "󰢹 ssh";
     drun-display-format: "{name} [<span size='small'><i>({generic})</i></span>]";
     window-format: "{c} [{w}]   {t}";
 
@@ -56,46 +50,46 @@ configuration {
 
 /**
  * rofi -dump-theme output.
- * Rofi version: 1.6.1
+ * Rofi version: 1.7.5
  **/
 * {
-    spacing:                     2;
-
-    foreground:                  @term_bg@;
-    background:                  @term_fg@;
-    selected-foreground:         @sel_fg@;
-    selected-background:         @sel_bg@;
-    accent:                      @accent@;
-    urgent:                      @red@;
-
-    background-color:            rgba ( 0, 0, 0, 0 % );
-    border-color:                var(selected-background);
-    separatorcolor:              var(background);
-
-    normal-foreground:           var(foreground);
-    normal-background:           var(background);
-    alternate-normal-foreground: var(normal-foreground);
-    alternate-normal-background: var(normal-background);
-    selected-normal-foreground:  var(selected-foreground);
-    selected-normal-background:  var(selected-background);
-
-    active-foreground:           var(foreground);
-    active-background:           var(accent);
-    alternate-active-foreground: var(active-foreground);
-    alternate-active-background: var(active-background);
-    selected-active-foreground:  var(selected-foreground);
-    selected-active-background:  var(selected-background);
-
-    urgent-foreground:           var(background);
-    urgent-background:           var(urgent);
-    alternate-urgent-foreground: var(urgent-foreground);
     alternate-urgent-background: var(urgent-background);
     selected-urgent-foreground:  var(selected-foreground);
+    alternate-active-foreground: var(active-foreground);
+    selected-active-background:  var(selected-background);
+    urgent:                      @red@;
+    normal-foreground:           var(foreground);
+    background:                  @term_fg@;
+    alternate-normal-foreground: var(normal-foreground);
+    selected-foreground:         @sel_fg@;
+    urgent-foreground:           var(background);
+    selected-normal-background:  var(selected-background);
+    blue:                        @blue@;
     selected-urgent-background:  var(selected-background);
+    selected-active-foreground:  var(selected-foreground);
+    active-background:           var(accent);
+    separatorcolor:              var(background);
+    lightfg:                     var(background);
+    alternate-active-background: var(active-background);
+    spacing:                     2;
+    alternate-urgent-foreground: var(urgent-foreground);
+    lightbg:                     var(foreground);
+    red:                         @red@;
+    accent:                      @accent@;
+    background-color:            transparent;
+    border-color:                var(selected-background);
+    foreground:                  @term_bg@;
+    normal-background:           var(background);
+    alternate-normal-background: var(normal-background);
+    urgent-background:           var(urgent);
+    selected-normal-foreground:  var(selected-foreground);
+    active-foreground:           var(foreground);
+    selected-background:         @sel_bg@;
 }
 element {
-    padding: 2px ;
-    spacing: 5px ;
+    padding: 0.2em;
+    cursor:  pointer;
+    spacing: 0.5em;
     border:  0;
 }
 element normal.normal {
@@ -135,102 +129,113 @@ element alternate.active {
     text-color:       var(alternate-active-foreground);
 }
 element-text {
-    background-color: rgba ( 0, 0, 0, 0 % );
+    background-color: transparent;
+    cursor:           inherit;
     highlight:        inherit;
     text-color:       inherit;
 }
 element-icon {
-    background-color: rgba ( 0, 0, 0, 0 % );
-    size:             1.0000em ;
+    background-color: transparent;
+    size:             1em;
+    cursor:           inherit;
     text-color:       inherit;
 }
 window {
-    width:            33%;
     padding:          0;
-    background-color: var(background);
-    border:           6;
+    background-color: transparent;
+    width:            34%;
+    border:           0;
 }
 mainbox {
     padding: 0;
     border:  0;
+    spacing: 0.4em;
 }
 message {
-    padding:      2px ;
+    background-color: var(background);
+    padding:      0.2em;
     border-color: var(separatorcolor);
-    border:       2px 0px 0px ;
+    border:       0.2em 0 0;
 }
 textbox {
     text-color: var(foreground);
 }
 listview {
-    padding:      2px 0px 0px ;
+    background-color: var(background);
+    padding:      0;
     scrollbar:    false;
     border-color: var(separatorcolor);
-    spacing:      0px ;
+    spacing:      0;
     fixed-height: 0;
-    border:       2px 0px 0px ;
+    border:       0;
 }
 scrollbar {
-    width:        4px ;
+    width:        0.4em;
     padding:      0;
-    handle-width: 8px ;
+    handle-width: 0.8em;
     border:       0;
     handle-color: var(normal-foreground);
 }
 sidebar {
     border-color: var(separatorcolor);
-    border:       2px dash 0px 0px ;
+    border:       0.2em dash 0 0;
 }
 button {
+    cursor:     pointer;
     spacing:    0;
-    text-color: var(normal-foreground);
+    text-color: var(lightfg);
 }
 button selected {
-    background-color: var(selected-normal-background);
-    text-color:       var(selected-normal-foreground);
+    background-color: var(active-background);
+    text-color:       var(active-foreground);
 }
 num-filtered-rows {
+    padding:    0.2em 0 0.2em 0.2em;
+    spacing:    0;
     expand:     false;
-    text-color: rgba ( 128, 128, 128, 100 % );
+    text-color: @brblack@;
 }
 num-rows {
+    padding:    0.2em 0.2em 0.2em 0;
+    spacing:    0;
     expand:     false;
-    text-color: rgba ( 128, 128, 128, 100 % );
+    text-color: @brblack@;
 }
 textbox-num-sep {
+    padding:    0.2em 0 0.2em 0;
+    spacing:    0;
     expand:     false;
     str:        "/";
-    text-color: rgba ( 128, 128, 128, 100 % );
+    text-color: @brblack@;
 }
 inputbar {
-    padding:    2px ;
-    spacing:    0px ;
+    background-color: var(background);
+    padding:    0;
+    spacing:    0;
     text-color: var(normal-foreground);
-    children:   [ prompt,textbox-prompt-colon,entry,num-filtered-rows,textbox-num-sep,num-rows,case-indicator ];
+    children:   [ "prompt","entry","num-filtered-rows","textbox-num-sep","num-rows","case-indicator" ];
 }
 case-indicator {
+    padding:    0.2em;
     spacing:    0;
     text-color: var(normal-foreground);
 }
 entry {
     text-color:        var(normal-foreground);
+    cursor:            text;
+    padding:           0.2em 0.2em 0.2em 0.4em;
     spacing:           0;
-    placeholder-color: rgba ( 128, 128, 128, 100 % );
+    placeholder-color: @brblack@;
     placeholder:       "Type to filter";
 }
 prompt {
+    padding:    0.2em;
     spacing:    0;
-    text-color: var(normal-foreground);
-}
-textbox-prompt-colon {
-    margin:     0px 0.3000em 0.0000em 0.0000em ;
-    expand:     false;
-    str:        "";
-    text-color: inherit;
+    background-color: var(active-background);
+    text-color: var(active-foreground);
 }
 mode-switcher {
-    border: 0px;
-    /* background-color: var(accent); */
+    border: 0;
 }
 
 /* vim: set ft=css : */
