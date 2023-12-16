@@ -38,7 +38,7 @@ let
     if fcitx5_is_close; then
         echo '%{F${brblack}} %{F-}'
     else
-        echo -n ' '
+        echo -n '󰌌 '
         show_input_method
     fi
   '';
