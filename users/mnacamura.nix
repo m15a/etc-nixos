@@ -2,7 +2,7 @@
 
 {
   users.users.mnacamura = {
-    description = "NACAMURA Mitsuhiro";
+    description = "NAKAMURA Mitsuhiro";
     uid = 1000;
     isNormalUser = true;
     createHome = true;
