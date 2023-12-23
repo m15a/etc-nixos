@@ -135,7 +135,6 @@
     systemPackages = with pkgs; [
       configFiles.fish
       git
-      latest.firefox-nightly-bin
       libnotify
       maim
       pavucontrol

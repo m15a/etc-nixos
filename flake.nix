@@ -26,7 +26,6 @@
         (import ./pkgs { inherit config lib; })
         nixpkgs-misc.overlay
         nixpkgs-themix.overlay
-        (import "${nixpkgs-mozilla}/firefox-overlay.nix")
       ];
     };
     hosts = import ./hosts;
