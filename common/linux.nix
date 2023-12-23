@@ -73,25 +73,11 @@
 
   fonts = {
     packages = with pkgs; [
-      # Serif
       newsreader
       shippori
-      source-serif-pro
-      source-han-serif-japanese
-
-      # Sans serif
       raleway
-      rounded-mgenplus # (1p)
-      source-sans-pro
-      source-han-sans-japanese
-
-      # Monospace
-      (nerdfonts.override { fonts = [ "Mononoki" ]; })
-      # rounded-mgenplus (1m)
-      source-code-pro
-      source-han-code-jp
-
-      # Emoji / Icons
+      (nerdfonts.override { fonts = [ "MPlus" ]; })
+      mononoki
       noto-fonts-emoji
     ];
 
@@ -102,11 +88,16 @@
       ];
       sansSerif = [
         "Raleway"
-        "Rounded Mgen+ 1p"
+        "M+2 Nerd Font"
       ];
       monospace = [
-        "mononoki Nerd Font"
-        "Rounded Mgen+ 1m"
+        "mononoki"
+        # NOTE: Combining Mononoki with Japanese monospace fonts, unfortunately, breaks consistent
+        # horizontal width alignment between Latin and Japanese characters in such as electron-based
+        # applications. This is because Mononoki has width wider than 50%, while Japanese fonts has
+        # 100% width. Regardless of that, I'd employ composition of Mononoki and Japanese fonts as
+        # Alacritty enforces 50% width to Mononoki so that no problem, and I realy favor Mononoki.
+        "M+1Code Nerd Font"
       ];
       emoji = [
         "Noto Color Emoji"
