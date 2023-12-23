@@ -25,7 +25,10 @@
       options cfg80211 ieee80211_regdom="JP"
     '';
 
-    loader.systemd-boot.enable = true;
+    loader.systemd-boot = {
+      enable = true;
+      consoleMode = "auto";
+    };
     loader.efi.canTouchEfiVariables = true;
 
     kernelPackages = pkgs.linuxPackages_latest;
