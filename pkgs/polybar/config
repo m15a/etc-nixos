@@ -35,8 +35,8 @@ module-margin = 1
 line-size = 0
 background = ${colors.background}
 foreground = ${colors.foreground}
-font-0 = mononoki Nerd Font:size=12
-font-1 = Rounded Mgen+ 1m:size=12
+font-0 = Mononoki:size=12
+font-1 = M+1Code Nerd Font:size=12
 modules-left = @modules_left@
 modules-center = @modules_center@
 modules-right = @modules_right@
