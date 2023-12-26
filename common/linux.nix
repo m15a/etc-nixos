@@ -192,7 +192,7 @@
     bash.interactiveShellInit = ''
       ls() {
           type -f lsd >/dev/null 2>&1 \
-          && command lsd "$@" \
+          && command lsd --date '+%Y-%m-%d %H:%M' "$@" \
           || command ls -Fh --color --time-style=long-iso "$@"
       }
       cat() {
@@ -217,7 +217,7 @@
     fish.interactiveShellInit = ''
       function ls
           type -fq lsd
-          and command lsd $argv
+          and command lsd --date '+%Y-%m-%d %H:%M' $argv
           or  command ls -Fh --color --time-style=long-iso $argv
       end
       function cat
