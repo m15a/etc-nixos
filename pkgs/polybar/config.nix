@@ -121,7 +121,7 @@ let
         for device in "''${devices[@]}"; do
             show_device_icon "$device"
             n=$((n - 1))
-            [ $n > 0 ] && echo -n ' '
+            [ $n -gt 0 ] && echo -n ' '
         done
     fi
   '';
