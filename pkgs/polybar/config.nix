@@ -159,12 +159,12 @@ substituteAll (colors // {
   modules_left = lib.concatStringsSep " " [
     "date"
     "bspwm"
-    "fcitx5"
   ];
   modules_center = lib.concatStringsSep " " [
     "xwindow"
   ];
   modules_right = [
+    "fcitx5"
     "dropbox"
     "wifi"
     "bluetooth"
