@@ -79,8 +79,14 @@
       newsreader
       shippori
       raleway
-      (nerdfonts.override { fonts = [ "MPlus" ]; })
-      mononoki
+      mplus-outline-fonts.githubRelease
+      (nerdfonts.override { fonts = [ "Mononoki" ]; })
+
+      # Complements missing characters such as zenkaku ＡＢＣ.
+      source-han-sans-japanese
+      source-han-serif-japanese
+      source-han-code-jp
+
       noto-fonts-emoji
     ];
 
@@ -88,19 +94,22 @@
       serif = [
         "Newsreader"
         "Shippori Mincho"
+        "Source Han Serif"
       ];
       sansSerif = [
         "Raleway"
-        "M+2 Nerd Font"
+        "M PLUS 2"
+        "Source Han Sans"
       ];
       monospace = [
-        "mononoki"
+        "Mononoki Nerd Font"
         # NOTE: Combining Mononoki with Japanese monospace fonts, unfortunately, breaks consistent
         # horizontal width alignment between Latin and Japanese characters in such as electron-based
         # applications. This is because Mononoki has width wider than 50%, while Japanese fonts has
         # 100% width. Regardless of that, I'd employ composition of Mononoki and Japanese fonts as
         # Alacritty enforces 50% width to Mononoki so that no problem, and I realy favor Mononoki.
-        "M+1Code Nerd Font"
+        "M PLUS 2"
+        "Source Han Code JP"
       ];
       emoji = [
         "Noto Color Emoji"
