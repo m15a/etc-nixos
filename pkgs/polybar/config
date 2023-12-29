@@ -125,11 +125,13 @@ interface-type = wireless
 format-connected = %{A3:@wifi_settings@:}%{A1:@wifi_off@:}<ramp-signal> <label-connected>%{A}%{A}
 format-disconnected = %{A1:@wifi_on@:}<label-disconnected>%{A}
 label-connected = %signal%% %essid% %netspeed%
-label-disconnected = 󰞃 
+label-disconnected = 󰤭 
 label-disconnected-foreground = ${colors.foreground-alt}
-ramp-signal-0 = 󰢼 
-ramp-signal-1 = 󰢽 
-ramp-signal-2 = 󰢾 
+ramp-signal-0 = 󰤯 
+ramp-signal-1 = 󰤟 
+ramp-signal-2 = 󰤢 
+ramp-signal-3 = 󰤥 
+ramp-signal-4 = 󰤨 
 
 [module/bluetooth]
 type = custom/script
