@@ -83,7 +83,7 @@ configuration {
     alternate-normal-background: var(normal-background);
     urgent-background:           var(urgent);
     selected-normal-foreground:  var(selected-foreground);
-    active-foreground:           var(foreground);
+    active-foreground:           var(background);
     selected-background:         @sel_bg@;
 }
 element {
