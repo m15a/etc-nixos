@@ -13,5 +13,5 @@ substituteAll (colors.hex // {
   # 37 is derived from [bspwm window gap: 60] / [phi: 1.618]
   monocle_padding = toString (37 * hidpi.scale);
   window_gap = toString (60 * hidpi.scale);
-  border_width = toString (3 * hidpi.scale);
+  border_width = toString (2 * hidpi.scale);
 })
