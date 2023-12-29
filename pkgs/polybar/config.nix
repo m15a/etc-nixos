@@ -1,4 +1,4 @@
-{ config, lib, writeShellScript, substituteAll, dropbox-cli, networkmanager
+{ config, lib, writeShellScript, substituteAll, networkmanager
 , bluez, libnotify, xdg_utils, terminal, pavucontrol, systemd
 }:
 
@@ -47,34 +47,6 @@ let
   '';
   fcitx5_settings = writeShellScript "fcitx5-settings" ''
     ${fcitx5}/bin/fcitx5-config-qt
-  '';
-
-  dropbox_status = with colors;
-  let cmd = "${dropbox-cli}/bin/dropbox"; in
-  writeShellScript "dropbox-status" ''
-    dropbox_is_running() {
-        # If $? = 0, confusingly, dropbox is not running!
-        ${cmd} running 2>&1 >/dev/null
-        test $? -ne 0
-    }
-    dropbox_is_synched() {
-        case "$(${cmd} status 2>/dev/null)" in
-            'Up to date' | '最新の状態')
-            true;;
-            *)
-            false;;
-        esac
-    }
-    if ! dropbox_is_running; then
-        echo '%{F${brblack}}󰇣%{F-}'
-    elif dropbox_is_synched; then
-        echo '󰇣'
-    else
-        echo '󰓦'
-    fi
-  '';
-  dropbox_notify_status = writeShellScript "dropbox-notify-status" ''
-    ${libnotify}/bin/notify-send -i dropbox Dropbox "$(${dropbox-cli}/bin/dropbox status)"
   '';
 
   wifi_settings = writeShellScript "wifi-settings" ''
@@ -165,7 +137,6 @@ substituteAll (colors // {
   ];
   modules_right = [
     "fcitx5"
-    "dropbox"
     "wifi"
     "bluetooth"
     "pulseaudio"
@@ -178,10 +149,6 @@ substituteAll (colors // {
 
   # [module/fcitx]
   inherit fcitx5_input_method fcitx5_toggle fcitx5_settings;
-
-  # [module/dropbox]
-  inherit dropbox_status dropbox_notify_status;
-  open_dropbox = openURL "https://dropbox.com/";
 
   # [module/wifi]
   inherit wifi_settings wifi_on wifi_off;

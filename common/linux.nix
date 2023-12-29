@@ -11,7 +11,6 @@
     ../modules/colors
     ../modules/conky.nix
     ../modules/feh.nix
-    ../modules/dropbox.nix
     ../modules/dunst.nix
     ../modules/hidpi.nix
     ../modules/light-locker.nix

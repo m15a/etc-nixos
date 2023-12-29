@@ -121,15 +121,6 @@ click-right = @fcitx5_settings@
 type = internal/xwindow
 label = %title:0:100:...%
 
-[module/dropbox]
-type = custom/script
-exec = @dropbox_status@
-interval = 1
-format = <label>
-label = %output%
-click-left = @dropbox_notify_status@
-click-right = @open_dropbox@
-
 [module/wifi]
 type = internal/network
 interface = wlp2s0
