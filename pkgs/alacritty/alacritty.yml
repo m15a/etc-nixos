@@ -33,19 +33,19 @@ font:
 
 colors:
   primary:
-    background: '@black@'
-    foreground: '@brwhite@'
+    background: '@term_bg@'
+    foreground: '@term_fg@'
     dim_foreground: '@white@'
   search:
     matches:
      background: '@sel_bg@'
-     foreground: '@brwhite@'
+     foreground: '@term_fg@'
   footer_bar:
       background: '@accent@'
-      foreground: '@black@'
+      foreground: '@term_fg@'
   line_indicator:
     background: '@accent@'
-    foreground: '@black@'
+    foreground: '@term_fg@'
   normal:
     black:   '@black@'
     red:     '@red@'

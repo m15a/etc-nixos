@@ -2,9 +2,8 @@
 background = #00000000
 background-alt = @term_bg@
 foreground = @term_fg@
-foreground-alt = @brblack@
-focused = @cyan@
-accent = @accent@
+foreground-alt = @white@
+focused = @wm_border_focus@
 alert = @red@
 
 black = @black@

@@ -36,6 +36,8 @@ rec {
   xgray11   = { nr = 245; hex = "#8A8A8A"; };
   xgray12   = { nr = 246; hex = "#949494"; };
 
+  # Variables defined in the Oomox template:
+  # ../../../pkgs/oomox-default/template
   bg = xgray1;
   fg = brwhite;
   menu_fg = term_fg;
@@ -52,7 +54,7 @@ rec {
   hdr_btn_bg = term_bg;
   hdr_btn_fg = term_fg;
   wm_border_focus = sel_bg;
-  wm_border_unfocus = brblack;
+  wm_border_unfocus = fg;
   caret1_fg = sel_bg;
   caret2_fg = sel_bg;
 
