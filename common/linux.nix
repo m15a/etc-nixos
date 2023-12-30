@@ -340,24 +340,26 @@
           colors = config.environment.colors.hex;
         in with colors; ''
           [greeter]
-          password-label-text =  Password: 
-          invalid-password-text =  Invalid password!
+          show-password-label = false
+          invalid-password-text =  Invalid password!
           password-alignment = center
-          show-sys-info = true
+          show-sys-info = false
 
           [greeter-theme]
           background-image-size = cover
-          font = monospace Bold
+          font = monospace
           font-size = 13pt
           text-color = "${term_fg}"
-          error-color = "${term_fg}"
-          window-color = "${sel_bg}"
-          border-width = 0
+          error-color = "${red}"
+          window-color = "${term_bg}"
+          border-width = ${toString (2 * hidpi.scale)}
+          border-color = "${wm_border_unfocus}"
           layout-space = ${toString (19 * hidpi.scale)}
           password-color = "${term_fg}"
           password-background-color = "${term_bg}"
+          password-border-color = "${wm_border_focus}"
           password-border-radius = 0
-          password-border-width = 0px
+          password-border-width = ${toString (2 * hidpi.scale)}
         '';
       };
     };
