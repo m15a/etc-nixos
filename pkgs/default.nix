@@ -16,6 +16,11 @@ final: prev:
     pulseSupport = true;
   };
 
+  zathura = final.callPackage ./zathura/wrapper.nix {
+    zathura = prev.zathura;
+    configFile = final.configFiles.zathura;
+  };
+
   configFiles = lib.recurseIntoAttrs {
     alacritty = final.callPackage ./alacritty/config.nix { inherit config; };
 
@@ -40,5 +45,7 @@ final: prev:
     };
 
     sxhkd = final.callPackage ./sxhkd/config.nix { inherit config; };
+
+    zathura = final.callPackage ./zathura/config.nix { inherit config; };
   };
 }

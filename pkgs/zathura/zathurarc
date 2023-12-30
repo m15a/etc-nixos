@@ -1,0 +1,41 @@
+set font 'monospace normal 12'
+set guioptions ''
+" set recolor
+set window-title-home-tilde
+set window-title-page
+set statusbar-home-tilde
+set selection-clipboard 'clipboard'
+
+map [fullscreen] b navigate previous
+map [presentation] b navigate previous
+
+set completion-bg '@term_bg@'
+set completion-fg '@term_fg@'
+set completion-group-bg '@xgray2@'
+set completion-group-fg '@accent@'
+set completion-highlight-bg '@sel_bg@'
+set completion-highlight-fg '@term_fg@'
+set default-bg '@bg@'
+set default-fg '@fg@'
+set inputbar-bg '@term_bg@'
+set inputbar-fg '@term_fg@'
+set notification-bg '@xgray2@'
+set notification-fg '@term_fg@'
+set notification-error-bg '@red@'
+set notification-error-fg '@term_fg@'
+set notification-warning-bg '@accent@'
+set notification-warning-fg '@term_fg@'
+set statusbar-bg '@xgray2@'
+set statusbar-fg '@term_fg@'
+set highlight-color '@sel_bg@'
+set highlight-active-color '@accent@'
+set recolor-darkcolor '@fg@'
+set recolor-lightcolor '@bg@'
+set render-loading-bg '@xgray2@'
+set render-loading-fg '@term_fg@'
+set index-bg '@term_bg@'
+set index-fg '@term_fg@'
+set index-active-bg '@sel_bg@'
+set index-active-fg '@term_fg@'
+
+" vim: ft=vim
