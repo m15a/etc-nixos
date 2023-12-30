@@ -1,9 +1,15 @@
 { config, lib, substituteAll, stdenv }:
 
 let
-  colors = lib.mapAttrs (_: s: lib.strings.substring 1 6 s) config.environment.colors.hex;
+  hex_colors = lib.mapAttrs (_: s: lib.strings.substring 1 6 s)
+  config.environment.colors.hex;
 
-  colors_fish = substituteAll (colors // {
+  nr_colors = with config.environment.colors.nr; {
+    accent_nr = accent;
+    term_fg_nr = term_fg;
+  };
+
+  colors_fish = substituteAll (hex_colors // nr_colors // {
     src = ./conf.d/colors.fish;
   });
 in
