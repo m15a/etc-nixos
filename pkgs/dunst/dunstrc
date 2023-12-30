@@ -17,7 +17,7 @@ background = "@term_bg@"
 foreground = "@white@"
 
 [urgency_normal]
-background = "@term_bg@"
+background = "@bg@"
 foreground = "@term_fg@"
 
 [urgency_critical]
