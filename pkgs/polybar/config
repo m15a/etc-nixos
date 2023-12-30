@@ -118,6 +118,7 @@ click-right = @fcitx5_settings@
 
 [module/xwindow]
 type = internal/xwindow
+format = %{F@accent@}󰣐%{F-} <label>
 label = %title:0:100:...%
 
 [module/wifi]

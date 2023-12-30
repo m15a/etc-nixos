@@ -6,10 +6,10 @@ configuration {
     modes: "combi,run,drun,window,ssh";
     combi-modes: "run,drun,window";
     display-combi: " 󰣆  ";
-    display-run: " run";
-    display-drun: "󰣆 drun";
-    display-window: " window";
-    display-ssh: "󰢹 ssh";
+    display-run: " RUN";
+    display-drun: "󰣆 DRUN";
+    display-window: " WINDOW";
+    display-ssh: "󰢹 SSH";
     drun-display-format: "{name} [<span size='small'><i>({generic})</i></span>]";
     window-format: "{c} [{w}]   {t}";
 
