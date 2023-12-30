@@ -1,5 +1,6 @@
 {
   inputs = {
+    flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-misc = {
       url = "github:mnacamura/nixpkgs-misc";
@@ -11,15 +12,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-    nixpkgs-mozilla = { url = "github:mozilla/nixpkgs-mozilla"; flake = false; };
-
-    flake-utils.url = "github:numtide/flake-utils";
-
-    darwin.url = "github:lnl7/nix-darwin";
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-misc, nixpkgs-themix, nixpkgs-mozilla, darwin, ... }:
+  outputs = { self, nixpkgs, nixpkgs-misc, nixpkgs-themix, nix-darwin, ... }:
   let
     nixpkgs-overlays = { config, lib, pkgs, ...}: {
       nixpkgs.overlays = [
@@ -41,7 +40,7 @@
     };
 
     darwinConfigurations = {
-      Y-0371 = darwin.lib.darwinSystem {
+      Y-0371 = nix-darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         modules = [
           nixpkgs-overlays
