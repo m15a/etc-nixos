@@ -338,8 +338,8 @@
           colors = config.environment.colors.hex;
         in with colors; ''
           [greeter]
-          password-label-text =  password: 
-          invalid-password-text =   invalid password!
+          password-label-text =  Password: 
+          invalid-password-text =  Invalid password!
           password-alignment = center
           show-sys-info = true
 
