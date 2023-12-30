@@ -125,7 +125,7 @@
       }
 
       if connected_monitors | grep -qw "$EXTERNAL_MONITOR"; then
-          ${xrandr} --output "$LID" --off --output "$EXTERNAL_MONITOR" --primary --auto --scale 1.5
+          ${xrandr} --output "$LID" --off --output "$EXTERNAL_MONITOR" --primary --auto --scale 1.36
       else
           ${xrandr} --output "$LID" --primary --auto --scale 1 --output "$EXTERNAL_MONITOR" --off
       fi
