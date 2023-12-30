@@ -340,8 +340,9 @@
           colors = config.environment.colors.hex;
         in with colors; ''
           [greeter]
-          show-password-label = false
-          invalid-password-text =  Invalid password!
+          show-password-label = true
+          password-label-text = 󰣐 
+          invalid-password-text = Invalid password!
           password-alignment = center
           show-sys-info = false
 
@@ -349,7 +350,7 @@
           background-image-size = cover
           font = monospace
           font-size = 13pt
-          text-color = "${term_fg}"
+          text-color = "${brred}"
           error-color = "${red}"
           window-color = "${term_bg}"
           border-width = ${toString (2 * hidpi.scale)}

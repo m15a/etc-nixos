@@ -148,6 +148,7 @@ window {
     padding:          0.4em;
     background-color: var(background);
     width:            34%;
+    height:           26%;
     border:           0.1em;
 }
 mainbox {
@@ -176,11 +177,14 @@ button {
     cursor:     pointer;
     spacing:    0;
     padding:    0.2em;
-    text-color: var(foreground);
+    text-color: var(selected);
 }
 button selected {
-    background-color: var(selected);
-    text-color:       var(foreground);
+    border:           0.1em;
+    border-color:     var(selected);
+    padding:          0.2em;
+    background-color: var(background);
+    text-color:       var(selected);
 }
 num-filtered-rows {
     expand:     false;
@@ -199,7 +203,7 @@ inputbar {
     padding:    0.2em;
     spacing:    0;
     text-color: var(normal-foreground);
-    children:   [ "entry", "num-filtered-rows", "textbox-num-sep", "num-rows", "case-indicator" ];
+    children:   [ "textbox-prompt-colon", "entry", "num-filtered-rows", "textbox-num-sep", "num-rows", "case-indicator" ];
 }
 case-indicator {
     spacing:    0;
@@ -211,6 +215,11 @@ entry {
     spacing:           0;
     placeholder-color: @brblack@;
     placeholder:       "Type to filter";
+}
+textbox-prompt-colon {
+    expand:     false;
+    str:        "󰣐 ";
+    text-color: @brred@;
 }
 mode-switcher {
     border: 0;

@@ -39,13 +39,13 @@ colors:
   search:
     matches:
      background: '@sel_bg@'
-     foreground: '@term_fg@'
+     foreground: '@sel_fg@'
   footer_bar:
       background: '@accent@'
-      foreground: '@term_fg@'
+      foreground: '@sel_fg@'
   line_indicator:
     background: '@accent@'
-    foreground: '@term_fg@'
+    foreground: '@sel_fg@'
   normal:
     black:   '@black@'
     red:     '@red@'

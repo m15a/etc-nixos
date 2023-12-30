@@ -34,7 +34,7 @@ or if status is-login
     set -Ux LESS_TERMCAP_mb (printf "\e[5m")  # Begin blinking
     set -Ux LESS_TERMCAP_md (printf "\e[1m")  # Begin bold
     set -Ux LESS_TERMCAP_me (printf "\e[0m")  # End blinking/bold
-    set -Ux LESS_TERMCAP_so (printf "\e[38;5;@term_fg_nr@;48;5;@accent_nr@m")  # Begin standout
+    set -Ux LESS_TERMCAP_so (printf "\e[38;5;@sel_fg_nr@;48;5;@accent_nr@m")  # Begin standout
     set -Ux LESS_TERMCAP_se (printf "\e[0m")  # End standout
     set -Ux LESS_TERMCAP_us (printf "\e[3;33m")  # Begin underline
     set -Ux LESS_TERMCAP_ue (printf "\e[0m")  # End underline

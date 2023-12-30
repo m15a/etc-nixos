@@ -6,7 +6,7 @@ let
 
   nr_colors = with config.environment.colors.nr; {
     accent_nr = accent;
-    term_fg_nr = term_fg;
+    sel_fg_nr = sel_fg;
   };
 
   colors_fish = substituteAll (hex_colors // nr_colors // {

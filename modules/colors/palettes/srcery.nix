@@ -45,7 +45,7 @@ rec {
   hdr_fg = term_fg;
   hdr_bg = term_bg;
   sel_bg = orange;
-  sel_fg = term_fg;
+  sel_fg = term_bg;
   accent = teal;
   txt_bg = term_bg;
   txt_fg = term_fg;
