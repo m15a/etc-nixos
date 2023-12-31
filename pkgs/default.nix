@@ -21,6 +21,11 @@ final: prev:
     configFile = final.configFiles.zathura;
   };
 
+  inherit (final.callPackage ./fish/lib.nix {})
+  writeFishScript
+  writeFishScriptBin
+  writeFishApplication;
+
   configFiles = lib.recurseIntoAttrs {
     alacritty = final.callPackage ./alacritty/config.nix { inherit config; };
 
