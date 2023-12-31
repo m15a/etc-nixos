@@ -212,6 +212,9 @@
       }
     '';
 
+    direnv.enable = true;
+    direnv.nix-direnv.enable = true;
+
     feh.enable = true;
 
     fish.enable = true;
