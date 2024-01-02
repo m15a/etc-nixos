@@ -12,6 +12,10 @@ final: prev:
 
   desktop-background = final.callPackage ./desktop-background {};
 
+  maim = final.callPackage ./maim/wrapper.nix {
+    maim = prev.maim;
+  };
+
   polybar = prev.polybar.override {
     pulseSupport = true;
   };
