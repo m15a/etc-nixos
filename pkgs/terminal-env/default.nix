@@ -10,7 +10,7 @@ buildEnv {
     lf
     lsd
     ripgrep
-    skim
+    fzf
     trash-cli
     tree
   ];
