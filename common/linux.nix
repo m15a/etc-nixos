@@ -143,7 +143,6 @@
     systemPackages = with pkgs; [
       configFiles.fish
       firefox-bin
-      git
       libnotify
       maim
       pavucontrol
@@ -254,6 +253,14 @@
       d = "dirh";
       nd = "nextd";
       pd = "prevd";
+    };
+
+    git.enable = true;
+    git.config = {
+      init.defaultBranch = "main";
+      push.default = "current";
+      status.short = true;
+      user.useConfigOnly = true;
     };
 
     dconf.enable = true;
