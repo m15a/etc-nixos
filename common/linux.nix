@@ -146,6 +146,7 @@
       libnotify
       maim
       pavucontrol
+      terminalEnv
       zathura
     ] ++ [
       gtk3 # Required to use Emacs key bindings in GTK apps

@@ -20,6 +20,8 @@ final: prev:
     pulseSupport = true;
   };
 
+  terminalEnv = final.callPackage ./terminal-env {};
+
   zathura = final.callPackage ./zathura/wrapper.nix {
     zathura = prev.zathura;
     configFile = final.configFiles.zathura;
