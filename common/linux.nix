@@ -142,6 +142,7 @@
 
     systemPackages = with pkgs; [
       configFiles.fish
+      fishPlugins.pure
       firefox-bin
       libnotify
       maim

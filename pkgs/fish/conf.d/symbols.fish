@@ -1,9 +1,13 @@
 set -q __etc_fish_conf_d_symbols_sourced
 or if status is-login
-    # set -U my_fish_symbol_prompt ❯
-    set -U my_fish_symbol_prompt 󰣐
-    set -U my_fish_symbol_git_branch "󰘬 "
-    set -U my_fish_symbol_nix " "
-    set -U my_fish_symbol_python " "
+    function __set_U_if_undef; set -q $argv[1]; or set -U $argv; end
+
+    __set_U_if_undef pure_symbol_prompt 󰣐
+    __set_U_if_undef pure_symbol_reverse_prompt 
+    __set_U_if_undef pure_symbol_virtualenv_prefix " "
+    __set_U_if_undef pure_symbol_nixdevshell_prefix "󱄅 "
+
+    functions -e __set_U_if_undef
 end
+
 set -g __etc_fish_conf_d_symbols_sourced
