@@ -55,8 +55,8 @@ configuration {
     spacing:                     2;
 
     background-color:            transparent;
-    background:                  @bg@;
-    foreground:                  @fg@;
+    background:                  @term_bg@;
+    foreground:                  @term_fg@;
     lightbg:                     var(background);
     lightfg:                     var(foreground);
     alert:                       @red@;
