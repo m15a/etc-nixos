@@ -1,0 +1,1208 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="840px"
+   height="300px"
+   viewBox="0 0 840 300"
+   version="1.1"
+   id="svg261"
+   sodipodi:docname="keyboard-layout.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
+   inkscape:export-filename="keyboard-layout.png"
+   inkscape:export-xdpi="192"
+   inkscape:export-ydpi="192"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview261"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="true"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="416.13233"
+     inkscape:cy="97.22718"
+     inkscape:window-width="2075"
+     inkscape:window-height="1037"
+     inkscape:window-x="400"
+     inkscape:window-y="289"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1"
+     showgrid="false" />
+  <style
+     type="text/css"
+     id="style1">
+    .keycap .border { stroke: black; stroke-width: 2; }
+    .keycap .inner.border { stroke: rgba(0,0,0,.1); }
+    </style>
+  <defs
+     id="defs11">
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="37.467465"
+       height="49.956595"
+       id="rect263" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="37.987825"
+       height="51.517798"
+       id="rect261" />
+    <linearGradient
+       id="DCS">
+      <stop
+         offset="0%"
+         stop-color="black"
+         stop-opacity="0"
+         id="stop1" />
+      <stop
+         offset="40%"
+         stop-color="black"
+         stop-opacity="0.1"
+         id="stop2" />
+      <stop
+         offset="60%"
+         stop-color="black"
+         stop-opacity="0.1"
+         id="stop3" />
+      <stop
+         offset="100%"
+         stop-color="black"
+         stop-opacity="0"
+         id="stop4" />
+    </linearGradient>
+    <linearGradient
+       id="SPACE"
+       x1="0%"
+       x2="0%"
+       y1="0%"
+       y2="100%">
+      <stop
+         offset="0%"
+         stop-color="black"
+         stop-opacity="0.1"
+         id="stop5" />
+      <stop
+         offset="20%"
+         stop-color="black"
+         stop-opacity="0.0"
+         id="stop6" />
+      <stop
+         offset="40%"
+         stop-color="black"
+         stop-opacity="0.0"
+         id="stop7" />
+      <stop
+         offset="100%"
+         stop-color="black"
+         stop-opacity="0.1"
+         id="stop8" />
+    </linearGradient>
+    <radialGradient
+       id="DSA">
+      <stop
+         offset="0%"
+         stop-color="black"
+         stop-opacity="0.1"
+         id="stop9" />
+      <stop
+         offset="10%"
+         stop-color="black"
+         stop-opacity="0.1"
+         id="stop10" />
+      <stop
+         offset="100%"
+         stop-color="black"
+         stop-opacity="0"
+         id="stop11" />
+    </radialGradient>
+    <radialGradient
+       id="SA"
+       xlink:href="#DSA" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="43.19172"
+       height="29.141504"
+       id="rect262" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="33.304443"
+       height="27.580377"
+       id="rect265" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="37.467465"
+       height="49.956595"
+       id="rect266" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="37.467465"
+       height="49.956595"
+       id="rect267" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="37.467465"
+       height="49.956595"
+       id="rect268" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="43.19172"
+       height="29.141504"
+       id="rect269" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="37.467465"
+       height="49.956595"
+       id="rect271" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="37.467465"
+       height="49.956595"
+       id="rect272" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="37.467465"
+       height="49.956595"
+       id="rect276" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="37.467465"
+       height="49.956595"
+       id="rect277" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="37.467465"
+       height="49.956595"
+       id="rect278" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="37.467465"
+       height="49.956595"
+       id="rect279" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="40.069356"
+       height="49.436232"
+       id="rect280" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="40.069356"
+       height="49.436232"
+       id="rect281" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="40.069356"
+       height="49.436232"
+       id="rect282" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="40.069356"
+       height="49.436232"
+       id="rect283" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="40.069356"
+       height="49.436232"
+       id="rect284" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="40.069356"
+       height="49.436232"
+       id="rect285" />
+    <rect
+       x="-68.514812"
+       y="71.369217"
+       width="40.069356"
+       height="49.436232"
+       id="rect286" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="33.304443"
+       height="27.580377"
+       id="rect287" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="33.304443"
+       height="27.580377"
+       id="rect288" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="33.304443"
+       height="27.580377"
+       id="rect289" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="37.814014"
+       height="49.456712"
+       id="rect290" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="37.814014"
+       height="49.456712"
+       id="rect291" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="49.764093"
+       height="47.066731"
+       id="rect292" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="37.814014"
+       height="49.456712"
+       id="rect293" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="37.814014"
+       height="49.456712"
+       id="rect294" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="37.814014"
+       height="49.456712"
+       id="rect298" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="37.814014"
+       height="49.456712"
+       id="rect299" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="37.814014"
+       height="49.456712"
+       id="rect300" />
+    <rect
+       x="-122.52976"
+       y="41.276408"
+       width="37.814014"
+       height="49.456712"
+       id="rect301" />
+  </defs>
+  <g
+     id="g1">
+    <rect
+       x="16"
+       y="16"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#ff5f00"
+       id="rect13" />
+    <rect
+       x="70"
+       y="16"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect17" />
+    <rect
+       x="124"
+       y="16"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect21" />
+    <rect
+       x="178"
+       y="16"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect25" />
+    <rect
+       x="232"
+       y="16"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect29" />
+    <rect
+       x="286"
+       y="16"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#ff5f00"
+       id="rect33" />
+    <rect
+       x="340"
+       y="16"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#ff5f00"
+       id="rect37" />
+    <rect
+       x="394"
+       y="16"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#ff5f00"
+       id="rect41" />
+    <rect
+       x="448"
+       y="16"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#ff5f00"
+       id="rect45" />
+    <rect
+       x="502"
+       y="16"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect49" />
+    <rect
+       x="556"
+       y="16"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect53" />
+    <rect
+       x="610"
+       y="16"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect57" />
+    <rect
+       x="664"
+       y="16"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect61" />
+    <rect
+       x="718"
+       y="16"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#ff5f00"
+       id="rect65" />
+    <rect
+       x="772"
+       y="16"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#ff5f00"
+       id="rect69" />
+    <rect
+       x="16"
+       y="70"
+       width="79"
+       height="52"
+       rx="5"
+       fill="#918175"
+       id="rect73" />
+    <rect
+       x="97"
+       y="70"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect77" />
+    <rect
+       x="151"
+       y="70"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect81" />
+    <rect
+       x="205"
+       y="70"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect85" />
+    <rect
+       x="259"
+       y="70"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect89" />
+    <rect
+       x="313"
+       y="70"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect93" />
+    <rect
+       x="367"
+       y="70"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect97" />
+    <rect
+       x="421"
+       y="70"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect101" />
+    <rect
+       x="475"
+       y="70"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect105" />
+    <rect
+       x="529"
+       y="70"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect109" />
+    <rect
+       x="583"
+       y="70"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect113" />
+    <rect
+       x="637"
+       y="70"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect117" />
+    <rect
+       x="691"
+       y="70"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect121" />
+    <rect
+       x="745"
+       y="70"
+       width="79"
+       height="52"
+       rx="5"
+       fill="#918175"
+       id="rect125" />
+    <rect
+       x="16"
+       y="124"
+       width="92.5"
+       height="52"
+       rx="5"
+       fill="#918175"
+       id="rect129" />
+    <rect
+       x="110.5"
+       y="124"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect133" />
+    <rect
+       x="164.5"
+       y="124"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect137" />
+    <rect
+       x="218.5"
+       y="124"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect141" />
+    <rect
+       x="272.5"
+       y="124"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect145" />
+    <rect
+       x="326.5"
+       y="124"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect149" />
+    <rect
+       x="380.5"
+       y="124"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#918175"
+       id="rect153" />
+    <rect
+       x="434.5"
+       y="124"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#918175"
+       id="rect157" />
+    <rect
+       x="488.5"
+       y="124"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#918175"
+       id="rect161" />
+    <rect
+       x="542.5"
+       y="124"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#918175"
+       id="rect165" />
+    <rect
+       x="596.5"
+       y="124"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect169" />
+    <rect
+       x="650.5"
+       y="124"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect173" />
+    <rect
+       x="704.5"
+       y="124"
+       width="119.5"
+       height="52"
+       rx="5"
+       fill="#918175"
+       id="rect177" />
+    <rect
+       x="16"
+       y="178"
+       width="119.5"
+       height="52"
+       rx="5"
+       fill="#918175"
+       id="rect181" />
+    <rect
+       x="137.5"
+       y="178"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect185" />
+    <rect
+       x="191.5"
+       y="178"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect189" />
+    <rect
+       x="245.5"
+       y="178"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect193" />
+    <rect
+       x="299.5"
+       y="178"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#ff5f00"
+       id="rect197" />
+    <rect
+       x="353.5"
+       y="178"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#ff5f00"
+       id="rect201" />
+    <rect
+       x="407.5"
+       y="178"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#ff5f00"
+       id="rect205" />
+    <rect
+       x="461.5"
+       y="178"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#ff5f00"
+       id="rect209" />
+    <rect
+       x="515.5"
+       y="178"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect213" />
+    <rect
+       x="569.5"
+       y="178"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect217" />
+    <rect
+       x="623.5"
+       y="178"
+       width="52"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect221" />
+    <rect
+       x="677.5"
+       y="178"
+       width="146.5"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect225"
+       style="fill:#918175;fill-opacity:1" />
+    <rect
+       x="16"
+       y="232"
+       width="65.5"
+       height="52"
+       rx="5"
+       fill="#ff5f00"
+       id="rect229" />
+    <rect
+       x="83.5"
+       y="232"
+       width="65.5"
+       height="52"
+       rx="5"
+       fill="#918175"
+       id="rect233" />
+    <rect
+       x="151"
+       y="232"
+       width="65.5"
+       height="52"
+       rx="5"
+       fill="#918175"
+       id="rect237" />
+    <rect
+       x="218.5"
+       y="232"
+       width="335.5"
+       height="52"
+       rx="5"
+       fill="#fce8c3"
+       id="rect241" />
+    <rect
+       x="556"
+       y="232"
+       width="65.5"
+       height="52"
+       rx="5"
+       fill="#918175"
+       id="rect245" />
+    <rect
+       x="623.5"
+       y="232"
+       width="65.5"
+       height="52"
+       rx="5"
+       fill="#918175"
+       id="rect249" />
+    <rect
+       x="691"
+       y="232"
+       width="65.5"
+       height="52"
+       rx="5"
+       fill="#ff5f00"
+       id="rect253" />
+    <rect
+       x="758.5"
+       y="232"
+       width="65.5"
+       height="52"
+       rx="5"
+       fill="#918175"
+       id="rect257" />
+  </g>
+  <text
+     xml:space="preserve"
+     transform="translate(151.95129,-24.457897)"
+     id="text261"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.3333px;line-height:1.25;font-family:'M PLUS 2';-inkscape-font-specification:'M PLUS 2, ';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect261);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-122.5293"
+       y="78.797312"
+       id="tspan76"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan75">󰐥</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(846.58448,-11.968767)"
+     id="text262"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:24px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font Bold';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect262);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-122.5293"
+       y="63.059952"
+       id="tspan77">Ins</tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(108.23934,2.601891)"
+     id="text263"
+     style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect263);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-68.515625"
+       y="105.92788"
+       id="tspan79"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan78">󰪛</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(434.86557,150.1926)"
+     id="text265"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:24px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font Bold';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect265);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-122.5293"
+       y="63.059952"
+       id="tspan80">M1</tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(662.23934,2.601891)"
+     id="text266"
+     style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect266);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-68.515625"
+       y="105.92788"
+       id="tspan82"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan81">󰐪</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(718.45707,0.601891)"
+     id="text267"
+     style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect267);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-68.515625"
+       y="105.92788"
+       id="tspan84"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan83">󰌾</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(774.89253,2.601891)"
+     id="text268"
+     style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect268);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-68.515625"
+       y="105.92788"
+       id="tspan86"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan85">󰏤</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(900.58448,-11.968767)"
+     id="text269"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:24px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font Bold';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect269);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-122.5293"
+       y="63.059952"
+       id="tspan87">Del</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:42.6667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;inline-size:52.2294;display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"
+     x="902.33917"
+     y="20.294189"
+     id="text270"
+     transform="rotate(90,695.82404,-67.389564)"><tspan
+       x="902.33917"
+       y="20.294189"
+       id="tspan88">󰘀</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:42.6667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;inline-size:52.2294;display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"
+     x="902.33917"
+     y="20.294189"
+     id="text273"
+     transform="rotate(90,655.71585,-53.887714)"><tspan
+       x="902.33917"
+       y="20.294189"
+       id="tspan89">󰘁</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:42.6667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;inline-size:52.2294;display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"
+     x="902.33917"
+     y="20.294189"
+     id="text274"
+     transform="translate(-266.09798,199.63846)"><tspan
+       x="902.33917"
+       y="20.294189"
+       id="tspan90">󰅀</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:42.6667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;inline-size:52.2294;display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"
+     x="902.33917"
+     y="20.294189"
+     id="text275"
+     transform="translate(-238.26756,143.24711)"><tspan
+       x="902.33917"
+       y="20.294189"
+       id="tspan91">󰅃</tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(570.68353,55.80662)"
+     id="text276"
+     style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect276);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-68.515625"
+       y="105.92788"
+       id="tspan93"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan92">󰁝</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(624.68353,55.80662)"
+     id="text277"
+     style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect277);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-68.515625"
+       y="105.92788"
+       id="tspan95"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan94">󰁔</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(516.68353,55.80662)"
+     id="text278"
+     style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect278);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-68.515625"
+       y="105.92788"
+       id="tspan97"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan96">󰁅</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(461.98991,55.80662)"
+     id="text279"
+     style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect279);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-68.515625"
+       y="105.92788"
+       id="tspan99"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan98">󰁍</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(272.47385,112.12993)"
+     id="text280"
+     style="font-style:normal;font-weight:normal;font-size:34.6667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect280);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-68.515625"
+       y="103.45946"
+       id="tspan101"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan100">󰐎</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(329.08969,110.74577)"
+     id="text281"
+     style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect281);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-68.515625"
+       y="105.92788"
+       id="tspan103"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan102">󰒭</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(221.08969,110.74577)"
+     id="text282"
+     style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect282);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-68.515625"
+       y="105.92788"
+       id="tspan105"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan104">󰒮</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(189.70553,56.129931)"
+     id="text283"
+     style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect283);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-68.515625"
+       y="105.92788"
+       id="tspan107"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan106">󰝝</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(245.08969,56.129931)"
+     id="text284"
+     style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect284);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-68.515625"
+       y="105.92788"
+       id="tspan109"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan108">󰝞</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(297.08969,56.129931)"
+     id="text285"
+     style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect285);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-68.515625"
+       y="105.92788"
+       id="tspan111"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan110">󰝟</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(355.55305,55.514095)"
+     id="text286"
+     style="font-style:normal;font-weight:normal;font-size:37.3333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect286);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-68.515625"
+       y="105.92788"
+       id="tspan113"><tspan
+         style="font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font'"
+         id="tspan112">󰇪</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(488.86557,150.1926)"
+     id="text287"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:24px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font Bold';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect287);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-122.5293"
+       y="63.059952"
+       id="tspan114">M2</tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(542.86557,150.1926)"
+     id="text288"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:24px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font Bold';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect288);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-122.5293"
+       y="63.059952"
+       id="tspan115">M3</tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(596.86557,150.1926)"
+     id="text289"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:24px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font Bold';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect289);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"><tspan
+       x="-122.5293"
+       y="63.059952"
+       id="tspan116">M4</tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(225.47128,34.844083)"
+     id="text290"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font Bold';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect290);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"
+     x="34.671875"
+     y="0"><tspan
+       x="-117.09863"
+       y="55.799083"
+       id="tspan118"><tspan
+         style="font-size:16px;text-align:center;text-anchor:middle"
+         id="tspan117">RGB
+</tspan></tspan><tspan
+       x="-121.59082"
+       y="75.799083"
+       id="tspan121"><tspan
+         style="font-size:16px;text-align:center;text-anchor:middle"
+         id="tspan119">Togl</tspan><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan120">
+</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(274.17839,34.844083)"
+     id="text292"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font Bold';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect292);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"
+     x="17.335938"
+     y="0"><tspan
+       x="-111.12402"
+       y="55.799083"
+       id="tspan123"><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan122">RGB
+</tspan></tspan><tspan
+       x="-115.61621"
+       y="75.799083"
+       id="tspan124">Mod+</tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(333.47128,34.844083)"
+     id="text293"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font Bold';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect293);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"
+     x="17.335938"
+     y="0"><tspan
+       x="-117.09863"
+       y="55.799083"
+       id="tspan126"><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan125">RGB
+</tspan></tspan><tspan
+       x="-121.59082"
+       y="75.799083"
+       id="tspan128"><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan127">Hue+</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(387.47128,34.844083)"
+     id="text294"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font Bold';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect294);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"
+     x="17.335938"
+     y="0"><tspan
+       x="-117.09863"
+       y="55.799083"
+       id="tspan130"><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan129">RGB
+</tspan></tspan><tspan
+       x="-121.59082"
+       y="75.799083"
+       id="tspan132"><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan131">Hue-</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(441.47128,34.844083)"
+     id="text297"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font Bold';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect298);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"
+     x="17.335938"
+     y="0"><tspan
+       x="-117.09863"
+       y="55.799083"
+       id="tspan134"><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan133">RGB
+</tspan></tspan><tspan
+       x="-121.59082"
+       y="75.799083"
+       id="tspan136"><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan135">Sat+</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(495.47128,34.844083)"
+     id="text298"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font Bold';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect299);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"
+     x="17.335938"
+     y="0"><tspan
+       x="-117.09863"
+       y="55.799083"
+       id="tspan138"><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan137">RGB
+</tspan></tspan><tspan
+       x="-121.59082"
+       y="75.799083"
+       id="tspan140"><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan139">Sat-</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(550.05706,34.844083)"
+     id="text299"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font Bold';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect300);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"
+     x="17.335938"
+     y="0"><tspan
+       x="-117.09863"
+       y="55.799083"
+       id="tspan142"><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan141">RGB
+</tspan></tspan><tspan
+       x="-121.59082"
+       y="75.799083"
+       id="tspan144"><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan143">Brt+</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(604.05706,34.844083)"
+     id="text300"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;line-height:1.25;font-family:'Mononoki Nerd Font';-inkscape-font-specification:'Mononoki Nerd Font Bold';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect301);display:inline;fill:#1c1b19;fill-opacity:1;stroke:none"
+     x="17.335938"
+     y="0"><tspan
+       x="-117.09863"
+       y="55.799083"
+       id="tspan146"><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan145">RGB
+</tspan></tspan><tspan
+       x="-121.59082"
+       y="75.799083"
+       id="tspan148"><tspan
+         style="text-align:center;text-anchor:middle"
+         id="tspan147">Brt-</tspan></tspan></text>
+</svg>
