@@ -1,0 +1,78 @@
+live_config_reload = false
+
+[window.dimensions]
+columns = 106
+lines = 45
+
+[window.padding]
+x = 6
+y = 6
+
+[font]
+size = 13.0
+
+[font.offset]
+x = 1
+y = 1
+
+[font.normal]
+family = "monospace"
+
+[colors.primary]
+background = "@term_bg@"
+foreground = "@term_fg@"
+dim_foreground = "@white@"
+
+[colors.search.matches]
+background = "CellForeground"
+foreground = "CellBackground"
+
+[colors.search.focused_match]
+background = "@sel_bg@"
+foreground = "@sel_fg@"
+
+[colors.hints.start]
+background = "@sel_bg@"
+foreground = "@sel_fg@"
+
+[colors.hints.end]
+background = "CellForeground"
+foreground = "CellBackground"
+
+[colors.line_indicator]
+background = "@accent@"
+foreground = "@sel_fg@"
+
+[colors.footer_bar]
+background = "@accent@"
+foreground = "@sel_fg@"
+
+[colors.normal]
+black = "@black@"
+red = "@red@"
+green = "@green@"
+yellow = "@yellow@"
+blue = "@blue@"
+magenta = "@magenta@"
+cyan = "@cyan@"
+white = "@white@"
+
+[colors.bright]
+black = "@brblack@"
+red = "@brred@"
+green = "@brgreen@"
+yellow = "@bryellow@"
+blue = "@brblue@"
+magenta = "@brmagenta@"
+cyan = "@brcyan@"
+white = "@brwhite@"
+
+[shell]
+program = "/run/current-system/sw/bin/fish"
+args = ["--login"]
+
+[mouse]
+hide_when_typing = true
+
+[env]
+WINIT_X11_SCALE_FACTOR = "@winit_x11_scale_factor@"

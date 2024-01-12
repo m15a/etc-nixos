@@ -5,7 +5,7 @@ let
   inherit (config.hardware.video.legacy) hidpi;
 
   configFile = substituteAll (colors.hex // {
-    src = ./alacritty.yml;
+    src = ./alacritty.toml;
 
     winit_x11_scale_factor = toString hidpi.scale;
   });
