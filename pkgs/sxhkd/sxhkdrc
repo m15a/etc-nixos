@@ -1,51 +1,67 @@
-#
-# WM independent hotkeys
-#
+# ==============================================================================
+# App launchers
+# ==============================================================================
 
-# Adjust brightness
-XF86MonBrightness{Up,Down}
-    xbacklight -steps 10 {-inc 10,-dec 10}
-
-# Adjust audio volume
-XF86Audio{Lower,Raise}Volume
-    pactl set-sink-volume @DEFAULT_SINK@ {-5%,+5%}
-
-# Toggle audio mute/unmute
-XF86AudioMute
-    pactl set-sink-mute @DEFAULT_SINK@ toggle
-
-# Control audio play
-XF86Audio{Prev,Play,Next}
-    true
-
-# Terminal emulator
 super + Return
     alacritty
 
-# Program launcher
 super + space
     rofi -show combi
 
-# Lock the screen
-super + alt + l
+super + {_,shift + }{_,alt + }Print
+    maim{_, --select}{ --hidecursor,_}
+
+super + Scroll_Lock
     dm-tool lock
-    # Workaround for light-locker hang.
-    # See https://github.com/the-cavalry/light-locker/issues/138
-    # Using external monitor (as primary) instead of built-in (off),
-    # switch-to-greeter puts lock screen in the built-in instead of the
-    # external monitor.
+    # NOTE: When using an external monitor (as primary) instead of built-in (off),
+    # `dm-tool switch-to-greeter` puts a lock screen to the built-in instead of
+    # the external one.
+    # cf. https://github.com/the-cavalry/light-locker/issues/138
 
-#
-# Bspwm hotkeys
-#
+super + {backslash,grave,shift + grave}
+    dunstctl {history-pop,close,close-all}
 
-# Close and kill
+
+# ==============================================================================
+# Bspwm: Desktop focus/movement controls
+# ==============================================================================
+
+# Focus the last desktop or swap it with the current desktop.
+super + {_,shift + }Tab
+    bspc desktop --{focus,swap} last
+
+# Focus the next/previous desktop in the current monitor or swap it with the
+# current desktop.
+super + {_,shift + }bracket{left,right}
+    bspc desktop --{focus,swap} {prev,next}.local
+
+# Focus the given desktop or send to it the current desktop.
+super + {_,shift + }{1,2,3,4,5,6,7,8,9,0}
+    bspc {desktop --focus,node --to-desktop} '^{1,2,3,4,5,6,7,8,9,0}'
+
+
+# ==============================================================================
+# Bspwm: Window focus/movement controls
+# ==============================================================================
+
+# Close/kill the current window.
 super + {w,q}
     bspc node --{close,kill}
 
-# Alternate between the tiled and monocle layout
-super + m
-    bspc desktop --layout next
+# Focus the node in the given direction or swap it with the current node
+super + {_,shift + }{h,j,k,l}
+    bspc node --{focus,swap} {west,south,north,east}
+
+# Focus the next/previous node in the current desktop or swap it with
+# the current node.
+super + {_,shift + }{n,p}
+    bspc node --{focus,swap} {next,prev}.local
+
+# Focus the older or newer node in the focus history
+super + {o,i}
+    bspc wm --record-history off; \
+    bspc node {older,newer} --focus; \
+    bspc wm --record-history on
 
 # Send the current node to the newest preselected node if any; otherwise swap
 # it with the biggest node
@@ -54,75 +70,74 @@ super + g
     bspc node --to-node newest.!automatic.local || \
     bspc node --swap biggest.local
 
-#
-# State/flags
-#
+# Smart resize, will grow or shrink depending on location.
+# Will always grow for floating nodes.
+super + {Left,Down,Up,Right}
+    n=@window_move_step@ \
+    { d1=left;   d2=right;  dx=-$n; dy=0;   \
+    , d1=bottom; d2=top;    dx=0;   dy=$n;  \
+    , d1=top;    d2=bottom; dx=0;   dy=-$n; \
+    , d1=right;  d2=left;   dx=$n;  dy=0;   \
+    } \
+    bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
 
-# Set the window state
-super + {t,shift + t,s,f}
-    bspc node --state {tiled,pseudo_tiled,floating,fullscreen}
 
-# Set the node flags
-super + ctrl + {w,s,p}
-    bspc node --flag {locked,sticky,private}
+# ==============================================================================
+# Bspwm: Window preselection
+# ==============================================================================
 
-#
-# Focus/swap
-#
-
-# Focus the node in the given direction or swap it with the current node
-super + {_,shift + }{h,j,k,l}
-    bspc node --{focus,swap} {west,south,north,east}
-
-# Focus the next/previous node in the current desktop or swap it with the
-# current node
-super + {_,shift + }{n,p}
-    bspc node --{focus,swap} {next,prev}.local
-
-# Focus the next/previous desktop in the current monitor or swap it with the
-# current desktop
-super + {_,shift + }bracket{left,right}
-    bspc desktop --{focus,swap} {prev,next}.local
-
-# Focus the last node/desktop
-super + {grave,apostrophe,Tab}
-    bspc {node,node,desktop} --focus last
-
-# Focus the older or newer node in the focus history
-super + {o,i}
-    bspc wm --record-history off; \
-    bspc node {older,newer} --focus; \
-    bspc wm --record-history on
-
-# Focus the given desktop or send to it the current desktop
-super + {_,shift + }{1,2,3,4,5,6,7,8,9,0}
-    bspc {desktop --focus,node --to-desktop} '^{1,2,3,4,5,6,7,8,9,10}'
-
-#
-# Preselect
-#
-
-# Preselect the direction
-super + ctrl + {_,shift + }{h,j,k,l}
-    bspc node{_, --presel-ratio 0.62} --presel-dir {west,south,north,east}
-
-# Cancel the preselection for the focused node
+# Cancel the preselection for the focused node.
 super + ctrl + space
     bspc node --presel-dir cancel
 
-# Cancel the preselection for the focused desktop
+# Cancel the preselection for the focused desktop.
 super + ctrl + shift + space
     bspc query --nodes --desktop | \
     xargs -I id -n 1 bspc node id --presel-dir cancel
 
-#
-# Resize
-#
+# Preselect the direction.
+super + ctrl + {_,shift + }{h,j,k,l}
+    bspc node{_, --presel-ratio 0.66} --presel-dir {west,south,north,east}
 
-# Expand a window by moving one of its side outward
-super + {Left,Down,Up,Right}
-    bspc node --resize {left -@window_move_step@ 0,bottom 0 @window_move_step@,top 0 -@window_move_step@,right @window_move_step@ 0}
 
-# Contract a window by moving one of its side inward
-super + shift + {Left,Down,Up,Right}
-    bspc node --resize {right -@window_move_step@ 0,top 0 @window_move_step@,bottom 0 -@window_move_step@,left @window_move_step@ 0}
+# ==============================================================================
+# Bspwm: Window state controls
+# ==============================================================================
+
+# Alternate between the tiled and monocle layout.
+super + m
+    bspc desktop --layout next
+
+# Set the window state.
+super + {t,shift + t,f,shift + f}
+    bspc node --state {tiled,pseudo_tiled,floating,fullscreen}
+
+# Set the node flags.
+super + alt + {l,s,p}
+    bspc node --flag {locked,sticky,private}
+
+
+# ==============================================================================
+# Media controls
+# ==============================================================================
+
+XF86Audio{Lower,Raise}Volume
+    pactl set-sink-volume @DEFAULT_SINK@ {-5%,+5%}
+
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+XF86Audio{Prev,Play,Next}
+    # TODO: when I use any audio players.
+    true
+
+
+# ==============================================================================
+# Built-in display controls
+# ==============================================================================
+
+XF86MonBrightness{Up,Down}
+    xbacklight -steps 10 {-inc 10,-dec 10}
+
+
+# vim: tw=88
