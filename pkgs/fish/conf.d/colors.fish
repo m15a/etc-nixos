@@ -54,13 +54,13 @@ or if status is-login
     #   se: end standout
     #   us: begin underline
     #   ue: end underline
-    __set_U_if_undef LESS_TERMCAP_mb (printf "\e[5m")
-    __set_U_if_undef LESS_TERMCAP_md (printf "\e[1m")
-    __set_U_if_undef LESS_TERMCAP_me (printf "\e[0m")
-    __set_U_if_undef LESS_TERMCAP_so (printf "\e[38;5;@sel_fg_nr@;48;5;@accent_nr@m")
-    __set_U_if_undef LESS_TERMCAP_se (printf "\e[0m")
-    __set_U_if_undef LESS_TERMCAP_us (printf "\e[3;33m")
-    __set_U_if_undef LESS_TERMCAP_ue (printf "\e[0m")
+    __set_U_if_undef -x LESS_TERMCAP_mb (printf "\e[5m")
+    __set_U_if_undef -x LESS_TERMCAP_md (printf "\e[1m")
+    __set_U_if_undef -x LESS_TERMCAP_me (printf "\e[0m")
+    __set_U_if_undef -x LESS_TERMCAP_so (printf "\e[38;5;@sel_fg_nr@;48;5;@accent_nr@m")
+    __set_U_if_undef -x LESS_TERMCAP_se (printf "\e[0m")
+    __set_U_if_undef -x LESS_TERMCAP_us (printf "\e[3;33m")
+    __set_U_if_undef -x LESS_TERMCAP_ue (printf "\e[0m")
 
     functions -e __set_U_if_undef
 end
