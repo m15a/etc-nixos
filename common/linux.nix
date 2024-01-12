@@ -154,7 +154,7 @@
       configFiles.gtk3
       oomox-default-theme
       oomox-default-icons
-      paper-icon-theme
+      simp1e-cursors
     ];
 
     pathsToLink = [
@@ -167,7 +167,9 @@
     };
 
     variables = {
-      XCURSOR_THEME = "Paper";
+      # TODO: Create Srcery-flavoured mouse cursor theme by using
+      # [Sim1le's cursor generator](https://gitlab.com/cursors/cursor-generator)
+      XCURSOR_THEME = "Simp1e-Gruvbox-Light";
       # Apps launched in ~/.xprofile need it if they use SVG icons.
       GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
       PAGER = "less";
