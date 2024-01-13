@@ -241,6 +241,11 @@
           and command bat $argv
           or  command cat $argv
       end
+      function tree
+          type -fq lsd
+          and command lsd --tree $argv
+          or  command tree $argv
+      end
     '';
     fish.shellAliases = {
       l = null;
@@ -257,6 +262,7 @@
       d = "dirh";
       nd = "nextd";
       pd = "prevd";
+      t = "tree";
     };
 
     git.enable = true;

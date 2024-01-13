@@ -12,6 +12,5 @@ buildEnv {
     ripgrep
     fzf
     trash-cli
-    tree
   ];
 }
