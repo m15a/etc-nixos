@@ -5,13 +5,15 @@ let
   inherit (config.environment) colors;
 in
 
-substituteAll (colors.hex // {
+substituteAll (colors.hex // rec {
   src = ./bspwmrc;
 
   postInstall = "chmod +x $out";
 
-  # 37 is derived from [bspwm window gap: 60] / [phi: 1.618]
-  monocle_padding = toString (37 * hidpi.scale);
+  top_monocle_padding = toString (120 * hidpi.scale);
+  bottom_monocle_padding = top_monocle_padding;
+  left_monocle_padding = toString (360 * hidpi.scale);
+  right_monocle_padding = left_monocle_padding;
   window_gap = toString (60 * hidpi.scale);
   border_width = toString (2 * hidpi.scale);
 })
