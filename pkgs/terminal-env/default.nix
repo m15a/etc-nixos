@@ -12,5 +12,6 @@ buildEnv {
     ripgrep
     fzf
     trash-cli
+    xsel
   ];
 }
