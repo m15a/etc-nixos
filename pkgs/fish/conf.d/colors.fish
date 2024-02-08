@@ -6,31 +6,31 @@ or if status is-login
     #   github:fish-shell/fish-shell/share/tools/web_config/themes/fish default.theme
     #   github:fish-shell/fish-shell/share/functions/fish_config_interactive.fish
     __set_U_if_undef fish_color_normal normal
-    __set_U_if_undef fish_color_command magenta
-    __set_U_if_undef fish_color_keyword cyan -i
+    __set_U_if_undef fish_color_command yellow
+    __set_U_if_undef fish_color_keyword red -i
     __set_U_if_undef fish_color_param normal
-    __set_U_if_undef fish_color_option brmagenta
-    __set_U_if_undef fish_color_redirection bryellow --bold
+    __set_U_if_undef fish_color_option cyan -i
+    __set_U_if_undef fish_color_redirection magenta --bold
     __set_U_if_undef fish_color_comment brblack
-    __set_U_if_undef fish_color_error red
-    __set_U_if_undef fish_color_escape brred
-    __set_U_if_undef fish_color_operator brcyan
-    __set_U_if_undef fish_color_end white
+    __set_U_if_undef fish_color_error brred
+    __set_U_if_undef fish_color_escape brmagenta
+    __set_U_if_undef fish_color_operator normal --bold
+    __set_U_if_undef fish_color_end white --bold
     __set_U_if_undef fish_color_quote brgreen
     __set_U_if_undef fish_color_autosuggestion brblack
     __set_U_if_undef fish_color_user white
     __set_U_if_undef fish_color_host white
-    __set_U_if_undef fish_color_host_remote yellow
+    __set_U_if_undef fish_color_host_remote bryellow
     __set_U_if_undef fish_color_valid_path --underline
-    __set_U_if_undef fish_color_status red
+    __set_U_if_undef fish_color_status $fish_color_error
     __set_U_if_undef fish_color_cwd blue
-    __set_U_if_undef fish_color_cwd_root red
+    __set_U_if_undef fish_color_cwd_root brred
     __set_U_if_undef fish_color_search_match --reverse
     __set_U_if_undef fish_color_selection --reverse
     __set_U_if_undef fish_color_cancel -r
     __set_U_if_undef fish_pager_color_prefix normal --bold
     __set_U_if_undef fish_pager_color_completion brblack
-    __set_U_if_undef fish_pager_color_description bryellow -i
+    __set_U_if_undef fish_pager_color_description green -i
     __set_U_if_undef fish_pager_color_progress black --background=@accent@
     __set_U_if_undef fish_pager_color_selected_background -r
     __set_U_if_undef fish_color_history_current --bold
@@ -38,13 +38,13 @@ or if status is-login
     # github:pure-fish/pure
     __set_U_if_undef pure_color_danger $fish_color_error
     __set_U_if_undef pure_color_dark black
-    __set_U_if_undef pure_color_info @accent@
+    __set_U_if_undef pure_color_info brcyan
     __set_U_if_undef pure_color_light white
     __set_U_if_undef pure_color_mute brblack
     __set_U_if_undef pure_color_normal normal
-    __set_U_if_undef pure_color_primary blue
-    __set_U_if_undef pure_color_success green
-    __set_U_if_undef pure_color_warning yellow
+    __set_U_if_undef pure_color_primary brblue
+    __set_U_if_undef pure_color_success brgreen
+    __set_U_if_undef pure_color_warning bryellow
 
     # NOTE:
     #   mb: begin blinking

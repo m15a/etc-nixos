@@ -23,6 +23,14 @@ background = "@term_bg@"
 foreground = "@term_fg@"
 dim_foreground = "@white@"
 
+[colors.cursor]
+text = "@sel_fg@"
+cursor = "@sel_bg@"
+
+[colors.vi_mode_cursor]
+text = "@sel_fg@"
+cursor = "@accent@"
+
 [colors.search.matches]
 background = "CellForeground"
 foreground = "CellBackground"
