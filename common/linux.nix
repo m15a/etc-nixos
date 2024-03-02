@@ -266,6 +266,7 @@
     };
 
     git.enable = true;
+    git.package = pkgs.gitFull;
     git.config = {
       init.defaultBranch = "main";
       push.default = "current";
