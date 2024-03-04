@@ -279,6 +279,8 @@
     light-locker.enable = true;
     light-locker.lockAfterScreensaver = 10;
 
+    ssh.startAgent = true;
+
     rofi.enable = true;
     rofi.configFile = pkgs.configFiles.rofi;
 
