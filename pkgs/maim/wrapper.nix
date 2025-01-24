@@ -1,7 +1,14 @@
-{ writeFishApplication, maim, libnotify }:
+{
+  writeFishApplication,
+  maim,
+  libnotify,
+}:
 
 writeFishApplication {
   name = "maim";
-  runtimeInputs = [ maim libnotify ];
+  runtimeInputs = [
+    maim
+    libnotify
+  ];
   text = builtins.readFile ./maim.fish;
 }

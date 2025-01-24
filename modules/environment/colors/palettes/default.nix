@@ -1,0 +1,3 @@
+{
+  srcery = import ./srcery.nix;
+}

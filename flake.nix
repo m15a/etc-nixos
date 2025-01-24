@@ -1,52 +1,61 @@
 {
+  description = "My NoxOS systems flake, rebooted";
+
   inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-misc = {
-      url = "github:mnacamura/nixpkgs-misc";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-    nixpkgs-themix = {
-      url = "github:mnacamura/nixpkgs-themix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-    nix-darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    flake-utils.url = "github:numtide/flake-utils";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-misc, nixpkgs-themix, nix-darwin, ... }:
-  let
-    nixpkgs-overlays = { config, lib, pkgs, ...}: {
-      nixpkgs.overlays = [
-        (import ./pkgs { inherit config lib; })
-        nixpkgs-misc.overlay
-        nixpkgs-themix.overlay
-      ];
-    };
-    hosts = import ./hosts;
-  in {
-    nixosConfigurations = {
-      louise = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          nixpkgs-overlays
-          hosts.louise
-        ];
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixos-hardware,
+      flake-utils,
+      treefmt-nix,
+      ...
+    }:
+    let
+      inherit (nixpkgs.lib) nixosSystem;
+      bless =
+        system: _: host-module:
+        system {
+          modules = [
+            (_: {
+              system.configurationRevision = self.rev or self.dirtyRev or null;
+              nixpkgs.overlays = [ self.overlays.default ];
+            })
+            host-module
+          ];
+        };
+      hosts = import ./hosts { inherit nixos-hardware; };
+    in
+    {
+      nixosConfigurations = builtins.mapAttrs (bless nixosSystem) {
+        inherit (hosts) louise;
       };
-    };
-
-    darwinConfigurations = {
-      Y-0371 = nix-darwin.lib.darwinSystem {
-        system = "x86_64-darwin";
-        modules = [
-          nixpkgs-overlays
-          hosts.Y-0371
-        ];
-      };
-    };
-  };
+      overlays.default = import ./pkgs/overlay.nix;
+    }
+    // (flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [ self.overlays.default ];
+        };
+        packages = import ./pkgs { inherit pkgs; };
+        treefmt = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+      in
+      {
+        inherit packages;
+        formatter = treefmt.config.build.wrapper;
+        checks = packages // {
+          format = treefmt.config.build.check self;
+        };
+        devShells.default = treefmt.config.build.devShell;
+      }
+    ));
 }

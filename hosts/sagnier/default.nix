@@ -1,3 +1,5 @@
+{ nixos-hardware, ... }:
+
 { config, pkgs, ... }:
 
 {
@@ -21,20 +23,22 @@
     '';
   };
 
-  fileSystems = let
-    # Mount options for Btrfs on SSD
-    commonMountOptions = [
-      "commit=60"
-      "compress=lzo"
-      "defaults"
-      "noatime"
-    ];
-  in {
-    "/".options = commonMountOptions;
-    "/nix".options = commonMountOptions;
-    "/var".options = commonMountOptions;
-    "/home".options = commonMountOptions;
-  };
+  fileSystems =
+    let
+      # Mount options for Btrfs on SSD
+      commonMountOptions = [
+        "commit=60"
+        "compress=lzo"
+        "defaults"
+        "noatime"
+      ];
+    in
+    {
+      "/".options = commonMountOptions;
+      "/nix".options = commonMountOptions;
+      "/var".options = commonMountOptions;
+      "/home".options = commonMountOptions;
+    };
 
   hardware = {
     # cpu.amd.updateMicrocode = true;
@@ -53,7 +57,10 @@
     videoDrivers = [ "amdgpu" ];
 
     xrandrHeads = [
-      { output = "DisplayPort-1"; primary = true; }
+      {
+        output = "DisplayPort-1";
+        primary = true;
+      }
     ];
   };
 }

@@ -1,6 +1,7 @@
+{ nixos-hardware, ... }:
+
 {
-  louise = import ./louise;
-  sagnier = import ./sagnier;
-  suzon = import ./suzon;
-  Y-0371 = import ./Y-0371;
+  louise = import ./louise { inherit nixos-hardware; };
+  sagnier = import ./sagnier { inherit nixos-hardware; };
+  # suzon = import ./suzon;
 }

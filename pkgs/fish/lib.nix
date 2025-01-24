@@ -2,14 +2,19 @@
   Fish counterparts of Bash script builders defined in
   <nixpkgs>/pkgs/build-support/trivial-builders/default.nix.
 */
-{ lib, writeTextFile, fish }:
+{
+  lib,
+  writeTextFile,
+  fish,
+}:
 
 {
   /*
     Writes a Fish script and checks its syntax.
     Automatically includes interpreter above the contents passed.
   */
-  writeFishScript = name: text:
+  writeFishScript =
+    name: text:
     writeTextFile {
       inherit name;
       executable = true;
@@ -27,7 +32,8 @@
     and checks its syntax.
     Automatically includes interpreter above the contents passed.
   */
-  writeFishScriptBin = name: text:
+  writeFishScriptBin =
+    name: text:
     writeTextFile {
       inherit name;
       executable = true;
@@ -49,36 +55,41 @@
     list, e.g. [ "SC2016" ].
     Automatically handles creation of PATH based on runtimeInputs
   */
-  writeFishApplication = {
-    name,
-    text,
-    runtimeInputs ? [],
-    meta ? {},
-    checkPhase ? null,
-    excludeShellChecks ? []
-  }:
+  writeFishApplication =
+    {
+      name,
+      text,
+      runtimeInputs ? [ ],
+      meta ? { },
+      checkPhase ? null,
+      excludeShellChecks ? [ ],
+    }:
     writeTextFile {
       inherit name meta;
       executable = true;
       destination = "/bin/${name}";
       allowSubstitutes = true;
       preferLocalBuild = false;
-      text = ''
-        #!${fish}/bin/fish
-      '' + lib.optionalString (runtimeInputs != []) ''
-
-        fish_add_path --path (string split : "${lib.makeBinPath runtimeInputs}")
-      '' + ''
-
-        ${text}
-      '';
-      checkPhase =
-        if checkPhase == null
-        then ''
-          runHook preCheck
-          ${fish}/bin/fish -n "$target"
-          runHook postCheck
+      text =
         ''
-        else checkPhase;
+          #!${fish}/bin/fish
+        ''
+        + lib.optionalString (runtimeInputs != [ ]) ''
+
+          fish_add_path --path (string split : "${lib.makeBinPath runtimeInputs}")
+        ''
+        + ''
+
+          ${text}
+        '';
+      checkPhase =
+        if checkPhase == null then
+          ''
+            runHook preCheck
+            ${fish}/bin/fish -n "$target"
+            runHook postCheck
+          ''
+        else
+          checkPhase;
     };
 }

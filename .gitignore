@@ -1,3 +1,5 @@
+.direnv/
+.envrc
 configuration.nix
 private.nix
 result*
