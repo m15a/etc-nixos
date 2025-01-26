@@ -6,6 +6,6 @@ origin.overrideAttrs (_: rec {
     owner = "prikhi";
     repo = "lightdm-mini-greeter";
     rev = version;
-    sha256 = "sha256-thfjJm0wAfCsLX4/B1OoLkEqpcEbltJhrAxtK5YHcHU=";
+    hash = "sha256-thfjJm0wAfCsLX4/B1OoLkEqpcEbltJhrAxtK5YHcHU=";
   };
 })

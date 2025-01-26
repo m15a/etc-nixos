@@ -21,7 +21,7 @@ background = "@term_bg@"
 foreground = "@term_fg@"
 
 [urgency_critical]
-background = "@red@"
+background = "@error@"
 foreground = "@term_fg@"
 
 # vim: ft=cfg
